@@ -5,8 +5,7 @@ public class MainF extends javax.swing.JFrame {
 
     public MainF() {
         initComponents();
-        
-        // sadasdasdasdasdsaasdasd
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -26,6 +25,7 @@ public class MainF extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -102,6 +102,9 @@ public class MainF extends javax.swing.JFrame {
         jMenuItem14.setText("Usuários");
         jMenu1.add(jMenuItem14);
 
+        jMenuItem15.setText("Unidades");
+        jMenu1.add(jMenuItem15);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Pedidos");
@@ -144,7 +147,10 @@ public class MainF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        CadastroPessoaF ifrPessoa = new CadastroPessoaF();
+        jDesktopPane1.add(ifrPessoa);
+        //unit.setPositionCenter(ifrCliente);
+        ifrPessoa.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -203,6 +209,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
