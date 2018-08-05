@@ -69,9 +69,19 @@ public class MainF extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Funcionarios");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Fornecedores");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Produtos");
@@ -91,6 +101,11 @@ public class MainF extends javax.swing.JFrame {
         jMenu1.add(jMenuItem5);
 
         jMenuItem6.setText("Cidades");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem6);
 
         jMenuItem12.setText("Formas de pagamentos");
@@ -154,12 +169,36 @@ public class MainF extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+        CadastroEstadoF ifrEstado = new CadastroEstadoF();
+        jDesktopPane1.add(ifrEstado);
+        // unit.setPositionCenter(ifrEstado);
+        ifrEstado.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        CadastroPessoaF ifrPessoa = new CadastroPessoaF();
+        jDesktopPane1.add(ifrPessoa);
+        //unit.setPositionCenter(ifrCliente);
+        ifrPessoa.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        CadastroPessoaF ifrPessoa = new CadastroPessoaF();
+        jDesktopPane1.add(ifrPessoa);
+        //unit.setPositionCenter(ifrCliente);
+        ifrPessoa.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        CadastroCidadeF ifrCidade = new CadastroCidadeF();
+        jDesktopPane1.add(ifrCidade);
+        //unit.setPositionCenter(ifrCidade);
+        ifrCidade.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
