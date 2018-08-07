@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/ProjetoIntegrador</property>
+    <property name="hibernate.connection.username">postgres</property>
+    <property name="hibernate.connection.password">postgres</property>
+    <property name="hbm2ddl.auto">update</property>
+    <property name="show_sql">true</property>
+    <mapping class="model.Pedido"/>
+    <mapping class="model.Formatacao"/>
+    <mapping class="model.Pessoa"/>
+    <mapping class="model.Estado"/>
+    <mapping class="model.Cidade"/>
+    <mapping class="model.MovimentacaoFinancId"/>
+    <mapping class="model.Cargos"/>
+    <mapping class="model.Usuario"/>
+    <mapping class="model.limpaCampos"/>
+    <mapping class="model.Validacao"/>
+    <mapping class="model.EstoqueId"/>
+    <mapping class="model.ItensPedido"/>
+    <mapping class="model.unit"/>
+    <mapping class="model.Estoque"/>
+    <mapping class="model.Funcionario"/>
+    <mapping class="model.FormaPagamento"/>
+    <mapping class="model.MovimentacaoFinanc"/>
+    <mapping class="model.ComboItens"/>
+    <mapping class="model.ItensPedidoId"/>
+    <mapping class="model.IDAO_T"/>
+    <mapping class="model.Produto"/>
+    <mapping class="model.Unidade"/>
+    <mapping class="model.Criptografia"/>
+    <mapping class="model.PessoaJuridica"/>
+  </session-factory>
+</hibernate-configuration>

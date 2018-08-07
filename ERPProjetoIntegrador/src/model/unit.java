@@ -9,5 +9,7 @@ public class unit {
         Dimension wDimension = pInternalFrame.getDesktopPane().getSize();
         pInternalFrame.setLocation((wDimension.width - pInternalFrame.getSize().width) / 2, 
                                    (wDimension.height - pInternalFrame.getSize().height) /2);
+        
+        
     }
 }

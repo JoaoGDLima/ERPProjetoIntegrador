@@ -76,9 +76,9 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         btSalvar.setBackground(new java.awt.Color(76, 175, 80));
         btSalvar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Salvar_15.png"))); // NOI18N
         btSalvar.setText("Salvar");
         btSalvar.setActionCommand("");
-        btSalvar.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -88,6 +88,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         btCancelar.setBackground(new java.awt.Color(243, 243, 243));
         btCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btCancelar.setForeground(new java.awt.Color(33, 33, 33));
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cancelar_15.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.setActionCommand("");
         btCancelar.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
@@ -243,9 +244,9 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(edCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(pnCamposLayout.createSequentialGroup()
-                                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btCancelar))
+                                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lbNome2)
                             .addComponent(jLabel6)
                             .addGroup(pnCamposLayout.createSequentialGroup()
@@ -347,6 +348,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         btExcluir.setBackground(new java.awt.Color(243, 243, 243));
         btExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btExcluir.setForeground(new java.awt.Color(33, 33, 33));
+        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
         btExcluir.setText("Excluir");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,6 +359,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         btEditar.setBackground(new java.awt.Color(243, 243, 243));
         btEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btEditar.setForeground(new java.awt.Color(33, 33, 33));
+        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Editar_15.png"))); // NOI18N
         btEditar.setText("Editar");
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,6 +370,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         btNovo.setBackground(new java.awt.Color(243, 243, 243));
         btNovo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btNovo.setForeground(new java.awt.Color(33, 33, 33));
+        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
         btNovo.setText("Novo");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,6 +381,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         btNovo1.setBackground(new java.awt.Color(243, 243, 243));
         btNovo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btNovo1.setForeground(new java.awt.Color(33, 33, 33));
+        btNovo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
         btNovo1.setText("Pesquisar");
         btNovo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,17 +401,17 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edBusca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btNovo1))
+                        .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnListaLayout.setVerticalGroup(
