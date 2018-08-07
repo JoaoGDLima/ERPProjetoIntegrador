@@ -1,5 +1,5 @@
 package model;
-// Generated 07/08/2018 09:35:59 by Hibernate Tools 4.3.1
+// Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -9,10 +9,6 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,13 +18,11 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="estoque"
-    ,schema="public"
 )
 public class Estoque  implements java.io.Serializable {
 
 
      private EstoqueId id;
-     private ItensPedido itensPedido;
      private long quantidade;
      private BigDecimal valorCompra;
      private Date dataValidade;
@@ -37,9 +31,8 @@ public class Estoque  implements java.io.Serializable {
     public Estoque() {
     }
 
-    public Estoque(EstoqueId id, ItensPedido itensPedido, long quantidade, BigDecimal valorCompra, Date dataValidade, char inativo) {
+    public Estoque(EstoqueId id, long quantidade, BigDecimal valorCompra, Date dataValidade, char inativo) {
        this.id = id;
-       this.itensPedido = itensPedido;
        this.quantidade = quantidade;
        this.valorCompra = valorCompra;
        this.dataValidade = dataValidade;
@@ -59,18 +52,6 @@ public class Estoque  implements java.io.Serializable {
     
     public void setId(EstoqueId id) {
         this.id = id;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumns( { 
-        @JoinColumn(name="id_pedido", referencedColumnName="id_pedido", nullable=false, insertable=false, updatable=false), 
-        @JoinColumn(name="id_produto", referencedColumnName="id_produto", nullable=false, insertable=false, updatable=false) } )
-    public ItensPedido getItensPedido() {
-        return this.itensPedido;
-    }
-    
-    public void setItensPedido(ItensPedido itensPedido) {
-        this.itensPedido = itensPedido;
     }
 
     

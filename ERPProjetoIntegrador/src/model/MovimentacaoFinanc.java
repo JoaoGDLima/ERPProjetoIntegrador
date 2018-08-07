@@ -1,5 +1,5 @@
 package model;
-// Generated 07/08/2018 09:35:59 by Hibernate Tools 4.3.1
+// Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -9,9 +9,6 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,13 +18,11 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="movimentacao_financ"
-    ,schema="public"
 )
 public class MovimentacaoFinanc  implements java.io.Serializable {
 
 
      private MovimentacaoFinancId id;
-     private Pedido pedido;
      private BigDecimal valor;
      private Date dataVencimento;
      private Date dataQuitacao;
@@ -37,15 +32,13 @@ public class MovimentacaoFinanc  implements java.io.Serializable {
     }
 
 	
-    public MovimentacaoFinanc(MovimentacaoFinancId id, Pedido pedido, BigDecimal valor, Date dataVencimento) {
+    public MovimentacaoFinanc(MovimentacaoFinancId id, BigDecimal valor, Date dataVencimento) {
         this.id = id;
-        this.pedido = pedido;
         this.valor = valor;
         this.dataVencimento = dataVencimento;
     }
-    public MovimentacaoFinanc(MovimentacaoFinancId id, Pedido pedido, BigDecimal valor, Date dataVencimento, Date dataQuitacao, Date dataCancelamento) {
+    public MovimentacaoFinanc(MovimentacaoFinancId id, BigDecimal valor, Date dataVencimento, Date dataQuitacao, Date dataCancelamento) {
        this.id = id;
-       this.pedido = pedido;
        this.valor = valor;
        this.dataVencimento = dataVencimento;
        this.dataQuitacao = dataQuitacao;
@@ -64,16 +57,6 @@ public class MovimentacaoFinanc  implements java.io.Serializable {
     
     public void setId(MovimentacaoFinancId id) {
         this.id = id;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_pedido", nullable=false, insertable=false, updatable=false)
-    public Pedido getPedido() {
-        return this.pedido;
-    }
-    
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
     }
 
     

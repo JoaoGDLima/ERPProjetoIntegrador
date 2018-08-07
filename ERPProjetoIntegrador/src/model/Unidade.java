@@ -1,14 +1,10 @@
 package model;
-// Generated 07/08/2018 09:35:59 by Hibernate Tools 4.3.1
+// Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -16,7 +12,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="unidade"
-    ,schema="public"
 )
 public class Unidade  implements java.io.Serializable {
 
@@ -25,30 +20,21 @@ public class Unidade  implements java.io.Serializable {
      private String nome;
      private String sigla;
      private char inativo;
-     private Set produtos = new HashSet(0);
 
     public Unidade() {
     }
 
-	
     public Unidade(int idUnidade, String nome, String sigla, char inativo) {
-        this.idUnidade = idUnidade;
-        this.nome = nome;
-        this.sigla = sigla;
-        this.inativo = inativo;
-    }
-    public Unidade(int idUnidade, String nome, String sigla, char inativo, Set produtos) {
        this.idUnidade = idUnidade;
        this.nome = nome;
        this.sigla = sigla;
        this.inativo = inativo;
-       this.produtos = produtos;
     }
    
      @Id 
 
     
-    @Column(name="id_unidade", unique=true, nullable=false)
+    @Column(name="id_unidade", nullable=false)
     public int getIdUnidade() {
         return this.idUnidade;
     }
@@ -85,15 +71,6 @@ public class Unidade  implements java.io.Serializable {
     
     public void setInativo(char inativo) {
         this.inativo = inativo;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="unidade")
-    public Set getProdutos() {
-        return this.produtos;
-    }
-    
-    public void setProdutos(Set produtos) {
-        this.produtos = produtos;
     }
 
 

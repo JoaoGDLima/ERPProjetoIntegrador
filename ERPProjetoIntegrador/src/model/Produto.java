@@ -1,17 +1,11 @@
 package model;
-// Generated 07/08/2018 09:35:59 by Hibernate Tools 4.3.1
+// Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,60 +13,47 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="produto"
-    ,schema="public"
 )
 public class Produto  implements java.io.Serializable {
 
 
      private int idProduto;
-     private Unidade unidade;
      private String nome;
      private String descricao;
      private BigDecimal percentualLucro;
      private char inativo;
-     private Set itensPedidos = new HashSet(0);
+     private int idUnidade;
 
     public Produto() {
     }
 
 	
-    public Produto(int idProduto, Unidade unidade, String nome, BigDecimal percentualLucro, char inativo) {
+    public Produto(int idProduto, String nome, BigDecimal percentualLucro, char inativo, int idUnidade) {
         this.idProduto = idProduto;
-        this.unidade = unidade;
         this.nome = nome;
         this.percentualLucro = percentualLucro;
         this.inativo = inativo;
+        this.idUnidade = idUnidade;
     }
-    public Produto(int idProduto, Unidade unidade, String nome, String descricao, BigDecimal percentualLucro, char inativo, Set itensPedidos) {
+    public Produto(int idProduto, String nome, String descricao, BigDecimal percentualLucro, char inativo, int idUnidade) {
        this.idProduto = idProduto;
-       this.unidade = unidade;
        this.nome = nome;
        this.descricao = descricao;
        this.percentualLucro = percentualLucro;
        this.inativo = inativo;
-       this.itensPedidos = itensPedidos;
+       this.idUnidade = idUnidade;
     }
    
      @Id 
 
     
-    @Column(name="id_produto", unique=true, nullable=false)
+    @Column(name="id_produto", nullable=false)
     public int getIdProduto() {
         return this.idProduto;
     }
     
     public void setIdProduto(int idProduto) {
         this.idProduto = idProduto;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_unidade", nullable=false)
-    public Unidade getUnidade() {
-        return this.unidade;
-    }
-    
-    public void setUnidade(Unidade unidade) {
-        this.unidade = unidade;
     }
 
     
@@ -115,13 +96,14 @@ public class Produto  implements java.io.Serializable {
         this.inativo = inativo;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="produto")
-    public Set getItensPedidos() {
-        return this.itensPedidos;
+    
+    @Column(name="id_unidade", nullable=false)
+    public int getIdUnidade() {
+        return this.idUnidade;
     }
     
-    public void setItensPedidos(Set itensPedidos) {
-        this.itensPedidos = itensPedidos;
+    public void setIdUnidade(int idUnidade) {
+        this.idUnidade = idUnidade;
     }
 
 

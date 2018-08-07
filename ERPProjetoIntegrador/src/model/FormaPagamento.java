@@ -1,15 +1,11 @@
 package model;
-// Generated 07/08/2018 09:35:59 by Hibernate Tools 4.3.1
+// Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +13,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="forma_pagamento"
-    ,schema="public"
 )
 public class FormaPagamento  implements java.io.Serializable {
 
@@ -28,7 +23,6 @@ public class FormaPagamento  implements java.io.Serializable {
      private char inativo;
      private BigDecimal percDesconto;
      private BigDecimal percAcrescimo;
-     private Set pedidos = new HashSet(0);
 
     public FormaPagamento() {
     }
@@ -40,20 +34,19 @@ public class FormaPagamento  implements java.io.Serializable {
         this.parcelas = parcelas;
         this.inativo = inativo;
     }
-    public FormaPagamento(int idFormaPagamento, String nome, int parcelas, char inativo, BigDecimal percDesconto, BigDecimal percAcrescimo, Set pedidos) {
+    public FormaPagamento(int idFormaPagamento, String nome, int parcelas, char inativo, BigDecimal percDesconto, BigDecimal percAcrescimo) {
        this.idFormaPagamento = idFormaPagamento;
        this.nome = nome;
        this.parcelas = parcelas;
        this.inativo = inativo;
        this.percDesconto = percDesconto;
        this.percAcrescimo = percAcrescimo;
-       this.pedidos = pedidos;
     }
    
      @Id 
 
     
-    @Column(name="id_forma_pagamento", unique=true, nullable=false)
+    @Column(name="id_forma_pagamento", nullable=false)
     public int getIdFormaPagamento() {
         return this.idFormaPagamento;
     }
@@ -110,15 +103,6 @@ public class FormaPagamento  implements java.io.Serializable {
     
     public void setPercAcrescimo(BigDecimal percAcrescimo) {
         this.percAcrescimo = percAcrescimo;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="formaPagamento")
-    public Set getPedidos() {
-        return this.pedidos;
-    }
-    
-    public void setPedidos(Set pedidos) {
-        this.pedidos = pedidos;
     }
 
 

@@ -1,18 +1,12 @@
 package model;
-// Generated 07/08/2018 09:35:59 by Hibernate Tools 4.3.1
+// Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,57 +16,52 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="pedido"
-    ,schema="public"
 )
 public class Pedido  implements java.io.Serializable {
 
 
      private int idPedido;
-     private FormaPagamento formaPagamento;
-     private Funcionario funcionario;
-     private PessoaJuridica pessoaJuridica;
+     private int idCliente;
+     private int idVendedor;
+     private int idFormaPagamento;
      private Date dataPedido;
      private char tipo;
      private char situacao;
      private BigDecimal valorTotal;
      private BigDecimal desconto;
      private BigDecimal acrescimo;
-     private Set movimentacaoFinancs = new HashSet(0);
-     private Set itensPedidos = new HashSet(0);
 
     public Pedido() {
     }
 
 	
-    public Pedido(int idPedido, FormaPagamento formaPagamento, Funcionario funcionario, PessoaJuridica pessoaJuridica, Date dataPedido, char tipo, char situacao, BigDecimal valorTotal) {
+    public Pedido(int idPedido, int idCliente, int idVendedor, int idFormaPagamento, Date dataPedido, char tipo, char situacao, BigDecimal valorTotal) {
         this.idPedido = idPedido;
-        this.formaPagamento = formaPagamento;
-        this.funcionario = funcionario;
-        this.pessoaJuridica = pessoaJuridica;
+        this.idCliente = idCliente;
+        this.idVendedor = idVendedor;
+        this.idFormaPagamento = idFormaPagamento;
         this.dataPedido = dataPedido;
         this.tipo = tipo;
         this.situacao = situacao;
         this.valorTotal = valorTotal;
     }
-    public Pedido(int idPedido, FormaPagamento formaPagamento, Funcionario funcionario, PessoaJuridica pessoaJuridica, Date dataPedido, char tipo, char situacao, BigDecimal valorTotal, BigDecimal desconto, BigDecimal acrescimo, Set movimentacaoFinancs, Set itensPedidos) {
+    public Pedido(int idPedido, int idCliente, int idVendedor, int idFormaPagamento, Date dataPedido, char tipo, char situacao, BigDecimal valorTotal, BigDecimal desconto, BigDecimal acrescimo) {
        this.idPedido = idPedido;
-       this.formaPagamento = formaPagamento;
-       this.funcionario = funcionario;
-       this.pessoaJuridica = pessoaJuridica;
+       this.idCliente = idCliente;
+       this.idVendedor = idVendedor;
+       this.idFormaPagamento = idFormaPagamento;
        this.dataPedido = dataPedido;
        this.tipo = tipo;
        this.situacao = situacao;
        this.valorTotal = valorTotal;
        this.desconto = desconto;
        this.acrescimo = acrescimo;
-       this.movimentacaoFinancs = movimentacaoFinancs;
-       this.itensPedidos = itensPedidos;
     }
    
      @Id 
 
     
-    @Column(name="id_pedido", unique=true, nullable=false)
+    @Column(name="id_pedido", nullable=false)
     public int getIdPedido() {
         return this.idPedido;
     }
@@ -81,34 +70,34 @@ public class Pedido  implements java.io.Serializable {
         this.idPedido = idPedido;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_forma_pagamento", nullable=false)
-    public FormaPagamento getFormaPagamento() {
-        return this.formaPagamento;
+    
+    @Column(name="id_cliente", nullable=false)
+    public int getIdCliente() {
+        return this.idCliente;
     }
     
-    public void setFormaPagamento(FormaPagamento formaPagamento) {
-        this.formaPagamento = formaPagamento;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_vendedor", nullable=false)
-    public Funcionario getFuncionario() {
-        return this.funcionario;
+    
+    @Column(name="id_vendedor", nullable=false)
+    public int getIdVendedor() {
+        return this.idVendedor;
     }
     
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
+    public void setIdVendedor(int idVendedor) {
+        this.idVendedor = idVendedor;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_cliente", nullable=false)
-    public PessoaJuridica getPessoaJuridica() {
-        return this.pessoaJuridica;
+    
+    @Column(name="id_forma_pagamento", nullable=false)
+    public int getIdFormaPagamento() {
+        return this.idFormaPagamento;
     }
     
-    public void setPessoaJuridica(PessoaJuridica pessoaJuridica) {
-        this.pessoaJuridica = pessoaJuridica;
+    public void setIdFormaPagamento(int idFormaPagamento) {
+        this.idFormaPagamento = idFormaPagamento;
     }
 
     @Temporal(TemporalType.DATE)
@@ -169,24 +158,6 @@ public class Pedido  implements java.io.Serializable {
     
     public void setAcrescimo(BigDecimal acrescimo) {
         this.acrescimo = acrescimo;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="pedido")
-    public Set getMovimentacaoFinancs() {
-        return this.movimentacaoFinancs;
-    }
-    
-    public void setMovimentacaoFinancs(Set movimentacaoFinancs) {
-        this.movimentacaoFinancs = movimentacaoFinancs;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="pedido")
-    public Set getItensPedidos() {
-        return this.itensPedidos;
-    }
-    
-    public void setItensPedidos(Set itensPedidos) {
-        this.itensPedidos = itensPedidos;
     }
 
 

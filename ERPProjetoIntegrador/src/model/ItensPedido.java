@@ -1,19 +1,13 @@
 package model;
-// Generated 07/08/2018 09:35:59 by Hibernate Tools 4.3.1
+// Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,36 +15,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="itens_pedido"
-    ,schema="public"
 )
 public class ItensPedido  implements java.io.Serializable {
 
 
      private ItensPedidoId id;
-     private Pedido pedido;
-     private Produto produto;
      private long quantidade;
      private BigDecimal valorTotal;
-     private Set estoques = new HashSet(0);
 
     public ItensPedido() {
     }
 
-	
-    public ItensPedido(ItensPedidoId id, Pedido pedido, Produto produto, long quantidade, BigDecimal valorTotal) {
-        this.id = id;
-        this.pedido = pedido;
-        this.produto = produto;
-        this.quantidade = quantidade;
-        this.valorTotal = valorTotal;
-    }
-    public ItensPedido(ItensPedidoId id, Pedido pedido, Produto produto, long quantidade, BigDecimal valorTotal, Set estoques) {
+    public ItensPedido(ItensPedidoId id, long quantidade, BigDecimal valorTotal) {
        this.id = id;
-       this.pedido = pedido;
-       this.produto = produto;
        this.quantidade = quantidade;
        this.valorTotal = valorTotal;
-       this.estoques = estoques;
     }
    
      @EmbeddedId
@@ -65,26 +44,6 @@ public class ItensPedido  implements java.io.Serializable {
     
     public void setId(ItensPedidoId id) {
         this.id = id;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_pedido", nullable=false, insertable=false, updatable=false)
-    public Pedido getPedido() {
-        return this.pedido;
-    }
-    
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_produto", nullable=false, insertable=false, updatable=false)
-    public Produto getProduto() {
-        return this.produto;
-    }
-    
-    public void setProduto(Produto produto) {
-        this.produto = produto;
     }
 
     
@@ -105,15 +64,6 @@ public class ItensPedido  implements java.io.Serializable {
     
     public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="itensPedido")
-    public Set getEstoques() {
-        return this.estoques;
-    }
-    
-    public void setEstoques(Set estoques) {
-        this.estoques = estoques;
     }
 
 

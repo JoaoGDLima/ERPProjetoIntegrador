@@ -1,16 +1,10 @@
 package model;
-// Generated 07/08/2018 09:35:59 by Hibernate Tools 4.3.1
+// Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,55 +12,35 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="cidade"
-    ,schema="public"
 )
 public class Cidade  implements java.io.Serializable {
 
 
      private int idCidade;
-     private Estado estado;
      private String nome;
+     private int idEstado;
      private char inativo;
-     private Set pessoas = new HashSet(0);
 
     public Cidade() {
     }
 
-	
-    public Cidade(int idCidade, Estado estado, String nome, char inativo) {
-        this.idCidade = idCidade;
-        this.estado = estado;
-        this.nome = nome;
-        this.inativo = inativo;
-    }
-    public Cidade(int idCidade, Estado estado, String nome, char inativo, Set pessoas) {
+    public Cidade(int idCidade, String nome, int idEstado, char inativo) {
        this.idCidade = idCidade;
-       this.estado = estado;
        this.nome = nome;
+       this.idEstado = idEstado;
        this.inativo = inativo;
-       this.pessoas = pessoas;
     }
    
      @Id 
 
     
-    @Column(name="id_cidade", unique=true, nullable=false)
+    @Column(name="id_cidade", nullable=false)
     public int getIdCidade() {
         return this.idCidade;
     }
     
     public void setIdCidade(int idCidade) {
         this.idCidade = idCidade;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_estado", nullable=false)
-    public Estado getEstado() {
-        return this.estado;
-    }
-    
-    public void setEstado(Estado estado) {
-        this.estado = estado;
     }
 
     
@@ -80,6 +54,16 @@ public class Cidade  implements java.io.Serializable {
     }
 
     
+    @Column(name="id_estado", nullable=false)
+    public int getIdEstado() {
+        return this.idEstado;
+    }
+    
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    
     @Column(name="inativo", nullable=false, length=1)
     public char getInativo() {
         return this.inativo;
@@ -87,15 +71,6 @@ public class Cidade  implements java.io.Serializable {
     
     public void setInativo(char inativo) {
         this.inativo = inativo;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="cidade")
-    public Set getPessoas() {
-        return this.pessoas;
-    }
-    
-    public void setPessoas(Set pessoas) {
-        this.pessoas = pessoas;
     }
 
 
