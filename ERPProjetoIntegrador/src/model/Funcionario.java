@@ -1,5 +1,5 @@
 package model;
-// Generated 06/08/2018 21:15:53 by Hibernate Tools 4.3.1
+// Generated 07/08/2018 09:35:59 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -38,7 +38,7 @@ public class Funcionario  implements java.io.Serializable {
      private Pessoa pessoa;
      private int cpf;
      private Date nascimento;
-     private Usuario usuario;
+     private Set usuarios = new HashSet(0);
      private Set pedidos = new HashSet(0);
 
     public Funcionario() {
@@ -51,12 +51,12 @@ public class Funcionario  implements java.io.Serializable {
         this.cpf = cpf;
         this.nascimento = nascimento;
     }
-    public Funcionario(Cargos cargos, Pessoa pessoa, int cpf, Date nascimento, Usuario usuario, Set pedidos) {
+    public Funcionario(Cargos cargos, Pessoa pessoa, int cpf, Date nascimento, Set usuarios, Set pedidos) {
        this.cargos = cargos;
        this.pessoa = pessoa;
        this.cpf = cpf;
        this.nascimento = nascimento;
-       this.usuario = usuario;
+       this.usuarios = usuarios;
        this.pedidos = pedidos;
     }
    
@@ -111,13 +111,13 @@ public class Funcionario  implements java.io.Serializable {
         this.nascimento = nascimento;
     }
 
-@OneToOne(fetch=FetchType.LAZY, mappedBy="funcionario")
-    public Usuario getUsuario() {
-        return this.usuario;
+@OneToMany(fetch=FetchType.LAZY, mappedBy="funcionario")
+    public Set getUsuarios() {
+        return this.usuarios;
     }
     
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarios(Set usuarios) {
+        this.usuarios = usuarios;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="funcionario")

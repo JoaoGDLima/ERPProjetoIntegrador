@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import model.ComboItens;
-import model.Formatacao;
-import model.Validacao;
+import model.util.ComboItens;
+import model.util.Formatacao;
+import model.util.Validacao;
 
 public class CadastroMovFinancF extends javax.swing.JInternalFrame {
 

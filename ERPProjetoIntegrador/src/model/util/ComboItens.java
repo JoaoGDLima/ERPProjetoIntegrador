@@ -1,4 +1,4 @@
-package model;
+package model.util;
 
 public class ComboItens {
     private int codigo;

@@ -12,7 +12,7 @@ public class ERPProjetoIntegrador {
         wSplash.setVisible(true);
         
         try {
-            if (HibernateUtil.getSessionFactory().openSession() != null) {
+           if (HibernateUtil.getSessionFactory().openSession() != null) {
                 wSplash.dispose();
                 new LoginF().setVisible(true);
             } else {

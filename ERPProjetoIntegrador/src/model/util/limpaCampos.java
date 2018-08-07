@@ -1,4 +1,4 @@
-package model;
+package model.util;
 
 import java.awt.Component;
 import java.awt.Container;

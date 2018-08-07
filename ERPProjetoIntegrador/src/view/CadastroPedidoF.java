@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import model.Formatacao;
-import model.Validacao;
-import model.limpaCampos;
+import model.util.Formatacao;
+import model.util.Validacao;
+import model.util.limpaCampos;
 
 public class CadastroPedidoF extends javax.swing.JInternalFrame {
     int codigo = 0;
