@@ -2,12 +2,13 @@ package erpprojeto;
 
 import config.HibernateUtil;
 import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
 import view.LoginF;
 import view.SplashF;
 
 public class ERPProjeto {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         SplashF wSplash = new SplashF();
         wSplash.setVisible(true);
         try {

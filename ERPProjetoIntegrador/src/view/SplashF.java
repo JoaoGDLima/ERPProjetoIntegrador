@@ -1,12 +1,24 @@
 
 package view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 public class SplashF extends javax.swing.JFrame {
 
-    public SplashF() {
+    public SplashF() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
+        UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        
+        UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
+        for (UIManager.LookAndFeelInfo look : looks) {
+            System.out.println(look.getClassName());
+        }    
     }
 
     @SuppressWarnings("unchecked")
@@ -120,7 +132,17 @@ public class SplashF extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SplashF().setVisible(true);
+                try {
+                    new SplashF().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(SplashF.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(SplashF.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(SplashF.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(SplashF.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

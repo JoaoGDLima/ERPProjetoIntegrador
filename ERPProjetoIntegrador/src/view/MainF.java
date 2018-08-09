@@ -1,11 +1,15 @@
-
 package view;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import model.util.unit;
 
 public class MainF extends javax.swing.JFrame {
 
-    public MainF() {
+    public MainF(){
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -255,7 +259,7 @@ public class MainF extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         CadastroPessoaF ifrPessoa = new CadastroPessoaF();
         jDesktopPane1.add(ifrPessoa);
-        //unit.setPositionCenter(ifrCliente);
+        unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -290,7 +294,7 @@ public class MainF extends javax.swing.JFrame {
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         CadastroUsuarioF ifrUsuario = new CadastroUsuarioF();
         jDesktopPane1.add(ifrUsuario);
-        //unit.setPositionCenter(ifrFPagamento);
+        unit.setPositionCenter(ifrUsuario);
         ifrUsuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
@@ -359,7 +363,9 @@ public class MainF extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new MainF().setVisible(true);
+
             }
         });
     }

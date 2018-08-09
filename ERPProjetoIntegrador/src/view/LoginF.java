@@ -11,6 +11,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Usuario;
+import model.dao.UsuarioDAO;
 
 public class LoginF extends javax.swing.JFrame {
 
@@ -119,11 +121,11 @@ public class LoginF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        //usuarioDAO wUsuarioDAO = new usuarioDAO();
+        UsuarioDAO wUsuarioDAO = new UsuarioDAO();
         
-        //usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
+        Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
         
-        if (true) {
+        if (wUsuario!=null) {
             new MainF().setVisible(true);
             this.dispose(); 
         }
