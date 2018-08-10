@@ -26,33 +26,40 @@ public class MasterDAO implements IDAO_T<Object> {
 
     @Override
     public String atualizar(Object obj) {
-        sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = sessao.beginTransaction();
-        sessao.update(obj);
-        t.commit();
-        return "";
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = sessao.beginTransaction();
+            sessao.update(obj);
+            t.commit();
+            return null;
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     @Override
     public String excluir(Object obj) {
-        sessao = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = sessao.beginTransaction();
-        sessao.delete(obj);
-        t.commit();
-        return "";
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = sessao.beginTransaction();
+            sessao.update(obj);
+            t.commit();
+            return null;
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
-    
-    @Override   
-    public Object consultar(String pTabela, String pWhere)
-    {
+
+    @Override
+    public Object consultar(String pTabela, String pWhere) {
         List resultado = null;
 
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + " " +
-                                                       "WHERE " + pWhere);
+            org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + " "
+                    + "WHERE " + pWhere);
             resultado = q.list();
 
             for (Object o : resultado) {
@@ -71,9 +78,9 @@ public class MasterDAO implements IDAO_T<Object> {
             sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + " " + 
-                                                       "WHERE " + pWhere + " " + 
-                                                        pAux);
+            org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + " "
+                    + "WHERE " + pWhere + " "
+                    + pAux);
 
             return q.list();
         } catch (HibernateException he) {
@@ -83,6 +90,5 @@ public class MasterDAO implements IDAO_T<Object> {
 
         return null;
     }
-    
 
 }
