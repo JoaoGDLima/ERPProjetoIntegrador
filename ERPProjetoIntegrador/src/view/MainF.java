@@ -64,6 +64,7 @@ public class MainF extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Cadastros");
+        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Clientes_25.png"))); // NOI18N
@@ -168,6 +169,7 @@ public class MainF extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Pedidos");
+        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Contratos_25.png"))); // NOI18N
@@ -192,6 +194,7 @@ public class MainF extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Gerenciamento");
+        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Contas a receber_25.png"))); // NOI18N
@@ -238,21 +241,21 @@ public class MainF extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         CadastroPessoaF ifrPessoa = new CadastroPessoaF();
         jDesktopPane1.add(ifrPessoa);
-        //unit.setPositionCenter(ifrCliente);
+        unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         CadastroEstadoF ifrEstado = new CadastroEstadoF();
         jDesktopPane1.add(ifrEstado);
-        // unit.setPositionCenter(ifrEstado);
+        unit.setPositionCenter(ifrEstado);
         ifrEstado.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         CadastroProdutosF ifrProdutos = new CadastroProdutosF();
         jDesktopPane1.add(ifrProdutos);
-        // unit.setPositionCenter(ifrEstado);
+        unit.setPositionCenter(ifrProdutos);
         ifrProdutos.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -266,28 +269,28 @@ public class MainF extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         CadastroPessoaF ifrPessoa = new CadastroPessoaF();
         jDesktopPane1.add(ifrPessoa);
-        //unit.setPositionCenter(ifrCliente);
+        unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         CadastroCidadeF ifrCidade = new CadastroCidadeF();
         jDesktopPane1.add(ifrCidade);
-        //unit.setPositionCenter(ifrCidade);
+        unit.setPositionCenter(ifrCidade);
         ifrCidade.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         CadastroFPagamentoF ifrFPagamento = new CadastroFPagamentoF();
         jDesktopPane1.add(ifrFPagamento);
-        //unit.setPositionCenter(ifrFPagamento);
+        unit.setPositionCenter(ifrFPagamento);
         ifrFPagamento.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         CadastroUnidadeF ifrUnidade = new CadastroUnidadeF();
         jDesktopPane1.add(ifrUnidade);
-        //unit.setPositionCenter(ifrFPagamento);
+        unit.setPositionCenter(ifrUnidade);
         ifrUnidade.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
@@ -308,28 +311,28 @@ public class MainF extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         CadastroPedidoF ifrPedido = new CadastroPedidoF();
         jDesktopPane1.add(ifrPedido);
-        //unit.setPositionCenter(ifrFPagamento);
+        unit.setPositionCenter(ifrPedido);
         ifrPedido.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         CadastroPedidoF ifrPedido = new CadastroPedidoF();
         jDesktopPane1.add(ifrPedido);
-        //unit.setPositionCenter(ifrFPagamento);
+        unit.setPositionCenter(ifrPedido);
         ifrPedido.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF();
         jDesktopPane1.add(ifrMovFinanc);
-        //unit.setPositionCenter(ifrFPagamento);
+        unit.setPositionCenter(ifrMovFinanc);
         ifrMovFinanc.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF();
         jDesktopPane1.add(ifrMovFinanc);
-        //unit.setPositionCenter(ifrFPagamento);
+        unit.setPositionCenter(ifrMovFinanc);
         ifrMovFinanc.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
