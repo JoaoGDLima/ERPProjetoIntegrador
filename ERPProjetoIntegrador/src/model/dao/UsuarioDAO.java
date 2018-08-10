@@ -37,7 +37,7 @@ public class UsuarioDAO extends MasterDAO {
             org.hibernate.Query q = sessao.createQuery(
                     "FROM Usuario " + 
                     "WHERE username = '" + pUser + "' " + 
-                    "AND senha = '123'");// + Criptografia.criptografar(pSenha) + "'");
+                    "AND senha = '"+ Criptografia.criptografar(pSenha) + "'");
             
             resultado = q.list();
 
@@ -69,7 +69,7 @@ public class UsuarioDAO extends MasterDAO {
 
         // cria matriz de acordo com nº de registros da tabela
         try {
-            resultado = super.consultarTodos("Usuario", "inativo <> 'T' AND username ILIKE '%" + pArgumento + "%'", "");
+            resultado = super.consultarTodos("Usuario", "inativo <> 'T' AND username LIKE '%" + pArgumento + "%'", "ORDER BY id_usuario");
 
             dadosTabela = new Object[resultado.size()][4];
 

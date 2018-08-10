@@ -75,13 +75,16 @@ public class Usuario implements java.io.Serializable {
         this.nivelAcesso = nivelAcesso;
     }
 
-    @Column(name = "senha", nullable = false, length = 50)
+    @Column(name = "senha", nullable = false, length = 300)
     public String getSenha() {
         return this.senha;
     }
 
     public void setSenha(String senha) {
-        this.senha = Criptografia.criptografar(senha);
+        if (senha != senhaDefault) 
+        {
+            this.senha = Criptografia.criptografar(senha);
+        }
     }
 
     @Column(name = "username", nullable = false, length = 60)

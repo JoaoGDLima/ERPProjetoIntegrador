@@ -324,17 +324,21 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (validaCampo()) {
-            Usuario wUsu = new Usuario();
-            wUsu.setIdPessoa(codigo);
+            Usuario wUsu = new UsuarioDAO().consultarID(codigo);
+            wUsu.setIdUsuario(codigo);
             wUsu.setUsername(edNomeUsuario.getText());
-            wUsu.setSenha(edSenha.getText());
+
+            if (edSenha.getText() != Usuario.senhaDefault) {
+                wUsu.setSenha(edSenha.getText());
+            }
+
             wUsu.setNivelAcesso(1);
             wUsu.setInativo('F');
             wUsu.setIdPessoa(null);
             if (!edFuncionario.getText().isEmpty()) {
                 wUsu.setIdPessoa(Integer.parseInt(edFuncionario.getText()));
             }
-            
+
             UsuarioDAO wUsuDAO = new UsuarioDAO();
 
             String retorno = null;
@@ -370,15 +374,22 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame {
         String valor = String.valueOf(tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0));
 
         Usuario wUsuario = new UsuarioDAO().consultarID(Integer.parseInt(valor));
-        
-        if (wUsuario!=null) {
-        codigo = Integer.parseInt(valor);
-        edNomeUsuario.setText(wUsuario.getUsername());
-        edSenha.setText(wUsuario.getSenha());
-        edConfirmSenha.setText(wUsuario.getSenha());
-        edFuncionario.setText(wUsuario.getIdPessoa() + "");
-        jTabbedPane1.setSelectedIndex(0);
-        edNomeUsuario.requestFocus();
+
+        if (wUsuario != null) {
+            codigo = Integer.parseInt(valor);
+            edNomeUsuario.setText(wUsuario.getUsername());
+            edSenha.setText(Usuario.senhaDefault);
+            edConfirmSenha.setText(Usuario.senhaDefault);
+            edFuncionario.setText("");
+
+            if (wUsuario.getIdPessoa() != null) {
+                if (wUsuario.getIdPessoa() > 0) {
+                    edFuncionario.setText(wUsuario.getIdPessoa() + "");
+                }
+            }
+
+            jTabbedPane1.setSelectedIndex(0);
+            edNomeUsuario.requestFocus();
         }
     }//GEN-LAST:event_btEditarActionPerformed
 
@@ -390,30 +401,33 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        /*String wUsuNome = String.valueOf(tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 1));
+        String wUsuNome = String.valueOf(tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 1));
         
-        Object[] options = { "Confirmar", "Cancelar" };
-        int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o usuario: " + wUsuNome, 
-                                           "Informação", 
-                                           JOptionPane.DEFAULT_OPTION, 
-                                           JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                                           
-        if (wOpc==0)
-        {
-        String valor = String.valueOf(tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0));
+        String codigo = String.valueOf(tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0));
 
-        usuarioDAO wUsuarioDAO = new usuarioDAO();
-
-        String retorno = wUsuarioDAO.excluir(Integer.parseInt(valor));    
+        UsuarioDAO wUsuarioDAO = new UsuarioDAO();
+        Usuario wUsuario = wUsuarioDAO.consultarID(Integer.parseInt(codigo));
+        wUsuario.setInativo('T');
         
-        if (retorno == null) {
+        Object[] options = {"Confirmar", "Cancelar"};
+        int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o usuario: " + wUsuNome,
+                "Informação",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+        if (wOpc == 0) {
+
+            
+            String retorno = null; //wUsuarioDAO.excluir(Integer.parseInt(valor));
+
+            if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
                 wUsuarioDAO.popularTabela(tbUsuario, edBusca.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
-                    + "Mensagem técnica: \n" + retorno);
+                        + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        } 
 
     }//GEN-LAST:event_btExcluirActionPerformed
 
