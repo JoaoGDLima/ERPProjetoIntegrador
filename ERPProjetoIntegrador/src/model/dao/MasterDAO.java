@@ -71,12 +71,10 @@ public class MasterDAO implements IDAO_T<Object> {
             sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + 
+            org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + " " + 
                                                        "WHERE " + pWhere + " " + 
                                                         pAux);
-                        
-            /*Usuario u = (Usuario) q.list().get (0);
-            System.out.println(u.getUsername());*/
+
             return q.list();
         } catch (HibernateException he) {
             he.printStackTrace();
