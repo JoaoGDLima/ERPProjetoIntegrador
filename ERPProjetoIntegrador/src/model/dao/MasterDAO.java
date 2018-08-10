@@ -66,15 +66,17 @@ public class MasterDAO implements IDAO_T<Object> {
     }
 
     @Override
-    public List consultarTodos(String pTabela, String pWhere) {
-           List resultado = null;
-
+    public List consultarTodos(String pTabela, String pWhere, String pAux) {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + " " +
-                                                       "WHERE " + pWhere);
+            org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + 
+                                                       "WHERE " + pWhere + " " + 
+                                                        pAux);
+                        
+            /*Usuario u = (Usuario) q.list().get (0);
+            System.out.println(u.getUsername());*/
             return q.list();
         } catch (HibernateException he) {
             he.printStackTrace();

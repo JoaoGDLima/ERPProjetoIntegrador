@@ -13,5 +13,5 @@ public interface IDAO_T <T> {
     
     public Object consultar(String pTabela, String pWhere);
     
-    public List consultarTodos(String pTabela, String pWhere);
+    public List consultarTodos(String pTabela, String pWhere, String pAux);
 }

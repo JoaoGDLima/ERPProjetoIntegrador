@@ -1,6 +1,9 @@
 package view;
 
 import javax.swing.JOptionPane;
+import model.FormaPagamento;
+import model.dao.FormaPagamentoDAO;
+import model.util.limpaCampos;
 
 public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
 
@@ -245,32 +248,34 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        /*if (validaCampo()) {
-            universidade wUniversidade = new universidade();
-            wUniversidade.setCodigo(codigo);
-            wUniversidade.setNome(edNome.getText());
+        if (validaCampo()) {
+            FormaPagamento wFormaPgto = new FormaPagamento();
+            wFormaPgto.setIdFormaPagamento(codigo);
+            wFormaPgto.setNome(edNome.getText());
+            wFormaPgto.setParcelas(2);
+            wFormaPgto.setInativo('F');
             
-            universidadeDAO wUniversidadeDAO = new universidadeDAO();
+            FormaPagamentoDAO wFormaPgtoDAO = new FormaPagamentoDAO();
 
             String retorno = null;
             
-            if (wUniversidade.getCodigo() == 0) {
-                retorno = wUniversidadeDAO.salvar(wUniversidade);
+            if (wFormaPgto.getIdFormaPagamento() == 0) {
+                retorno = wFormaPgtoDAO.salvar(wFormaPgto);
             } else {
-                retorno = wUniversidadeDAO.atualizar(wUniversidade);
+                retorno = wFormaPgtoDAO.atualizar(wFormaPgto);
             }
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-                limpaCampos.limparCampos(pnCampos);
+                //limpaCampos.limparCampos(pnCampos);
                 codigo = 0;
-                new universidadeDAO().popularTabela(tbUniversidades, "");
+                //new FormaPagamentoDAO().popularTabela(tbUniversidades, "");
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
                     + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
