@@ -5,6 +5,10 @@ import java.awt.HeadlessException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import model.Cidade;
+import model.dao.CidadeDAO;
+import model.util.Formatacao;
+import model.util.limpaCampos;
 
 public class CadastroCidadeF extends javax.swing.JInternalFrame {
 
@@ -13,15 +17,11 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
     public CadastroCidadeF() {
         initComponents();
         this.setResizable(false);
-        /*new cidadeDAO().popularTabela(tbCidades, "");
-        
-        Formatacao.formatarCEP(edCep);
+        new CidadeDAO().popularTabela(tbCidades, "");
+
        
         edEstado.removeAllItems();
-        new CombosDAO().popularCombo("estado","codigo, nome","","nome", edEstado);
-        
-        edCep.setFont(new java.awt.Font("Tahoma", 0, 14));
-        edCep.setSize(165, 25);*/
+        // new CombosDAO().popularCombo("estado","codigo, nome","","nome", edEstado);
     }
 
     @SuppressWarnings("unchecked")
@@ -34,8 +34,6 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
         edNome = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        edCep = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         edEstado = new javax.swing.JComboBox<>();
         pnLista = new javax.swing.JPanel();
@@ -85,17 +83,6 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(33, 33, 33));
-        jLabel2.setText("Cep:");
-
-        edCep.setBackground(new java.awt.Color(255, 255, 204));
-        edCep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edCepActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(33, 33, 33));
         jLabel3.setText("Estado:");
@@ -136,11 +123,9 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
                                 .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(132, Short.MAX_VALUE))
                     .addGroup(pnCamposLayout.createSequentialGroup()
-                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(edEstado, 0, 165, Short.MAX_VALUE)
-                            .addComponent(edCep))
+                            .addComponent(edEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -154,14 +139,10 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edCep, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
@@ -311,20 +292,20 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        /*if (validaCampo()) {
-            cidade wCidade = new cidade();
-            wCidade.setCodigo(codigo);
+        if (validaCampo()) {
+            Cidade wCidade = new Cidade();
+            wCidade.setIdCidade(codigo);
             wCidade.setNome(edNome.getText());
-            wCidade.setCep(edCep.getText());
             
-            ComboItens ci = (ComboItens) edEstado.getSelectedItem();
+            //ComboItens ci = (ComboItens) edEstado.getSelectedItem();
             
-            wCidade.setEstadoO(new estadoDAO().consultarId(ci.getCodigo()));
+            wCidade.setIdEstado(1);
+            wCidade.setInativo('F');
             
-            cidadeDAO wCidadeDAO = new cidadeDAO();
+            CidadeDAO wCidadeDAO = new CidadeDAO();
 
             String retorno = null;
-            if (wCidade.getCodigo() == 0) {
+            if (wCidade.getIdCidade() == 0) {
                 retorno = wCidadeDAO.salvar(wCidade);
             } else {
                 retorno = wCidadeDAO.atualizar(wCidade);
@@ -334,13 +315,13 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
                 limpaCampos.limparCampos(pnCampos);
                 codigo = 0;
-                new cidadeDAO().popularTabela(tbCidades, "");
+                new CidadeDAO().popularTabela(tbCidades, "");
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
                         + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
@@ -349,26 +330,25 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        //new cidadeDAO().popularTabela(tbCidades, edBusca.getText());
+        new CidadeDAO().popularTabela(tbCidades, edBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        /*String valor = String.valueOf(tbCidades.getValueAt(tbCidades.getSelectedRow(), 0));
+        String valor = String.valueOf(tbCidades.getValueAt(tbCidades.getSelectedRow(), 0));
 
-        cidade wCidade = new cidadeDAO().consultarId(Integer.parseInt(valor));
+        Cidade wCidade = new CidadeDAO().consultarID(Integer.parseInt(valor));
 
         codigo = Integer.parseInt(valor);
 
         edNome.setText(wCidade.getNome());
-        edCep.setText(wCidade.getCep());
        
         
-        ComboItens item = new ComboItens();
+        /*ComboItens item = new ComboItens();
         item.setCodigo(wCidade.getEstadoO().getCodigo());
-        new CombosDAO().definirItemCombo(edEstado, item);
+        new CombosDAO().definirItemCombo(edEstado, item);*/
         
         jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();*/
+        edNome.requestFocus();
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
@@ -379,34 +359,33 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        /*String wUsuNome = String.valueOf(tbCidades.getValueAt(tbCidades.getSelectedRow(), 1));
+         String wUsuNome = String.valueOf(tbCidades.getValueAt(tbCidades.getSelectedRow(), 1));
+        
+        String codigo = String.valueOf(tbCidades.getValueAt(tbCidades.getSelectedRow(), 0));
 
+        CidadeDAO wEstadoDAO = new CidadeDAO();
+        Cidade wcidade = wEstadoDAO.consultarID(Integer.parseInt(codigo));
+        wcidade.setInativo('T');
+        
         Object[] options = {"Confirmar", "Cancelar"};
-        int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir a cidade: " + wUsuNome,
+        int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o usuario: " + wUsuNome,
                 "Informação",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (wOpc == 0) {
-            String valor = String.valueOf(tbCidades.getValueAt(tbCidades.getSelectedRow(), 0));
-
-            cidadeDAO wCidadeDAO = new cidadeDAO();
-
-            String retorno = wCidadeDAO.excluir(Integer.parseInt(valor));
+            String retorno = null; 
+            wEstadoDAO.excluir(wcidade);
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
-                wCidadeDAO.popularTabela(tbCidades, edBusca.getText());
+                wEstadoDAO.popularTabela(tbCidades, edBusca.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
                         + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btExcluirActionPerformed
-
-    private void edCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edCepActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edCepActionPerformed
 
     private void edEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edEstadoActionPerformed
         
@@ -430,22 +409,18 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
     private boolean validaCampo(){
         boolean wRetorno = true;
 
-        /*ComboItens ci = (ComboItens) edEstado.getSelectedItem();
+        /*{ComboItens ci = (ComboItens) edEstado.getSelectedItem();
         if(ci == null){
             JOptionPane.showMessageDialog(null, "Selecione um estado!");
             edEstado.requestFocus();
             return false;
-        }
+        }*/
         
         if (edNome.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo nome inválido!");
             edNome.requestFocus();
             return false;
-        } else if (edCep.getText().replaceAll("-", "").replaceAll(" ", "").equals("")) {
-            JOptionPane.showMessageDialog(null, "Campo cep inválido!");
-            edCep.requestFocus();
-            return false;
-        } else if ((ci.getCodigo() <= 0)) {
+        } /* else if ((ci.getCodigo() <= 0)) {
             JOptionPane.showMessageDialog(null, "Selecione um estado!");
             edEstado.requestFocus();
             return false;
@@ -462,11 +437,9 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JCheckBox cbAtivos;
     private javax.swing.JTextField edBusca;
-    private javax.swing.JFormattedTextField edCep;
     private javax.swing.JComboBox<String> edEstado;
     private javax.swing.JTextField edNome;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;

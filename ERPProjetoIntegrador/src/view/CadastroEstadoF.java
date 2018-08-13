@@ -1,6 +1,12 @@
 
 package view;
 
+import javax.swing.JOptionPane;
+import model.Estado;
+import model.dao.EstadoDAO;
+import model.util.Formatacao;
+import model.util.limpaCampos;
+
 
 public class CadastroEstadoF extends javax.swing.JInternalFrame {
     
@@ -9,10 +15,10 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     public CadastroEstadoF() {
         initComponents();
         this.setResizable(false);
-        //new estadoDAO().popularTabela(tbEstados, "");
+        new EstadoDAO().popularTabela(tbEstados, "");
         
-        // Formatacao.formatarUF(edUF);
-        // edUF.setFont(new java.awt.Font("Tahoma", 0, 14));
+        Formatacao.formatarUF(edUF);
+        edUF.setFont(new java.awt.Font("Tahoma", 0, 14));
     }
 
 
@@ -268,44 +274,46 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-       /* String wUsuNome = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 1));
+         String wUsuNome = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 1));
+        
+        String codigo = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 0));
 
-        Object[] options = { "Confirmar", "Cancelar" };
+        EstadoDAO wEstadoDAO = new EstadoDAO();
+        Estado wEstado = wEstadoDAO.consultarID(Integer.parseInt(codigo));
+        wEstado.setInativo('T');
+        
+        Object[] options = {"Confirmar", "Cancelar"};
         int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o estado: " + wUsuNome,
-            "Informação",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                "Informação",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-        if (wOpc==0)
-        {
-            String valor = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 0));
-
-            estadoDAO wEstadoDAO = new estadoDAO();
-
-            String retorno = wEstadoDAO.excluir(Integer.parseInt(valor));
+        if (wOpc == 0) {
+            String retorno = null; 
+            wEstadoDAO.excluir(wEstado);
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
                 wEstadoDAO.popularTabela(tbEstados, edBusca.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
-                    + "Mensagem técnica: \n" + retorno);
+                        + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        /*String valor = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 0));
+       String valor = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 0));
 
-        estado wEstado = new estadoDAO().consultarId(Integer.parseInt(valor));
+        Estado wEstado = new EstadoDAO().consultarID(Integer.parseInt(valor));
 
         codigo = Integer.parseInt(valor);
 
         edNome.setText(wEstado.getNome());
-        edUF.setText(wEstado.getUF());
+        edUF.setText(wEstado.getUf());
 
         jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();*/
+        edNome.requestFocus();
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
@@ -316,16 +324,17 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        /*if (validaCampo()) {
-            estado wEstado = new estado();
-            wEstado.setCodigo(codigo);
+        if (validaCampo()) {
+            Estado wEstado = new Estado();
+            wEstado.setIdEstado(codigo);
             wEstado.setNome(edNome.getText());
-            wEstado.setUF(edUF.getText());
-
-            estadoDAO wEstadoDAO = new estadoDAO();
+            wEstado.setUf(edUF.getText());
+            wEstado.setInativo('F');
+            
+            EstadoDAO wEstadoDAO = new EstadoDAO();
 
             String retorno = null;
-            if (wEstado.getCodigo() == 0) {
+            if (wEstado.getIdEstado() == 0) {
                 retorno = wEstadoDAO.salvar(wEstado);
             } else {
                 retorno = wEstadoDAO.atualizar(wEstado);
@@ -335,13 +344,13 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
                 limpaCampos.limparCampos(pnCampos);
                 codigo = 0;
-                new estadoDAO().popularTabela(tbEstados, "");
+                new EstadoDAO().popularTabela(tbEstados, "");
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
                     + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
@@ -350,7 +359,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // new estadoDAO().popularTabela(tbEstados, edBusca.getText());
+        new EstadoDAO().popularTabela(tbEstados, edBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void edUFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edUFKeyReleased
@@ -360,7 +369,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     private boolean validaCampo() {
         boolean wRetorno = true;
         
-        /*if (edNome.getText().equals("")) {
+        if (edNome.getText().equals("")) {
             wRetorno = false;
             JOptionPane.showMessageDialog(null, "Campo nome inválido!");
             edNome.requestFocus();
@@ -368,7 +377,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
             wRetorno = false;
             JOptionPane.showMessageDialog(null, "Campo UF inválido!");
             edUF.requestFocus();
-        }*/
+        }
 
         return wRetorno;
     }

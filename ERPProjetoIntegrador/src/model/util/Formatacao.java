@@ -72,6 +72,21 @@ public class Formatacao {
             System.err.println(e);
         }
     }
+    
+    public static void formatarUF(JFormattedTextField campo)
+    {
+         try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("**");
+            m.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
 
     public static void formatarCpf(JFormattedTextField campo) {
         try {
