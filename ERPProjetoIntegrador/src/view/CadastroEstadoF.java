@@ -289,8 +289,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (wOpc == 0) {
-            String retorno = null; 
-            wEstadoDAO.excluir(wEstado);
+            String retorno = wEstadoDAO.atualizar(wEstado);
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");

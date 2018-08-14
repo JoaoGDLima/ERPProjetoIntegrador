@@ -18,6 +18,7 @@ public class MasterDAO implements IDAO_T<Object> {
             Transaction t = sessao.beginTransaction();
             sessao.save(obj);
             t.commit();
+            sessao.close();
             return null;
         } catch (Exception e) {
             return e.getMessage();
@@ -31,6 +32,7 @@ public class MasterDAO implements IDAO_T<Object> {
             Transaction t = sessao.beginTransaction();
             sessao.update(obj);
             t.commit();
+            sessao.close();
             return null;
         } catch (Exception e) {
             return e.getMessage();
@@ -44,6 +46,7 @@ public class MasterDAO implements IDAO_T<Object> {
             Transaction t = sessao.beginTransaction();
             sessao.update(obj);
             t.commit();
+            sessao.close();
             return null;
         } catch (Exception e) {
             return e.getMessage();
@@ -61,7 +64,7 @@ public class MasterDAO implements IDAO_T<Object> {
             org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + " "
                     + "WHERE " + pWhere);
             resultado = q.list();
-
+            sessao.close();
             for (Object o : resultado) {
                 return o;
             }
@@ -81,8 +84,8 @@ public class MasterDAO implements IDAO_T<Object> {
             org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + " "
                     + "WHERE " + pWhere + " "
                     + pAux);
-
             return q.list();
+
         } catch (HibernateException he) {
             he.printStackTrace();
             System.out.println("Erro ao consultar a tabela '" + pTabela + "': " + he.getMessage());

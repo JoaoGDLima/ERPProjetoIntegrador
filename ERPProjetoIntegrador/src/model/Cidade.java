@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,8 +22,19 @@ public class Cidade  implements java.io.Serializable {
 
      private int idCidade;
      private String nome;
-     private int idEstado;
+     //private int idEstado;
      private char inativo;
+     private Estado estado;
+
+    @ManyToOne
+    @JoinColumn(name="id_estado", nullable=false)
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 
     public Cidade() {
     }
@@ -29,7 +42,7 @@ public class Cidade  implements java.io.Serializable {
     public Cidade(int idCidade, String nome, int idEstado, char inativo) {
        this.idCidade = idCidade;
        this.nome = nome;
-       this.idEstado = idEstado;
+       //this.idEstado = idEstado;
        this.inativo = inativo;
     }
    
@@ -56,14 +69,14 @@ public class Cidade  implements java.io.Serializable {
     }
 
     
-    @Column(name="id_estado", nullable=false)
+    /*@Column(name="id_estado", nullable=false)
     public int getIdEstado() {
         return this.idEstado;
     }
     
     public void setIdEstado(int idEstado) {
         this.idEstado = idEstado;
-    }
+    }*/
 
     
     @Column(name="inativo", nullable=false, length=1)

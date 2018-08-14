@@ -10,6 +10,7 @@ public class MainF extends javax.swing.JFrame {
 
     public MainF(){
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")

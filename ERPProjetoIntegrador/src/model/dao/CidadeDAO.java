@@ -8,6 +8,7 @@ package model.dao;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import model.Cidade;
 import org.hibernate.HibernateException;
 
@@ -40,11 +41,11 @@ public class CidadeDAO extends MasterDAO {
         Object[] cabecalho = new Object[4];
         cabecalho[0] = "ID";
         cabecalho[1] = "Nome";
-        cabecalho[2] = "UF";
+        cabecalho[2] = "Estado";
         cabecalho[3] = "Situação";
 
         try {
-            resultado = super.consultarTodos("Cidade", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%'", "ORDER BY id_cidade");
+            resultado = super.consultarTodos("Cidade", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%' AND estado.inativo <> 'T'", "ORDER BY id_cidade");
 
             dadosTabela = new Object[resultado.size()][4];
 
@@ -55,7 +56,7 @@ public class CidadeDAO extends MasterDAO {
 
                 dadosTabela[lin][0] = wCidade.getIdCidade() + "";
                 dadosTabela[lin][1] = wCidade.getNome();
-                dadosTabela[lin][2] = wCidade.getIdEstado();
+                dadosTabela[lin][2] = wCidade.getEstado().getNome() + " - " + wCidade.getEstado().getUf();
 
                 String wSituaçao = "Ativo";
                 if (wCidade.getInativo() == 'T') {
@@ -88,5 +89,28 @@ public class CidadeDAO extends MasterDAO {
                 return Object.class;
             }
         });
+
+        // permite seleção de apenas uma linha da tabela
+        pTable.setSelectionMode(0);
+
+        // redimensiona as colunas de uma tabela
+        TableColumn column = null;
+        for (int i = 0; i < pTable.getColumnCount(); i++) {
+            column = pTable.getColumnModel().getColumn(i);
+            switch (i) {
+                case 0:
+                    column.setPreferredWidth(10);
+                    break;
+                case 1:
+                    column.setPreferredWidth(140);
+                    break;
+                case 2:
+                    column.setPreferredWidth(100);
+                    break;
+                case 3:
+                    column.setPreferredWidth(50);
+                    break;
+            }
+        }
     }
 }

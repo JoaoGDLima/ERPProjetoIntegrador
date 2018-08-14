@@ -2,11 +2,13 @@ package model;
 // Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +24,16 @@ public class Estado  implements java.io.Serializable {
      private String nome;
      private String uf;
      private char inativo;
+     private Set<Cidade> cidade;
+
+    @OneToMany(mappedBy="estado")
+    public Set<Cidade> getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Set<Cidade> cidade) {
+        this.cidade = cidade;
+    }
 
     public Estado() {
     }
