@@ -324,7 +324,7 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (validaCampo()) {
-            Usuario wUsu = new UsuarioDAO().consultarID(codigo);
+            Usuario wUsu = new Usuario(); // DAO().consultarID(codigo);
             wUsu.setIdUsuario(codigo);
             wUsu.setUsername(edNomeUsuario.getText());
 

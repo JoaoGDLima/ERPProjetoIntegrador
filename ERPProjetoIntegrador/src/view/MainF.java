@@ -305,7 +305,7 @@ public class MainF extends javax.swing.JFrame {
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         CadastroCargosF ifrCargos = new CadastroCargosF();
         jDesktopPane1.add(ifrCargos);
-        //unit.setPositionCenter(ifrFPagamento);
+        unit.setPositionCenter(ifrCargos);
         ifrCargos.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
