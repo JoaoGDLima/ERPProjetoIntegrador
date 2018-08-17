@@ -75,6 +75,13 @@ public class Validacao {
         }
     }
     
+    public static boolean validarCelular(String campo) {
+        if (campo.trim().length() < 14) {
+            return false;
+        }
+        return true;
+    }
+    
     /*public static boolean validaEmail(String email)
     {
         boolean isEmailIdValid = false;

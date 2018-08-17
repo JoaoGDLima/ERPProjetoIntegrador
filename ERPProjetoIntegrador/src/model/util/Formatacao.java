@@ -72,10 +72,35 @@ public class Formatacao {
             System.err.println(e);
         }
     }
-    
-    public static void formatarUF(JFormattedTextField campo)
-    {
-         try {
+
+    public static void formatarCelular(JFormattedTextField campo) {
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("(##)#####-####");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    public static void formatarRG(JFormattedTextField campo) {
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("##.###.###-#");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    public static void formatarUF(JFormattedTextField campo) {
+        try {
             MaskFormatter m = new MaskFormatter();
             m.setPlaceholderCharacter(' ');
             m.setMask("**");
@@ -126,7 +151,7 @@ public class Formatacao {
             System.err.println(e);
         }
     }
-    
+
     public static void formatarCEP(JFormattedTextField campo) {
         try {
             MaskFormatter m = new MaskFormatter();
@@ -162,7 +187,7 @@ public class Formatacao {
         return (dataFormatada);
     }
 
-    public static String removerFormatacao(String dado) {
+    /*public static String removerFormatacao(String dado) {
         String retorno = "";
         for (int i = 0; i < dado.length(); i++) {
             if (dado.charAt(i) != '.' && dado.charAt(i) != '/' && dado.charAt(i) != '-') {
@@ -170,7 +195,7 @@ public class Formatacao {
             }
         }
         return (retorno);
-    }
+    }*/
 
     public static String getDataAtual() {
         Date now = new Date();
@@ -187,5 +212,14 @@ public class Formatacao {
 
         return dataHoje;
     }
-}
 
+    public static String removerFormatacao(String dado) {
+        String retorno = "";
+        for (int i = 0; i < dado.length(); i++) {
+            if (dado.charAt(i) != ',' && dado.charAt(i) != '.' && dado.charAt(i) != '/' && dado.charAt(i) != '-' && dado.charAt(i) != '(' && dado.charAt(i) != ')' && dado.charAt(i) != ':') {
+                retorno = retorno + dado.charAt(i);
+            }
+        }
+        return (retorno.replaceAll(" ", ""));
+    }
+}

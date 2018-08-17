@@ -1,12 +1,45 @@
 package view;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.Funcionario;
+import model.dao.CargosDAO;
+import model.dao.CidadeDAO;
+import model.dao.ComboDAO;
+import model.dao.FuncionarioDAO;
+import model.util.ComboItens;
+import model.util.Formatacao;
+import model.util.Validacao;
+import model.util.limpaCampos;
+
 public class CadastroPessoaF extends javax.swing.JInternalFrame {
-    
+    int codigo = 0;
+        
     public CadastroPessoaF() {
         initComponents();
         this.setResizable(false);
+
+        edCargos.removeAllItems();
+        new ComboDAO().popularComboCargos(edCargos);
+
+        edCidade.removeAllItems();
+        new ComboDAO().popularComboCidades(edCidade);
+
+        edCPF.setFont(new java.awt.Font("Tahoma", 0, 14));
+        edRG.setFont(new java.awt.Font("Tahoma", 0, 14));
+        edTelefone.setFont(new java.awt.Font("Tahoma", 0, 14));
+        edCelular.setFont(new java.awt.Font("Tahoma", 0, 14));
+
+        Formatacao.formatarCpf(edCPF);
+        Formatacao.formatarRG(edRG);
+        Formatacao.formatarTelefone(edTelefone);
+        Formatacao.formatarCelular(edCelular);
+        Formatacao.formatarData(edDataNasc);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -29,13 +62,13 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         edDataNasc = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
-        edEstado1 = new javax.swing.JComboBox<String>();
+        edCargos = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        edCidade = new javax.swing.JComboBox<String>();
+        edCidade = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         edComplemento1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        edLogradouro = new javax.swing.JTextField();
+        edRua = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         edBairro = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -44,7 +77,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         edBusca = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbClientes = new javax.swing.JTable();
+        tbPessoa = new javax.swing.JTable();
         btExcluir = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
@@ -52,6 +85,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         setTitle("Cadastro de cliente");
 
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(501, 362));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(501, 362));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(501, 362));
@@ -127,21 +161,21 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         jLabel11.setForeground(new java.awt.Color(33, 33, 33));
         jLabel11.setText("Cargo:");
 
-        edEstado1.setBackground(new java.awt.Color(255, 255, 204));
-        edEstado1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edEstado1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        edEstado1.addItemListener(new java.awt.event.ItemListener() {
+        edCargos.setBackground(new java.awt.Color(255, 255, 204));
+        edCargos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edCargos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edCargos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                edEstado1ItemStateChanged(evt);
+                edCargosItemStateChanged(evt);
             }
         });
-        edEstado1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+        edCargos.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                edEstado1PopupMenuWillBecomeVisible(evt);
+                edCargosPopupMenuWillBecomeVisible(evt);
             }
         });
 
@@ -162,7 +196,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(edDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edCargos, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         pnPessoaFisicaLayout.setVerticalGroup(
@@ -182,8 +216,10 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(edCargos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        pnPessoaFisicaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {edCPF, edCargos, edDataNasc, edRG});
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(33, 33, 33));
@@ -191,7 +227,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         edCidade.setBackground(new java.awt.Color(255, 255, 204));
         edCidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(33, 33, 33));
@@ -209,11 +245,11 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         jLabel12.setForeground(new java.awt.Color(33, 33, 33));
         jLabel12.setText("Rua:");
 
-        edLogradouro.setBackground(new java.awt.Color(255, 255, 204));
-        edLogradouro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edLogradouro.addActionListener(new java.awt.event.ActionListener() {
+        edRua.setBackground(new java.awt.Color(255, 255, 204));
+        edRua.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edRua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edLogradouroActionPerformed(evt);
+                edRuaActionPerformed(evt);
             }
         });
 
@@ -279,7 +315,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnCamposLayout.createSequentialGroup()
                                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edLogradouro)
+                                    .addComponent(edRua)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,20 +355,20 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edRua, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        pnCamposLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {edBairro, edCelular, edCidade, edComplemento1, edLogradouro, edNumero, edTelefone});
+        pnCamposLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btCancelar, btSalvar, edBairro, edCelular, edCidade, edComplemento1, edNome, edNumero, edRua, edTelefone});
 
         jTabbedPane1.addTab("Cadastro", pnCampos);
 
@@ -345,9 +381,9 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         edBusca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edBusca.setForeground(new java.awt.Color(33, 33, 33));
 
-        tbClientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbClientes.setForeground(new java.awt.Color(33, 33, 33));
-        tbClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tbPessoa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tbPessoa.setForeground(new java.awt.Color(33, 33, 33));
+        tbPessoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -358,7 +394,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbClientes);
+        jScrollPane1.setViewportView(tbPessoa);
 
         btExcluir.setBackground(new java.awt.Color(243, 243, 243));
         btExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -438,7 +474,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                     .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -470,55 +506,63 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_edNomeActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        /*if (validaCampo()) {
-            cliente wCliente = new cliente();
+        if (validaCampo()) {
+            Funcionario wFuncionario = new Funcionario();
 
-            wCliente.setCodigo(codigo);
-            wCliente.setNome(edNome.getText());
-            wCliente.setCpf(edCPF.getText());
-            wCliente.setRg(edRG.getText());
-            wCliente.setDataNasc(edDataNasc.getText());
-            wCliente.setTelefone(edTelefone.getText());
-            wCliente.setCelular(edCelular.getText());
+            wFuncionario.setIdPessoa(codigo);
+            wFuncionario.setNome(edNome.getText());
+            wFuncionario.setCpf(0374347700); //Integer.parseInt(Formatacao.removerFormatacao(edCPF.getText())));
+            
+            try {
+                // wFuncionario.setRg(edRG.getText());
+                wFuncionario.setNascimento(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataNasc.getText())));
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastroPessoaF.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            wFuncionario.setTelefone(Formatacao.removerFormatacao(edTelefone.getText()));
+            wFuncionario.setCelular(Formatacao.removerFormatacao(edCelular.getText()));
 
             ComboItens ci = (ComboItens) edCidade.getSelectedItem();
-
-            wCliente.setCidadeO(new cidadeDAO().consultarId(ci.getCodigo()));
-            wCliente.setLogradouro(edLogradouro.getText());
-            wCliente.setComplemento(edComplemento.getText());
-            wCliente.setBairro(edBairro.getText());
-            wCliente.setNumero(edNumero.getText());
-
-            clienteDAO wClienteDAO = new clienteDAO();
+            wFuncionario.setCidade(new CidadeDAO().consultarID(ci.getCodigo()));
+            
+            ComboItens ca = (ComboItens) edCargos.getSelectedItem();
+            wFuncionario.setCargo(new CargosDAO().consultarID(ca.getCodigo()));
+                       
+            wFuncionario.setEndereco(edRua.getText());
+            wFuncionario.setBairro(edBairro.getText());
+            wFuncionario.setNumero(edNumero.getText());
+            wFuncionario.setInativo('F');
+            FuncionarioDAO wFuncionarioDAO = new FuncionarioDAO();
 
             String retorno = null;
-            if (wCliente.getCodigo() == 0) {
-                retorno = wClienteDAO.salvar(wCliente);
+            if (wFuncionario.getIdPessoa() == 0) {
+                retorno = wFuncionarioDAO.salvar(wFuncionario);
             } else {
-                retorno = wClienteDAO.atualizar(wCliente);
+                retorno = wFuncionarioDAO.atualizar(wFuncionario);
             }
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
                 limpaCampos.limparCampos(pnCampos);
                 codigo = 0;
-                new clienteDAO().popularTabela(tbClientes, "");
+                new FuncionarioDAO().popularTabela(tbPessoa, "");
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
-                    + "Mensagem técnica: \n" + retorno);
+                        + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        // limpaCampos.limparCampos(pnCampos);
+        limpaCampos.limparCampos(pnCampos);
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
-    private void edLogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edLogradouroActionPerformed
+    private void edRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edRuaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_edLogradouroActionPerformed
+    }//GEN-LAST:event_edRuaActionPerformed
 
     private void edBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edBairroActionPerformed
         // TODO add your handling code here:
@@ -582,28 +626,68 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        /*codigo = 0;
+        codigo = 0;
         limpaCampos.limparCampos(pnCampos);
         jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();*/
+        edNome.requestFocus();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovo1ActionPerformed
-        // new cidadeDAO().popularTabela(tbClientes, edBusca.getText());
+        new FuncionarioDAO().popularTabela(tbPessoa, edBusca.getText());
     }//GEN-LAST:event_btNovo1ActionPerformed
 
-    private void edEstado1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edEstado1ItemStateChanged
+    private void edCargosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edCargosItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_edEstado1ItemStateChanged
+    }//GEN-LAST:event_edCargosItemStateChanged
 
-    private void edEstado1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_edEstado1PopupMenuWillBecomeVisible
+    private void edCargosPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_edCargosPopupMenuWillBecomeVisible
         // TODO add your handling code here:
-    }//GEN-LAST:event_edEstado1PopupMenuWillBecomeVisible
+    }//GEN-LAST:event_edCargosPopupMenuWillBecomeVisible
 
     private void edComplemento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edComplemento1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edComplemento1ActionPerformed
 
+    private boolean validaCampo() {
+        boolean wRetorno = true;
+
+        ComboItens ciCargos = (ComboItens) edCargos.getSelectedItem();
+
+        if (ciCargos == null) {
+            JOptionPane.showMessageDialog(null, "Selecione um cargo!");
+            edCargos.requestFocus();
+            return false;
+        }
+        
+        ComboItens ciCidade = (ComboItens) edCidade.getSelectedItem();
+        if (ciCidade == null) {
+            JOptionPane.showMessageDialog(null, "Selecione uma cidade!");
+            edCargos.requestFocus();
+            return false;
+        }
+
+        if (Formatacao.removerFormatacao(edCPF.getText()).equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo CPF inválido!");
+            edCPF.requestFocus();
+            return false;
+        }
+
+        if (edNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo nome inválido!");
+            edNome.requestFocus();
+            return false;
+        } else if (!Validacao.validarCPF(Formatacao.removerFormatacao(edCPF.getText()))) {
+            JOptionPane.showMessageDialog(null, "Campo CPF inválido!");
+            edCPF.requestFocus();
+            return false;
+        } else if (!Validacao.validarCelular(edCelular.getText())) {
+            JOptionPane.showMessageDialog(null, "Campo celular inválido!");
+            edCelular.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
@@ -615,15 +699,15 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     private javax.swing.JTextField edBairro;
     private javax.swing.JTextField edBusca;
     private javax.swing.JFormattedTextField edCPF;
+    private javax.swing.JComboBox<String> edCargos;
     private javax.swing.JFormattedTextField edCelular;
     private javax.swing.JComboBox<String> edCidade;
     private javax.swing.JTextField edComplemento1;
     private javax.swing.JFormattedTextField edDataNasc;
-    private javax.swing.JComboBox<String> edEstado1;
-    private javax.swing.JTextField edLogradouro;
     private javax.swing.JTextField edNome;
     private javax.swing.JTextField edNumero;
     private javax.swing.JFormattedTextField edRG;
+    private javax.swing.JTextField edRua;
     private javax.swing.JFormattedTextField edTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -643,6 +727,6 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnCampos;
     private javax.swing.JPanel pnLista;
     private javax.swing.JPanel pnPessoaFisica;
-    private javax.swing.JTable tbClientes;
+    private javax.swing.JTable tbPessoa;
     // End of variables declaration//GEN-END:variables
 }
