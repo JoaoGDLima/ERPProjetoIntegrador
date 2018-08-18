@@ -27,6 +27,8 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
         btCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         edNome1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        edNome2 = new javax.swing.JComboBox<>();
         pnLista = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         edBusca = new javax.swing.JTextField();
@@ -78,6 +80,12 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
 
         edNome1.setBackground(new java.awt.Color(255, 255, 204));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Forma de Pagamento:");
+
+        edNome2.setBackground(new java.awt.Color(255, 255, 204));
+        edNome2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout pnCamposLayout = new javax.swing.GroupLayout(pnCampos);
         pnCampos.setLayout(pnCamposLayout);
         pnCamposLayout.setHorizontalGroup(
@@ -93,8 +101,10 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel2)
-                    .addComponent(edNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                    .addComponent(edNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(edNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         pnCamposLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btCancelar, btSalvar});
@@ -110,7 +120,11 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(edNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
@@ -355,8 +369,10 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
     private javax.swing.JTextField edBusca;
     private javax.swing.JTextField edNome;
     private javax.swing.JTextField edNome1;
+    private javax.swing.JComboBox<String> edNome2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;

@@ -38,6 +38,7 @@ public class MainF extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -223,6 +224,15 @@ public class MainF extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setText("Sair");
+        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu4);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,6 +347,10 @@ public class MainF extends javax.swing.JFrame {
         ifrMovFinanc.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+    System.exit(0);
+    }//GEN-LAST:event_jMenu4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -380,6 +394,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;

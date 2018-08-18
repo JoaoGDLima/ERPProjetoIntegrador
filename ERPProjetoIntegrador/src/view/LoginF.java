@@ -55,6 +55,11 @@ public class LoginF extends javax.swing.JFrame {
         jLabel3.setText("Senha:");
 
         edSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                edSenhaKeyPressed(evt);
+            }
+        });
 
         btEntrar.setBackground(new java.awt.Color(51, 153, 255));
         btEntrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -139,6 +144,24 @@ public class LoginF extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_edEmailActionPerformed
 
+    //Caso pressione enter após digitar a senha, 
+    //faz o mesmo que clicar em entrar sem necessidade de usar o mouse
+    private void edSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edSenhaKeyPressed
+    if(evt.getKeyCode()==evt.VK_ENTER)
+    {
+            UsuarioDAO wUsuarioDAO = new UsuarioDAO();
+        
+        Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
+        
+        if (wUsuario!=null) {
+            new MainF().setVisible(true);
+            this.dispose(); 
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Email ou senha informados estão incorreto!");
+        }
+    }//GEN-LAST:event_edSenhaKeyPressed
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
