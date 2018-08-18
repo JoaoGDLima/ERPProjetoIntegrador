@@ -34,6 +34,9 @@
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[501, 362]"/>
         </Property>
@@ -114,7 +117,7 @@
                                   <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="edLogradouro" max="32767" attributes="0"/>
+                                          <Component id="edRua" max="32767" attributes="0"/>
                                           <Component id="jLabel12" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -137,7 +140,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbNome2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="edNome" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="edNome" linkSize="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnPessoaFisica" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -167,17 +170,17 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="edLogradouro" linkSize="3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="edRua" linkSize="3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="edNumero" linkSize="3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="edBairro" linkSize="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <EmptySpace pref="69" max="32767" attributes="0"/>
+                      <EmptySpace pref="229" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btSalvar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="btCancelar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="btSalvar" linkSize="3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="btCancelar" linkSize="3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -309,7 +312,7 @@
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="edDataNasc" min="-2" pref="92" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                              <Component id="edEstado1" alignment="0" min="-2" pref="344" max="-2" attributes="0"/>
+                              <Component id="edCargos" alignment="0" min="-2" pref="344" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -324,17 +327,17 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="edCPF" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="edRG" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="edCPF" linkSize="4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="edRG" linkSize="4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="edDataNasc" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="edDataNasc" linkSize="4" min="-2" pref="25" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="edEstado1" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="edCargos" linkSize="4" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -400,7 +403,7 @@
                     <Property name="text" type="java.lang.String" value="Cargo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="edEstado1">
+                <Component class="javax.swing.JComboBox" name="edCargos">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="ff" red="ff" type="rgb"/>
@@ -418,8 +421,8 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="edEstado1ItemStateChanged"/>
-                    <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="edEstado1PopupMenuWillBecomeVisible"/>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="edCargosItemStateChanged"/>
+                    <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="edCargosPopupMenuWillBecomeVisible"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -492,7 +495,7 @@
                 <Property name="text" type="java.lang.String" value="Rua:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="edLogradouro">
+            <Component class="javax.swing.JTextField" name="edRua">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="ff" type="rgb"/>
@@ -502,7 +505,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edLogradouroActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edRuaActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -606,7 +609,7 @@
                           <Component id="jLabel5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="461" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="621" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btExcluir" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
@@ -647,7 +650,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tbClientes">
+                <Component class="javax.swing.JTable" name="tbPessoa">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>

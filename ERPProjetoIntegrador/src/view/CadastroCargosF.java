@@ -1,6 +1,9 @@
 package view;
 
 import javax.swing.JOptionPane;
+import model.Cargos;
+import model.dao.CargosDAO;
+import model.util.limpaCampos;
 
 public class CadastroCargosF extends javax.swing.JInternalFrame {
 
@@ -9,7 +12,7 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
     public CadastroCargosF() {
         initComponents();
         this.setResizable(false);
-        //new universidadeDAO().popularTabela(tbUniversidades, "");
+        new CargosDAO().popularTabela(tbCargos, "");
     }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +30,7 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
         edBusca = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbUniversidades = new javax.swing.JTable();
+        tbCargos = new javax.swing.JTable();
         btEditar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
@@ -36,6 +39,8 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
         setMaximumSize(new java.awt.Dimension(501, 362));
         setMinimumSize(new java.awt.Dimension(501, 362));
         setPreferredSize(new java.awt.Dimension(501, 362));
+
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         pnCampos.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -78,10 +83,10 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnCamposLayout.createSequentialGroup()
-                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCancelar)))
-                .addContainerGap(148, Short.MAX_VALUE))
+                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         pnCamposLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btCancelar, btSalvar});
@@ -90,13 +95,13 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
             pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCamposLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalvar)
-                    .addComponent(btCancelar))
+                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -121,7 +126,7 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
             }
         });
 
-        tbUniversidades.setModel(new javax.swing.table.DefaultTableModel(
+        tbCargos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -132,7 +137,7 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbUniversidades);
+        jScrollPane1.setViewportView(tbCargos);
 
         btEditar.setBackground(new java.awt.Color(243, 243, 243));
         btEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -182,14 +187,14 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnListaLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -201,20 +206,20 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnListaLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnListaLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(edBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(edBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnListaLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btNovo)
-                    .addComponent(btEditar)
-                    .addComponent(btExcluir))
+                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -235,32 +240,32 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        /*if (validaCampo()) {
-            universidade wUniversidade = new universidade();
-            wUniversidade.setCodigo(codigo);
-            wUniversidade.setNome(edNome.getText());
-            
-            universidadeDAO wUniversidadeDAO = new universidadeDAO();
+        if (validaCampo()) {
+            Cargos wCargos = new Cargos();
+            wCargos.setIdCargos(codigo);
+            wCargos.setNome(edNome.getText());
+            wCargos.setInativo('F');
+            CargosDAO wCargosDAO = new CargosDAO();
 
             String retorno = null;
             
-            if (wUniversidade.getCodigo() == 0) {
-                retorno = wUniversidadeDAO.salvar(wUniversidade);
+            if (wCargos.getIdCargos() == 0) {
+                retorno = wCargosDAO.salvar(wCargos);
             } else {
-                retorno = wUniversidadeDAO.atualizar(wUniversidade);
+                retorno = wCargosDAO.atualizar(wCargos);
             }
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
                 limpaCampos.limparCampos(pnCampos);
                 codigo = 0;
-                new universidadeDAO().popularTabela(tbUniversidades, "");
+                new CargosDAO().popularTabela(tbCargos, "");
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
                     + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
@@ -268,54 +273,56 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        //new universidadeDAO().popularTabela(tbUniversidades, edBusca.getText());
+       new CargosDAO().popularTabela(tbCargos, edBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        /*String valor = String.valueOf(tbUniversidades.getValueAt(tbUniversidades.getSelectedRow(), 0));
+        String valor = String.valueOf(tbCargos.getValueAt(tbCargos.getSelectedRow(), 0));
 
-        universidade wUniversidade = new universidadeDAO().consultarId(Integer.parseInt(valor));
+        Cargos wCargos = new CargosDAO().consultarID(Integer.parseInt(valor));
 
         codigo = Integer.parseInt(valor);
 
-        edNome.setText(wUniversidade.getNome());
+        edNome.setText(wCargos.getNome());
         
         jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();*/
+        edNome.requestFocus();
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        /*codigo = 0;
+        codigo = 0;
         limpaCampos.limparCampos(pnCampos);
         jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();*/
+        edNome.requestFocus();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        /*String wUsuNome = String.valueOf(tbUniversidades.getValueAt(tbUniversidades.getSelectedRow(), 1));
+        String wUsuNome = String.valueOf(tbCargos.getValueAt(tbCargos.getSelectedRow(), 1));
+        
+        String codigo = String.valueOf(tbCargos.getValueAt(tbCargos.getSelectedRow(), 0));
 
-        Object[] options = { "Confirmar", "Cancelar" };
-        int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir a universidade: " + wUsuNome,
-            "Informação",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        CargosDAO wUsuarioDAO = new CargosDAO();
+        Cargos wCargos = wUsuarioDAO.consultarID(Integer.parseInt(codigo));
+        wCargos.setInativo('T');
+        
+        Object[] options = {"Confirmar", "Cancelar"};
+        int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o usuario: " + wUsuNome,
+                "Informação",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-        if (wOpc==0)
-        {
-            String valor = String.valueOf(tbUniversidades.getValueAt(tbUniversidades.getSelectedRow(), 0));
-
-            universidadeDAO wUsuarioDAO = new universidadeDAO();
-
-            String retorno = wUsuarioDAO.excluir(Integer.parseInt(valor));
+        if (wOpc == 0) {
+            String retorno = null; 
+            wUsuarioDAO.excluir(wCargos);
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
-                wUsuarioDAO.popularTabela(tbUniversidades, edBusca.getText());
+                wUsuarioDAO.popularTabela(tbCargos, edBusca.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
-                    + "Mensagem técnica: \n" + retorno);
+                        + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btExcluirActionPerformed
     
     private boolean validaCampo() {
@@ -345,6 +352,6 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pnCampos;
     private javax.swing.JPanel pnLista;
-    private javax.swing.JTable tbUniversidades;
+    private javax.swing.JTable tbCargos;
     // End of variables declaration//GEN-END:variables
 }

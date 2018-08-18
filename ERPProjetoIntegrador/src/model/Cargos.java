@@ -2,9 +2,13 @@ package model;
 // Generated 07/08/2018 13:28:03 by Hibernate Tools 4.3.1
 
 
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +23,7 @@ public class Cargos  implements java.io.Serializable {
      private int idCargos;
      private String nome;
      private char inativo;
+    
 
     public Cargos() {
     }
@@ -31,7 +36,7 @@ public class Cargos  implements java.io.Serializable {
    
      @Id 
 
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)   
     @Column(name="id_cargos", nullable=false)
     public int getIdCargos() {
         return this.idCargos;

@@ -1,59 +1,26 @@
 package model.dao;
 
-import config.HibernateUtil;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import model.Usuario;
-import model.util.Criptografia;
+import model.Cargos;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
 
-public class UsuarioDAO extends MasterDAO {
+public class CargosDAO extends MasterDAO {
 
-    public UsuarioDAO() {
-    }
-
-    public Usuario consultarID(int pID) {
-        Usuario wUsuario = null;
+    public Cargos consultarID(int pID) 
+    {
+        Cargos wCargos = null;
         try {
-            wUsuario = (Usuario) super.consultar("Usuario", "id_usuario = " + pID);
-            wUsuario.setSenha(Usuario.senhaDefault);
+            wCargos = (Cargos) super.consultar("Cargos", "id_cargos = " + pID);
         } catch (HibernateException he) {
             he.printStackTrace();
         }
 
-        return wUsuario;
+        return wCargos;
     }
-
-    public Usuario validarusuario(String pUser, String pSenha) {
-        List resultado = null;
-
-        try {
-            Session sessao = HibernateUtil.getSessionFactory().openSession();
-            sessao.beginTransaction();
-
-            org.hibernate.Query q = sessao.createQuery(
-                    "FROM Usuario " + 
-                    "WHERE username = '" + pUser + "' " + 
-                    "AND senha = '" + Criptografia.criptografar(pSenha) + "'");
-            
-            resultado = q.list();
-
-            for (Object o : resultado) {
-                Usuario wUsuario = (Usuario) o;
-                System.out.print("id: " + wUsuario.getIdUsuario() + " ");
-                System.out.println("nome: " + wUsuario.getUsername());
-                return wUsuario;
-            }
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-
-        return null;
-    }
-
+        
     public void popularTabela(JTable pTable, String pArgumento) {
         List resultado = null;
 
@@ -61,33 +28,31 @@ public class UsuarioDAO extends MasterDAO {
         Object[][] dadosTabela = null;
 
         // cabecalho da tabela
-        Object[] cabecalho = new Object[4];
+        Object[] cabecalho = new Object[3];
         cabecalho[0] = "Código";
-        cabecalho[1] = "Nome de usuário";
-        cabecalho[2] = "Funcionário";
-        cabecalho[3] = "Situação";
+        cabecalho[1] = "Nome";
+        cabecalho[2] = "Situação";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
-            resultado = super.consultarTodos("Usuario", "inativo <> 'T' AND username LIKE '%" + pArgumento + "%'", "ORDER BY id_usuario");
+            resultado = super.consultarTodos("Cargos", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%'", "ORDER BY id_cargos");
 
-            dadosTabela = new Object[resultado.size()][4];
+            dadosTabela = new Object[resultado.size()][3];
 
             int lin = 0;
             // efetua consulta na tabela
             for (Object o : resultado) {
-                Usuario wUsuario = (Usuario) o;
+                Cargos wCargos = (Cargos) o;
 
-                dadosTabela[lin][0] = wUsuario.getIdUsuario();
-                dadosTabela[lin][1] = wUsuario.getUsername();
-                dadosTabela[lin][2] = wUsuario.getIdPessoa();
+                dadosTabela[lin][0] = wCargos.getIdCargos();
+                dadosTabela[lin][1] = wCargos.getNome();
 
                 String wSituaçao = "Ativo";
-                if (wUsuario.getInativo() == 'T') {
+                if (wCargos.getInativo() == 'T') {
                     wSituaçao = "Inativo";
                 }
 
-                dadosTabela[lin][3] = wSituaçao;
+                dadosTabela[lin][2] = wSituaçao;
                 lin++;
             }
         } catch (Exception e) {
@@ -131,5 +96,6 @@ public class UsuarioDAO extends MasterDAO {
             }
         }
     }
+
 
 }
