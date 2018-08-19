@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import model.FormaPagamento;
+import model.dao.ComboDAO;
 import model.dao.FormaPagamentoDAO;
 import model.util.limpaCampos;
 
@@ -10,9 +11,12 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
     int codigo = 0;
         
     public CadastroFPagamentoF() {
-        initComponents();
+       initComponents();
         this.setResizable(false);
-        //new universidadeDAO().popularTabela(tbUniversidades, "");
+        new FormaPagamentoDAO().popularTabela(tbParcelas, "'");
+
+        edNome2.removeAllItems();
+        new ComboDAO().popularComboFormaPagamento(edNome2);
     }
 
     @SuppressWarnings("unchecked")
@@ -34,7 +38,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
         edBusca = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbUniversidades = new javax.swing.JTable();
+        tbParcelas = new javax.swing.JTable();
         btEditar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
@@ -81,7 +85,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
         edNome1.setBackground(new java.awt.Color(255, 255, 204));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Forma de Pagamento:");
+        jLabel3.setText("Forma de Pagamento*:");
 
         edNome2.setBackground(new java.awt.Color(255, 255, 204));
         edNome2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -150,7 +154,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
             }
         });
 
-        tbUniversidades.setModel(new javax.swing.table.DefaultTableModel(
+        tbParcelas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -161,7 +165,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbUniversidades);
+        jScrollPane1.setViewportView(tbParcelas);
 
         btEditar.setBackground(new java.awt.Color(243, 243, 243));
         btEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -266,7 +270,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
             FormaPagamento wFormaPgto = new FormaPagamento();
             wFormaPgto.setIdFormaPagamento(codigo);
             wFormaPgto.setNome(edNome.getText());
-            wFormaPgto.setParcelas(2);
+            wFormaPgto.setParcelas(Integer.parseInt(edNome1.getText()));
             wFormaPgto.setInativo('F');
             
             FormaPagamentoDAO wFormaPgtoDAO = new FormaPagamentoDAO();
@@ -281,9 +285,9 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-                //limpaCampos.limparCampos(pnCampos);
+                limpaCampos.limparCampos(pnCampos);
                 codigo = 0;
-                //new FormaPagamentoDAO().popularTabela(tbUniversidades, "");
+                new FormaPagamentoDAO().popularTabela(tbParcelas, "");
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
@@ -378,6 +382,6 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pnCampos;
     private javax.swing.JPanel pnLista;
-    private javax.swing.JTable tbUniversidades;
+    private javax.swing.JTable tbParcelas;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ import javax.swing.JComboBox;
 import model.Cargos;
 import model.Cidade;
 import model.Estado;
+import model.FormaPagamento;
 import model.util.ComboItens;
 import org.hibernate.Session;
 
@@ -58,6 +59,29 @@ public class ComboDAO extends MasterDAO {
                 item = new ComboItens();
                 item.setCodigo(wCargos.getIdCargos());
                 item.setDescricao(wCargos.getNome());
+
+                combo.addItem(item);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao popular Combo = " + e.toString());
+        }
+    }
+    
+    public void popularComboFormaPagamento(JComboBox combo) {
+        List resultado = null;
+        ComboItens item = new ComboItens();
+        item.setCodigo(0);
+        item.setDescricao("Selecione");
+        combo.addItem(item);
+
+        try {
+            resultado = super.consultarTodos("FormaPagamento", "inativo <> 'T'", "ORDER BY nome");
+
+            for (Object object : resultado) {
+                FormaPagamento wPagamento = (FormaPagamento) object;
+                item = new ComboItens();
+                item.setCodigo(wPagamento.getIdFormaPagamento());
+                item.setDescricao(wPagamento.getNome());
 
                 combo.addItem(item);
             }

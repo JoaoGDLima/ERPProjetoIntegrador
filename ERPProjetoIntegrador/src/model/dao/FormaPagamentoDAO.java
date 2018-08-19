@@ -4,6 +4,7 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import model.FormaPagamento;
 
 public class FormaPagamentoDAO extends MasterDAO {
 
@@ -12,35 +13,40 @@ public class FormaPagamentoDAO extends MasterDAO {
 
         // dados da tabela
         Object[][] dadosTabela = null;
-
+        
         // cabecalho da tabela
-        Object[] cabecalho = new Object[4];
+        Object[] cabecalho = new Object[6];
         cabecalho[0] = "Código";
-        cabecalho[1] = "Nome de usuário";
-        cabecalho[2] = "Funcionário";
-        cabecalho[3] = "Situação";
+        cabecalho[1] = "Forma de Pagamento";
+        cabecalho[2] = "Parcelas";
+        cabecalho[3] = "F";
+        cabecalho[4] = "Desconto";
+        cabecalho[5] = "Acrescimo";
 
         // cria matriz de acordo com nº de registros da tabela
         try {
-            resultado = super.consultarTodos("Usuario", "inativo <> 'T' AND username ILIKE '%" + pArgumento + "%'", "");
+            resultado = super.consultarTodos("FormaPagamento", "inativo <> 'T'" + pArgumento + "%'", "ORDER BY nome");
 
-            dadosTabela = new Object[resultado.size()][4];
+            dadosTabela = new Object[resultado.size()][6];
 
             int lin = 0;
             // efetua consulta na tabela
             for (Object o : resultado) {
-                FormaPagamentoDAO wForma = (FormaPagamentoDAO) o;
+                FormaPagamento wForma = (FormaPagamento) o;
 
-                /*dadosTabela[lin][0] = wUsuario.getIdUsuario();
-                dadosTabela[lin][1] = wUsuario.getUsername();
-                dadosTabela[lin][2] = wUsuario.getIdPessoa();**/
+                dadosTabela[lin][0] = wForma.getIdFormaPagamento();
+                dadosTabela[lin][1] = wForma.getNome();
+                dadosTabela[lin][2] = wForma.getParcelas();
+                dadosTabela[lin][3] = wForma.getInativo();                
+                dadosTabela[lin][4] = wForma.getPercDesconto();
+                dadosTabela[lin][5] = wForma.getPercAcrescimo();
 
- /*String wSituaçao = "Ativo";
-                if (wUsuario.getInativo() == 'T') {
-                    wSituaçao = "Inativo";*/
-            //}
+                String wSituaçao = "Ativo";
+                if (wForma.getInativo() == 'T') {
+                    wSituaçao = "Inativo";
+            }
 
-            //dadosTabela[lin][3] = wSituaçao;
+            dadosTabela[lin][3] = wSituaçao;
             lin++;
         }
     }

@@ -129,14 +129,15 @@ public class LoginF extends javax.swing.JFrame {
         UsuarioDAO wUsuarioDAO = new UsuarioDAO();
         
         Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
-        
-        if (wUsuario!=null) {
+        new MainF().setVisible(true);
+            this.dispose(); 
+        /*if (wUsuario!=null) {
             new MainF().setVisible(true);
             this.dispose(); 
         }
         else {
             JOptionPane.showMessageDialog(null, "Email ou senha informados estão incorreto!");
-        }
+        }*/
 
     }//GEN-LAST:event_btEntrarActionPerformed
 

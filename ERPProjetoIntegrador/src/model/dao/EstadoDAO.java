@@ -50,7 +50,7 @@ public class EstadoDAO extends MasterDAO{
         
         try
         {
-            resultado = super.consultarTodos("Estado", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%'", "ORDER BY id_estado");
+            resultado = super.consultarTodos("Estado", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%'", "ORDER BY nome");
 
             dadosTabela = new Object[resultado.size()][3];
 
