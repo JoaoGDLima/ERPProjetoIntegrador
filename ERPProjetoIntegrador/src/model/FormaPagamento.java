@@ -23,20 +23,14 @@ public class FormaPagamento  implements java.io.Serializable {
      private String nome;
      private int parcelas;
      private char inativo;
-     private BigDecimal percDesconto;
-     private BigDecimal percAcrescimo;
+     private Float percDesconto;
+     private Float percAcrescimo;
 
     public FormaPagamento() {
     }
 
-	
-    public FormaPagamento(int idFormaPagamento, String nome, int parcelas, char inativo) {
-        this.idFormaPagamento = idFormaPagamento;
-        this.nome = nome;
-        this.parcelas = parcelas;
-        this.inativo = inativo;
-    }
-    public FormaPagamento(int idFormaPagamento, String nome, int parcelas, char inativo, BigDecimal percDesconto, BigDecimal percAcrescimo) {
+
+    public FormaPagamento(int idFormaPagamento, String nome, int parcelas, char inativo, Float percDesconto, Float percAcrescimo) {
        this.idFormaPagamento = idFormaPagamento;
        this.nome = nome;
        this.parcelas = parcelas;
@@ -88,22 +82,22 @@ public class FormaPagamento  implements java.io.Serializable {
     }
 
     
-    @Column(name="perc_desconto", precision=5)
-    public BigDecimal getPercDesconto() {
+    @Column(name="perc_desconto")
+    public Float getPercDesconto() {
         return this.percDesconto;
     }
     
-    public void setPercDesconto(BigDecimal percDesconto) {
+    public void setPercDesconto(Float percDesconto) {
         this.percDesconto = percDesconto;
     }
 
     
-    @Column(name="perc_acrescimo", precision=5)
-    public BigDecimal getPercAcrescimo() {
+    @Column(name="perc_acrescimo")
+    public Float getPercAcrescimo() {
         return this.percAcrescimo;
     }
     
-    public void setPercAcrescimo(BigDecimal percAcrescimo) {
+    public void setPercAcrescimo(Float percAcrescimo) {
         this.percAcrescimo = percAcrescimo;
     }
 

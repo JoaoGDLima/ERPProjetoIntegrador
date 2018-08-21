@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,13 +22,21 @@ import javax.persistence.TemporalType;
 @Table(name="funcionario")
 public class Funcionario extends Pessoa implements java.io.Serializable {
 
-
-    // private int idPessoa;
-     private int cpf;
+     private String cpf;
+     private String rg;
      private Date nascimento;
      private Cargos cargo;
     //private int idCargos;
      //private Pessoa pessoa;
+
+    @Column(name="rg", nullable=true, length=12)
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
 
     @ManyToOne
     @JoinColumn(name="id_cargos", nullable=false)
@@ -40,23 +49,12 @@ public class Funcionario extends Pessoa implements java.io.Serializable {
     {
         this.cargo = cargo;
     }
-     
-    /*@Id 
-    
-    @Column(name="id_pessoa", nullable=false)
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }*/
 
     public Funcionario() {
         //this.pessoa = new Pessoa();
     }
 
-    public Funcionario(int idPessoa, int cpf, Date nascimento, int idCargos) {
+    public Funcionario(int idPessoa, String cpf, Date nascimento, int idCargos) {
        //this.idPessoa = idPessoa;
        this.cpf = cpf;
        this.nascimento = nascimento;
@@ -72,13 +70,12 @@ public class Funcionario extends Pessoa implements java.io.Serializable {
         this.idPessoa = idPessoa;
     }*/
 
-    
-    @Column(name="cpf", nullable=false)
-    public int getCpf() {
+    @Column(name="cpf", nullable=false, length=12)
+    public String getCpf() {
         return this.cpf;
     }
     
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
