@@ -93,7 +93,7 @@ public class FuncionarioDAO extends MasterDAO {
     public Funcionario consultarID(int pID) {
         Funcionario wFunc = null;
         try {
-            wFunc = (Funcionario) super.consultar("Funcionario", "id_pessoa = " + pID);
+            wFunc = (Funcionario) super.consultar("Funcionario", "id_pessoa_func = " + pID);
         } catch (HibernateException he) {
             he.printStackTrace();
         }
