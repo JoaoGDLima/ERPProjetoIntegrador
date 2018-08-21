@@ -1,15 +1,23 @@
 package view;
 
 import javax.swing.JOptionPane;
+import model.Unidade;
+import model.dao.UnidadeDAO;
+import model.util.Formatacao;
+import model.util.limpaCampos;
 
 public class CadastroUnidadeF extends javax.swing.JInternalFrame {
 
     int codigo = 0;
-        
+
     public CadastroUnidadeF() {
         initComponents();
         this.setResizable(false);
-        //new universidadeDAO().popularTabela(tbUniversidades, "");
+        this.setResizable(false);
+        new UnidadeDAO().popularTabela(tbUnidades, "");
+
+        Formatacao.formatarUnidade(edSigla);
+        edSigla.setFont(new java.awt.Font("Tahoma", 0, 14));
     }
 
     @SuppressWarnings("unchecked")
@@ -23,13 +31,13 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        edNome1 = new javax.swing.JTextField();
+        edSigla = new javax.swing.JFormattedTextField();
         pnLista = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         edBusca = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbUniversidades = new javax.swing.JTable();
+        tbUnidades = new javax.swing.JTable();
         btEditar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
@@ -38,6 +46,8 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
         setMaximumSize(new java.awt.Dimension(501, 362));
         setMinimumSize(new java.awt.Dimension(501, 362));
         setPreferredSize(new java.awt.Dimension(501, 362));
+
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         pnCampos.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -74,8 +84,17 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(33, 33, 33));
         jLabel2.setText("Sigla:");
 
-        edNome1.setBackground(new java.awt.Color(255, 255, 204));
-        edNome1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edSigla.setBackground(new java.awt.Color(255, 255, 204));
+        try {
+            edSigla.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("**")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        edSigla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edSiglaKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnCamposLayout = new javax.swing.GroupLayout(pnCampos);
         pnCampos.setLayout(pnCamposLayout);
@@ -92,8 +111,8 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel2)
-                    .addComponent(edNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                    .addComponent(edSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         pnCamposLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btCancelar, btSalvar});
@@ -108,8 +127,8 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addComponent(edSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
@@ -137,7 +156,7 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
             }
         });
 
-        tbUniversidades.setModel(new javax.swing.table.DefaultTableModel(
+        tbUnidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -148,7 +167,7 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbUniversidades);
+        jScrollPane1.setViewportView(tbUnidades);
 
         btEditar.setBackground(new java.awt.Color(243, 243, 243));
         btEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -223,7 +242,7 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
                             .addGap(1, 1, 1)))
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btNovo)
@@ -249,32 +268,34 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        /*if (validaCampo()) {
-            universidade wUniversidade = new universidade();
-            wUniversidade.setCodigo(codigo);
-            wUniversidade.setNome(edNome.getText());
-            
-            universidadeDAO wUniversidadeDAO = new universidadeDAO();
+        if (validaCampo()) {
+            Unidade wUnidade = new Unidade();
+            wUnidade.setIdUnidade(codigo);
+            wUnidade.setNome(edNome.getText());
+            wUnidade.setSigla(edSigla.getText());
+            wUnidade.setInativo('F');
+
+            UnidadeDAO wUnidadeDAO = new UnidadeDAO();
 
             String retorno = null;
-            
-            if (wUniversidade.getCodigo() == 0) {
-                retorno = wUniversidadeDAO.salvar(wUniversidade);
+
+            if (wUnidade.getIdUnidade() == 0) {
+                retorno = wUnidadeDAO.salvar(wUnidade);
             } else {
-                retorno = wUniversidadeDAO.atualizar(wUniversidade);
+                retorno = wUnidadeDAO.atualizar(wUnidade);
             }
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
                 limpaCampos.limparCampos(pnCampos);
                 codigo = 0;
-                new universidadeDAO().popularTabela(tbUniversidades, "");
+                new UnidadeDAO().popularTabela(tbUnidades, "");
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
-                    + "Mensagem técnica: \n" + retorno);
+                        + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
@@ -286,52 +307,58 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        /*String valor = String.valueOf(tbUniversidades.getValueAt(tbUniversidades.getSelectedRow(), 0));
+        String valor = String.valueOf(tbUnidades.getValueAt(tbUnidades.getSelectedRow(), 0));
 
-        universidade wUniversidade = new universidadeDAO().consultarId(Integer.parseInt(valor));
+        Unidade wUnidade = new UnidadeDAO().consultarID(Integer.parseInt(valor));
 
         codigo = Integer.parseInt(valor);
 
-        edNome.setText(wUniversidade.getNome());
-        
+        edNome.setText(wUnidade.getNome());
+        edSigla.setText(wUnidade.getSigla());
+
         jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();*/
+        edNome.requestFocus();
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        /*codigo = 0;
+        codigo = 0;
         limpaCampos.limparCampos(pnCampos);
         jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();*/
+        edNome.requestFocus();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        /*String wUsuNome = String.valueOf(tbUniversidades.getValueAt(tbUniversidades.getSelectedRow(), 1));
+        String wUsuNome = String.valueOf(tbUnidades.getValueAt(tbUnidades.getSelectedRow(), 1));
 
-        Object[] options = { "Confirmar", "Cancelar" };
-        int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir a universidade: " + wUsuNome,
-            "Informação",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        String codigo = String.valueOf(tbUnidades.getValueAt(tbUnidades.getSelectedRow(), 0));
 
-        if (wOpc==0)
-        {
-            String valor = String.valueOf(tbUniversidades.getValueAt(tbUniversidades.getSelectedRow(), 0));
+        UnidadeDAO wUnidadeDAO = new UnidadeDAO();
+        Unidade wUnidade = wUnidadeDAO.consultarID(Integer.parseInt(codigo));
+        wUnidade.setInativo('T');
 
-            universidadeDAO wUsuarioDAO = new universidadeDAO();
+        Object[] options = {"Confirmar", "Cancelar"};
+        int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir a unidade: " + wUsuNome,
+                "Informação",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-            String retorno = wUsuarioDAO.excluir(Integer.parseInt(valor));
+        if (wOpc == 0) {
+            String retorno = wUnidadeDAO.atualizar(wUnidade);
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
-                wUsuarioDAO.popularTabela(tbUniversidades, edBusca.getText());
+                wUnidadeDAO.popularTabela(tbUnidades, edBusca.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
-                    + "Mensagem técnica: \n" + retorno);
+                        + "Mensagem técnica: \n" + retorno);
             }
-        }*/
+        }
     }//GEN-LAST:event_btExcluirActionPerformed
-    
+
+    private void edSiglaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edSiglaKeyReleased
+        edSigla.setText(edSigla.getText().toUpperCase());
+    }//GEN-LAST:event_edSiglaKeyReleased
+
     private boolean validaCampo() {
         boolean wRetorno = true;
 
@@ -339,6 +366,10 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
             wRetorno = false;
             JOptionPane.showMessageDialog(null, "Campo nome inválido!");
             edNome.requestFocus();
+        } else if (edSigla.getText().equals("")) {
+            wRetorno = false;
+            JOptionPane.showMessageDialog(null, "Campo sigla inválido!");
+            edSigla.requestFocus();
         }
 
         return wRetorno;
@@ -353,7 +384,7 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JTextField edBusca;
     private javax.swing.JTextField edNome;
-    private javax.swing.JTextField edNome1;
+    private javax.swing.JFormattedTextField edSigla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
@@ -361,6 +392,6 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pnCampos;
     private javax.swing.JPanel pnLista;
-    private javax.swing.JTable tbUniversidades;
+    private javax.swing.JTable tbUnidades;
     // End of variables declaration//GEN-END:variables
 }

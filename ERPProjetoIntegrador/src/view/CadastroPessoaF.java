@@ -16,8 +16,9 @@ import model.util.Validacao;
 import model.util.limpaCampos;
 
 public class CadastroPessoaF extends javax.swing.JInternalFrame {
+
     int codigo = 0;
-        
+
     public CadastroPessoaF() {
         initComponents();
         this.setResizable(false);
@@ -38,6 +39,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         Formatacao.formatarTelefone(edTelefone);
         Formatacao.formatarCelular(edCelular);
         Formatacao.formatarData(edDataNasc);
+
+        new FuncionarioDAO().popularTabela(tbPessoa, "");
     }
 
     @SuppressWarnings("unchecked")
@@ -66,7 +69,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         edCidade = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        edComplemento1 = new javax.swing.JTextField();
+        edEstado = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         edRua = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -228,16 +231,21 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         edCidade.setBackground(new java.awt.Color(255, 255, 204));
         edCidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edCidade.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                edCidadeItemStateChanged(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(33, 33, 33));
         jLabel10.setText("Estado:");
 
-        edComplemento1.setEditable(false);
-        edComplemento1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edComplemento1.addActionListener(new java.awt.event.ActionListener() {
+        edEstado.setEditable(false);
+        edEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edComplemento1ActionPerformed(evt);
+                edEstadoActionPerformed(evt);
             }
         });
 
@@ -290,7 +298,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                                 .addContainerGap(209, Short.MAX_VALUE))
                             .addGroup(pnCamposLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(edComplemento1)
+                                .addComponent(edEstado)
                                 .addContainerGap())))
                     .addGroup(pnCamposLayout.createSequentialGroup()
                         .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,7 +356,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edComplemento1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -368,7 +376,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        pnCamposLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btCancelar, btSalvar, edBairro, edCelular, edCidade, edComplemento1, edNome, edNumero, edRua, edTelefone});
+        pnCamposLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btCancelar, btSalvar, edBairro, edCelular, edCidade, edEstado, edNome, edNumero, edRua, edTelefone});
 
         jTabbedPane1.addTab("Cadastro", pnCampos);
 
@@ -511,24 +519,24 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
             wFuncionario.setIdPessoa(codigo);
             wFuncionario.setNome(edNome.getText());
-            wFuncionario.setCpf(0374347700); //Integer.parseInt(Formatacao.removerFormatacao(edCPF.getText())));
-            
+            wFuncionario.setCpf(Formatacao.removerFormatacao(edCPF.getText()));
+            wFuncionario.setRg(Formatacao.removerFormatacao(edRG.getText()));
+
             try {
-                // wFuncionario.setRg(edRG.getText());
                 wFuncionario.setNascimento(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataNasc.getText())));
             } catch (ParseException ex) {
                 Logger.getLogger(CadastroPessoaF.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             wFuncionario.setTelefone(Formatacao.removerFormatacao(edTelefone.getText()));
             wFuncionario.setCelular(Formatacao.removerFormatacao(edCelular.getText()));
 
             ComboItens ci = (ComboItens) edCidade.getSelectedItem();
             wFuncionario.setCidade(new CidadeDAO().consultarID(ci.getCodigo()));
-            
+
             ComboItens ca = (ComboItens) edCargos.getSelectedItem();
             wFuncionario.setCargo(new CargosDAO().consultarID(ca.getCodigo()));
-                       
+
             wFuncionario.setEndereco(edRua.getText());
             wFuncionario.setBairro(edBairro.getText());
             wFuncionario.setNumero(edNumero.getText());
@@ -545,6 +553,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
                 limpaCampos.limparCampos(pnCampos);
+                limpaCampos.limparCampos(pnPessoaFisica);
                 codigo = 0;
                 new FuncionarioDAO().popularTabela(tbPessoa, "");
                 jTabbedPane1.setSelectedIndex(1);
@@ -596,38 +605,39 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        /*String valor = String.valueOf(tbClientes.getValueAt(tbClientes.getSelectedRow(), 0));
+        String valor = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 0));
 
-        cliente wCliente = new clienteDAO().consultarId(Integer.parseInt(valor));
+        Funcionario wFunc = new FuncionarioDAO().consultarID(Integer.parseInt(valor));
 
         codigo = Integer.parseInt(valor);
 
-        edNome.setText(wCliente.getNome());
-        edCPF.setText(wCliente.getCpf());
-        edRG.setText(wCliente.getRg());
-        edDataNasc.setText(wCliente.getDataNasc());
-        edTelefone.setText(wCliente.getTelefone());
-        edCelular.setText(wCliente.getCelular());
-
-        ComboItens estado = new ComboItens();
-        estado.setCodigo(wCliente.getCidadeO().getEstadoO().getCodigo());
-        new CombosDAO().definirItemCombo(edEstado, estado);
+        edNome.setText(wFunc.getNome());
+        edCPF.setText(wFunc.getCpf());
+        edRG.setText(wFunc.getRg());
+        edDataNasc.setText(Formatacao.ajustaDataDMA(wFunc.getNascimento().toString()));
+        edTelefone.setText(wFunc.getTelefone());
+        edCelular.setText(wFunc.getCelular());
 
         ComboItens cidade = new ComboItens();
-        cidade.setCodigo(wCliente.getCidadeO().getCodigo());
-        new CombosDAO().definirItemCombo(edCidade, cidade);
+        cidade.setCodigo(wFunc.getCidade().getIdCidade());
+        new ComboDAO().definirItemCombo(edCidade, cidade);
 
-        edLogradouro.setText(wCliente.getLogradouro());
-        edComplemento.setText(wCliente.getComplemento());
-        edBairro.setText(wCliente.getBairro());
-        edNumero.setText(wCliente.getNumero());
+        ComboItens cargos = new ComboItens();
+        cargos.setCodigo(wFunc.getCargo().getIdCargos());
+        new ComboDAO().definirItemCombo(edCargos, cargos);
+
+        edRua.setText(wFunc.getEndereco());
+        edNumero.setText(wFunc.getNumero());
+        edBairro.setText(wFunc.getBairro());
+
         jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();*/
+        edNome.requestFocus();
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         codigo = 0;
         limpaCampos.limparCampos(pnCampos);
+        limpaCampos.limparCampos(pnPessoaFisica);
         jTabbedPane1.setSelectedIndex(0);
         edNome.requestFocus();
     }//GEN-LAST:event_btNovoActionPerformed
@@ -644,9 +654,18 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_edCargosPopupMenuWillBecomeVisible
 
-    private void edComplemento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edComplemento1ActionPerformed
+    private void edEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_edComplemento1ActionPerformed
+    }//GEN-LAST:event_edEstadoActionPerformed
+
+    private void edCidadeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edCidadeItemStateChanged
+        ComboItens ciCidade = (ComboItens) edCidade.getSelectedItem();
+        if (ciCidade != null) {
+            if (ciCidade.getCodigo() > 0) {
+                edEstado.setText(new CidadeDAO().consultarID(ciCidade.getCodigo()).getEstado().getNome());
+            }
+        }
+    }//GEN-LAST:event_edCidadeItemStateChanged
 
     private boolean validaCampo() {
         boolean wRetorno = true;
@@ -658,7 +677,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
             edCargos.requestFocus();
             return false;
         }
-        
+
         ComboItens ciCidade = (ComboItens) edCidade.getSelectedItem();
         if (ciCidade == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma cidade!");
@@ -702,8 +721,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> edCargos;
     private javax.swing.JFormattedTextField edCelular;
     private javax.swing.JComboBox<String> edCidade;
-    private javax.swing.JTextField edComplemento1;
     private javax.swing.JFormattedTextField edDataNasc;
+    private javax.swing.JTextField edEstado;
     private javax.swing.JTextField edNome;
     private javax.swing.JTextField edNumero;
     private javax.swing.JFormattedTextField edRG;

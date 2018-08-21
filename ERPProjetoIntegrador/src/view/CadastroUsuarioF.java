@@ -1,7 +1,9 @@
 package view;
 
 import javax.swing.JOptionPane;
+import model.Funcionario;
 import model.Usuario;
+import model.dao.FuncionarioDAO;
 import model.dao.UsuarioDAO;
 import model.util.limpaCampos;
 
@@ -402,13 +404,13 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame {
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         String wUsuNome = String.valueOf(tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 1));
-        
+
         String codigo = String.valueOf(tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0));
 
         UsuarioDAO wUsuarioDAO = new UsuarioDAO();
         Usuario wUsuario = wUsuarioDAO.consultarID(Integer.parseInt(codigo));
         wUsuario.setInativo('T');
-        
+
         Object[] options = {"Confirmar", "Cancelar"};
         int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o usuario: " + wUsuNome,
                 "Informação",
@@ -416,9 +418,8 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame {
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (wOpc == 0) {
-
-            
-            String retorno = null; //wUsuarioDAO.excluir(Integer.parseInt(valor));
+            String retorno = null;
+            wUsuarioDAO.excluir(wUsuario);
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
@@ -427,12 +428,20 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
                         + "Mensagem técnica: \n" + retorno);
             }
-        } 
+        }
 
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btSelecionar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionar2ActionPerformed
-        // TODO add your handling code here:
+        SelecionarCliente wSelecionarCliente = new SelecionarCliente(null, true);
+        wSelecionarCliente.CarregarFuncionarios();
+        wSelecionarCliente.setVisible(true);
+
+        if (wSelecionarCliente.getTextSearch() != null) {
+            Funcionario wFunc = new FuncionarioDAO().consultarID(Integer.parseInt(wSelecionarCliente.getTextSearch()));
+            edFuncionario.setText(wFunc.getIdPessoa() + "");
+            edNomeFuncionario.setText(wFunc.getNome() + "");
+        }
     }//GEN-LAST:event_btSelecionar2ActionPerformed
 
     private boolean validaCampo() {

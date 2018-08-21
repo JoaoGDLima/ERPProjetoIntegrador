@@ -301,8 +301,8 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
         
         String codigo = String.valueOf(tbCargos.getValueAt(tbCargos.getSelectedRow(), 0));
 
-        CargosDAO wUsuarioDAO = new CargosDAO();
-        Cargos wCargos = wUsuarioDAO.consultarID(Integer.parseInt(codigo));
+        CargosDAO wCargosDAO = new CargosDAO();
+        Cargos wCargos = wCargosDAO.consultarID(Integer.parseInt(codigo));
         wCargos.setInativo('T');
         
         Object[] options = {"Confirmar", "Cancelar"};
@@ -313,11 +313,11 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
 
         if (wOpc == 0) {
             String retorno = null; 
-            wUsuarioDAO.excluir(wCargos);
+            wCargosDAO.excluir(wCargos);
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
-                wUsuarioDAO.popularTabela(tbCargos, edBusca.getText());
+                wCargosDAO.popularTabela(tbCargos, edBusca.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
                         + "Mensagem técnica: \n" + retorno);
