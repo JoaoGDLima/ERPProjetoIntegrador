@@ -27,12 +27,25 @@ public class Formatacao {
         return campoFormatado;
     }
 
+    public static void formatarValor(JFormattedTextField campo) {
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("##.00");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
     public static void formatarDecimal(JTextField campo) {
         campo.setText(df.format(Double.parseDouble(campo.getText())));
     }
 
     public static String formatarDecimal(double valor) {
-        NumberFormat formatter = new DecimalFormat("###0.00");
+        NumberFormat formatter = new DecimalFormat("##.00");
         return (formatter.format(valor));
     }
 
@@ -54,6 +67,19 @@ public class Formatacao {
 
     public static JFormattedTextField getDataHora() {
         return getFormatado("##/##/#### ##:##");
+    }
+
+    public static void formatarInteiro(JFormattedTextField campo) {
+                try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("#");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 
     public void formatoDecimal(JTextField campo) {
@@ -104,6 +130,20 @@ public class Formatacao {
             MaskFormatter m = new MaskFormatter();
             m.setPlaceholderCharacter(' ');
             m.setMask("**");
+            m.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
+    public static void formatarUnidade(JFormattedTextField campo) {
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("***");
             m.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
             campo.setFormatterFactory(null);
             campo.setFormatterFactory(new DefaultFormatterFactory(m));
@@ -188,15 +228,14 @@ public class Formatacao {
     }
 
     /*public static String removerFormatacao(String dado) {
-        String retorno = "";
-        for (int i = 0; i < dado.length(); i++) {
-            if (dado.charAt(i) != '.' && dado.charAt(i) != '/' && dado.charAt(i) != '-') {
-                retorno = retorno + dado.charAt(i);
-            }
-        }
-        return (retorno);
-    }*/
-
+     String retorno = "";
+     for (int i = 0; i < dado.length(); i++) {
+     if (dado.charAt(i) != '.' && dado.charAt(i) != '/' && dado.charAt(i) != '-') {
+     retorno = retorno + dado.charAt(i);
+     }
+     }
+     return (retorno);
+     }*/
     public static String getDataAtual() {
         Date now = new Date();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
