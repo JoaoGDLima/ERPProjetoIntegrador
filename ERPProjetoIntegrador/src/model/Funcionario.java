@@ -25,7 +25,7 @@ public class Funcionario extends Pessoa implements java.io.Serializable {
      private String cpf;
      private String rg;
      private Date nascimento;
-     private Cargos cargo;
+
     //private int idCargos;
      //private Pessoa pessoa;
 
@@ -36,18 +36,6 @@ public class Funcionario extends Pessoa implements java.io.Serializable {
 
     public void setRg(String rg) {
         this.rg = rg;
-    }
-
-    @ManyToOne
-    @JoinColumn(name="id_cargos", nullable=false)
-    public Cargos getCargo() 
-    {
-        return cargo;
-    }
-
-    public void setCargo(Cargos cargo) 
-    {
-        this.cargo = cargo;
     }
 
     public Funcionario() {
@@ -70,8 +58,8 @@ public class Funcionario extends Pessoa implements java.io.Serializable {
         this.idPessoa = idPessoa;
     }*/
     
-    @OneToOne
-    @JoinColumn(name="id_pessoa_func", nullable=false)
+    //@OneToOne
+    //@JoinColumn(name="id_pessoa_func", nullable=false)
     @Column(name="cpf", nullable=false, length=12)
     public String getCpf() {
         return this.cpf;

@@ -33,7 +33,8 @@ public class Pessoa implements java.io.Serializable {
     //private int idCidade;
     private Cidade cidade;
     private char inativo;
-
+    private Cargos cargo;
+    
     public Pessoa() {
     }
 
@@ -62,6 +63,17 @@ public class Pessoa implements java.io.Serializable {
         this.inativo = inativo;
     }
     
+    @ManyToOne
+    @JoinColumn(name="id_cargos", nullable=false)
+    public Cargos getCargo() 
+    {
+        return cargo;
+    }
+
+    public void setCargo(Cargos cargo) 
+    {
+        this.cargo = cargo;
+    }
    
        
     @ManyToOne
@@ -76,8 +88,8 @@ public class Pessoa implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToOne
-    @JoinColumn(name="id_pessoa_func", nullable=false)
+    //@OneToOne
+    //@JoinColumn(name="id_pessoa_func", nullable=false)
     @Column(name = "id_pessoa", nullable = false)
     public int getIdPessoa() {
         return this.idPessoa;

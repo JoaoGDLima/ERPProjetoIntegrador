@@ -6,9 +6,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Funcionario;
+import model.PessoaJuridica;
 import model.dao.CargosDAO;
 import model.dao.CidadeDAO;
 import model.dao.ComboDAO;
+import model.dao.PessoaJuridicaDAO;
 import model.dao.FuncionarioDAO;
 import model.util.ComboItens;
 import model.util.Formatacao;
@@ -41,7 +43,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         Formatacao.formatarTelefone(edTelefone);
         Formatacao.formatarCelular(edCelular);
         Formatacao.formatarData(edDataNasc);
-        
+
         ValidaTipoPessoa();
 
         new FuncionarioDAO().popularTabela(tbPessoa, "");
@@ -598,49 +600,20 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (validaCampo()) {
-            Funcionario wFuncionario = new Funcionario();
+            String retorno = "ERRO";
             
+            if (jRBFisico.isSelected()) {
+                retorno = SalvarPessoaFisico();
+            } 
             
-            wFuncionario.setIdPessoa(codigo);
-            wFuncionario.setNome(edNome.getText());
-            wFuncionario.setCpf(Formatacao.removerFormatacao(edCPF.getText()));
-            wFuncionario.setRg(Formatacao.removerFormatacao(edRG.getText()));
-
-            try {
-                wFuncionario.setNascimento(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataNasc.getText())));
-            } catch (ParseException ex) {
-                Logger.getLogger(CadastroPessoaF.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            wFuncionario.setTelefone(Formatacao.removerFormatacao(edTelefone.getText()));
-            wFuncionario.setCelular(Formatacao.removerFormatacao(edCelular.getText()));
-
-            ComboItens ci = (ComboItens) edCidade.getSelectedItem();
-            wFuncionario.setCidade(new CidadeDAO().consultarID(ci.getCodigo()));
-
-            ComboItens ca = (ComboItens) edCargos.getSelectedItem();
-            wFuncionario.setCargo(new CargosDAO().consultarID(ca.getCodigo()));
-
-            
-            wFuncionario.setEndereco(edRua.getText());
-            wFuncionario.setBairro(edBairro.getText());
-            wFuncionario.setNumero(edNumero.getText());
-            wFuncionario.setInativo('F');
-            FuncionarioDAO wFuncionarioDAO = new FuncionarioDAO();
-
-            String retorno = null;
-            if (wFuncionario.getIdPessoa() == 0) {
-                retorno = wFuncionarioDAO.salvar(wFuncionario);
-            } else {
-                retorno = wFuncionarioDAO.atualizar(wFuncionario);
-            }
-
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
                 limpaCampos.limparCampos(pnCampos);
                 limpaCampos.limparCampos(pnPessoaFisica);
                 codigo = 0;
+
                 new FuncionarioDAO().popularTabela(tbPessoa, "");
+
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
@@ -745,11 +718,11 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_edCidadeItemStateChanged
 
     private void jRBFisicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBFisicoActionPerformed
-       ValidaTipoPessoa();// TODO add your handling code here:
+        ValidaTipoPessoa();// TODO add your handling code here:
     }//GEN-LAST:event_jRBFisicoActionPerformed
 
     private void jRBJuridicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBJuridicoActionPerformed
-    ValidaTipoPessoa();     // TODO add your handling code here:
+        ValidaTipoPessoa();     // TODO add your handling code here:
     }//GEN-LAST:event_jRBJuridicoActionPerformed
 
     private void edCargosPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_edCargosPopupMenuWillBecomeVisible
@@ -761,25 +734,103 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_edCargosItemStateChanged
 
     private void edCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edCPFFocusLost
-        if(!Validacao.validarCPF(Formatacao.removerFormatacao(edCPF.getText())))                    
+        if (!Validacao.validarCPF(Formatacao.removerFormatacao(edCPF.getText()))) {
             edCPF.requestFocus();
-        
+        }
+
     }//GEN-LAST:event_edCPFFocusLost
 
     private void edIEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edIEFocusLost
-        if(!Validacao.validarIE(Formatacao.removerFormatacao(edIE.getText())))
+        if (!Validacao.validarIE(Formatacao.removerFormatacao(edIE.getText()))) {
             edIE.requestFocus();
-        
+        }
+
     }//GEN-LAST:event_edIEFocusLost
 
     private void edCNPJFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edCNPJFocusLost
-       if(!Validacao.validarCNPJ(Formatacao.removerFormatacao(edCNPJ.getText())))
+        if (!Validacao.validarCNPJ(Formatacao.removerFormatacao(edCNPJ.getText()))) {
             edCNPJ.requestFocus();
+        }
     }//GEN-LAST:event_edCNPJFocusLost
 
     private void edRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edRGFocusLost
-        
+
     }//GEN-LAST:event_edRGFocusLost
+    
+    private String SalvarPessoaJuridica()
+    {
+        PessoaJuridica wPessoaJuridica = new PessoaJuridica();
+
+        wPessoaJuridica.setIdPessoa(codigo);
+        wPessoaJuridica.setNome(edNome.getText());
+        wPessoaJuridica.setCnpj(Formatacao.removerFormatacao(edCNPJ.getText()));
+        wPessoaJuridica.setIe(Formatacao.removerFormatacao(edIE.getText()));
+
+
+        wPessoaJuridica.setTelefone(Formatacao.removerFormatacao(edTelefone.getText()));
+        wPessoaJuridica.setCelular(Formatacao.removerFormatacao(edCelular.getText()));
+
+        ComboItens ci = (ComboItens) edCidade.getSelectedItem();
+        wPessoaJuridica.setCidade(new CidadeDAO().consultarID(ci.getCodigo()));
+
+        ComboItens ca = (ComboItens) edCargos.getSelectedItem();
+        wPessoaJuridica.setCargo(new CargosDAO().consultarID(ca.getCodigo()));
+
+        wPessoaJuridica.setEndereco(edRua.getText());
+        wPessoaJuridica.setBairro(edBairro.getText());
+        wPessoaJuridica.setNumero(edNumero.getText());
+        wPessoaJuridica.setInativo('F');
+        
+        PessoaJuridicaDAO wPessoaJuridicaDAO = new PessoaJuridicaDAO();
+
+        String retorno = null;
+        if (wPessoaJuridica.getIdPessoa() == 0) {
+            retorno = wPessoaJuridicaDAO.salvar(wPessoaJuridica);
+        } else {
+            retorno = wPessoaJuridicaDAO.atualizar(wPessoaJuridica);
+        }
+
+        return retorno;
+    }
+    
+    private String SalvarPessoaFisico() {
+        Funcionario wFuncionario = new Funcionario();
+
+        wFuncionario.setIdPessoa(codigo);
+        wFuncionario.setNome(edNome.getText());
+        wFuncionario.setCpf(Formatacao.removerFormatacao(edCPF.getText()));
+        wFuncionario.setRg(Formatacao.removerFormatacao(edRG.getText()));
+
+        try {
+            wFuncionario.setNascimento(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataNasc.getText())));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPessoaF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        wFuncionario.setTelefone(Formatacao.removerFormatacao(edTelefone.getText()));
+        wFuncionario.setCelular(Formatacao.removerFormatacao(edCelular.getText()));
+
+        ComboItens ci = (ComboItens) edCidade.getSelectedItem();
+        wFuncionario.setCidade(new CidadeDAO().consultarID(ci.getCodigo()));
+
+        ComboItens ca = (ComboItens) edCargos.getSelectedItem();
+        wFuncionario.setCargo(new CargosDAO().consultarID(ca.getCodigo()));
+
+        wFuncionario.setEndereco(edRua.getText());
+        wFuncionario.setBairro(edBairro.getText());
+        wFuncionario.setNumero(edNumero.getText());
+        wFuncionario.setInativo('F');
+        FuncionarioDAO wFuncionarioDAO = new FuncionarioDAO();
+
+        String retorno = null;
+        if (wFuncionario.getIdPessoa() == 0) {
+            retorno = wFuncionarioDAO.salvar(wFuncionario);
+        } else {
+            retorno = wFuncionarioDAO.atualizar(wFuncionario);
+        }
+
+        return retorno;
+    }
 
     private boolean validaCampo() {
         boolean wRetorno = true;
@@ -799,25 +850,25 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
             return false;
         }
 
-        if (edCPF.isEnabled()&&Formatacao.removerFormatacao(edCPF.getText()).equals("")) {
+        if (edCPF.isEnabled() && Formatacao.removerFormatacao(edCPF.getText()).equals("")) {
             JOptionPane.showMessageDialog(null, "Campo CPF inválido!");
             edCPF.requestFocus();
             return false;
         }
-        
-        if (edRG.isEnabled()&&Formatacao.removerFormatacao(edRG.getText()).equals("")) {
+
+        if (edRG.isEnabled() && Formatacao.removerFormatacao(edRG.getText()).equals("")) {
             JOptionPane.showMessageDialog(null, "Campo RG inválido!");
             edRG.requestFocus();
             return false;
         }
-        
-        if (edCNPJ.isEnabled()&&Formatacao.removerFormatacao(edCNPJ.getText()).equals("")) {
+
+        if (edCNPJ.isEnabled() && Formatacao.removerFormatacao(edCNPJ.getText()).equals("")) {
             JOptionPane.showMessageDialog(null, "Campo CNPJ inválido!");
             edCNPJ.requestFocus();
             return false;
         }
-        
-        if (edIE.isEnabled()&&Formatacao.removerFormatacao(edIE.getText()).equals("")) {
+
+        if (edIE.isEnabled() && Formatacao.removerFormatacao(edIE.getText()).equals("")) {
             JOptionPane.showMessageDialog(null, "Campo IE inválido!");
             edIE.requestFocus();
             return false;
@@ -839,18 +890,14 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         return true;
     }
-    
-    private void ValidaTipoPessoa()
-    {
-        if(jRBFisico.isSelected())
-        {
+
+    private void ValidaTipoPessoa() {
+        if (jRBFisico.isSelected()) {
             edCNPJ.setEnabled(false);
             edIE.setEnabled(false);
             edCPF.setEnabled(true);
             edRG.setEnabled(true);
-        }
-        else
-        {
+        } else {
             edCNPJ.setEnabled(true);
             edIE.setEnabled(true);
             edCPF.setEnabled(false);
