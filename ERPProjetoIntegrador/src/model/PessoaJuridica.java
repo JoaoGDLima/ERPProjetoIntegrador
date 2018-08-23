@@ -16,8 +16,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @PrimaryKeyJoinColumn(name="id_pessoa_juridica")
-@Table(name="pessoa_juridica"
-)
+@Table(name="pessoa_juridica")
 public class PessoaJuridica  extends Pessoa implements java.io.Serializable {
 
 

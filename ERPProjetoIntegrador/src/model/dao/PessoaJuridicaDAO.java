@@ -7,8 +7,8 @@ import javax.swing.table.TableColumn;
 import model.PessoaJuridica;
 import org.hibernate.HibernateException;
 
-class PessoaJuridicaDAO extends MasterDAO{
-        public void popularTabela(JTable pTable, String pArgumento) {
+public class PessoaJuridicaDAO extends MasterDAO{
+        public void popularTabela(JTable pTable, String pArgumento, char Modo) {
         List resultado = null;
 
         Object[][] dadosTabela = null;
@@ -20,7 +20,7 @@ class PessoaJuridicaDAO extends MasterDAO{
         cabecalho[3] = "Situação";
 
         try {
-            resultado = super.consultarTodos("Funcionario", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%'", "");
+            resultado = super.consultarTodos("PessoaJuridica", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%' AND tipo = '" + Modo + "'", "");
 
             dadosTabela = new Object[resultado.size()][5];
 
