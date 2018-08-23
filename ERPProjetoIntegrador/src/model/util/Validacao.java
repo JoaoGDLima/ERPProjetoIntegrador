@@ -18,6 +18,7 @@ public class Validacao {
 
     private static final int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
     private static final int[] pesoCNPJ = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+    private static final int[] pesoIE = {2, 9, 8, 7, 6, 5, 4, 3, 2};
 
     private static int calcularDigito(String str, int[] peso) {
         int soma = 0;
@@ -36,6 +37,21 @@ public class Validacao {
         Integer digito1 = calcularDigito(cpf.substring(0, 9), pesoCPF);
         Integer digito2 = calcularDigito(cpf.substring(0, 9) + digito1, pesoCPF);
         return cpf.equals(cpf.substring(0, 9) + digito1.toString() + digito2.toString());
+    }
+    
+    public static boolean validarIE(String ie)
+    {
+        if ((ie == null) || (ie.length() != 10)) {
+            return false;
+        }
+        int temp = Integer.parseInt(ie.substring(0, 2));
+        if(temp >= 001 && temp <= 467)
+        {
+            Integer digito1 = calcularDigito(ie.substring(0, 8), pesoIE);
+            Integer digito2 = calcularDigito(ie.substring(0, 8) + digito1, pesoIE);
+            return ie.equals(ie.substring(0, 8) + digito1.toString() + digito2.toString());   
+        }
+        return false;
     }
 
     public static boolean validarCNPJ(String cnpj) {

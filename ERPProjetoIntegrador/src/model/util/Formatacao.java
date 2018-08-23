@@ -60,6 +60,10 @@ public class Formatacao {
     public static JFormattedTextField getCPF() {
         return getFormatado("###.###.###-##");
     }
+    
+    public static JFormattedTextField getIE() {
+        return getFormatado("###/#######");
+    }
 
     public static JFormattedTextField getData() {
         return getFormatado("##/##/####");
@@ -158,6 +162,19 @@ public class Formatacao {
             MaskFormatter m = new MaskFormatter();
             m.setPlaceholderCharacter(' ');
             m.setMask("###.###.###-##");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+    
+    public static void formatarIE(JFormattedTextField campo) {
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("###/#######");
             campo.setFormatterFactory(null);
             campo.setFormatterFactory(new DefaultFormatterFactory(m));
             campo.setValue(null);

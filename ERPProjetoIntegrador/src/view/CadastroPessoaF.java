@@ -34,11 +34,15 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         edTelefone.setFont(new java.awt.Font("Tahoma", 0, 14));
         edCelular.setFont(new java.awt.Font("Tahoma", 0, 14));
 
+        Formatacao.formatarCnpj(edCNPJ);
+        Formatacao.formatarIE(edIE);
         Formatacao.formatarCpf(edCPF);
         Formatacao.formatarRG(edRG);
         Formatacao.formatarTelefone(edTelefone);
         Formatacao.formatarCelular(edCelular);
         Formatacao.formatarData(edDataNasc);
+        
+        ValidaTipoPessoa();
 
         new FuncionarioDAO().popularTabela(tbPessoa, "");
     }
@@ -47,6 +51,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pnCampos = new javax.swing.JPanel();
         lbNome2 = new javax.swing.JLabel();
@@ -76,6 +81,12 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         edBairro = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         edNumero = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        edCNPJ = new javax.swing.JFormattedTextField();
+        jRBFisico = new javax.swing.JRadioButton();
+        jRBJuridico = new javax.swing.JRadioButton();
+        jLabel14 = new javax.swing.JLabel();
+        edIE = new javax.swing.JFormattedTextField();
         pnLista = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         edBusca = new javax.swing.JTextField();
@@ -145,6 +156,11 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         pnPessoaFisica.setBackground(new java.awt.Color(255, 255, 255));
 
         edCPF.setBackground(new java.awt.Color(255, 255, 204));
+        edCPF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edCPFFocusLost(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(33, 33, 33));
@@ -153,6 +169,12 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(33, 33, 33));
         jLabel7.setText("RG:");
+
+        edRG.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edRGFocusLost(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(33, 33, 33));
@@ -280,6 +302,45 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         edNumero.setBackground(new java.awt.Color(255, 255, 204));
         edNumero.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(33, 33, 33));
+        jLabel13.setText("CNPJ:");
+
+        edCNPJ.setBackground(new java.awt.Color(255, 255, 204));
+        edCNPJ.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edCNPJFocusLost(evt);
+            }
+        });
+
+        buttonGroup1.add(jRBFisico);
+        jRBFisico.setText("Pessoa Física");
+        jRBFisico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBFisicoActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRBJuridico);
+        jRBJuridico.setSelected(true);
+        jRBJuridico.setText("Pessoa Jurídica");
+        jRBJuridico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBJuridicoActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(33, 33, 33));
+        jLabel14.setText("IE:");
+
+        edIE.setBackground(new java.awt.Color(255, 255, 204));
+        edIE.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edIEFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnCamposLayout = new javax.swing.GroupLayout(pnCampos);
         pnCampos.setLayout(pnCamposLayout);
         pnCamposLayout.setHorizontalGroup(
@@ -295,33 +356,24 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                             .addGroup(pnCamposLayout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(209, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnCamposLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(edEstado)
                                 .addContainerGap())))
-                    .addGroup(pnCamposLayout.createSequentialGroup()
-                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCamposLayout.createSequentialGroup()
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnCamposLayout.createSequentialGroup()
-                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnCamposLayout.createSequentialGroup()
-                                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lbNome2)
-                                    .addGroup(pnCamposLayout.createSequentialGroup()
-                                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(edTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(edCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(edBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(pnPessoaFisica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnCamposLayout.createSequentialGroup()
+                                .addComponent(edCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(edIE, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRBFisico)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRBJuridico))
+                            .addComponent(pnPessoaFisica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnCamposLayout.createSequentialGroup()
                                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(edRua)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -329,7 +381,28 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(edNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(edNome))
+                            .addComponent(edNome, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnCamposLayout.createSequentialGroup()
+                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnCamposLayout.createSequentialGroup()
+                                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lbNome2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnCamposLayout.createSequentialGroup()
+                                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(edTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(edCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(edBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnCamposLayout.createSequentialGroup()
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(173, 173, 173)
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         pnCamposLayout.setVerticalGroup(
@@ -339,7 +412,17 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                 .addComponent(lbNome2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(edCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRBFisico)
+                    .addComponent(jRBJuridico)
+                    .addComponent(edIE, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnPessoaFisica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -369,11 +452,11 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pnCamposLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btCancelar, btSalvar, edBairro, edCelular, edCidade, edEstado, edNome, edNumero, edRua, edTelefone});
@@ -482,7 +565,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                     .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -503,7 +586,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
 
         pack();
@@ -516,7 +599,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (validaCampo()) {
             Funcionario wFuncionario = new Funcionario();
-
+            
+            
             wFuncionario.setIdPessoa(codigo);
             wFuncionario.setNome(edNome.getText());
             wFuncionario.setCpf(Formatacao.removerFormatacao(edCPF.getText()));
@@ -537,6 +621,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
             ComboItens ca = (ComboItens) edCargos.getSelectedItem();
             wFuncionario.setCargo(new CargosDAO().consultarID(ca.getCodigo()));
 
+            
             wFuncionario.setEndereco(edRua.getText());
             wFuncionario.setBairro(edBairro.getText());
             wFuncionario.setNumero(edNumero.getText());
@@ -646,14 +731,6 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         new FuncionarioDAO().popularTabela(tbPessoa, edBusca.getText());
     }//GEN-LAST:event_btNovo1ActionPerformed
 
-    private void edCargosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edCargosItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edCargosItemStateChanged
-
-    private void edCargosPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_edCargosPopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edCargosPopupMenuWillBecomeVisible
-
     private void edEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edEstadoActionPerformed
@@ -666,6 +743,43 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_edCidadeItemStateChanged
+
+    private void jRBFisicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBFisicoActionPerformed
+       ValidaTipoPessoa();// TODO add your handling code here:
+    }//GEN-LAST:event_jRBFisicoActionPerformed
+
+    private void jRBJuridicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBJuridicoActionPerformed
+    ValidaTipoPessoa();     // TODO add your handling code here:
+    }//GEN-LAST:event_jRBJuridicoActionPerformed
+
+    private void edCargosPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_edCargosPopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edCargosPopupMenuWillBecomeVisible
+
+    private void edCargosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_edCargosItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edCargosItemStateChanged
+
+    private void edCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edCPFFocusLost
+        if(!Validacao.validarCPF(Formatacao.removerFormatacao(edCPF.getText())))                    
+            edCPF.requestFocus();
+        
+    }//GEN-LAST:event_edCPFFocusLost
+
+    private void edIEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edIEFocusLost
+        if(!Validacao.validarIE(Formatacao.removerFormatacao(edIE.getText())))
+            edIE.requestFocus();
+        
+    }//GEN-LAST:event_edIEFocusLost
+
+    private void edCNPJFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edCNPJFocusLost
+       if(!Validacao.validarCNPJ(Formatacao.removerFormatacao(edCNPJ.getText())))
+            edCNPJ.requestFocus();
+    }//GEN-LAST:event_edCNPJFocusLost
+
+    private void edRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edRGFocusLost
+        
+    }//GEN-LAST:event_edRGFocusLost
 
     private boolean validaCampo() {
         boolean wRetorno = true;
@@ -685,9 +799,27 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
             return false;
         }
 
-        if (Formatacao.removerFormatacao(edCPF.getText()).equals("")) {
+        if (edCPF.isEnabled()&&Formatacao.removerFormatacao(edCPF.getText()).equals("")) {
             JOptionPane.showMessageDialog(null, "Campo CPF inválido!");
             edCPF.requestFocus();
+            return false;
+        }
+        
+        if (edRG.isEnabled()&&Formatacao.removerFormatacao(edRG.getText()).equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo RG inválido!");
+            edRG.requestFocus();
+            return false;
+        }
+        
+        if (edCNPJ.isEnabled()&&Formatacao.removerFormatacao(edCNPJ.getText()).equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo CNPJ inválido!");
+            edCNPJ.requestFocus();
+            return false;
+        }
+        
+        if (edIE.isEnabled()&&Formatacao.removerFormatacao(edIE.getText()).equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo IE inválido!");
+            edIE.requestFocus();
             return false;
         }
 
@@ -707,6 +839,24 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         return true;
     }
+    
+    private void ValidaTipoPessoa()
+    {
+        if(jRBFisico.isSelected())
+        {
+            edCNPJ.setEnabled(false);
+            edIE.setEnabled(false);
+            edCPF.setEnabled(true);
+            edRG.setEnabled(true);
+        }
+        else
+        {
+            edCNPJ.setEnabled(true);
+            edIE.setEnabled(true);
+            edCPF.setEnabled(false);
+            edRG.setEnabled(false);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
@@ -715,14 +865,17 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btNovo1;
     private javax.swing.JButton btSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField edBairro;
     private javax.swing.JTextField edBusca;
+    private javax.swing.JFormattedTextField edCNPJ;
     private javax.swing.JFormattedTextField edCPF;
     private javax.swing.JComboBox<String> edCargos;
     private javax.swing.JFormattedTextField edCelular;
     private javax.swing.JComboBox<String> edCidade;
     private javax.swing.JFormattedTextField edDataNasc;
     private javax.swing.JTextField edEstado;
+    private javax.swing.JFormattedTextField edIE;
     private javax.swing.JTextField edNome;
     private javax.swing.JTextField edNumero;
     private javax.swing.JFormattedTextField edRG;
@@ -732,6 +885,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -740,6 +895,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRBFisico;
+    private javax.swing.JRadioButton jRBJuridico;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbNome2;

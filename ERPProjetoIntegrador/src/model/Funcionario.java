@@ -69,7 +69,9 @@ public class Funcionario extends Pessoa implements java.io.Serializable {
     public void setIdPessoa(int idPessoa) {
         this.idPessoa = idPessoa;
     }*/
-
+    
+    @OneToOne
+    @JoinColumn(name="id_pessoa_func", nullable=false)
     @Column(name="cpf", nullable=false, length=12)
     public String getCpf() {
         return this.cpf;

@@ -10,6 +10,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,7 +29,7 @@ public class Pessoa implements java.io.Serializable {
     private String cep;
     private String telefone;
     private String celular;
-    private String email;
+    private String email;    
     //private int idCidade;
     private Cidade cidade;
     private char inativo;
@@ -61,6 +62,8 @@ public class Pessoa implements java.io.Serializable {
         this.inativo = inativo;
     }
     
+   
+       
     @ManyToOne
     @JoinColumn(name="id_cidade", nullable=false)
     public Cidade getCidade() {
@@ -73,6 +76,8 @@ public class Pessoa implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OneToOne
+    @JoinColumn(name="id_pessoa_func", nullable=false)
     @Column(name = "id_pessoa", nullable = false)
     public int getIdPessoa() {
         return this.idPessoa;
