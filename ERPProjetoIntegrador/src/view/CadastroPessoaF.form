@@ -370,11 +370,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbData" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="edDataNasc" linkSize="4" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="edDataNasc" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="edCargos" linkSize="4" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="edCargos" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
