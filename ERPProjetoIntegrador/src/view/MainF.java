@@ -7,7 +7,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import model.util.unit;
 
 public class MainF extends javax.swing.JFrame {
-
+    
     public MainF(){
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);

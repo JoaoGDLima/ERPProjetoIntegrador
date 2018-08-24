@@ -16,4 +16,5 @@
     <table-filter match-name="estoque"/>
     <table-filter match-name="pessoa"/>
     <table-filter match-name="cidade"/>
+    <table-filter match-name="auditoria"/>
 </hibernate-reverse-engineering>

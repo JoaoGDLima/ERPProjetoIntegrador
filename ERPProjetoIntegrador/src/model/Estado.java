@@ -87,8 +87,10 @@ public class Estado  implements java.io.Serializable {
         this.inativo = inativo;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Estado{" + "idEstado=" + idEstado + ", nome=" + nome + ", uf=" + uf + ", inativo=" + inativo + ", cidade=" + cidade + '}';
+    }
 
 }
 
