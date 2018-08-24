@@ -736,32 +736,63 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         String valor = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 0));
+        String fisico = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 5));
+        
+        if(fisico.equals("T"))
+        {
+            Funcionario wFunc = new FuncionarioDAO().consultarID(Integer.parseInt(valor));
+            codigo = Integer.parseInt(valor);
+            edNome.setText(wFunc.getNome());
+            edCPF.setText(wFunc.getCpf());
+            edRG.setText(wFunc.getRg());
+            edDataNasc.setText(Formatacao.ajustaDataDMA(wFunc.getNascimento().toString()));
+            edTelefone.setText(wFunc.getTelefone());
+            edCelular.setText(wFunc.getCelular());
 
-        Funcionario wFunc = new FuncionarioDAO().consultarID(Integer.parseInt(valor));
+            ComboItens cidade = new ComboItens();
+            cidade.setCodigo(wFunc.getCidade().getIdCidade());
+            new ComboDAO().definirItemCombo(edCidade, cidade);
 
-        codigo = Integer.parseInt(valor);
+            ComboItens cargos = new ComboItens();
+            cargos.setCodigo(wFunc.getCargo().getIdCargos());
+            new ComboDAO().definirItemCombo(edCargos, cargos);
 
-        edNome.setText(wFunc.getNome());
-        edCPF.setText(wFunc.getCpf());
-        edRG.setText(wFunc.getRg());
-        edDataNasc.setText(Formatacao.ajustaDataDMA(wFunc.getNascimento().toString()));
-        edTelefone.setText(wFunc.getTelefone());
-        edCelular.setText(wFunc.getCelular());
+            edRua.setText(wFunc.getEndereco());
+            edNumero.setText(wFunc.getNumero());
+            edBairro.setText(wFunc.getBairro());
 
-        ComboItens cidade = new ComboItens();
-        cidade.setCodigo(wFunc.getCidade().getIdCidade());
-        new ComboDAO().definirItemCombo(edCidade, cidade);
+            jTabbedPane1.setSelectedIndex(0);
+            edNome.requestFocus();
+        }
+        else
+        {                                                
 
-        ComboItens cargos = new ComboItens();
-        cargos.setCodigo(wFunc.getCargo().getIdCargos());
-        new ComboDAO().definirItemCombo(edCargos, cargos);
+            PessoaJuridica wJuridico = new PessoaJuridicaDAO().consultarID(Integer.parseInt(valor));
+            
+            codigo = Integer.parseInt(valor);
+            edNome.setText(wJuridico.getNome());
+            edCNPJ.setText(wJuridico.getCnpj());
+            edIE.setText(wJuridico.getIe());
+            edDataNasc.setText(Formatacao.ajustaDataDMA(wJuridico.getDataCadastro().toString()));
+            edNomeFantasia.setText(wJuridico.getFantasia());
+            edTelefone.setText(wJuridico.getTelefone());
+            edCelular.setText(wJuridico.getCelular());
 
-        edRua.setText(wFunc.getEndereco());
-        edNumero.setText(wFunc.getNumero());
-        edBairro.setText(wFunc.getBairro());
+            ComboItens cidade = new ComboItens();
+            cidade.setCodigo(wJuridico.getCidade().getIdCidade());
+            new ComboDAO().definirItemCombo(edCidade, cidade);
 
-        jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();
+            ComboItens cargos = new ComboItens();
+            cargos.setCodigo(wJuridico.getCargo().getIdCargos());
+            new ComboDAO().definirItemCombo(edCargos, cargos);
+
+            edRua.setText(wJuridico.getEndereco());
+            edNumero.setText(wJuridico.getNumero());
+            edBairro.setText(wJuridico.getBairro());
+
+            jTabbedPane1.setSelectedIndex(0);
+            edNome.requestFocus();
+        }
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
@@ -848,7 +879,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         wPessoaJuridica.setCnpj(Formatacao.removerFormatacao(edCNPJ.getText()));
         wPessoaJuridica.setIe(Formatacao.removerFormatacao(edIE.getText()));
         wPessoaJuridica.setFantasia(edNomeFantasia.getText());
-
+        wPessoaJuridica.setFisico('F');
+        
         wPessoaJuridica.setTelefone(Formatacao.removerFormatacao(edTelefone.getText()));
         wPessoaJuridica.setCelular(Formatacao.removerFormatacao(edCelular.getText()));
 
@@ -890,7 +922,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         wFuncionario.setNome(edNome.getText());
         wFuncionario.setCpf(Formatacao.removerFormatacao(edCPF.getText()));
         wFuncionario.setRg(Formatacao.removerFormatacao(edRG.getText()));
-
+        wFuncionario.setFisico('T');
+        
         try {
             wFuncionario.setNascimento(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataNasc.getText())));
         } catch (ParseException ex) {

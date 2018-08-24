@@ -34,6 +34,7 @@ public class Pessoa implements java.io.Serializable {
     private Cidade cidade;
     private char inativo;
     private Cargos cargo;
+    private char fisico;
     
     public Pessoa() {
     }
@@ -187,6 +188,15 @@ public class Pessoa implements java.io.Serializable {
 
     public void setInativo(char inativo) {
         this.inativo = inativo;
+    }
+    
+    @Column(name = "fisico", nullable = false)
+    public char getFisico() {
+        return this.fisico;        
+    }
+    
+    public void setFisico(char fisico) {
+        this.fisico = fisico;
     }
 
 }

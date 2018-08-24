@@ -13,16 +13,18 @@ public class PessoaJuridicaDAO extends MasterDAO{
 
         Object[][] dadosTabela = null;
 
-        Object[] cabecalho = new Object[5];
+        Object[] cabecalho = new Object[6];
         cabecalho[0] = "ID";
         cabecalho[1] = "Nome";
         cabecalho[2] = "CPF";
-        cabecalho[3] = "Situação";
+        cabecalho[3] = "Inscrição Estadual";
+        cabecalho[4] = "Situação";
+        cabecalho[5] = "Fisico";
 
         try {
             resultado = super.consultarTodos("PessoaJuridica", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%' AND tipo = '" + Modo + "'", "");
 
-            dadosTabela = new Object[resultado.size()][5];
+            dadosTabela = new Object[resultado.size()][6];
 
             int lin = 0;
             // efetua consulta na tabela
@@ -34,12 +36,14 @@ public class PessoaJuridicaDAO extends MasterDAO{
                 dadosTabela[lin][2] = wFunc.getCnpj() + "";
                 dadosTabela[lin][3] = wFunc.getIe()+ "";
                 
+                
                 String wSituaçao = "Ativo";
                 if (wFunc.getInativo() == 'T') {
                     wSituaçao = "Inativo";
                 }
 
                 dadosTabela[lin][4] = wSituaçao;
+                dadosTabela[lin][5] = (char)wFunc.getFisico()+ "";
                 lin++;
             }
         } catch (Exception e) {
@@ -93,7 +97,7 @@ public class PessoaJuridicaDAO extends MasterDAO{
     public PessoaJuridica consultarID(int pID) {
         PessoaJuridica wJuridica = null;
         try {
-            wJuridica = (PessoaJuridica) super.consultar("Funcionario", "id_pessoa_juridica = " + pID);
+            wJuridica = (PessoaJuridica) super.consultar("PessoaJuridica", "id_pessoa_juridica = " + pID);
         } catch (HibernateException he) {
             he.printStackTrace();
         }
