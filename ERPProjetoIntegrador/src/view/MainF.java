@@ -219,6 +219,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu3.add(jMenuItem10);
 
         jMenuItem11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Estoque_25.png"))); // NOI18N
         jMenuItem11.setText("Estoque");
         jMenu3.add(jMenuItem11);
 
