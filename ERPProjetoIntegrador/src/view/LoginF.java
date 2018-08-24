@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Usuario;
 import model.dao.UsuarioDAO;
+import model.secaoConexao;
 
 public class LoginF extends javax.swing.JFrame {
 
@@ -131,6 +132,7 @@ public class LoginF extends javax.swing.JFrame {
         Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
         
         if (wUsuario!=null) {
+            secaoConexao.usuarioLogado = wUsuario;
             new MainF().setVisible(true);
             this.dispose(); 
         }
