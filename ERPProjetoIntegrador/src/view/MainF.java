@@ -1,18 +1,23 @@
 package view;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;//Importação principal do log4j - fase de testes ainda
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import model.util.unit;
+import org.apache.log4j.Level;
 
 public class MainF extends javax.swing.JFrame {
     
+    static Logger log = Logger.getLogger(MainF.class.getName());
+    
     public MainF(){
+        log.setLevel(Level.INFO);
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setExtendedState(MAXIMIZED_BOTH);        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -254,7 +259,8 @@ public class MainF extends javax.swing.JFrame {
         CadastroPessoaF ifrPessoa = new CadastroPessoaF('C');
         jDesktopPane1.add(ifrPessoa);
         unit.setPositionCenter(ifrPessoa);
-        ifrPessoa.setVisible(true);
+        ifrPessoa.setVisible(true);        
+        log.info("Teste menu abrindo");//teste do log4j
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
