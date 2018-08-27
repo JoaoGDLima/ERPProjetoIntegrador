@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Estado;
+import model.util.Log;
 import org.hibernate.HibernateException;
 
 /**
@@ -31,6 +32,7 @@ public class EstadoDAO extends MasterDAO{
         }
         catch(HibernateException he)
         {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
         }
         
@@ -68,6 +70,7 @@ public class EstadoDAO extends MasterDAO{
         }
         catch(Exception e)
         {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("problemas para popular tabela...");
             System.out.println(e);
         }

@@ -7,11 +7,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 import javassist.compiler.TokenId;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import model.Produto;
+import model.util.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -54,6 +56,7 @@ public class ProdutoDAO extends MasterDAO{
                 lin++;
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("problemas para popular tabela...");
             System.out.println(e);
         }
@@ -107,6 +110,7 @@ public class ProdutoDAO extends MasterDAO{
         try {
             wFormaPagamento = (Produto) super.consultar("Produto", "id_produto = " + pID);
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
         }
 
@@ -151,6 +155,7 @@ public class ProdutoDAO extends MasterDAO{
             }
             
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
         }
 

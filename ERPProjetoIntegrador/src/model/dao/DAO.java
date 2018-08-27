@@ -2,6 +2,7 @@ package model.dao;
 
 import config.HibernateUtil;
 import java.util.List;
+import model.util.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -20,6 +21,7 @@ public class DAO implements IDAO_T<Object> {
             sessao.close();
             return null;
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
         }
     }
@@ -34,6 +36,7 @@ public class DAO implements IDAO_T<Object> {
             sessao.close();
             return null;
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
         }
     }
@@ -48,6 +51,7 @@ public class DAO implements IDAO_T<Object> {
             sessao.close();
             return null;
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
         }
     }
@@ -68,6 +72,7 @@ public class DAO implements IDAO_T<Object> {
                 return o;
             }
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
         }
 
@@ -86,6 +91,7 @@ public class DAO implements IDAO_T<Object> {
             return q.list();
 
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
             System.out.println("Erro ao consultar a tabela '" + pTabela + "': " + he.getMessage());
         }

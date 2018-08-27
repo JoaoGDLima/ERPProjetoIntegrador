@@ -8,6 +8,7 @@ import model.Cidade;
 import model.Estado;
 import model.Unidade;
 import model.util.ComboItens;
+import model.util.Log;
 import org.hibernate.Session;
 
 public class ComboDAO extends MasterDAO {
@@ -31,6 +32,7 @@ public class ComboDAO extends MasterDAO {
                 combo.addItem(item);
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }
@@ -63,6 +65,7 @@ public class ComboDAO extends MasterDAO {
                 combo.addItem(item);
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }
@@ -86,6 +89,7 @@ public class ComboDAO extends MasterDAO {
                 combo.addItem(item);
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }
@@ -109,6 +113,7 @@ public class ComboDAO extends MasterDAO {
                 combo.addItem(item);
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }

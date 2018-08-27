@@ -5,6 +5,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import model.PessoaJuridica;
+import model.util.Log;
 import org.hibernate.HibernateException;
 
 public class PessoaJuridicaDAO extends MasterDAO{
@@ -47,6 +48,7 @@ public class PessoaJuridicaDAO extends MasterDAO{
                 lin++;
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("problemas para popular tabela...");
             System.out.println(e);
         }
@@ -99,6 +101,7 @@ public class PessoaJuridicaDAO extends MasterDAO{
         try {
             wJuridica = (PessoaJuridica) super.consultar("PessoaJuridica", "id_pessoa_juridica = " + pID);
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
         }
 

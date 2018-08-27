@@ -5,6 +5,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import model.Funcionario;
+import model.util.Log;
 import org.hibernate.HibernateException;
 
 public class FuncionarioDAO extends MasterDAO {
@@ -43,6 +44,7 @@ public class FuncionarioDAO extends MasterDAO {
                 lin++;
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("problemas para popular tabela...");
             System.out.println(e);
         }
@@ -95,6 +97,7 @@ public class FuncionarioDAO extends MasterDAO {
         try {
             wFunc = (Funcionario) super.consultar("Funcionario", "id_pessoa_func = " + pID);
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
         }
 
