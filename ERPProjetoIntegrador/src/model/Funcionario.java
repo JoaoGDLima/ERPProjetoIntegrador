@@ -88,6 +88,11 @@ public class Funcionario extends Pessoa implements java.io.Serializable {
     public void setIdCargos(int idCargos) {
         this.idCargos = idCargos;
     }*/
+
+    @Override
+    public String toString() {
+        return "Funcionario{" + "cpf=" + cpf + ", rg=" + rg + ", nascimento=" + nascimento + ", " + super.toString() + "}";
+    }
 }
 
 

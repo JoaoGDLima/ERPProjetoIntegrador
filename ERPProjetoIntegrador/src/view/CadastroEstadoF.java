@@ -336,7 +336,8 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
             if (wEstado.getIdEstado() == 0) {
                 retorno = wEstadoDAO.salvar(wEstado);
             } else {
-                retorno = wEstadoDAO.atualizar(wEstado);
+                Estado wEstadoOld = wEstadoDAO.consultarID(wEstado.getIdEstado());
+                retorno = wEstadoDAO.atualizar(wEstado, wEstadoOld);
             }
 
             if (retorno == null) {

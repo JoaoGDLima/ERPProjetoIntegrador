@@ -31,13 +31,10 @@ public class MasterDAO extends DAO {
         }
     }
 
-    public String atualizar(Object obj) {
+    public String atualizar(Object obj, Object objOld) {
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction t = sessao.beginTransaction();
-            sessao.update(obj);
-            t.commit();
-            sessao.close();
+            salvarAuditoria("UPDATE", objOld.toString(), obj.toString());
+            super.atualizar(obj);
             return null;
         } catch (Exception e) {
             return e.getMessage();

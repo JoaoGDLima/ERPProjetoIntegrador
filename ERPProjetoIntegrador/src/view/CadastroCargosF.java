@@ -252,7 +252,8 @@ public class CadastroCargosF extends javax.swing.JInternalFrame {
             if (wCargos.getIdCargos() == 0) {
                 retorno = wCargosDAO.salvar(wCargos);
             } else {
-                retorno = wCargosDAO.atualizar(wCargos);
+                Cargos wCargosOld = wCargosDAO.consultarID(wCargos.getIdCargos());
+                retorno = wCargosDAO.atualizar(wCargos, wCargosOld);
             }
 
             if (retorno == null) {

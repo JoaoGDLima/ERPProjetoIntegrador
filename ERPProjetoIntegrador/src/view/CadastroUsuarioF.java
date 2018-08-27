@@ -347,7 +347,8 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame {
             if (wUsu.getIdUsuario() == 0) {
                 retorno = wUsuDAO.salvar(wUsu);
             } else {
-                retorno = wUsuDAO.atualizar(wUsu);
+                Usuario wUsuOld = wUsuDAO.consultarID(wUsu.getIdUsuario());
+                retorno = wUsuDAO.atualizar(wUsu, wUsuOld);
             }
 
             if (retorno == null) {

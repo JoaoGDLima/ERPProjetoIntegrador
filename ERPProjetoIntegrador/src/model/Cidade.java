@@ -18,8 +18,7 @@ import javax.persistence.Table;
 @Table(name="cidade"
 )
 public class Cidade  implements java.io.Serializable {
-
-
+    
      private int idCidade;
      private String nome;
      //private int idEstado;
@@ -88,9 +87,10 @@ public class Cidade  implements java.io.Serializable {
         this.inativo = inativo;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Cidade{" + "idCidade=" + idCidade + ", nome=" + nome + ", inativo=" + inativo + ", estado=" + estado.toString() + '}';
+    }
 }
 
 

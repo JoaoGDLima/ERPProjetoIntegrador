@@ -105,4 +105,9 @@ public class Usuario implements java.io.Serializable {
         this.inativo = inativo;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "idUsuario=" + idUsuario + ", idPessoa=" + idPessoa + ", nivelAcesso=" + nivelAcesso + ", senha=" + senha + ", username=" + username + ", inativo=" + inativo + '}';
+    }
+
 }

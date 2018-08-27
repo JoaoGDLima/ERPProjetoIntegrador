@@ -101,6 +101,11 @@ public class FormaPagamento  implements java.io.Serializable {
         this.percAcrescimo = percAcrescimo;
     }
 
+    @Override
+    public String toString() {
+        return "FormaPagamento{" + "idFormaPagamento=" + idFormaPagamento + ", nome=" + nome + ", parcelas=" + parcelas + ", inativo=" + inativo + ", percDesconto=" + percDesconto + ", percAcrescimo=" + percAcrescimo + '}';
+    }
+
 
 
 

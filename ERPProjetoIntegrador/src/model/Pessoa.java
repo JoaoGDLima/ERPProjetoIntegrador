@@ -199,4 +199,9 @@ public class Pessoa implements java.io.Serializable {
         this.fisico = fisico;
     }
 
+    @Override
+    public String toString() {
+        return "Pessoa{" + "idPessoa=" + idPessoa + ", nome=" + nome + ", endereco=" + endereco + ", bairro=" + bairro + ", numero=" + numero + ", cep=" + cep + ", telefone=" + telefone + ", celular=" + celular + ", email=" + email + ", cidade=" + cidade + ", inativo=" + inativo + ", cargo=" + cargo + ", fisico=" + fisico + '}';
+    }
+
 }
