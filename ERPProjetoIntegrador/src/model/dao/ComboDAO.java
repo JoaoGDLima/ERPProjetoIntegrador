@@ -6,7 +6,9 @@ import javax.swing.JComboBox;
 import model.Cargos;
 import model.Cidade;
 import model.Estado;
+import model.Unidade;
 import model.util.ComboItens;
+import model.util.Log;
 import org.hibernate.Session;
 
 public class ComboDAO extends MasterDAO {
@@ -30,6 +32,7 @@ public class ComboDAO extends MasterDAO {
                 combo.addItem(item);
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }
@@ -62,6 +65,7 @@ public class ComboDAO extends MasterDAO {
                 combo.addItem(item);
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }
@@ -85,6 +89,31 @@ public class ComboDAO extends MasterDAO {
                 combo.addItem(item);
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
+            System.out.println("Erro ao popular Combo = " + e.toString());
+        }
+    }
+
+    public void popularComboUnidade(JComboBox combo) {
+        List resultado = null;
+        ComboItens item = new ComboItens();
+        item.setCodigo(0);
+        item.setDescricao("Selecione");
+        combo.addItem(item);
+
+        try {
+            resultado = super.consultarTodos("Unidade", "inativo <> 'T'", "ORDER BY nome");
+
+            for (Object object : resultado) {
+                Unidade wUnidade = (Unidade) object;
+                item = new ComboItens();
+                item.setCodigo(wUnidade.getIdUnidade());
+                item.setDescricao(wUnidade.getNome());
+
+                combo.addItem(item);
+            }
+        } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }

@@ -66,8 +66,10 @@ public class Cargos  implements java.io.Serializable {
         this.inativo = inativo;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Cargos{" + "idCargos=" + idCargos + ", nome=" + nome + ", inativo=" + inativo + '}';
+    }
 
 }
 

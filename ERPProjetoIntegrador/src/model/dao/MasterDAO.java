@@ -13,6 +13,7 @@ import java.util.List;
 import model.Auditoria;
 import model.Usuario;
 import model.secaoConexao;
+import model.util.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -27,19 +28,18 @@ public class MasterDAO extends DAO {
             super.salvar(obj);
             return null;
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
         }
     }
 
-    public String atualizar(Object obj) {
+    public String atualizar(Object obj, Object objOld) {
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction t = sessao.beginTransaction();
-            sessao.update(obj);
-            t.commit();
-            sessao.close();
+            salvarAuditoria("UPDATE", objOld.toString(), obj.toString());
+            super.atualizar(obj);
             return null;
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
         }
     }
@@ -47,13 +47,12 @@ public class MasterDAO extends DAO {
     @Override
     public String excluir(Object obj) {
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction t = sessao.beginTransaction();
-            sessao.update(obj);
-            t.commit();
-            sessao.close();
+            
+            salvarAuditoria("UPDATE - INATIVAR", "Inativo = 'F'", "Inativo = 'T'");
+            super.excluir(obj);
             return null;
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
         }
     }
@@ -74,6 +73,7 @@ public class MasterDAO extends DAO {
                 return o;
             }
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
         }
 
@@ -92,6 +92,7 @@ public class MasterDAO extends DAO {
             return q.list();
 
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
             System.out.println("Erro ao consultar a tabela '" + pTabela + "': " + he.getMessage());
         }
@@ -119,6 +120,7 @@ public class MasterDAO extends DAO {
             
             super.salvar(auditor);
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             return he.getMessage();
         }
         return null;

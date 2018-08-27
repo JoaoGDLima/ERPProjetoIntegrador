@@ -330,7 +330,8 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
             if (wFormaPgto.getIdFormaPagamento() == 0) {
                 retorno = wFormaPgtoDAO.salvar(wFormaPgto);
             } else {
-                retorno = wFormaPgtoDAO.atualizar(wFormaPgto);
+                FormaPagamento wFormaPgtoOld = wFormaPgtoDAO.consultarID(wFormaPgto.getIdFormaPagamento());
+                retorno = wFormaPgtoDAO.atualizar(wFormaPgto, wFormaPgtoOld);
             }
             
             if (retorno == null) {

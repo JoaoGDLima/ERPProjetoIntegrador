@@ -24,16 +24,16 @@ public class Estado  implements java.io.Serializable {
      private String nome;
      private String uf;
      private char inativo;
-     private Set<Cidade> cidade;
+     //private Set<Cidade> cidade;
 
-    @OneToMany(mappedBy="estado")
+    /*@OneToMany(mappedBy="estado")
     public Set<Cidade> getCidade() {
         return cidade;
     }
 
     public void setCidade(Set<Cidade> cidade) {
         this.cidade = cidade;
-    }
+    }*/
 
     public Estado() {
     }
@@ -89,7 +89,7 @@ public class Estado  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Estado{" + "idEstado=" + idEstado + ", nome=" + nome + ", uf=" + uf + ", inativo=" + inativo + ", cidade=" + cidade + '}';
+        return "Estado{" + "idEstado=" + idEstado + ", nome=" + nome + ", uf=" + uf + ", inativo=" + inativo + '}';
     }
 
 }

@@ -300,7 +300,8 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
             if (wCidade.getIdCidade() == 0) {
                 retorno = wCidadeDAO.salvar(wCidade);
             } else {
-                retorno = wCidadeDAO.atualizar(wCidade);
+                Cidade wCidadeOld = wCidadeDAO.consultarID(wCidade.getIdCidade());
+                retorno = wCidadeDAO.atualizar(wCidade, wCidadeOld);
             }
 
             if (retorno == null) {
@@ -400,22 +401,22 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame {
     private boolean validaCampo(){
         boolean wRetorno = true;
 
-        /*{ComboItens ci = (ComboItens) edEstado.getSelectedItem();
+        ComboItens ci = (ComboItens) edEstado.getSelectedItem();
         if(ci == null){
             JOptionPane.showMessageDialog(null, "Selecione um estado!");
             edEstado.requestFocus();
             return false;
-        }*/
+        }
         
         if (edNome.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo nome inválido!");
             edNome.requestFocus();
             return false;
-        } /* else if ((ci.getCodigo() <= 0)) {
+        } else if ((ci.getCodigo() <= 0)) {
             JOptionPane.showMessageDialog(null, "Selecione um estado!");
             edEstado.requestFocus();
             return false;
-        }*/
+        }
         return true;
     }
 

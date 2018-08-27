@@ -282,7 +282,8 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame {
             if (wUnidade.getIdUnidade() == 0) {
                 retorno = wUnidadeDAO.salvar(wUnidade);
             } else {
-                retorno = wUnidadeDAO.atualizar(wUnidade);
+                Unidade wUnidadeOld = wUnidadeDAO.consultarID(wUnidade.getIdUnidade());
+                retorno = wUnidadeDAO.atualizar(wUnidade, wUnidadeOld);
             }
 
             if (retorno == null) {

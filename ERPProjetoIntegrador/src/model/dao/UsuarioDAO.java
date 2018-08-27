@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import model.Usuario;
 import model.util.Criptografia;
+import model.util.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -21,6 +22,7 @@ public class UsuarioDAO extends MasterDAO {
             wUsuario = (Usuario) super.consultar("Usuario", "id_usuario = " + pID);
             wUsuario.setSenha(Usuario.senhaDefault);
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
         }
 
@@ -37,7 +39,7 @@ public class UsuarioDAO extends MasterDAO {
             org.hibernate.Query q = sessao.createQuery(
                     "FROM Usuario " + 
                     "WHERE username = '" + pUser + "' " + 
-                    "AND senha = '" + pSenha + "'");
+                    "AND senha = '" + Criptografia.criptografar(pSenha) + "'");
             
             resultado = q.list();
 
@@ -48,6 +50,7 @@ public class UsuarioDAO extends MasterDAO {
                 return wUsuario;
             }
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
         }
 
@@ -91,6 +94,7 @@ public class UsuarioDAO extends MasterDAO {
                 lin++;
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("problemas para popular tabela...");
             System.out.println(e);
         }

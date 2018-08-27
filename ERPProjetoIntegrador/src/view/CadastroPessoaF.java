@@ -61,15 +61,6 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        pnLista = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        edBusca = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbPessoa = new javax.swing.JTable();
-        btExcluir = new javax.swing.JButton();
-        btEditar = new javax.swing.JButton();
-        btNovo = new javax.swing.JButton();
-        btNovo1 = new javax.swing.JButton();
         pnCampos = new javax.swing.JPanel();
         lbNome2 = new javax.swing.JLabel();
         edNome = new javax.swing.JTextField();
@@ -85,7 +76,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         edRG = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        edCidade = new javax.swing.JComboBox<>();
+        edCidade = new javax.swing.JComboBox<String>();
         jLabel10 = new javax.swing.JLabel();
         edEstado = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -103,11 +94,20 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         edIE = new javax.swing.JFormattedTextField();
         edNomeFantasia = new javax.swing.JTextField();
         lbNome3 = new javax.swing.JLabel();
-        edCargos = new javax.swing.JComboBox<>();
+        edCargos = new javax.swing.JComboBox<String>();
         jLabel11 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         edDataNasc = new javax.swing.JFormattedTextField();
         lbData = new javax.swing.JLabel();
+        pnLista = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        edBusca = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbPessoa = new javax.swing.JTable();
+        btExcluir = new javax.swing.JButton();
+        btEditar = new javax.swing.JButton();
+        btNovo = new javax.swing.JButton();
+        btNovo1 = new javax.swing.JButton();
 
         setTitle("Cadastro de cliente");
 
@@ -115,121 +115,6 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(501, 362));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(501, 362));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(501, 362));
-
-        pnLista.setBackground(new java.awt.Color(254, 254, 254));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(33, 33, 33));
-        jLabel5.setText("Busca:");
-
-        edBusca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edBusca.setForeground(new java.awt.Color(33, 33, 33));
-
-        tbPessoa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbPessoa.setForeground(new java.awt.Color(33, 33, 33));
-        tbPessoa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tbPessoa);
-
-        btExcluir.setBackground(new java.awt.Color(243, 243, 243));
-        btExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btExcluir.setForeground(new java.awt.Color(33, 33, 33));
-        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
-        btExcluir.setText("Excluir");
-        btExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExcluirActionPerformed(evt);
-            }
-        });
-
-        btEditar.setBackground(new java.awt.Color(243, 243, 243));
-        btEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btEditar.setForeground(new java.awt.Color(33, 33, 33));
-        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Editar_15.png"))); // NOI18N
-        btEditar.setText("Editar");
-        btEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarActionPerformed(evt);
-            }
-        });
-
-        btNovo.setBackground(new java.awt.Color(243, 243, 243));
-        btNovo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btNovo.setForeground(new java.awt.Color(33, 33, 33));
-        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
-        btNovo.setText("Novo");
-        btNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNovoActionPerformed(evt);
-            }
-        });
-
-        btNovo1.setBackground(new java.awt.Color(243, 243, 243));
-        btNovo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btNovo1.setForeground(new java.awt.Color(33, 33, 33));
-        btNovo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
-        btNovo1.setText("Pesquisar");
-        btNovo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNovo1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnListaLayout = new javax.swing.GroupLayout(pnLista);
-        pnLista.setLayout(pnListaLayout);
-        pnListaLayout.setHorizontalGroup(
-            pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnListaLayout.createSequentialGroup()
-                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnListaLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edBusca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        pnListaLayout.setVerticalGroup(
-            pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnListaLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        pnListaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btNovo1, edBusca});
-
-        jTabbedPane1.addTab("Listar", pnLista);
 
         pnCampos.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -338,7 +223,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         edCidade.setBackground(new java.awt.Color(255, 255, 204));
         edCidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edCidade.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edCidadeItemStateChanged(evt);
@@ -487,7 +372,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         edCargos.setBackground(new java.awt.Color(255, 255, 204));
         edCargos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edCargos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edCargos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edCargos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edCargosItemStateChanged(evt);
@@ -642,9 +527,122 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         pnCamposLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btCancelar, btSalvar, edBairro, edCelular, edCidade, edEstado, edNome, edNumero, edRua, edTelefone});
 
-        pnCamposLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {edCargos, edDataNasc});
-
         jTabbedPane1.addTab("Cadastro", pnCampos);
+
+        pnLista.setBackground(new java.awt.Color(254, 254, 254));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(33, 33, 33));
+        jLabel5.setText("Busca:");
+
+        edBusca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edBusca.setForeground(new java.awt.Color(33, 33, 33));
+
+        tbPessoa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tbPessoa.setForeground(new java.awt.Color(33, 33, 33));
+        tbPessoa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbPessoa);
+
+        btExcluir.setBackground(new java.awt.Color(243, 243, 243));
+        btExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btExcluir.setForeground(new java.awt.Color(33, 33, 33));
+        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
+        btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
+
+        btEditar.setBackground(new java.awt.Color(243, 243, 243));
+        btEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btEditar.setForeground(new java.awt.Color(33, 33, 33));
+        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Editar_15.png"))); // NOI18N
+        btEditar.setText("Editar");
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarActionPerformed(evt);
+            }
+        });
+
+        btNovo.setBackground(new java.awt.Color(243, 243, 243));
+        btNovo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btNovo.setForeground(new java.awt.Color(33, 33, 33));
+        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
+        btNovo.setText("Novo");
+        btNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovoActionPerformed(evt);
+            }
+        });
+
+        btNovo1.setBackground(new java.awt.Color(243, 243, 243));
+        btNovo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btNovo1.setForeground(new java.awt.Color(33, 33, 33));
+        btNovo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
+        btNovo1.setText("Pesquisar");
+        btNovo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovo1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnListaLayout = new javax.swing.GroupLayout(pnLista);
+        pnLista.setLayout(pnListaLayout);
+        pnListaLayout.setHorizontalGroup(
+            pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnListaLayout.createSequentialGroup()
+                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnListaLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edBusca)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        pnListaLayout.setVerticalGroup(
+            pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnListaLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(edBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        pnListaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btNovo1, edBusca});
+
+        jTabbedPane1.addTab("Listar", pnLista);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

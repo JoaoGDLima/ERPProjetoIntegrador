@@ -74,6 +74,11 @@ public class Unidade  implements java.io.Serializable {
         this.inativo = inativo;
     }
 
+    @Override
+    public String toString() {
+        return "Unidade{" + "idUnidade=" + idUnidade + ", nome=" + nome + ", sigla=" + sigla + ", inativo=" + inativo + '}';
+    }
+
 
 
 

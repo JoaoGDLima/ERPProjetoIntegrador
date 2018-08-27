@@ -4,6 +4,7 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Unidade;
+import model.util.Log;
 import org.hibernate.HibernateException;
 
 public class UnidadeDAO extends MasterDAO {
@@ -43,6 +44,7 @@ public class UnidadeDAO extends MasterDAO {
                 lin++;
             }
         } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
             System.out.println("problemas para popular tabela...");
             System.out.println(e);
         }
@@ -72,6 +74,7 @@ public class UnidadeDAO extends MasterDAO {
         try {
             wUnidade = (Unidade) super.consultar("Unidade", "id_unidade = " + pID);
         } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
             he.printStackTrace();
         }
 
