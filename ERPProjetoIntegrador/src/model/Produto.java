@@ -91,14 +91,20 @@ public class Produto implements java.io.Serializable {
 
     @ManyToOne
     @JoinColumn(name="id_unidade", nullable=false)
-    public Unidade getIdUnidade() 
+    public Unidade getUnidade() 
     {
         return this.unidade;
     }
 
-    public void setIdUnidade(Unidade idUnidade) 
+    public void setUnidade(Unidade idUnidade) 
     {
         this.unidade = idUnidade;
     }
 
+    @Override
+    public String toString() {
+        return "Produto{" + "idProduto=" + idProduto + ", nome=" + nome + ", descricao=" + descricao + ", percentualLucro=" + percentualLucro + ", inativo=" + inativo + ", unidade=" + unidade + '}';
+    }
+
+    
 }
