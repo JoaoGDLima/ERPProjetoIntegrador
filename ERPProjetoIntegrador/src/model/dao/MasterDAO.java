@@ -44,11 +44,9 @@ public class MasterDAO extends DAO {
     @Override
     public String excluir(Object obj) {
         try {
-            sessao = HibernateUtil.getSessionFactory().openSession();
-            Transaction t = sessao.beginTransaction();
-            sessao.update(obj);
-            t.commit();
-            sessao.close();
+            
+            salvarAuditoria("UPDATE - INATIVAR", "Inativo = 'F'", "Inativo = 'T'");
+            super.excluir(obj);
             return null;
         } catch (Exception e) {
             return e.getMessage();
