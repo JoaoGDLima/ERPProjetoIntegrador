@@ -6,3 +6,32 @@
 2018-08-27 19:54:59 ERROR SqlExceptionHelper:146 - ERROR: relation "usnidade" does not exist
   Posição: 146
 2018-08-27 19:54:59 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-27 20:41:22 ERROR SqlExceptionHelper:146 - ERROR: relation "unisdade" does not exist
+  Posição: 146
+2018-08-27 20:41:22 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-27 20:41:22 ERROR UnidadeDAO:11 - java.lang.NullPointerException
+2018-08-27 20:41:24 ERROR SqlExceptionHelper:146 - ERROR: relation "unisdade" does not exist
+  Posição: 13
+2018-08-27 20:41:24 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-08-27 20:41:25 ERROR SqlExceptionHelper:146 - ERROR: relation "unisdade" does not exist
+  Posição: 146
+2018-08-27 20:41:25 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-27 20:41:25 ERROR UnidadeDAO:11 - java.lang.NullPointerException
+2018-08-27 20:43:12 ERROR SqlExceptionHelper:146 - ERROR: relation "unisdade" does not exist
+  Posição: 146
+2018-08-27 20:43:12 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-27 20:43:13 ERROR UnidadeDAO:11 - java.lang.NullPointerException
+2018-08-27 20:43:25 ERROR SqlExceptionHelper:146 - ERROR: relation "unisdade" does not exist
+  Posição: 13
+2018-08-27 20:43:25 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-08-27 20:43:38 ERROR SqlExceptionHelper:146 - ERROR: relation "unisdade" does not exist
+  Posição: 146
+2018-08-27 20:43:38 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-27 20:43:38 ERROR UnidadeDAO:11 - java.lang.NullPointerException
+2018-08-27 20:45:13 ERROR SqlExceptionHelper:146 - ERROR: relation "unisdade" does not exist
+  Posição: 146
+2018-08-27 20:45:13 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-27 20:45:13 ERROR UnidadeDAO:11 - java.lang.NullPointerException
+2018-08-27 20:45:23 ERROR SqlExceptionHelper:146 - ERROR: relation "unisdade" does not exist
+  Posição: 13
+2018-08-27 20:45:23 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement

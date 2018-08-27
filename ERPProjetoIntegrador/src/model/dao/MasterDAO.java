@@ -25,8 +25,7 @@ public class MasterDAO extends DAO {
     public String salvar(Object obj) {
         try {
             salvarAuditoria("INSERT", "Registro novo", obj.toString());
-            super.salvar(obj);
-            return null;
+            return super.salvar(obj);
         } catch (Exception e) {
             Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
@@ -36,8 +35,7 @@ public class MasterDAO extends DAO {
     public String atualizar(Object obj, Object objOld) {
         try {
             salvarAuditoria("UPDATE", objOld.toString(), obj.toString());
-            super.atualizar(obj);
-            return null;
+            return super.atualizar(obj);
         } catch (Exception e) {
             Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
@@ -46,11 +44,9 @@ public class MasterDAO extends DAO {
 
     @Override
     public String excluir(Object obj) {
-        try {
-            
+        try {      
             salvarAuditoria("UPDATE - INATIVAR", "Inativo = 'F'", "Inativo = 'T'");
-            super.excluir(obj);
-            return null;
+            return super.excluir(obj);
         } catch (Exception e) {
             Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
