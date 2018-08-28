@@ -1,4 +1,3 @@
-
 package model.dao;
 
 import config.HibernateUtil;
@@ -9,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 import javassist.compiler.TokenId;
+import javax.persistence.ParameterMode;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -18,9 +18,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.jdbc.Work;
+import org.hibernate.procedure.ProcedureCall;
+import org.hibernate.procedure.ProcedureOutputs;
+import org.hibernate.result.ResultSetOutput;
 
-public class ProdutoDAO extends MasterDAO{
-    
+public class ProdutoDAO extends MasterDAO {
+    public static String retorno; 
     public void popularTabela(JTable pTable, String pArgumento) {
         List resultado = null;
 
@@ -64,24 +67,24 @@ public class ProdutoDAO extends MasterDAO{
         // configuracoes adicionais no componente tabela
         pTable.setModel(
                 new DefaultTableModel(dadosTabela, cabecalho) {
-                    @Override
-                    // quando retorno for FALSE, a tabela nao é editavel
-                    public boolean isCellEditable(int row, int column
-                    ) {
-                        return false;
-                    }
+            @Override
+            // quando retorno for FALSE, a tabela nao é editavel
+            public boolean isCellEditable(int row, int column
+            ) {
+                return false;
+            }
 
-                    // alteracao no metodo que determina a coluna em que o objeto ImageIcon devera aparecer
-                    @Override
-                    public Class getColumnClass(int column
-                    ) {
+            // alteracao no metodo que determina a coluna em que o objeto ImageIcon devera aparecer
+            @Override
+            public Class getColumnClass(int column
+            ) {
 
-                        if (column == 2) {
-                            //return ImageIcon.class;
-                        }
-                        return Object.class;
-                    }
+                if (column == 2) {
+                    //return ImageIcon.class;
                 }
+                return Object.class;
+            }
+        }
         );
 
         // permite seleção de apenas uma linha da tabela
@@ -116,10 +119,9 @@ public class ProdutoDAO extends MasterDAO{
 
         return wFormaPagamento;
     }
-    
-    public String descricaoCompleta(int pCodigo)
-    {
-       /* try {
+
+    public String descricaoCompleta(int pCodigo) {
+        /* try {
             Session sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
@@ -139,27 +141,39 @@ public class ProdutoDAO extends MasterDAO{
         }
         
         
-        */
-        List resultado = null;
+         */
+        String resultado = null;
         Session sessao = null;
-        
-        try {
 
+        try {
             sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            sessao.doWork(new Work() {
+                public void execute(Connection connection) throws SQLException {
+                    CallableStatement call = connection.prepareCall("{call retorna_descricaocompleta_produto(?)}");
+                    call.setInt(1, pCodigo); // 1 é o 1º parametro, 10 é o valor
+                    ResultSet rs = call.executeQuery();
+                    while (rs.next()) {
+                        ProdutoDAO.retorno = rs.getString(1);
+                    }
+                }
+            });
+
+            /*sessao = HibernateUtil.getSessionFactory().openSession();
             org.hibernate.Query q = sessao.createSQLQuery("SELECT retorna_descricaocompleta_produto(" + pCodigo + ")");
             resultado = q.list();
             sessao.beginTransaction();
             
             for (Object o : resultado) {
                 return (String) o;
-            }
-            
+            }*/
         } catch (Exception e) {
             Log.gravaLogException(this.getClass(), e);
             return e.getMessage();
         }
 
-        return null;
+        return ProdutoDAO.retorno;
     }
 
 }

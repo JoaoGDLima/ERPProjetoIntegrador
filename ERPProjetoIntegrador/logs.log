@@ -35,3 +35,8 @@
 2018-08-27 20:45:23 ERROR SqlExceptionHelper:146 - ERROR: relation "unisdade" does not exist
   Posição: 13
 2018-08-27 20:45:23 ERROR UnidadeDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-08-27 20:59:50 ERROR ProdutoDAO:11 - java.lang.NullPointerException
+2018-08-27 21:00:46 ERROR ProdutoDAO:11 - org.hibernate.MappingException: Named query not known: retorna_descricaocompleta_produto
+2018-08-27 21:04:41 ERROR ProdutoDAO:11 - java.lang.NullPointerException
+2018-08-27 21:06:58 ERROR ProdutoDAO:11 - java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.Long
+2018-08-27 21:09:03 ERROR ProdutoDAO:11 - java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Long
