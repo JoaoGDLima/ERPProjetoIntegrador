@@ -9,15 +9,15 @@ import model.util.unit;
 import org.apache.log4j.Level;
 
 public class MainF extends javax.swing.JFrame {
-    
+
     static Logger log = Logger.getLogger(MainF.class.getName());
-    
-    public MainF(){
+
+    public MainF() {
         log.setLevel(Level.INFO);
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);        
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,6 +43,8 @@ public class MainF extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -230,6 +232,24 @@ public class MainF extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu5.setText("Configurações");
+        jMenu5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem16.setText("Configurações");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem16);
+
+        jMenuBar1.add(jMenu5);
+
         jMenu4.setText("Sair");
         jMenu4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -259,7 +279,7 @@ public class MainF extends javax.swing.JFrame {
         CadastroPessoaF ifrPessoa = new CadastroPessoaF('C');
         jDesktopPane1.add(ifrPessoa);
         unit.setPositionCenter(ifrPessoa);
-        ifrPessoa.setVisible(true);        
+        ifrPessoa.setVisible(true);
         log.info("Teste menu abrindo");//teste do log4j
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -355,8 +375,19 @@ public class MainF extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-    System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+
+    }//GEN-LAST:event_jMenu5ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        ConfiguraF ifrConfig = new ConfiguraF();
+        jDesktopPane1.add(ifrConfig);
+        unit.setPositionCenter(ifrConfig);
+        ifrConfig.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,6 +433,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -410,6 +442,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

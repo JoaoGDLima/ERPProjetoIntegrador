@@ -26,5 +26,6 @@
     <mapping class="model.Cargos"/>
     <mapping class="model.ItensPedido"/>
     <mapping class="model.Auditoria"/>
+    <mapping class="model.Configuracoes"/>
   </session-factory>
 </hibernate-configuration>

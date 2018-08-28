@@ -11,7 +11,9 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Configuracoes;
 import model.Usuario;
+import model.dao.ConfiguracoesDAO;
 import model.dao.UsuarioDAO;
 import model.secaoConexao;
 
@@ -128,15 +130,19 @@ public class LoginF extends javax.swing.JFrame {
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         UsuarioDAO wUsuarioDAO = new UsuarioDAO();
-        
+
         Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
-        
-        if (wUsuario!=null) {
+
+        if (wUsuario != null) {
             secaoConexao.usuarioLogado = wUsuario;
+
+            ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
+            Configuracoes wConfig = wConfigDAO.consultarID("Auditoria");
+            secaoConexao.Auditoria = wConfig.getValor().equals("T");
+
             new MainF().setVisible(true);
-            this.dispose(); 
-        }
-        else {
+            this.dispose();
+        } else {
             JOptionPane.showMessageDialog(null, "Email ou senha informados estão incorreto!");
         }
 
@@ -149,22 +155,20 @@ public class LoginF extends javax.swing.JFrame {
     //Caso pressione enter após digitar a senha, 
     //faz o mesmo que clicar em entrar sem necessidade de usar o mouse
     private void edSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edSenhaKeyPressed
-    if(evt.getKeyCode()==evt.VK_ENTER)
-    {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             UsuarioDAO wUsuarioDAO = new UsuarioDAO();
-        
-        Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
-        
-        if (wUsuario!=null) {
-            new MainF().setVisible(true);
-            this.dispose(); 
-        }
-        else {
-            JOptionPane.showMessageDialog(null, "Email ou senha informados estão incorreto!");
-        }
+
+            Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
+
+            if (wUsuario != null) {
+                new MainF().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Email ou senha informados estão incorreto!");
+            }
     }//GEN-LAST:event_edSenhaKeyPressed
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

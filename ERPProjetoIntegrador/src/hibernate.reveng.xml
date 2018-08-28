@@ -17,4 +17,5 @@
     <table-filter match-name="pessoa"/>
     <table-filter match-name="cidade"/>
     <table-filter match-name="auditoria"/>
+    <table-filter match-name="config"/>
 </hibernate-reverse-engineering>

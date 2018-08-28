@@ -44,7 +44,7 @@ public class MasterDAO extends DAO {
 
     @Override
     public String excluir(Object obj) {
-        try {      
+        try {
             salvarAuditoria("UPDATE - INATIVAR", "Inativo = 'F'", "Inativo = 'T'");
             return super.excluir(obj);
         } catch (Exception e) {
@@ -97,27 +97,30 @@ public class MasterDAO extends DAO {
     }
 
     private String salvarAuditoria(String pAcao, String pRegistroOld, String pRegistroNew) throws ParseException {
-        try {
-            SimpleDateFormat sdData = new SimpleDateFormat("dd/MM/yyyy");
-            SimpleDateFormat sdHora = new SimpleDateFormat("HH:mm");
-            Calendar cal = new GregorianCalendar();
-            
-            Date dataaux = new Date();
-            Date data = sdHora.parse(sdHora.format(dataaux));
-            Time time = new Time(data.getTime());
-            
-            Auditoria auditor = new Auditoria();
-            
-            auditor.setUsuario(secaoConexao.usuarioLogado);
-            auditor.setAcao(pAcao);
-            auditor.setDatahora(cal.getTime());
-            auditor.setRegistro_old(pRegistroOld);
-            auditor.setRegistro_new(pRegistroNew);
-            
-            super.salvar(auditor);
-        } catch (HibernateException he) {
-            Log.gravaLogException(this.getClass(), he);
-            return he.getMessage();
+        if (secaoConexao.Auditoria) {
+            try {
+
+                SimpleDateFormat sdData = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdHora = new SimpleDateFormat("HH:mm");
+                Calendar cal = new GregorianCalendar();
+
+                Date dataaux = new Date();
+                Date data = sdHora.parse(sdHora.format(dataaux));
+                Time time = new Time(data.getTime());
+
+                Auditoria auditor = new Auditoria();
+
+                auditor.setUsuario(secaoConexao.usuarioLogado);
+                auditor.setAcao(pAcao);
+                auditor.setDatahora(cal.getTime());
+                auditor.setRegistro_old(pRegistroOld);
+                auditor.setRegistro_new(pRegistroNew);
+
+                super.salvar(auditor);
+            } catch (HibernateException he) {
+                Log.gravaLogException(this.getClass(), he);
+                return he.getMessage();
+            }
         }
         return null;
     }
