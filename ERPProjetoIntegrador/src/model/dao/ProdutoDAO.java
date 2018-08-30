@@ -121,27 +121,6 @@ public class ProdutoDAO extends MasterDAO {
     }
 
     public String descricaoCompleta(int pCodigo) {
-        /* try {
-            Session sessao = HibernateUtil.getSessionFactory().openSession();
-            sessao.beginTransaction();
-
-            sessao.doWork(new Work() 
-              {
-                public void execute(Connection connection) throws SQLException 
-                {
-                    CallableStatement call = connection.prepareCall("{ call retorna_descricaocompleta_produto(?) }");
-                    call.setInt(1, pCodigo); // 1 é o 1º parametro, 10 é o valor
-                    call.execute();
-                }
-            });
-
-            sessao.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("erro da função: " + e);
-        }
-        
-        
-         */
         String resultado = null;
         Session sessao = null;
 
@@ -159,15 +138,7 @@ public class ProdutoDAO extends MasterDAO {
                     }
                 }
             });
-
-            /*sessao = HibernateUtil.getSessionFactory().openSession();
-            org.hibernate.Query q = sessao.createSQLQuery("SELECT retorna_descricaocompleta_produto(" + pCodigo + ")");
-            resultado = q.list();
-            sessao.beginTransaction();
             
-            for (Object o : resultado) {
-                return (String) o;
-            }*/
         } catch (Exception e) {
             Log.gravaLogException(this.getClass(), e);
             return e.getMessage();

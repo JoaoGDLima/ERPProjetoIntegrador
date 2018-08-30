@@ -40,3 +40,26 @@
 2018-08-27 21:04:41 ERROR ProdutoDAO:11 - java.lang.NullPointerException
 2018-08-27 21:06:58 ERROR ProdutoDAO:11 - java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.Long
 2018-08-27 21:09:03 ERROR ProdutoDAO:11 - java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Long
+2018-08-30 17:27:37 ERROR SqlExceptionHelper:146 - ERROR: relation "config" does not exist
+  Posição: 78
+2018-08-30 17:27:37 ERROR ConfiguracoesDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-30 17:28:08 ERROR SqlExceptionHelper:146 - ERROR: relation "config" does not exist
+  Posição: 78
+2018-08-30 17:28:08 ERROR ConfiguracoesDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-30 17:28:42 ERROR SqlExceptionHelper:146 - ERROR: relation "config" does not exist
+  Posição: 78
+2018-08-30 17:28:43 ERROR ConfiguracoesDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-30 17:32:47 ERROR SqlExceptionHelper:146 - ERROR: column estado0_.usuariolock does not exist
+  Posição: 127
+2018-08-30 17:32:47 ERROR EstadoDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-30 17:32:47 ERROR EstadoDAO:11 - java.lang.NullPointerException
+2018-08-30 17:32:55 ERROR SqlExceptionHelper:146 - ERROR: column "usuariolock" of relation "estado" does not exist
+  Posição: 40
+2018-08-30 17:32:55 ERROR EstadoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-08-30 17:35:19 ERROR SqlExceptionHelper:146 - ERROR: duplicate key value violates unique constraint "uk_uf"
+  Detalhe: Key (uf)=(RS) already exists.
+2018-08-30 17:35:19 ERROR EstadoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-08-30 17:46:43 ERROR SqlExceptionHelper:146 - O índice da coluna está fora do intervalo: 2, número de colunas: 1.
+2018-08-30 17:46:43 ERROR EstadoDAO:11 - org.hibernate.exception.DataException: error executing work
+2018-08-30 17:48:11 ERROR EstadoDAO:11 - java.lang.NullPointerException
+2018-08-30 17:49:56 ERROR EstadoDAO:11 - java.lang.NullPointerException

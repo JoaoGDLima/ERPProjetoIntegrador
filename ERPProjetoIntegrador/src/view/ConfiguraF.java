@@ -24,10 +24,14 @@ public class ConfiguraF extends javax.swing.JInternalFrame {
         ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
         Configuracoes wConfig = wConfigDAO.consultarID("Auditoria");
 
-        if (wConfig.getValor().equals("T")) {
-            edAuditoria.setSelected(true);
-        } else {
+        if (wConfig == null) {
             edAuditoria.setSelected(false);
+        } else {
+            if (wConfig.getValor().equals("T")) {
+                edAuditoria.setSelected(true);
+            } else {
+                edAuditoria.setSelected(false);
+            }
         }
     }
 

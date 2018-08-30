@@ -1,6 +1,10 @@
 package model.dao;
 
 import config.HibernateUtil;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,9 +21,11 @@ import model.util.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.jdbc.Work;
 
 public class MasterDAO extends DAO {
-
+    
+    public static int retorno;
     private Session sessao = null;
 
     public String salvar(Object obj) {
@@ -123,5 +129,34 @@ public class MasterDAO extends DAO {
             }
         }
         return null;
+    }
+    
+    public int fazLock(String pTabela, String pChave) {
+        String resultado = null;
+        Session sessao = null;
+        MasterDAO.retorno = 0;
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+
+            sessao.doWork(new Work() {
+                public void execute(Connection connection) throws SQLException {
+                    CallableStatement call = connection.prepareCall("{call verifica_lock(?, ?, ?)}");
+                    call.setString(1, pTabela); // 1 é o 1º parametro, 10 é o valor
+                    call.setString(2, pChave);
+                    call.setInt(3, 1);
+                    ResultSet rs = call.executeQuery();
+                    while (rs.next()) {
+                        MasterDAO.retorno = rs.getInt(1);
+                    }
+                }
+            });
+            
+        } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
+            return 0;
+        }
+
+        return MasterDAO.retorno;
     }
 }

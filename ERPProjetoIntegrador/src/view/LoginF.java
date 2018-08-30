@@ -138,7 +138,12 @@ public class LoginF extends javax.swing.JFrame {
 
             ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
             Configuracoes wConfig = wConfigDAO.consultarID("Auditoria");
-            secaoConexao.Auditoria = wConfig.getValor().equals("T");
+
+            if (wConfig == null) {
+                secaoConexao.Auditoria = false;
+            } else {
+                secaoConexao.Auditoria = wConfig.getValor().equals("T");
+            }
 
             new MainF().setVisible(true);
             this.dispose();

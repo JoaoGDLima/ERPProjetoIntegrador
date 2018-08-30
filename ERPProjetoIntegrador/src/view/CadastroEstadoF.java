@@ -11,6 +11,7 @@ import model.util.limpaCampos;
 public class CadastroEstadoF extends javax.swing.JInternalFrame {
     
     int codigo = 0;
+    boolean fezlock = false;
 
     public CadastroEstadoF() {
         initComponents();
@@ -302,10 +303,10 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-       String valor = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 0));
+        String valor = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 0));
 
         Estado wEstado = new EstadoDAO().consultarID(Integer.parseInt(valor));
-
+        
         codigo = Integer.parseInt(valor);
 
         edNome.setText(wEstado.getNome());

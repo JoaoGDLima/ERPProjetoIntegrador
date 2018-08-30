@@ -28,7 +28,8 @@ public class EstadoDAO extends MasterDAO{
     {
         Estado wEstado = null;
         try{
-            wEstado = (Estado)super.consultar("Estado", "id_estado = " + pID);                        
+            wEstado = (Estado) super.consultar("Estado", "id_estado = " + pID);  
+            wEstado.setUsuarioLock(super.fazLock("Estado", wEstado.getIdEstado() + ""));
         }
         catch(HibernateException he)
         {
