@@ -123,13 +123,15 @@ public class ProdutoDAO extends MasterDAO {
     public String descricaoCompleta(int pCodigo) {
         String resultado = null;
         Session sessao = null;
-
+        
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
-            sessao.doWork(new Work() {
-                public void execute(Connection connection) throws SQLException {
+            sessao.doWork(new Work() 
+            {
+                public void execute(Connection connection) throws SQLException 
+                {
                     CallableStatement call = connection.prepareCall("{call retorna_descricaocompleta_produto(?)}");
                     call.setInt(1, pCodigo); // 1 é o 1º parametro, 10 é o valor
                     ResultSet rs = call.executeQuery();
