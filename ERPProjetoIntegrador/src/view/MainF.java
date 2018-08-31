@@ -284,7 +284,7 @@ public class MainF extends javax.swing.JFrame {
         jDesktopPane1.add(ifrPessoa);
         unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
-        log.info("Teste menu abrindo");//teste do log4j
+        //log.info("Teste menu abrindo");//teste do log4j
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed

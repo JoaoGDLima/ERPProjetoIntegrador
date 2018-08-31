@@ -708,7 +708,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_edBairroActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        /*String wUsuNome = String.valueOf(tbClientes.getValueAt(tbClientes.getSelectedRow(), 1));
+        String wUsuNome = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 2));
 
         Object[] options = { "Confirmar", "Cancelar" };
         int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o cliente: " + wUsuNome,
@@ -718,20 +718,38 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         if (wOpc==0)
         {
-            String valor = String.valueOf(tbClientes.getValueAt(tbClientes.getSelectedRow(), 0));
+            String valor = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 0));
+            String fisico = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 1));
+        
+            if(fisico.equals("T"))
+            {
+                FuncionarioDAO wFuncDAO = new FuncionarioDAO();
 
-            clienteDAO wClienteDAO = new clienteDAO();
+                String retorno = wFuncDAO.excluir(Integer.parseInt(valor));
 
-            String retorno = wClienteDAO.excluir(Integer.parseInt(valor));
-
-            if (retorno == null) {
-                JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
-                wClienteDAO.popularTabela(tbClientes, edBusca.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
-                    + "Mensagem técnica: \n" + retorno);
+                if (retorno == null) {
+                    JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
+                    wFuncDAO.popularTabela(tbPessoa, edBusca.getText());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
+                        + "Mensagem técnica: \n" + retorno);
+                }
             }
-        }*/
+            else
+            {
+                PessoaJuridicaDAO wPessJuriDAO = new PessoaJuridicaDAO();
+
+                String retorno = wPessJuriDAO.excluir(Integer.parseInt(valor));
+
+                if (retorno == null) {
+                    JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
+                    wPessJuriDAO.popularTabela(tbPessoa, edBusca.getText(), Modo);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
+                        + "Mensagem técnica: \n" + retorno);
+                }
+            }
+        }
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed

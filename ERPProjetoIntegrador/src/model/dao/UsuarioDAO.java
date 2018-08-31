@@ -39,7 +39,7 @@ public class UsuarioDAO extends MasterDAO {
             org.hibernate.Query q = sessao.createQuery(
                     "FROM Usuario " + 
                     "WHERE username = '" + pUser + "' " + 
-                    "AND senha = '" + Criptografia.criptografar(pSenha) + "'");
+                    "AND senha = '" + pSenha + "'");
             
             resultado = q.list();
 

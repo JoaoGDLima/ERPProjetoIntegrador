@@ -117,3 +117,10 @@ PL/pgSQL function verifica_lock(character varying,character varying,integer) lin
 2018-08-30 21:40:58 ERROR SqlExceptionHelper:146 - ERROR: relation "estadossdf" does not exist
   Posição: 13
 2018-08-30 21:40:58 ERROR EstadoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-08-31 13:01:07 ERROR SqlExceptionHelper:146 - ERROR: relation "config" does not exist
+  Posição: 78
+2018-08-31 13:01:07 ERROR ConfiguracoesDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-31 13:22:20 ERROR PessoaJuridicaDAO:11 - java.lang.NullPointerException
+2018-08-31 13:23:02 ERROR PessoaJuridicaDAO:11 - java.lang.NullPointerException
+2018-08-31 13:24:05 ERROR PessoaJuridicaDAO:11 - java.lang.NullPointerException
+2018-08-31 13:28:09 ERROR CidadeDAO:11 - java.lang.NullPointerException
