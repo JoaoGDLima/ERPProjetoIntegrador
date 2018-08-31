@@ -1,10 +1,9 @@
 package view;
 
 import org.apache.log4j.Logger;//Importação principal do log4j - fase de testes ainda
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import model.dao.MasterDAO;
 import model.util.unit;
 import org.apache.log4j.Level;
 
@@ -60,6 +59,11 @@ public class MainF extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ERP - Gerenciamento de empresas");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -388,6 +392,10 @@ public class MainF extends javax.swing.JFrame {
         unit.setPositionCenter(ifrConfig);
         ifrConfig.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       new MasterDAO().liberaLockUsuario();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

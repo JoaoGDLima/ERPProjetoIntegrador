@@ -1,27 +1,30 @@
-
 package view;
 
 import javax.swing.JOptionPane;
 import model.Estado;
+import model.Usuario;
 import model.dao.EstadoDAO;
+import model.dao.UsuarioDAO;
+import model.secaoConexao;
 import model.util.Formatacao;
 import model.util.limpaCampos;
 
-
 public class CadastroEstadoF extends javax.swing.JInternalFrame {
-    
+
     int codigo = 0;
-    boolean fezlock = false;
+    int usuarioLock = 0;
 
     public CadastroEstadoF() {
         initComponents();
         this.setResizable(false);
         new EstadoDAO().popularTabela(tbEstados, "");
-        
+
         Formatacao.formatarUF(edUF);
         edUF.setFont(new java.awt.Font("Tahoma", 0, 14));
-    }
 
+        usuarioLock = 0;
+        btSalvar.setEnabled(true);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -35,6 +38,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         edUF = new javax.swing.JFormattedTextField();
+        lbMsgLock = new javax.swing.JLabel();
         pnLista = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         edBusca = new javax.swing.JTextField();
@@ -49,6 +53,26 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
         setMaximumSize(new java.awt.Dimension(501, 362));
         setMinimumSize(new java.awt.Dimension(501, 362));
         setPreferredSize(new java.awt.Dimension(501, 362));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         pnCampos.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -102,6 +126,9 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
             }
         });
 
+        lbMsgLock.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbMsgLock.setForeground(new java.awt.Color(255, 0, 51));
+
         javax.swing.GroupLayout pnCamposLayout = new javax.swing.GroupLayout(pnCampos);
         pnCampos.setLayout(pnCamposLayout);
         pnCamposLayout.setHorizontalGroup(
@@ -109,16 +136,20 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
             .addGroup(pnCamposLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lbNome2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(lbMsgLock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnCamposLayout.createSequentialGroup()
-                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(edUF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(148, Short.MAX_VALUE))
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lbNome2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(pnCamposLayout.createSequentialGroup()
+                                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(edUF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 138, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pnCamposLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btCancelar, btSalvar});
@@ -134,7 +165,9 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edUF, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(lbMsgLock, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
@@ -249,7 +282,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btExcluir)
@@ -275,14 +308,14 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-         String wUsuNome = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 1));
-        
+        String wUsuNome = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 1));
+
         String codigo = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 0));
 
         EstadoDAO wEstadoDAO = new EstadoDAO();
         Estado wEstado = wEstadoDAO.consultarID(Integer.parseInt(codigo));
         wEstado.setInativo('T');
-        
+
         Object[] options = {"Confirmar", "Cancelar"};
         int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o estado: " + wUsuNome,
                 "Informação",
@@ -290,7 +323,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (wOpc == 0) {
-            String retorno = wEstadoDAO.atualizar(wEstado);
+            String retorno = wEstadoDAO.excluir(wEstado);
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro excluido com sucesso!");
@@ -304,23 +337,36 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         String valor = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 0));
-
+        liberaLock();
+        
         Estado wEstado = new EstadoDAO().consultarID(Integer.parseInt(valor));
         
+        wEstado.setUsuarioLock(new EstadoDAO().fazLock("Estado", wEstado.getIdEstado() + ""));
+        
         codigo = Integer.parseInt(valor);
-
+        usuarioLock = wEstado.getUsuarioLock();
         edNome.setText(wEstado.getNome());
         edUF.setText(wEstado.getUf());
+
+        if ((secaoConexao.usuarioLogado.getIdUsuario() != wEstado.getUsuarioLock()) && (wEstado.getUsuarioLock() != 0)) {
+            Usuario wUsu = new UsuarioDAO().consultarID(wEstado.getUsuarioLock());
+            lbMsgLock.setText("Registro em uso pelo usuário: " + wUsu.getIdUsuario() + " - " + wUsu.getUsername());
+            btSalvar.setEnabled(false);
+        } else {
+            lbMsgLock.setText("");
+            btSalvar.setEnabled(true);
+        }
 
         jTabbedPane1.setSelectedIndex(0);
         edNome.requestFocus();
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        /*codigo = 0;
+        codigo = 0;
+        btSalvar.setEnabled(true);
         limpaCampos.limparCampos(pnCampos);
         jTabbedPane1.setSelectedIndex(0);
-        edNome.requestFocus();*/
+        edNome.requestFocus();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
@@ -330,7 +376,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
             wEstado.setNome(edNome.getText());
             wEstado.setUf(edUF.getText());
             wEstado.setInativo('F');
-            
+
             EstadoDAO wEstadoDAO = new EstadoDAO();
 
             String retorno = null;
@@ -349,7 +395,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
-                    + "Mensagem técnica: \n" + retorno);
+                        + "Mensagem técnica: \n" + retorno);
             }
         }
     }//GEN-LAST:event_btSalvarActionPerformed
@@ -367,9 +413,18 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
         edUF.setText(edUF.getText().toUpperCase());
     }//GEN-LAST:event_edUFKeyReleased
 
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        liberaLock();
+
+    }//GEN-LAST:event_formInternalFrameClosing
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        liberaLock();
+    }//GEN-LAST:event_formInternalFrameClosed
+
     private boolean validaCampo() {
         boolean wRetorno = true;
-        
+
         if (edNome.getText().equals("")) {
             wRetorno = false;
             JOptionPane.showMessageDialog(null, "Campo nome inválido!");
@@ -381,6 +436,13 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
         }
 
         return wRetorno;
+    }
+
+    private void liberaLock() {
+        if ((codigo != 0) && (usuarioLock == secaoConexao.usuarioLogado.getIdUsuario() || usuarioLock == 0)) 
+        {
+            new EstadoDAO().liberaLock(codigo);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -397,6 +459,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lbMsgLock;
     private javax.swing.JLabel lbNome2;
     private javax.swing.JPanel pnCampos;
     private javax.swing.JPanel pnLista;

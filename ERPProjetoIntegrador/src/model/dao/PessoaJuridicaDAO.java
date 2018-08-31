@@ -16,12 +16,12 @@ public class PessoaJuridicaDAO extends MasterDAO{
 
         Object[] cabecalho = new Object[6];
         cabecalho[0] = "ID";
-        cabecalho[1] = "Nome";
-        cabecalho[2] = "CPF";
-        cabecalho[3] = "Inscrição Estadual";
-        cabecalho[4] = "Situação";
-        cabecalho[5] = "Fisico";
-
+        cabecalho[1] = "Fisico";
+        cabecalho[2] = "Nome";
+        cabecalho[3] = "CPF";
+        cabecalho[4] = "Inscrição Estadual";
+        cabecalho[5] = "Situação";
+        
         try {
             resultado = super.consultarTodos("PessoaJuridica", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%' AND tipo = '" + Modo + "'", "");
 
@@ -33,9 +33,10 @@ public class PessoaJuridicaDAO extends MasterDAO{
                 PessoaJuridica wFunc = (PessoaJuridica) o;
 
                 dadosTabela[lin][0] = wFunc.getIdPessoa() + "";
-                dadosTabela[lin][1] = wFunc.getNome();
-                dadosTabela[lin][2] = wFunc.getCnpj() + "";
-                dadosTabela[lin][3] = wFunc.getIe()+ "";
+                dadosTabela[lin][1] = (char)wFunc.getFisico()+ "";
+                dadosTabela[lin][2] = wFunc.getNome();
+                dadosTabela[lin][3] = wFunc.getCnpj() + "";
+                dadosTabela[lin][4] = wFunc.getIe()+ "";
                 
                 
                 String wSituaçao = "Ativo";
@@ -43,8 +44,8 @@ public class PessoaJuridicaDAO extends MasterDAO{
                     wSituaçao = "Inativo";
                 }
 
-                dadosTabela[lin][4] = wSituaçao;
-                dadosTabela[lin][5] = (char)wFunc.getFisico()+ "";
+                dadosTabela[lin][5] = wSituaçao;
+                
                 lin++;
             }
         } catch (Exception e) {

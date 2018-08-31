@@ -49,6 +49,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         ValidaTipoPessoa();
 
         if (Modo != 'U') {
+            jRBFisico.setSelected(true);
+            jRBJuridico.setEnabled(false);
             new PessoaJuridicaDAO().popularTabela(tbPessoa, "", Modo);
         } else {
             new FuncionarioDAO().popularTabela(tbPessoa, "");
@@ -734,7 +736,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         String valor = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 0));
-        String fisico = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 5));
+        String fisico = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 1));
         
         if(fisico.equals("T"))
         {

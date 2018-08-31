@@ -15,16 +15,17 @@ public class FuncionarioDAO extends MasterDAO {
 
         Object[][] dadosTabela = null;
 
-        Object[] cabecalho = new Object[4];
+        Object[] cabecalho = new Object[5];
         cabecalho[0] = "ID";
-        cabecalho[1] = "Nome";
-        cabecalho[2] = "CPF";
-        cabecalho[3] = "Situação";
+        cabecalho[1] = "Fisico";
+        cabecalho[2] = "Nome";
+        cabecalho[3] = "CPF";
+        cabecalho[4] = "Situação";
 
         try {
             resultado = super.consultarTodos("Funcionario", "inativo <> 'T' AND nome LIKE '%" + pArgumento + "%'", "");
 
-            dadosTabela = new Object[resultado.size()][4];
+            dadosTabela = new Object[resultado.size()][5];
 
             int lin = 0;
             // efetua consulta na tabela
@@ -32,15 +33,16 @@ public class FuncionarioDAO extends MasterDAO {
                 Funcionario wFunc = (Funcionario) o;
 
                 dadosTabela[lin][0] = wFunc.getIdPessoa() + "";
-                dadosTabela[lin][1] = wFunc.getNome();
-                dadosTabela[lin][2] = wFunc.getCpf() + "";
+                dadosTabela[lin][1] = "T";
+                dadosTabela[lin][2] = wFunc.getNome();
+                dadosTabela[lin][3] = wFunc.getCpf() + "";
 
                 String wSituaçao = "Ativo";
                 if (wFunc.getInativo() == 'T') {
                     wSituaçao = "Inativo";
                 }
 
-                dadosTabela[lin][3] = wSituaçao;
+                dadosTabela[lin][4] = wSituaçao;
                 lin++;
             }
         } catch (Exception e) {

@@ -141,6 +141,8 @@ public class ProdutoDAO extends MasterDAO {
                 }
             });
             
+            sessao.getTransaction().commit();
+            
         } catch (Exception e) {
             Log.gravaLogException(this.getClass(), e);
             return e.getMessage();

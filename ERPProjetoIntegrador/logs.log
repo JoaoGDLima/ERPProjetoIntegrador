@@ -63,3 +63,57 @@
 2018-08-30 17:46:43 ERROR EstadoDAO:11 - org.hibernate.exception.DataException: error executing work
 2018-08-30 17:48:11 ERROR EstadoDAO:11 - java.lang.NullPointerException
 2018-08-30 17:49:56 ERROR EstadoDAO:11 - java.lang.NullPointerException
+2018-08-30 19:51:37 ERROR SqlExceptionHelper:146 - ERROR: duplicate key value violates unique constraint "tablelock_pkey"
+  Detalhe: Key (tabela, chave)=(Estado, 7) already exists.
+  Onde: SQL statement "INSERT INTO TABLELOCK(TABELA, CHAVE, VALOR, USUARIO) VALUES (PTABELA, PCHAVE, 'T', PUSUARIO)"
+PL/pgSQL function verifica_lock(character varying,character varying,integer) line 10 at SQL statement
+2018-08-30 19:51:40 ERROR EstadoDAO:11 - org.hibernate.exception.ConstraintViolationException: error executing work
+2018-08-30 20:17:10 ERROR SqlExceptionHelper:146 - ERROR: duplicate key value violates unique constraint "tablelock_pkey"
+  Detalhe: Key (tabela, chave)=(Estado, 7) already exists.
+  Onde: SQL statement "INSERT INTO TABLELOCK(TABELA, CHAVE, VALOR, USUARIO) VALUES (PTABELA, PCHAVE, 'T', PUSUARIO)"
+PL/pgSQL function verifica_lock(character varying,character varying,integer) line 10 at SQL statement
+2018-08-30 20:17:10 ERROR EstadoDAO:11 - org.hibernate.exception.ConstraintViolationException: error executing work
+2018-08-30 21:00:57 ERROR SqlExceptionHelper:146 - ERROR: duplicate key value violates unique constraint "uk_uf"
+  Detalhe: Key (uf)=(PR) already exists.
+2018-08-30 21:00:57 ERROR EstadoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-08-30 21:01:03 ERROR SqlExceptionHelper:146 - ERROR: duplicate key value violates unique constraint "uk_uf"
+  Detalhe: Key (uf)=(PA) already exists.
+2018-08-30 21:01:03 ERROR EstadoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-08-30 21:01:16 ERROR SqlExceptionHelper:146 - ERROR: duplicate key value violates unique constraint "uk_uf"
+  Detalhe: Key (uf)=(PB) already exists.
+2018-08-30 21:01:16 ERROR EstadoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-08-30 21:04:53 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(10)
+2018-08-30 21:04:53 ERROR EstadoDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-08-30 21:06:25 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(10)
+2018-08-30 21:06:25 ERROR EstadoDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-08-30 21:07:11 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(10)
+2018-08-30 21:07:11 ERROR CidadeDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-08-30 21:11:14 ERROR SqlExceptionHelper:146 - ERROR: duplicate key value violates unique constraint "uk_uf"
+  Detalhe: Key (uf)=(DD) already exists.
+2018-08-30 21:11:14 ERROR EstadoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-08-30 21:13:23 ERROR SqlExceptionHelper:146 - ERROR: column pessoajuri0_1_.fisico does not exist
+  Posição: 332
+2018-08-30 21:13:23 ERROR PessoaJuridicaDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-30 21:13:23 ERROR PessoaJuridicaDAO:11 - java.lang.NullPointerException
+2018-08-30 21:13:24 INFO  MainF:287 - Teste menu abrindo
+2018-08-30 21:14:44 ERROR SqlExceptionHelper:146 - ERROR: column funcionari0_1_.fisico does not exist
+  Posição: 328
+2018-08-30 21:14:44 ERROR FuncionarioDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-30 21:14:44 ERROR FuncionarioDAO:11 - java.lang.NullPointerException
+2018-08-30 21:16:09 ERROR SqlExceptionHelper:146 - ERROR: column funcionari0_1_.fisico does not exist
+  Posição: 328
+2018-08-30 21:16:09 ERROR FuncionarioDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-30 21:16:09 ERROR FuncionarioDAO:11 - java.lang.NullPointerException
+2018-08-30 21:16:45 ERROR SqlExceptionHelper:146 - ERROR: duplicate key value violates unique constraint "produto_pkey"
+  Detalhe: Key (id_produto)=(1) already exists.
+2018-08-30 21:16:45 ERROR ProdutoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-08-30 21:17:13 ERROR SqlExceptionHelper:146 - ERROR: column funcionari0_1_.fisico does not exist
+  Posição: 328
+2018-08-30 21:17:13 ERROR FuncionarioDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-30 21:40:54 ERROR SqlExceptionHelper:146 - ERROR: relation "estadossdf" does not exist
+  Posição: 131
+2018-08-30 21:40:54 ERROR EstadoDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-30 21:40:54 ERROR EstadoDAO:11 - java.lang.NullPointerException
+2018-08-30 21:40:58 ERROR SqlExceptionHelper:146 - ERROR: relation "estadossdf" does not exist
+  Posição: 13
+2018-08-30 21:40:58 ERROR EstadoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement

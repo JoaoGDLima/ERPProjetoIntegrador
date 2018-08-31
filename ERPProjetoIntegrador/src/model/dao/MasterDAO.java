@@ -51,7 +51,7 @@ public class MasterDAO extends DAO {
     @Override
     public String excluir(Object obj) {
         try {
-            salvarAuditoria("UPDATE - INATIVAR", "Inativo = 'F'", "Inativo = 'T'");
+            salvarAuditoria("INATIVAR", obj.toString() +  "/ {INATIVAR = 'F'}", obj.toString() + "/ {INATIVAR = 'T'}");
             return super.excluir(obj);
         } catch (Exception e) {
             Log.gravaLogException(this.getClass(), e);
@@ -138,13 +138,13 @@ public class MasterDAO extends DAO {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
-
+            
             sessao.doWork(new Work() {
                 public void execute(Connection connection) throws SQLException {
                     CallableStatement call = connection.prepareCall("{call verifica_lock(?, ?, ?)}");
                     call.setString(1, pTabela); // 1 é o 1º parametro, 10 é o valor
                     call.setString(2, pChave);
-                    call.setInt(3, 1);
+                    call.setInt(3, secaoConexao.usuarioLogado.getIdUsuario());
                     ResultSet rs = call.executeQuery();
                     while (rs.next()) {
                         MasterDAO.retorno = rs.getInt(1);
@@ -152,11 +152,64 @@ public class MasterDAO extends DAO {
                 }
             });
             
+            sessao.getTransaction().commit();
+            
         } catch (Exception e) {
             Log.gravaLogException(this.getClass(), e);
             return 0;
         }
 
         return MasterDAO.retorno;
+    }
+    
+    public int liberaLock(String pTabela, String pChave) {
+        String resultado = null;
+        Session sessao = null;
+        MasterDAO.retorno = 0;
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+            
+            sessao.doWork(new Work() {
+                public void execute(Connection connection) throws SQLException {
+                    CallableStatement call = connection.prepareCall("{call libera_lock(?, ?)}");
+                    call.setString(1, pTabela); // 1 é o 1º parametro, 10 é o valor
+                    call.setString(2, pChave);
+                    ResultSet rs = call.executeQuery();
+                    while (rs.next()) {
+                        MasterDAO.retorno = rs.getInt(1);
+                    }
+                }
+            });
+            sessao.getTransaction().commit();
+        } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
+            return 0;
+        }
+
+        return MasterDAO.retorno;
+    }
+    
+    
+    public void liberaLockUsuario() 
+    {
+        String resultado = null;
+        Session sessao = null;
+        MasterDAO.retorno = 0;
+        try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            sessao.beginTransaction();
+            
+            sessao.doWork(new Work() {
+                public void execute(Connection connection) throws SQLException {
+                    CallableStatement call = connection.prepareCall("{call libera_lock_usuario(?)}");
+                    call.setInt(1, secaoConexao.usuarioLogado.getIdUsuario()); // 1 é o 1º parametro, 10 é o valor
+                    call.execute();
+                }
+            });
+            sessao.getTransaction().commit();
+        } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
+        }
     }
 }

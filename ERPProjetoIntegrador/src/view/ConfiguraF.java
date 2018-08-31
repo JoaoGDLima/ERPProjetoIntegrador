@@ -157,7 +157,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame {
                 wConfigDAO.salvar(wConfig);
             }
 
-            JOptionPane.showMessageDialog(null, "Configurações salvas com sucesso, o sistema será reiniciado para recaregar as conigurações.");
+            JOptionPane.showMessageDialog(null, "Configurações salvas com sucesso, o sistema será reiniciado para recaregar as configurações.");
             System.exit(0);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Problemas ao salvar configurações!\n\n"
