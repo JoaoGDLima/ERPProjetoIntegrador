@@ -124,3 +124,5 @@ PL/pgSQL function verifica_lock(character varying,character varying,integer) lin
 2018-08-31 13:23:02 ERROR PessoaJuridicaDAO:11 - java.lang.NullPointerException
 2018-08-31 13:24:05 ERROR PessoaJuridicaDAO:11 - java.lang.NullPointerException
 2018-08-31 13:28:09 ERROR CidadeDAO:11 - java.lang.NullPointerException
+2018-08-31 14:27:35 ERROR PessoaJuridicaDAO:11 - java.lang.NullPointerException
+2018-08-31 14:44:16 ERROR UsuarioDAO:11 - java.lang.NullPointerException

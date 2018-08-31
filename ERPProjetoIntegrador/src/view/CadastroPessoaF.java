@@ -78,7 +78,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         edRG = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        edCidade = new javax.swing.JComboBox<String>();
+        edCidade = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         edEstado = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -96,7 +96,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         edIE = new javax.swing.JFormattedTextField();
         edNomeFantasia = new javax.swing.JTextField();
         lbNome3 = new javax.swing.JLabel();
-        edCargos = new javax.swing.JComboBox<String>();
+        edCargos = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         edDataNasc = new javax.swing.JFormattedTextField();
@@ -110,6 +110,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
         btEditar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         btNovo1 = new javax.swing.JButton();
+        btCancelar2 = new javax.swing.JButton();
 
         setTitle("Cadastro de cliente");
 
@@ -225,7 +226,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         edCidade.setBackground(new java.awt.Color(255, 255, 204));
         edCidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edCidade.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edCidadeItemStateChanged(evt);
@@ -374,7 +375,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
         edCargos.setBackground(new java.awt.Color(255, 255, 204));
         edCargos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edCargos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edCargos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edCargos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edCargosItemStateChanged(evt);
@@ -599,6 +600,18 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
             }
         });
 
+        btCancelar2.setBackground(new java.awt.Color(243, 243, 243));
+        btCancelar2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btCancelar2.setForeground(new java.awt.Color(33, 33, 33));
+        btCancelar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cancelar_15.png"))); // NOI18N
+        btCancelar2.setText("Sair");
+        btCancelar2.setActionCommand("");
+        btCancelar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnListaLayout = new javax.swing.GroupLayout(pnLista);
         pnLista.setLayout(pnListaLayout);
         pnListaLayout.setHorizontalGroup(
@@ -613,15 +626,15 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(86, Short.MAX_VALUE)
                         .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btCancelar2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnListaLayout.setVerticalGroup(
@@ -633,12 +646,13 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
                     .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCancelar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -889,6 +903,11 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jRBFisicoStateChanged
 
+    private void btCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelar2ActionPerformed
+        limpaCampos.limparCampos(pnCampos);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btCancelar2ActionPerformed
+
     private String SalvarPessoaJuridica() {
         PessoaJuridica wPessoaJuridica = new PessoaJuridica();
 
@@ -1062,6 +1081,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btCancelar2;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btNovo;
