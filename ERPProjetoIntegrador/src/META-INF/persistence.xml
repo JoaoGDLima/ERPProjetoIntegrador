@@ -3,6 +3,8 @@
   <persistence-unit name="ERPProjetoPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>model.Usuario</class>
+    <class>model.Permissoes</class>
+    <class>model.Tela</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/ProjetoIntegrador"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

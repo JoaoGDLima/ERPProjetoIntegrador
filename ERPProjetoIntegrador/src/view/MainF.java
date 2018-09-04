@@ -28,13 +28,15 @@ public class MainF extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -109,16 +111,6 @@ public class MainF extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/usuario_25.png"))); // NOI18N
-        jMenuItem14.setText("Usuários");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem14);
-
         jMenuItem13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cargos.png"))); // NOI18N
         jMenuItem13.setText("Cargos");
@@ -178,6 +170,32 @@ public class MainF extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem6);
+
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Usuario_config.png"))); // NOI18N
+        jMenu7.setText("Usuários");
+        jMenu7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jMenuItem14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Usuario_25.png"))); // NOI18N
+        jMenuItem14.setText("Usuários");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem14);
+
+        jMenuItem17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Usuario_perm.png"))); // NOI18N
+        jMenuItem17.setText("Permissões de usuários");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem17);
+
+        jMenu1.add(jMenu7);
 
         jMenuBar1.add(jMenu1);
 
@@ -244,6 +262,8 @@ public class MainF extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Config_25.png"))); // NOI18N
         jMenuItem16.setText("Configurações");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,6 +417,13 @@ public class MainF extends javax.swing.JFrame {
        new MasterDAO().liberaLockUsuario();
     }//GEN-LAST:event_formWindowClosing
 
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        PermissoesUsuarioF ifrPermissoesUsuario = new PermissoesUsuarioF();
+        jDesktopPane1.add(ifrPermissoesUsuario);
+        unit.setPositionCenter(ifrPermissoesUsuario);
+        ifrPermissoesUsuario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -442,6 +469,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -451,6 +479,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

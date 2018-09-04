@@ -1,6 +1,7 @@
 package view;
 
 import model.dao.FuncionarioDAO;
+import model.dao.UsuarioDAO;
 
 
 public class SelecionarCliente extends javax.swing.JDialog {
@@ -13,6 +14,10 @@ public class SelecionarCliente extends javax.swing.JDialog {
     
     public void CarregarFuncionarios(){
         new FuncionarioDAO().popularTabela(tbPessoa, "");
+    }
+    
+    public void CarregarUsuario(){
+        new UsuarioDAO().popularTabela(tbPessoa, "");
     }
     
     public SelecionarCliente(java.awt.Frame parent, boolean modal) {
