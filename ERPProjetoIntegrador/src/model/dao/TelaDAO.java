@@ -20,7 +20,7 @@ public class TelaDAO extends MasterDAO {
         cabecalho[2] = "Permissão";
 
         try {
-            resultado = super.consultarTodos("Tela", "nome LIKE '%" + pArgumento + "%'", "ORDER BY id_tela");
+            resultado = super.consultarTodos("Tela", "nome LIKE '%" + pArgumento + "%'", "");
 
             dadosTabela = new Object[resultado.size()][3];
 

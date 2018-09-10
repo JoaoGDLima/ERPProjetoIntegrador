@@ -85,7 +85,7 @@ public class Usuario implements java.io.Serializable {
     public void setSenha(String senha) {
         if (senha != senhaDefault) 
         {
-            this.senha = Criptografia.criptografar(senha);
+            this.senha = senha;//Criptografia.criptografar(senha);
         }
     }
 

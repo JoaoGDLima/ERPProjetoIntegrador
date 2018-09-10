@@ -88,8 +88,14 @@ public class MasterDAO extends DAO {
             sessao = HibernateUtil.getSessionFactory().openSession();
             sessao.beginTransaction();
 
+            String wWhere = "";
+            
+            if (!pWhere.equals("")) {
+                wWhere = "WHERE " + pWhere + " ";
+            }
+            
             org.hibernate.Query q = sessao.createQuery("FROM " + pTabela + " "
-                    + "WHERE " + pWhere + " "
+                    + wWhere 
                     + pAux);
             return q.list();
 

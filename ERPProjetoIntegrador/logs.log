@@ -365,3 +365,24 @@ line 1:26: unexpected token: ORDER
   Posição: 70
 2018-09-10 16:09:53 ERROR TelaDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
 2018-09-10 16:09:53 ERROR TelaDAO:11 - java.lang.NullPointerException
+2018-09-10 16:15:06 ERROR SqlExceptionHelper:146 - ERROR: relation "tela" does not exist
+  Posição: 70
+2018-09-10 16:15:06 ERROR TelaDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-09-10 16:19:32 ERROR TelaDAO:11 - java.lang.NullPointerException
+2018-09-10 16:38:08 ERROR SqlExceptionHelper:146 - ERROR: relation "tela" does not exist
+  Posição: 70
+2018-09-10 16:38:08 ERROR TelaDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-09-10 16:38:59 ERROR SqlExceptionHelper:146 - ERROR: relation "tela" does not exist
+  Posição: 70
+2018-09-10 16:38:59 ERROR TelaDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-09-10 16:38:59 ERROR TelaDAO:11 - java.lang.NullPointerException
+2018-09-10 16:40:12 ERROR SqlExceptionHelper:146 - ERROR: relation "tela" does not exist
+  Posição: 70
+2018-09-10 16:40:12 ERROR TelaDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-09-10 16:40:12 ERROR TelaDAO:11 - java.lang.NullPointerException
+2018-09-10 16:41:39 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(50)
+2018-09-10 16:41:39 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-09-10 16:43:46 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(50)
+2018-09-10 16:43:46 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-09-10 17:29:03 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(50)
+2018-09-10 17:29:03 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement
