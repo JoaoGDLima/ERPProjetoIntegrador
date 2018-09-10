@@ -1,6 +1,7 @@
 package model.dao;
 
 import config.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import model.Cargos;
@@ -115,6 +116,18 @@ public class ComboDAO extends MasterDAO {
         } catch (Exception e) {
             Log.gravaLogException(this.getClass(), e);
             System.out.println("Erro ao popular Combo = " + e.toString());
+        }
+    }
+    
+        public void popularComboSituacao(JComboBox combo) {
+        ArrayList<ComboItens> AItens = new ArrayList();
+        AItens.add(new ComboItens(0, "Todos"));
+        AItens.add(new ComboItens(1, "Ativo"));
+        AItens.add(new ComboItens(2, "Inativo"));
+        
+        for (int i = 0; i < AItens.size(); i++) 
+        {
+            combo.addItem(AItens.get(i));
         }
     }
 }

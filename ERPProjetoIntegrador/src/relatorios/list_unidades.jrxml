@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bcbeffd4-f394-4687-b48f-9d2f67c0f17e">
+	<property name="ireport.zoom" value="1.1000000000000003"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="status" class="java.lang.String"/>
+	<parameter name="DescSituacao" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[Select id_unidade, nome, sigla, (case when inativo = 'T' then 'Inativo' else 'Ativo' end) as situacao
+from unidade
+where (inativo = $P{status} or $P{status} is null)]]>
+	</queryString>
+	<field name="id_unidade" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="sigla" class="java.lang.String"/>
+	<field name="situacao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="a8fb34f2-1d84-46fc-887d-c798d0323ac4"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Lista de unidades]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="d6b9c2bd-2fc5-4315-ba70-3c945fbf57d2"/>
+			</line>
+			<line>
+				<reportElement x="0" y="30" width="555" height="1" uuid="85bac46b-77fa-418c-8cfc-d853cb4ed7fe"/>
+			</line>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="31" width="555" height="20" forecolor="#FFFFFF" backcolor="#99CCFF" uuid="0f7ac3f7-64c9-4c18-a201-685eca576910"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="31" width="100" height="20" uuid="7f6aea89-8493-4e92-8186-cf74a87854c3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Filtros:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="51" width="100" height="20" uuid="b237d9e7-08d1-4f5e-881c-88784e58408c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="376" y="-20" width="179" height="20" uuid="c1874224-aa9d-4f03-9b7b-33c8a0840550"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="51" width="100" height="20" uuid="abb8e27e-992c-498a-a4d2-eaaabda30d45"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{DescSituacao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="20" forecolor="#FFFFFF" backcolor="#99CCFF" uuid="cdd23e71-3ef6-4ea1-b08b-bff06ad562d8"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="5" y="0" width="55" height="20" uuid="0a552477-468f-469d-b4d1-7b91049cc9ce"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="50" height="20" uuid="6ca7693d-8a27-49ff-a219-74d32dce917a"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sigla]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="320" height="20" uuid="052803b9-f43c-4aa7-9ec5-bdf644aabc8c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="0" width="125" height="20" uuid="2712203c-3a31-4e53-ae5a-fb8ea9b44e67"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="110" y="0" width="320" height="20" uuid="e3da5b46-6faf-438d-8edc-581726bf12a0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="68cc5255-dddf-4ddb-a561-bfcdd0bee976"/>
+			</line>
+			<textField>
+				<reportElement x="430" y="0" width="125" height="20" uuid="b5623175-0387-4443-bfe5-e0bd6e5a0703"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="0" width="55" height="20" isRemoveLineWhenBlank="true" uuid="ef253e79-1a50-4f92-8c12-7081d6a25db9"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id_unidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="50" height="20" uuid="9c14a4fd-6b7a-4e33-92cb-9d9ba51e4da6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sigla}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

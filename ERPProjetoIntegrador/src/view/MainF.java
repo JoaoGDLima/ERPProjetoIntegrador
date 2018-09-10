@@ -6,6 +6,13 @@ import javax.swing.UnsupportedLookAndFeelException;
 import model.dao.MasterDAO;
 import model.util.unit;
 import org.apache.log4j.Level;
+import view.relatorios.ListarCargosF;
+import view.relatorios.ListarCidadesF;
+import view.relatorios.ListarEstadosF;
+import view.relatorios.ListarFormasPagamentosF;
+import view.relatorios.ListarProdutosF;
+import view.relatorios.ListarUnidadesF;
+import view.relatorios.ListarUsuariosF;
 
 public class MainF extends javax.swing.JFrame {
 
@@ -44,6 +51,14 @@ public class MainF extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -254,6 +269,74 @@ public class MainF extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu6.setText("Listagem/relatórios");
+        jMenu6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem18.setText("Estados");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem18);
+
+        jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem19.setText("Cidades");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem19);
+
+        jMenuItem20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem20.setText("Unidades");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem20);
+
+        jMenuItem21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem21.setText("Formas de pagamentos");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem21);
+
+        jMenuItem22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem22.setText("Cargos");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem22);
+
+        jMenuItem23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem23.setText("Usuários");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem23);
+
+        jMenuItem24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem24.setText("Produtos");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem24);
+
+        jMenuBar1.add(jMenu6);
+
         jMenu5.setText("Configurações");
         jMenu5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenu5.addActionListener(new java.awt.event.ActionListener() {
@@ -414,7 +497,7 @@ public class MainF extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       new MasterDAO().liberaLockUsuario();
+        new MasterDAO().liberaLockUsuario();
     }//GEN-LAST:event_formWindowClosing
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
@@ -423,6 +506,55 @@ public class MainF extends javax.swing.JFrame {
         unit.setPositionCenter(ifrPermissoesUsuario);
         ifrPermissoesUsuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        ListarEstadosF ifrListarEstadosF = new ListarEstadosF();
+        jDesktopPane1.add(ifrListarEstadosF);
+        unit.setPositionCenter(ifrListarEstadosF);
+        ifrListarEstadosF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        ListarCidadesF ifrListarCidadesF = new ListarCidadesF();
+        jDesktopPane1.add(ifrListarCidadesF);
+        unit.setPositionCenter(ifrListarCidadesF);
+        ifrListarCidadesF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        ListarUnidadesF ifrListarUnidadesF = new ListarUnidadesF();
+        jDesktopPane1.add(ifrListarUnidadesF);
+        unit.setPositionCenter(ifrListarUnidadesF);
+        ifrListarUnidadesF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        ListarFormasPagamentosF ifrListarFormasPagamentosF = new ListarFormasPagamentosF();
+        jDesktopPane1.add(ifrListarFormasPagamentosF);
+        unit.setPositionCenter(ifrListarFormasPagamentosF);
+        ifrListarFormasPagamentosF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        ListarCargosF ifrListarCargosF = new ListarCargosF();
+        jDesktopPane1.add(ifrListarCargosF);
+        unit.setPositionCenter(ifrListarCargosF);
+        ifrListarCargosF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        ListarUsuariosF ifrListarUsuariosF = new ListarUsuariosF();
+        jDesktopPane1.add(ifrListarUsuariosF);
+        unit.setPositionCenter(ifrListarUsuariosF);
+        ifrListarUsuariosF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        ListarProdutosF ifrListarProdutosF = new ListarProdutosF();
+        jDesktopPane1.add(ifrListarProdutosF);
+        unit.setPositionCenter(ifrListarProdutosF);
+        ifrListarProdutosF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -469,6 +601,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -480,7 +613,14 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

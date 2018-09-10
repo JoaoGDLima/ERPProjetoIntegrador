@@ -11,6 +11,14 @@ public class ComboItens {
         return codigo;
     }
 
+    public ComboItens() {
+    }
+
+    public ComboItens(int codigo, String descricao) {
+        this.codigo = codigo;
+        this.descricao = descricao;
+    }
+
     /**
      * @param codigo the codigo to set
      */

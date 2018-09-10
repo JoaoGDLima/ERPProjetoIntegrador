@@ -5,6 +5,7 @@
  */
 package model.dao;
 
+import static java.util.Collections.list;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -103,5 +104,10 @@ public class EstadoDAO extends MasterDAO {
                 return Object.class;
             }
         });
+    }
+    
+    public List consultarRelatorio(String pWhere)
+    {
+        return super.consultarTodos("Estado", pWhere, "ORDER BY id_estado");
     }
 }

@@ -126,3 +126,238 @@ PL/pgSQL function verifica_lock(character varying,character varying,integer) lin
 2018-08-31 13:28:09 ERROR CidadeDAO:11 - java.lang.NullPointerException
 2018-08-31 14:27:35 ERROR PessoaJuridicaDAO:11 - java.lang.NullPointerException
 2018-08-31 14:44:16 ERROR UsuarioDAO:11 - java.lang.NullPointerException
+2018-09-09 15:23:59 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 15:23:59 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 17:04:50 ERROR ErrorCounter:78 - line 1:26: unexpected token: ORDER
+2018-09-09 17:04:50 ERROR ErrorCounter:73 - line 1:26: unexpected token: ORDER
+line 1:26: unexpected token: ORDER
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.negatedExpression(HqlBaseParser.java:2558)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.logicalAndExpression(HqlBaseParser.java:2462)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.logicalOrExpression(HqlBaseParser.java:2427)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.expression(HqlBaseParser.java:2137)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.logicalExpression(HqlBaseParser.java:1913)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.whereClause(HqlBaseParser.java:474)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.queryRule(HqlBaseParser.java:729)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.selectStatement(HqlBaseParser.java:316)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.statement(HqlBaseParser.java:179)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:295)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:203)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:158)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:126)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:88)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:190)
+	at org.hibernate.internal.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:301)
+	at org.hibernate.internal.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:236)
+	at org.hibernate.internal.SessionImpl.createQuery(SessionImpl.java:1796)
+	at model.dao.MasterDAO.consultarTodos(MasterDAO.java:91)
+	at model.dao.EstadoDAO.consultarRelatorio(EstadoDAO.java:111)
+	at view.relatorios.ListarEstadosF.jButton1ActionPerformed(ListarEstadosF.java:133)
+	at view.relatorios.ListarEstadosF.access$000(ListarEstadosF.java:17)
+	at view.relatorios.ListarEstadosF$1.actionPerformed(ListarEstadosF.java:47)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6539)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6304)
+	at java.awt.Container.processEvent(Container.java:2239)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2297)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4904)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4535)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4476)
+	at java.awt.Container.dispatchEventImpl(Container.java:2283)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:760)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:84)
+	at java.awt.EventQueue$4.run(EventQueue.java:733)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:730)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2018-09-09 17:04:51 ERROR EstadoDAO:11 - org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: ORDER near line 1, column 26 [FROM model.Estado WHERE  ORDER BY id_estado]
+2018-09-09 17:05:45 ERROR ErrorCounter:78 - line 1:26: unexpected token: ORDER
+2018-09-09 17:05:45 ERROR ErrorCounter:73 - line 1:26: unexpected token: ORDER
+line 1:26: unexpected token: ORDER
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.negatedExpression(HqlBaseParser.java:2558)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.logicalAndExpression(HqlBaseParser.java:2462)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.logicalOrExpression(HqlBaseParser.java:2427)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.expression(HqlBaseParser.java:2137)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.logicalExpression(HqlBaseParser.java:1913)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.whereClause(HqlBaseParser.java:474)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.queryRule(HqlBaseParser.java:729)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.selectStatement(HqlBaseParser.java:316)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.statement(HqlBaseParser.java:179)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:295)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:203)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:158)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:126)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:88)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:190)
+	at org.hibernate.internal.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:301)
+	at org.hibernate.internal.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:236)
+	at org.hibernate.internal.SessionImpl.createQuery(SessionImpl.java:1796)
+	at model.dao.MasterDAO.consultarTodos(MasterDAO.java:91)
+	at model.dao.EstadoDAO.consultarRelatorio(EstadoDAO.java:111)
+	at view.relatorios.ListarEstadosF.jButton1ActionPerformed(ListarEstadosF.java:133)
+	at view.relatorios.ListarEstadosF.access$000(ListarEstadosF.java:17)
+	at view.relatorios.ListarEstadosF$1.actionPerformed(ListarEstadosF.java:47)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6539)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6304)
+	at java.awt.Container.processEvent(Container.java:2239)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2297)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4904)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4535)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4476)
+	at java.awt.Container.dispatchEventImpl(Container.java:2283)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:760)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:84)
+	at java.awt.EventQueue$4.run(EventQueue.java:733)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:730)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2018-09-09 17:05:45 ERROR EstadoDAO:11 - org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: ORDER near line 1, column 26 [FROM model.Estado WHERE  ORDER BY id_estado]
+2018-09-09 17:06:27 ERROR ErrorCounter:78 - line 1:26: unexpected token: ORDER
+2018-09-09 17:06:27 ERROR ErrorCounter:73 - line 1:26: unexpected token: ORDER
+line 1:26: unexpected token: ORDER
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.negatedExpression(HqlBaseParser.java:2558)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.logicalAndExpression(HqlBaseParser.java:2462)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.logicalOrExpression(HqlBaseParser.java:2427)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.expression(HqlBaseParser.java:2137)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.logicalExpression(HqlBaseParser.java:1913)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.whereClause(HqlBaseParser.java:474)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.queryRule(HqlBaseParser.java:729)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.selectStatement(HqlBaseParser.java:316)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.statement(HqlBaseParser.java:179)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:295)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:203)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:158)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:126)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:88)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:190)
+	at org.hibernate.internal.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:301)
+	at org.hibernate.internal.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:236)
+	at org.hibernate.internal.SessionImpl.createQuery(SessionImpl.java:1796)
+	at model.dao.MasterDAO.consultarTodos(MasterDAO.java:91)
+	at model.dao.EstadoDAO.consultarRelatorio(EstadoDAO.java:111)
+	at view.relatorios.ListarEstadosF.jButton1ActionPerformed(ListarEstadosF.java:133)
+	at view.relatorios.ListarEstadosF.access$000(ListarEstadosF.java:17)
+	at view.relatorios.ListarEstadosF$1.actionPerformed(ListarEstadosF.java:47)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6539)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6304)
+	at java.awt.Container.processEvent(Container.java:2239)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2297)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4904)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4535)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4476)
+	at java.awt.Container.dispatchEventImpl(Container.java:2283)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:760)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:84)
+	at java.awt.EventQueue$4.run(EventQueue.java:733)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:730)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2018-09-09 17:06:39 ERROR EstadoDAO:11 - org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: ORDER near line 1, column 26 [FROM model.Estado WHERE  ORDER BY id_estado]
+2018-09-09 17:14:45 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 17:14:45 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 17:38:25 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 17:38:25 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 17:41:02 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 17:41:02 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 17:48:57 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 17:48:57 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 18:14:59 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 18:14:59 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 19:59:48 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 19:59:48 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 20:25:07 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 20:25:07 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 21:18:12 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 21:18:12 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 21:24:04 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(50)
+2018-09-09 21:24:04 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-09-09 21:28:06 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 21:28:06 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-09 21:30:06 ERROR SqlExceptionHelper:146 - ERROR: function libera_lock_usuario(integer) does not exist
+  Dica: No function matches the given name and argument types. You might need to add explicit type casts.
+  Posição: 15
+2018-09-09 21:30:06 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work

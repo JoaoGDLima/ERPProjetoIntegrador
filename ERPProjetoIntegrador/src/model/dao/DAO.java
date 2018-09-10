@@ -1,11 +1,14 @@
 package model.dao;
 
 import config.HibernateUtil;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import model.util.Log;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
 
 public class DAO implements IDAO_T<Object> {
 
