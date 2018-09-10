@@ -27,5 +27,6 @@
     <mapping class="model.ItensPedido"/>
     <mapping class="model.Auditoria"/>
     <mapping class="model.Configuracoes"/>
+    <mapping class="model.Tela"/>
   </session-factory>
 </hibernate-configuration>

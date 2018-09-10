@@ -361,3 +361,7 @@ line 1:26: unexpected token: ORDER
   Dica: No function matches the given name and argument types. You might need to add explicit type casts.
   Posição: 15
 2018-09-09 21:30:06 ERROR MasterDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-09-10 16:09:53 ERROR SqlExceptionHelper:146 - ERROR: relation "tela" does not exist
+  Posição: 70
+2018-09-10 16:09:53 ERROR TelaDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-09-10 16:09:53 ERROR TelaDAO:11 - java.lang.NullPointerException

@@ -1,6 +1,7 @@
 package view;
 
 import model.Usuario;
+import model.dao.TelaDAO;
 import model.dao.UsuarioDAO;
 
 
@@ -8,6 +9,8 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
 
     public PermissoesUsuarioF() {
         initComponents();
+        this.setResizable(false);
+        new TelaDAO().popularTabela(tbTelas, "");
     }
 
     @SuppressWarnings("unchecked")
@@ -22,7 +25,7 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
         edUsuario = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbTelas = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -82,7 +85,7 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
         jLabel12.setForeground(new java.awt.Color(33, 33, 33));
         jLabel12.setText("Usuário:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbTelas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -93,7 +96,7 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbTelas);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Níveis de acesso", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
@@ -237,6 +240,6 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbTelas;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,8 +40,6 @@ public class Tela implements Serializable {
     @Basic(optional = false)
     @Column(name = "nome")
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tela")
-    private Collection<Permissoes> permissoesCollection;
 
     public Tela() {
     }
@@ -69,15 +67,6 @@ public class Tela implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    @XmlTransient
-    public Collection<Permissoes> getPermissoesCollection() {
-        return permissoesCollection;
-    }
-
-    public void setPermissoesCollection(Collection<Permissoes> permissoesCollection) {
-        this.permissoesCollection = permissoesCollection;
     }
 
     @Override

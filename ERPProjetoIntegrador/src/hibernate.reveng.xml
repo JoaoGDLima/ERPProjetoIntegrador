@@ -19,4 +19,5 @@
     <table-filter match-name="auditoria"/>
     <table-filter match-name="config"/>
     <table-filter match-name="permissoes"/> 
+    <table-filter match-name="tela"/> 
 </hibernate-reverse-engineering>
