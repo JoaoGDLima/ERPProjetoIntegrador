@@ -152,7 +152,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame {
             }
 
             if (wConfigDAO.consultarID("Auditoria") != null) {
-                wConfigDAO.atualizar(wConfig);
+                Configuracoes wConfigOld = wConfigDAO.consultarID("Auditoria");
+                wConfigDAO.atualizar(wConfig, wConfigOld);
             } else {
                 wConfigDAO.salvar(wConfig);
             }
