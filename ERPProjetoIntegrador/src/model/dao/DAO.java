@@ -14,6 +14,20 @@ public class DAO implements IDAO_T<Object> {
 
     private Session sessao = null;
 
+   public String Deletar(Object obj){
+      try {
+            sessao = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = sessao.beginTransaction();
+            sessao.delete(obj);
+            t.commit();
+            sessao.close();
+            return null;
+        } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
+            return e.getMessage();
+        } 
+   }
+   
     @Override
     public String salvar(Object obj) {
         try {

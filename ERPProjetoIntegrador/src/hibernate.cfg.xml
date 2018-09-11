@@ -28,5 +28,7 @@
     <mapping class="model.Auditoria"/>
     <mapping class="model.Configuracoes"/>
     <mapping class="model.Tela"/>
+    <mapping class="model.Permissoes"/>
+    <mapping class="model.PermissoesPK"/>
   </session-factory>
 </hibernate-configuration>

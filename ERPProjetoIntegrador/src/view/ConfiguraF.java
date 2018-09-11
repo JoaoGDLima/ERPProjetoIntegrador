@@ -14,7 +14,7 @@ import model.dao.ConfiguracoesDAO;
  * @author joao.lima
  */
 public class ConfiguraF extends javax.swing.JInternalFrame {
-
+    public static String botoes = "EN";
     /**
      * Creates new form ConfiguraF
      */
@@ -81,6 +81,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame {
         btSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Salvar_15.png"))); // NOI18N
         btSalvar.setText("Salvar");
+        btSalvar.setName("SALVAR"); // NOI18N
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);

@@ -46,7 +46,12 @@ public class TelaDAO extends MasterDAO {
             @Override
             // quando retorno for FALSE, a tabela nao é editavel
             public boolean isCellEditable(int row, int column) {
-                return false;
+                if (column == 2) {
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
 
             // alteracao no metodo que determina a coluna em que o objeto ImageIcon devera aparecer

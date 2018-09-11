@@ -386,3 +386,53 @@ line 1:26: unexpected token: ORDER
 2018-09-10 16:43:46 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement
 2018-09-10 17:29:03 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(50)
 2018-09-10 17:29:03 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-09-10 21:16:17 ERROR PermissoesDAO:11 - org.hibernate.hql.internal.ast.QuerySyntaxException: Permissoes is not mapped [FROM Permissoes WHERE id_tela_perm = 1 AND id_usuario_perm = 3]
+2018-09-10 21:31:39 ERROR SqlExceptionHelper:146 - ERROR: column "nivel" is of type character varying[] but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 71
+2018-09-10 21:31:39 ERROR PermissoesDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-09-10 21:33:16 ERROR SqlExceptionHelper:146 - ERROR: column "nivel" is of type character varying[] but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 71
+2018-09-10 21:33:16 ERROR PermissoesDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-09-10 21:34:25 ERROR SqlExceptionHelper:146 - ERROR: column "nivel" is of type character varying[] but expression is of type character varying
+  Dica: You will need to rewrite or cast the expression.
+  Posição: 71
+2018-09-10 21:34:25 ERROR PermissoesDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:46:57 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:48:19 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:48:47 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:15 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:16 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:51:16 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:53:12 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:53:23 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-10 21:55:34 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer

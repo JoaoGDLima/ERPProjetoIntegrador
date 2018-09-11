@@ -18,7 +18,7 @@ import model.util.Validacao;
 import model.util.limpaCampos;
 
 public class CadastroPessoaF extends javax.swing.JInternalFrame {
-
+    public static String botoes = "SENXP";
     char Modo;
     int codigo = 0;
 

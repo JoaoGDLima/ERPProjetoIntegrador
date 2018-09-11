@@ -31,8 +31,8 @@ public class Permissoes implements Serializable {
     @EmbeddedId
     protected PermissoesPK permissoesPK;
     @Basic(optional = false)
-    @Column(name = "nivel")
-    private int nivel;
+    @Column(name = "nivel" , length=50)
+    private String nivel;
     @JoinColumn(name = "id_tela_perm", referencedColumnName = "id_tela", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Tela tela;
@@ -47,7 +47,7 @@ public class Permissoes implements Serializable {
         this.permissoesPK = permissoesPK;
     }
 
-    public Permissoes(PermissoesPK permissoesPK, int nivel) {
+    public Permissoes(PermissoesPK permissoesPK, String nivel) {
         this.permissoesPK = permissoesPK;
         this.nivel = nivel;
     }
@@ -64,11 +64,11 @@ public class Permissoes implements Serializable {
         this.permissoesPK = permissoesPK;
     }
 
-    public int getNivel() {
+    public String getNivel() {
         return nivel;
     }
 
-    public void setNivel(int nivel) {
+    public void setNivel(String nivel) {
         this.nivel = nivel;
     }
 

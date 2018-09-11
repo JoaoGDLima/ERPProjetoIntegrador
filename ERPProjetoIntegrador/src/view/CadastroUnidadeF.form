@@ -144,6 +144,7 @@
                   <Image iconType="3" name="/publico/Salvar_15.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
+                <Property name="name" type="java.lang.String" value="SALVAR" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvarActionPerformed"/>
@@ -305,6 +306,7 @@
                   <Image iconType="3" name="/publico/Pesquisar_15.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
+                <Property name="name" type="java.lang.String" value="PESQUISAR" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
@@ -346,6 +348,7 @@
                   <Image iconType="3" name="/publico/Editar_15.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Editar"/>
+                <Property name="name" type="java.lang.String" value="EDITAR" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarActionPerformed"/>
@@ -366,6 +369,7 @@
                   <Image iconType="3" name="/publico/Novo_15.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Novo"/>
+                <Property name="name" type="java.lang.String" value="NOVO" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNovoActionPerformed"/>
@@ -386,6 +390,7 @@
                   <Image iconType="3" name="/publico/Excluir_15.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Excluir"/>
+                <Property name="name" type="java.lang.String" value="EXCLUIR" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirActionPerformed"/>

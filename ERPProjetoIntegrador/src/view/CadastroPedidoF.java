@@ -16,7 +16,7 @@ import model.util.limpaCampos;
 
 public class CadastroPedidoF extends javax.swing.JInternalFrame {
     int codigo = 0;
-
+    public static String botoes = "SENXP";
     public CadastroPedidoF() {
         initComponents();
         this.setResizable(false);
@@ -28,15 +28,6 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        pnLista = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        edBusca = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbContratos = new javax.swing.JTable();
-        btExcluir = new javax.swing.JButton();
-        btEditar = new javax.swing.JButton();
-        btNovo = new javax.swing.JButton();
-        btNovo1 = new javax.swing.JButton();
         pnCampos = new javax.swing.JPanel();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -80,6 +71,15 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         btSelecionar3 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
+        pnLista = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        edBusca = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbContratos = new javax.swing.JTable();
+        btExcluir = new javax.swing.JButton();
+        btEditar = new javax.swing.JButton();
+        btNovo = new javax.swing.JButton();
+        btNovo1 = new javax.swing.JButton();
 
         setTitle("Cadastro de pedidos");
         setToolTipText("");
@@ -98,124 +98,6 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(501, 362));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(501, 362));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(501, 362));
-
-        pnLista.setBackground(new java.awt.Color(254, 254, 254));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(33, 33, 33));
-        jLabel11.setText("Busca:");
-
-        edBusca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        tbContratos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbContratos.setForeground(new java.awt.Color(33, 33, 33));
-        tbContratos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tbContratos);
-
-        btExcluir.setBackground(new java.awt.Color(243, 243, 243));
-        btExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btExcluir.setForeground(new java.awt.Color(33, 33, 33));
-        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
-        btExcluir.setText("Excluir");
-        btExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExcluirActionPerformed(evt);
-            }
-        });
-
-        btEditar.setBackground(new java.awt.Color(243, 243, 243));
-        btEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btEditar.setForeground(new java.awt.Color(33, 33, 33));
-        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Editar_15.png"))); // NOI18N
-        btEditar.setText("Editar");
-        btEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarActionPerformed(evt);
-            }
-        });
-
-        btNovo.setBackground(new java.awt.Color(243, 243, 243));
-        btNovo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btNovo.setForeground(new java.awt.Color(33, 33, 33));
-        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
-        btNovo.setText("Novo");
-        btNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNovoActionPerformed(evt);
-            }
-        });
-
-        btNovo1.setBackground(new java.awt.Color(243, 243, 243));
-        btNovo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btNovo1.setForeground(new java.awt.Color(33, 33, 33));
-        btNovo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
-        btNovo1.setText("Pesquisar");
-        btNovo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNovo1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnListaLayout = new javax.swing.GroupLayout(pnLista);
-        pnLista.setLayout(pnListaLayout);
-        pnListaLayout.setHorizontalGroup(
-            pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnListaLayout.createSequentialGroup()
-                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnListaLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edBusca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-
-        pnListaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btEditar, btExcluir, btNovo, btNovo1});
-
-        pnListaLayout.setVerticalGroup(
-            pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnListaLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnListaLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel11))
-                    .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(edBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btNovo1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btExcluir)
-                    .addComponent(btEditar)
-                    .addComponent(btNovo))
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Listar", pnLista);
 
         pnCampos.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -263,7 +145,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(tbParcelas);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Item do pedido", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Item do pedido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(243, 243, 243));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -382,7 +264,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do encerramento", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do encerramento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(33, 33, 33));
@@ -452,7 +334,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(edCodigoCli13, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel15))
-                        .addGap(0, 54, Short.MAX_VALUE)))
+                        .addGap(0, 34, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -483,7 +365,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         );
 
         pnDadosPrincipal.setBackground(new java.awt.Color(255, 255, 255));
-        pnDadosPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados principais", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        pnDadosPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados principais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(33, 33, 33));
@@ -637,7 +519,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         pnDadosPrincipalLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {edCodigoCli9, edNomeCli2});
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor total", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor total", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 102, 153));
@@ -709,12 +591,133 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Cadastro", pnCampos);
 
+        pnLista.setBackground(new java.awt.Color(254, 254, 254));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(33, 33, 33));
+        jLabel11.setText("Busca:");
+
+        edBusca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        tbContratos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tbContratos.setForeground(new java.awt.Color(33, 33, 33));
+        tbContratos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbContratos);
+
+        btExcluir.setBackground(new java.awt.Color(243, 243, 243));
+        btExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btExcluir.setForeground(new java.awt.Color(33, 33, 33));
+        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
+        btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
+
+        btEditar.setBackground(new java.awt.Color(243, 243, 243));
+        btEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btEditar.setForeground(new java.awt.Color(33, 33, 33));
+        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Editar_15.png"))); // NOI18N
+        btEditar.setText("Editar");
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarActionPerformed(evt);
+            }
+        });
+
+        btNovo.setBackground(new java.awt.Color(243, 243, 243));
+        btNovo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btNovo.setForeground(new java.awt.Color(33, 33, 33));
+        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
+        btNovo.setText("Novo");
+        btNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovoActionPerformed(evt);
+            }
+        });
+
+        btNovo1.setBackground(new java.awt.Color(243, 243, 243));
+        btNovo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btNovo1.setForeground(new java.awt.Color(33, 33, 33));
+        btNovo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
+        btNovo1.setText("Pesquisar");
+        btNovo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovo1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnListaLayout = new javax.swing.GroupLayout(pnLista);
+        pnLista.setLayout(pnListaLayout);
+        pnListaLayout.setHorizontalGroup(
+            pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnListaLayout.createSequentialGroup()
+                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnListaLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edBusca)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        pnListaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btEditar, btExcluir, btNovo, btNovo1});
+
+        pnListaLayout.setVerticalGroup(
+            pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnListaLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnListaLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel11))
+                    .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(edBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btNovo1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btExcluir)
+                    .addComponent(btEditar)
+                    .addComponent(btNovo))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Listar", pnLista);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -12,6 +12,7 @@ public class ERPProjeto {
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         SplashF wSplash = new SplashF();
         wSplash.setVisible(true);
+        
         if (ConexaoBD.getInstance().getConnection() != null) {
             System.out.println("Conexao relatorio OK");
         } else {

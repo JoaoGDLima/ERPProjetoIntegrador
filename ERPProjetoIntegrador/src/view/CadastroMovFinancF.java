@@ -9,7 +9,7 @@ import model.util.Formatacao;
 import model.util.Validacao;
 
 public class CadastroMovFinancF extends javax.swing.JInternalFrame {
-
+    public static String botoes = "SENXP";
     public CadastroMovFinancF() {
         initComponents();
         this.setResizable(false);

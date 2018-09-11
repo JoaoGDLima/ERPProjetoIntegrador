@@ -133,6 +133,7 @@
               <Image iconType="3" name="/publico/Salvar_15.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar"/>
+            <Property name="name" type="java.lang.String" value="SALVAR" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvarActionPerformed"/>
