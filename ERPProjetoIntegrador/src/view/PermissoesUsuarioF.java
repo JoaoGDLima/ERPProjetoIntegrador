@@ -5,6 +5,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import model.Permissoes;
 import model.PermissoesPK;
+import model.TelaPermissao;
 import model.Usuario;
 import model.dao.PermissoesDAO;
 import model.dao.TelaDAO;
@@ -22,9 +23,11 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
         tbTelas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                TelaPermissao wTela = null;
+                
                 if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("1")) {
-                    abrirConfig(String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 1)), CadastroPessoaF.botoes, String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 2)), tbTelas.getSelectedRow());
-                } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("2")) {
+                    wTela = new CadastroCargosF();
+                }/*else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("2")) {
                     abrirConfig(String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 1)), CadastroPessoaF.botoes, String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 2)), tbTelas.getSelectedRow());
                 } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("3")) {
                     abrirConfig(String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 1)), CadastroPessoaF.botoes, String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 2)), tbTelas.getSelectedRow());
@@ -52,7 +55,13 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
                     abrirConfig(String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 1)), CadastroMovFinancF.botoes, String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 2)), tbTelas.getSelectedRow());
                 } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("16")) {
                     abrirConfig(String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 1)), ConfiguraF.botoes, String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 2)), tbTelas.getSelectedRow());
-                }
+                }*/
+                
+                PermissoesUsuarioConfigF wConfigPerm = new PermissoesUsuarioConfigF(null, true);
+                CadastroCargosF wCadastroCargosF = new CadastroCargosF();
+                wConfigPerm.CarregarPermisoes(String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 1)), String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 2)), wTela);
+                wConfigPerm.setVisible(true);
+                tbTelas.setValueAt(wConfigPerm.getTextSearch(), tbTelas.getSelectedRow(), 2);
 
             }
         });
@@ -284,14 +293,6 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    public void abrirConfig(String pNomeTela, String pBotoes, String pPermissoes, int pLinha) {
-        PermissoesUsuarioConfigF wConfigPerm = new PermissoesUsuarioConfigF(null, true);
-        CadastroCargosF wCadastroCargosF = new CadastroCargosF();
-        wConfigPerm.CarregarPermisoes(pNomeTela, pBotoes, pPermissoes);
-        wConfigPerm.setVisible(true);
-        tbTelas.setValueAt(wConfigPerm.getTextSearch(), pLinha, 2);
-    }
 
     private boolean validaCampo() {
         boolean wRetorno = true;

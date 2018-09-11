@@ -15,7 +15,6 @@ import view.relatorios.ListarUnidadesF;
 import view.relatorios.ListarUsuariosF;
 
 public class MainF extends javax.swing.JFrame {
-
     static Logger log = Logger.getLogger(MainF.class.getName());
 
     public MainF() {

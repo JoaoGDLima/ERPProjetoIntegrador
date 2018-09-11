@@ -1,10 +1,13 @@
 package view;
 
 import java.awt.Component;
+import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import model.TelaPermissao;
 import model.dao.FuncionarioDAO;
 import model.dao.UsuarioDAO;
 
@@ -18,7 +21,9 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
         return this.textSearch;
     }
     
-    public void CarregarPermisoes(String pNomeTela, String pBotoesTela, String pPermissoes){
+    /*public void CarregarPermisoes(String pNomeTela, String pPermissoes, TelaPermissao pTela){
+        ArrayList<JButton> wBotoes = pTela.BotoesTela();
+        
         lbNomeTela.setText(pNomeTela);
         TextoInicial = pPermissoes; 
         edEdicao.setEnabled(false);
@@ -26,24 +31,10 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
         edConsulta.setEnabled(false);
         edInclusao.setEnabled(false);
         
-
-        if (pBotoesTela.contains("E")) {
-            edEdicao.setEnabled(true);
-        } 
-        
-        if (pBotoesTela.contains("X")) {
-            edExclusao.setEnabled(true);
-        } 
-        
-        if (pBotoesTela.contains("P")) {
-            edConsulta.setEnabled(true);
-        } 
-        
-        if (pBotoesTela.contains("N")) {
-            edInclusao.setEnabled(true);
+        for (JButton wBotao: wBotoes) {
+            
         }
 
-        
         edEdicao.setSelected(false);
         edExclusao.setSelected(false);
         edConsulta.setSelected(false);
@@ -64,6 +55,20 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
         if (pPermissoes.contains("N")) {
             edInclusao.setSelected(true);
         }
+    }*/
+    
+    public void CarregarPermisoes(String pNomeTela, String pPermissoes, TelaPermissao pTela){
+        ArrayList<JButton> wBotoes = pTela.BotoesTela();
+        
+        lbNomeTela.setText(pNomeTela);
+        TextoInicial = pPermissoes; 
+        
+        for (JButton wBotao: wBotoes) 
+        {
+            JCheckBox wCheck = new JCheckBox();
+            wCheck.setText(wBotao.getText());
+            wCheck.setName(wBotao.getName());
+        }
     }
     
     public PermissoesUsuarioConfigF(java.awt.Frame parent, boolean modal) {
@@ -79,10 +84,6 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lbNomeTela = new javax.swing.JLabel();
-        edEdicao = new javax.swing.JCheckBox();
-        edConsulta = new javax.swing.JCheckBox();
-        edInclusao = new javax.swing.JCheckBox();
-        edExclusao = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configuração de permissão");
@@ -110,42 +111,6 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
         lbNomeTela.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbNomeTela.setText("Titulo da tela");
 
-        edEdicao.setBackground(new java.awt.Color(255, 255, 255));
-        edEdicao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edEdicao.setText("Edição");
-        edEdicao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edEdicaoActionPerformed(evt);
-            }
-        });
-
-        edConsulta.setBackground(new java.awt.Color(255, 255, 255));
-        edConsulta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edConsulta.setText("Consulta");
-        edConsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edConsultaActionPerformed(evt);
-            }
-        });
-
-        edInclusao.setBackground(new java.awt.Color(255, 255, 255));
-        edInclusao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edInclusao.setText("Inclusão");
-        edInclusao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edInclusaoActionPerformed(evt);
-            }
-        });
-
-        edExclusao.setBackground(new java.awt.Color(255, 255, 255));
-        edExclusao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edExclusao.setText("Exclusão");
-        edExclusao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edExclusaoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -158,14 +123,7 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbNomeTela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(edExclusao)
-                            .addComponent(edInclusao)
-                            .addComponent(edEdicao)
-                            .addComponent(edConsulta))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(lbNomeTela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -176,15 +134,7 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbNomeTela)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(edConsulta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(edInclusao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(edEdicao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(edExclusao)
-                .addGap(121, 121, 121)
+                .addGap(237, 237, 237)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -209,7 +159,7 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
         this.textSearch = "";
         
 
-        if (edEdicao.isSelected()) {
+        /*if (edEdicao.isSelected()) {
             this.textSearch = this.textSearch + "E";
         }
         
@@ -223,7 +173,7 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
         
         if (edConsulta.isSelected()) {
             this.textSearch = this.textSearch + "P";
-        }
+        }*/
         
         
         this.dispose();
@@ -233,22 +183,6 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
         this.textSearch = this.TextoInicial;
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void edEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edEdicaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edEdicaoActionPerformed
-
-    private void edConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edConsultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edConsultaActionPerformed
-
-    private void edInclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edInclusaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edInclusaoActionPerformed
-
-    private void edExclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edExclusaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edExclusaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,10 +230,6 @@ public class PermissoesUsuarioConfigF extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox edConsulta;
-    private javax.swing.JCheckBox edEdicao;
-    private javax.swing.JCheckBox edExclusao;
-    private javax.swing.JCheckBox edInclusao;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
