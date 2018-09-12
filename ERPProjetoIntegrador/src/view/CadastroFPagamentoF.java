@@ -1,13 +1,16 @@
 package view;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.FormaPagamento;
+import model.TelaPermissao;
 import model.dao.FormaPagamentoDAO;
 import model.util.Formatacao;
 import model.util.limpaCampos;
 
-public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
+public class CadastroFPagamentoF extends javax.swing.JInternalFrame implements TelaPermissao{
     public static String botoes = "SENXP";
     int codigo = 0;
     
@@ -72,7 +75,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
         btSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Salvar_15.png"))); // NOI18N
         btSalvar.setText("Salvar");
-        btSalvar.setName("SALVAR"); // NOI18N
+        btSalvar.setName("S"); // NOI18N
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -82,7 +85,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
         btCancelar.setBackground(new java.awt.Color(243, 243, 243));
         btCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btCancelar.setForeground(new java.awt.Color(33, 33, 33));
-        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cancelar_15.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,7 +202,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
         btnPesquisar.setForeground(new java.awt.Color(33, 33, 33));
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setName("PESQUISAR"); // NOI18N
+        btnPesquisar.setName("P"); // NOI18N
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -224,7 +227,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
         btEditar.setForeground(new java.awt.Color(33, 33, 33));
         btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Editar_15.png"))); // NOI18N
         btEditar.setText("Editar");
-        btEditar.setName("EDITAR"); // NOI18N
+        btEditar.setName("E"); // NOI18N
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
@@ -236,7 +239,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
         btNovo.setForeground(new java.awt.Color(33, 33, 33));
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
         btNovo.setText("Novo");
-        btNovo.setName("NOVO"); // NOI18N
+        btNovo.setName("N"); // NOI18N
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);
@@ -248,7 +251,7 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
         btExcluir.setForeground(new java.awt.Color(33, 33, 33));
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
         btExcluir.setText("Excluir");
-        btExcluir.setName("EXCLUIR"); // NOI18N
+        btExcluir.setName("X"); // NOI18N
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -471,4 +474,20 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnLista;
     private javax.swing.JTable tbFormapagamento;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public ArrayList<JButton> BotoesTela() {
+        ArrayList<JButton> wBotoes = new ArrayList();
+        wBotoes.add(btNovo);
+        wBotoes.add(btSalvar);
+        wBotoes.add(btEditar);
+        wBotoes.add(btnPesquisar);
+        wBotoes.add(btExcluir);
+        return wBotoes;
+    }
+
+    @Override
+    public void HabilitarBotoes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

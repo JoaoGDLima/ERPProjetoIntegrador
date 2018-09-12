@@ -4,17 +4,22 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Cargos;
+import model.Permissoes;
 import model.TelaPermissao;
 import model.dao.CargosDAO;
+import model.dao.PermissoesDAO;
+import model.secaoConexao;
 import model.util.limpaCampos;
 
-public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaPermissao{
-    public static String botoes = "SENXP";
+public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaPermissao {
+
+    public static final int ID_TELA = 5;
     int codigo = 0;
-        
+
     public CadastroCargosF() {
         initComponents();
         this.setResizable(false);
+        this.HabilitarBotoes();
         new CargosDAO().popularTabela(tbCargos, "");
     }
 
@@ -271,7 +276,7 @@ public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaP
             CargosDAO wCargosDAO = new CargosDAO();
 
             String retorno = null;
-            
+
             if (wCargos.getIdCargos() == 0) {
                 retorno = wCargosDAO.salvar(wCargos);
             } else {
@@ -287,7 +292,7 @@ public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaP
                 jTabbedPane1.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
-                    + "Mensagem técnica: \n" + retorno);
+                        + "Mensagem técnica: \n" + retorno);
             }
         }
     }//GEN-LAST:event_btSalvarActionPerformed
@@ -297,7 +302,7 @@ public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaP
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-       new CargosDAO().popularTabela(tbCargos, edBusca.getText());
+        new CargosDAO().popularTabela(tbCargos, edBusca.getText());
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
@@ -308,7 +313,7 @@ public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaP
         codigo = Integer.parseInt(valor);
 
         edNome.setText(wCargos.getNome());
-        
+
         jTabbedPane1.setSelectedIndex(0);
         edNome.requestFocus();
     }//GEN-LAST:event_btEditarActionPerformed
@@ -322,13 +327,13 @@ public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaP
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         String wUsuNome = String.valueOf(tbCargos.getValueAt(tbCargos.getSelectedRow(), 1));
-        
+
         String codigo = String.valueOf(tbCargos.getValueAt(tbCargos.getSelectedRow(), 0));
 
         CargosDAO wCargosDAO = new CargosDAO();
         Cargos wCargos = wCargosDAO.consultarID(Integer.parseInt(codigo));
         wCargos.setInativo('T');
-        
+
         Object[] options = {"Confirmar", "Cancelar"};
         int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o usuario: " + wUsuNome,
                 "Informação",
@@ -336,7 +341,7 @@ public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaP
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (wOpc == 0) {
-            String retorno = null; 
+            String retorno = null;
             wCargosDAO.excluir(wCargos);
 
             if (retorno == null) {
@@ -350,9 +355,9 @@ public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaP
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     private boolean validaCampo() {
         boolean wRetorno = true;
 
@@ -397,6 +402,6 @@ public class CadastroCargosF extends javax.swing.JInternalFrame implements TelaP
 
     @Override
     public void HabilitarBotoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
 }

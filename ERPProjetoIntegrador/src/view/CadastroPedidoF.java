@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import model.TelaPermissao;
 import model.util.Formatacao;
 import model.util.Validacao;
 import model.util.limpaCampos;
 
-public class CadastroPedidoF extends javax.swing.JInternalFrame {
+public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaPermissao{
     int codigo = 0;
     public static String botoes = "SENXP";
     public CadastroPedidoF() {
@@ -35,7 +37,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbParcelas = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btAddItem = new javax.swing.JButton();
         edCodigoCli5 = new javax.swing.JTextField();
         edCodigoCli4 = new javax.swing.JTextField();
         btSelecionar1 = new javax.swing.JButton();
@@ -44,10 +46,10 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         edCodigoCli6 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         edCodigoCli7 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btRemoverItem = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        edEstado2 = new javax.swing.JComboBox<>();
+        edEstado2 = new javax.swing.JComboBox<String>();
         jLabel14 = new javax.swing.JLabel();
         edCodigoCli10 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -79,7 +81,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         btExcluir = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
-        btNovo1 = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
 
         setTitle("Cadastro de pedidos");
         setToolTipText("");
@@ -107,6 +109,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Salvar_15.png"))); // NOI18N
         btSalvar.setText("Salvar");
         btSalvar.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        btSalvar.setName("S"); // NOI18N
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -147,15 +150,16 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Item do pedido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(243, 243, 243));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(33, 33, 33));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
-        jButton1.setText("Adicionar");
-        jButton1.setPreferredSize(new java.awt.Dimension(113, 25));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btAddItem.setBackground(new java.awt.Color(243, 243, 243));
+        btAddItem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btAddItem.setForeground(new java.awt.Color(33, 33, 33));
+        btAddItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
+        btAddItem.setText("Adicionar item");
+        btAddItem.setName("A"); // NOI18N
+        btAddItem.setPreferredSize(new java.awt.Dimension(113, 25));
+        btAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btAddItemActionPerformed(evt);
             }
         });
 
@@ -201,15 +205,16 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         edCodigoCli7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edCodigoCli7.setForeground(new java.awt.Color(33, 33, 33));
 
-        jButton2.setBackground(new java.awt.Color(243, 243, 243));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(33, 33, 33));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
-        jButton2.setText("Remover");
-        jButton2.setPreferredSize(new java.awt.Dimension(113, 25));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btRemoverItem.setBackground(new java.awt.Color(243, 243, 243));
+        btRemoverItem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btRemoverItem.setForeground(new java.awt.Color(33, 33, 33));
+        btRemoverItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
+        btRemoverItem.setText("Remover item");
+        btRemoverItem.setName("R"); // NOI18N
+        btRemoverItem.setPreferredSize(new java.awt.Dimension(113, 25));
+        btRemoverItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btRemoverItemActionPerformed(evt);
             }
         });
 
@@ -235,12 +240,15 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
                             .addComponent(edCodigoCli7)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btRemoverItem, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7))
                 .addContainerGap())
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btAddItem, btRemoverItem});
+
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -258,8 +266,8 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edCodigoCli6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edCodigoCli7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btRemoverItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -272,7 +280,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
 
         edEstado2.setBackground(new java.awt.Color(255, 255, 204));
         edEstado2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edEstado2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edEstado2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edEstado2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -619,6 +627,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         btExcluir.setForeground(new java.awt.Color(33, 33, 33));
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
         btExcluir.setText("Excluir");
+        btExcluir.setName("X"); // NOI18N
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -630,6 +639,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         btEditar.setForeground(new java.awt.Color(33, 33, 33));
         btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Editar_15.png"))); // NOI18N
         btEditar.setText("Editar");
+        btEditar.setName("E"); // NOI18N
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
@@ -641,20 +651,22 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         btNovo.setForeground(new java.awt.Color(33, 33, 33));
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
         btNovo.setText("Novo");
+        btNovo.setName("N"); // NOI18N
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);
             }
         });
 
-        btNovo1.setBackground(new java.awt.Color(243, 243, 243));
-        btNovo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btNovo1.setForeground(new java.awt.Color(33, 33, 33));
-        btNovo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
-        btNovo1.setText("Pesquisar");
-        btNovo1.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisar.setBackground(new java.awt.Color(243, 243, 243));
+        btPesquisar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btPesquisar.setForeground(new java.awt.Color(33, 33, 33));
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
+        btPesquisar.setText("Pesquisar");
+        btPesquisar.setName("P"); // NOI18N
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNovo1ActionPerformed(evt);
+                btPesquisarActionPerformed(evt);
             }
         });
 
@@ -670,7 +682,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edBusca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE))
@@ -684,7 +696,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        pnListaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btEditar, btExcluir, btNovo, btNovo1});
+        pnListaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btEditar, btExcluir, btNovo, btPesquisar});
 
         pnListaLayout.setVerticalGroup(
             pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -696,7 +708,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11))
                     .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(edBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btNovo1)))
+                        .addComponent(btPesquisar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -783,9 +795,9 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         edDataIni.setText(cal.obterDataAtualDMA());*/
     }//GEN-LAST:event_btNovoActionPerformed
 
-    private void btNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovo1ActionPerformed
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btNovo1ActionPerformed
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void edEstado2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edEstado2ActionPerformed
         // TODO add your handling code here:
@@ -799,7 +811,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_edEstado2PopupMenuWillBecomeInvisible
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddItemActionPerformed
         if (validaCampo())
         {
             /*contratoDAO wContratoDAO = new contratoDAO();
@@ -829,7 +841,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
             }*/
 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btAddItemActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         //limpaCampos.limparCampos(pnCampos);
@@ -871,9 +883,9 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btSelecionar1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btRemoverItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btRemoverItemActionPerformed
 
     private void btSelecionar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionar2ActionPerformed
         // TODO add your handling code here:
@@ -941,11 +953,13 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAddItem;
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btNovo;
-    private javax.swing.JButton btNovo1;
+    private javax.swing.JButton btPesquisar;
+    private javax.swing.JButton btRemoverItem;
     private javax.swing.JButton btSalvar;
     private javax.swing.JButton btSelecionar1;
     private javax.swing.JButton btSelecionar2;
@@ -967,8 +981,6 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> edEstado2;
     private javax.swing.JTextField edNomeCli1;
     private javax.swing.JTextField edNomeCli2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1040,5 +1052,23 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame {
         }*/
 
         return true;
+    }
+
+    @Override
+    public ArrayList<JButton> BotoesTela() {
+        ArrayList<JButton> wBotoes = new ArrayList();
+        wBotoes.add(btNovo);
+        wBotoes.add(btSalvar);
+        wBotoes.add(btEditar);
+        wBotoes.add(btPesquisar);
+        wBotoes.add(btExcluir);
+        wBotoes.add(btAddItem);
+        wBotoes.add(btRemoverItem);
+        return wBotoes;
+    }
+
+    @Override
+    public void HabilitarBotoes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

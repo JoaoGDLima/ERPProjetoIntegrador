@@ -1,7 +1,10 @@
 package view;
 
+import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Estado;
+import model.TelaPermissao;
 import model.Usuario;
 import model.dao.EstadoDAO;
 import model.dao.UsuarioDAO;
@@ -9,7 +12,8 @@ import model.secaoConexao;
 import model.util.Formatacao;
 import model.util.limpaCampos;
 
-public class CadastroEstadoF extends javax.swing.JInternalFrame {
+public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaPermissao {
+
     public static String botoes = "SENXP";
     int codigo = 0;
     int usuarioLock = 0;
@@ -96,7 +100,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
         btSalvar.setText("Salvar");
         btSalvar.setActionCommand("");
         btSalvar.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        btSalvar.setName("SALVAR"); // NOI18N
+        btSalvar.setName("S"); // NOI18N
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -204,7 +208,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
         btExcluir.setForeground(new java.awt.Color(33, 33, 33));
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
         btExcluir.setText("Excluir");
-        btExcluir.setName("EXCLUIR"); // NOI18N
+        btExcluir.setName("X"); // NOI18N
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -216,7 +220,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
         btEditar.setForeground(new java.awt.Color(33, 33, 33));
         btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Editar_15.png"))); // NOI18N
         btEditar.setText("Editar");
-        btEditar.setName("EDITAR"); // NOI18N
+        btEditar.setName("E"); // NOI18N
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
@@ -228,7 +232,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
         btNovo.setForeground(new java.awt.Color(33, 33, 33));
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
         btNovo.setText("Novo");
-        btNovo.setName("NOVO"); // NOI18N
+        btNovo.setName("N"); // NOI18N
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);
@@ -240,7 +244,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
         btnPesquisar.setForeground(new java.awt.Color(33, 33, 33));
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.setName("PESQUISAR"); // NOI18N
+        btnPesquisar.setName("P"); // NOI18N
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -357,11 +361,11 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         String valor = String.valueOf(tbEstados.getValueAt(tbEstados.getSelectedRow(), 0));
         liberaLock();
-        
+
         Estado wEstado = new EstadoDAO().consultarID(Integer.parseInt(valor));
-        
+
         wEstado.setUsuarioLock(new EstadoDAO().fazLock("Estado", wEstado.getIdEstado() + ""));
-        
+
         codigo = Integer.parseInt(valor);
         usuarioLock = wEstado.getUsuarioLock();
         edNome.setText(wEstado.getNome());
@@ -442,7 +446,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private boolean validaCampo() {
@@ -462,8 +466,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     }
 
     private void liberaLock() {
-        if ((codigo != 0) && (usuarioLock == secaoConexao.usuarioLogado.getIdUsuario() || usuarioLock == 0)) 
-        {
+        if ((codigo != 0) && (usuarioLock == secaoConexao.usuarioLogado.getIdUsuario() || usuarioLock == 0)) {
             new EstadoDAO().liberaLock(codigo);
         }
     }
@@ -489,4 +492,20 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnLista;
     private javax.swing.JTable tbEstados;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public ArrayList<JButton> BotoesTela() {
+        ArrayList<JButton> wBotoes = new ArrayList();
+        wBotoes.add(btNovo);
+        wBotoes.add(btSalvar);
+        wBotoes.add(btEditar);
+        wBotoes.add(btnPesquisar);
+        wBotoes.add(btExcluir);
+        return wBotoes;
+    }
+
+    @Override
+    public void HabilitarBotoes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

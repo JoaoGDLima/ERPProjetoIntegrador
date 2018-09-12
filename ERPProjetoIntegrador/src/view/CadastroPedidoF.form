@@ -162,6 +162,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
                 <Property name="horizontalAlignment" type="int" value="10"/>
+                <Property name="name" type="java.lang.String" value="S" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvarActionPerformed"/>
@@ -264,9 +265,9 @@
                                       <Component id="jLabel9" pref="113" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="btAddItem" linkSize="9" min="-2" pref="170" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton2" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="btRemoverItem" linkSize="9" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -293,8 +294,8 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="edCodigoCli6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="edCodigoCli7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btAddItem" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btRemoverItem" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -302,7 +303,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btAddItem">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f3" green="f3" red="f3" type="rgb"/>
@@ -316,13 +317,14 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/publico/Novo_15.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Adicionar"/>
+                    <Property name="text" type="java.lang.String" value="Adicionar item"/>
+                    <Property name="name" type="java.lang.String" value="A" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[113, 25]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAddItemActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="edCodigoCli5">
@@ -433,7 +435,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btRemoverItem">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f3" green="f3" red="f3" type="rgb"/>
@@ -447,13 +449,14 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/publico/Excluir_15.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Remover"/>
+                    <Property name="text" type="java.lang.String" value="Remover item"/>
+                    <Property name="name" type="java.lang.String" value="R" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[113, 25]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoverItemActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1012,7 +1015,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="edBusca" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btNovo1" linkSize="2" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="btPesquisar" linkSize="2" min="-2" pref="120" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -1042,7 +1045,7 @@
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="edBusca" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btNovo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1119,6 +1122,7 @@
                   <Image iconType="3" name="/publico/Excluir_15.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Excluir"/>
+                <Property name="name" type="java.lang.String" value="X" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirActionPerformed"/>
@@ -1139,6 +1143,7 @@
                   <Image iconType="3" name="/publico/Editar_15.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Editar"/>
+                <Property name="name" type="java.lang.String" value="E" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarActionPerformed"/>
@@ -1159,12 +1164,13 @@
                   <Image iconType="3" name="/publico/Novo_15.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Novo"/>
+                <Property name="name" type="java.lang.String" value="N" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNovoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btNovo1">
+            <Component class="javax.swing.JButton" name="btPesquisar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f3" green="f3" red="f3" type="rgb"/>
@@ -1179,9 +1185,10 @@
                   <Image iconType="3" name="/publico/Pesquisar_15.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
+                <Property name="name" type="java.lang.String" value="P" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNovo1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPesquisarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

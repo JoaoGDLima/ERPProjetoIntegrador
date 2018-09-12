@@ -106,7 +106,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/usuario_25.png"))); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Fornecedores_25.png"))); // NOI18N
         jMenuItem3.setText("Fornecedores");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +190,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Usuario_25.png"))); // NOI18N
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Usuario_perm.png"))); // NOI18N
         jMenuItem14.setText("Usuários");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -2,6 +2,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -11,7 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.swing.JButton;
 import javax.xml.bind.annotation.XmlRootElement;
+import model.dao.PermissoesDAO;
 
 /**
  *
@@ -111,6 +114,28 @@ public class Permissoes implements Serializable {
     @Override
     public String toString() {
         return "model.Permissoes[ permissoesPK=" + permissoesPK + " ]";
+    }
+    
+    public static void aplicaHabilitacao(int pIdTela, ArrayList<JButton> pBotoes)
+    {
+        Usuario wUsu = secaoConexao.usuarioLogado; 
+        Permissoes wPerm = new PermissoesDAO().consultarID(pIdTela, wUsu.getIdUsuario());
+        
+        if(wPerm!=null)
+        {
+            for (JButton wBotoe : pBotoes) {
+                wBotoe.setEnabled(false);
+                if (wPerm.getNivel().contains(wBotoe.getName())) {
+                    wBotoe.setEnabled(true);
+                } else if (wPerm.getNivel().equals("#")) {
+                    wBotoe.setEnabled(true);
+                }
+            }
+        } else {
+            for (JButton wBotoe : pBotoes) {
+                wBotoe.setEnabled(false);
+            }
+        }
     }
     
 }

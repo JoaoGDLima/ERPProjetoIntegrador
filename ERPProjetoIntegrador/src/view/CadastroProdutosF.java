@@ -1,15 +1,18 @@
 package view;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Produto;
+import model.TelaPermissao;
 import model.dao.ComboDAO;
 import model.dao.ProdutoDAO;
 import model.dao.UnidadeDAO;
 import model.util.ComboItens;
 import model.util.limpaCampos;
 
-public class CadastroProdutosF extends javax.swing.JInternalFrame {
+public class CadastroProdutosF extends javax.swing.JInternalFrame implements TelaPermissao{
     public static String botoes = "SENXP";
     int codigo = 0;
 
@@ -36,7 +39,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
         btCancelar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        edUnidade = new javax.swing.JComboBox<>();
+        edUnidade = new javax.swing.JComboBox<String>();
         jLabel7 = new javax.swing.JLabel();
         edLucro = new model.util.JNumberFormatField();
         edDescricao = new javax.swing.JTextField();
@@ -48,7 +51,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
         btExcluir = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
-        btNovo1 = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setTitle("Cadastro de produtos");
@@ -83,7 +86,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
         btSalvar.setText("Salvar");
         btSalvar.setActionCommand("");
         btSalvar.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        btSalvar.setName("SALVAR"); // NOI18N
+        btSalvar.setName("S"); // NOI18N
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -113,7 +116,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
 
         edUnidade.setBackground(new java.awt.Color(255, 255, 204));
         edUnidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edUnidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edUnidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edUnidade.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edUnidadeItemStateChanged(evt);
@@ -235,7 +238,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
         btExcluir.setForeground(new java.awt.Color(33, 33, 33));
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Excluir_15.png"))); // NOI18N
         btExcluir.setText("Excluir");
-        btExcluir.setName("EXCLUIR"); // NOI18N
+        btExcluir.setName("X"); // NOI18N
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -247,7 +250,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
         btEditar.setForeground(new java.awt.Color(33, 33, 33));
         btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Editar_15.png"))); // NOI18N
         btEditar.setText("Editar");
-        btEditar.setName("EDITAR"); // NOI18N
+        btEditar.setName("E"); // NOI18N
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
@@ -259,22 +262,22 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
         btNovo.setForeground(new java.awt.Color(33, 33, 33));
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Novo_15.png"))); // NOI18N
         btNovo.setText("Novo");
-        btNovo.setName("NOVO"); // NOI18N
+        btNovo.setName("N"); // NOI18N
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);
             }
         });
 
-        btNovo1.setBackground(new java.awt.Color(243, 243, 243));
-        btNovo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btNovo1.setForeground(new java.awt.Color(33, 33, 33));
-        btNovo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
-        btNovo1.setText("Pesquisar");
-        btNovo1.setName("PESQUISAR"); // NOI18N
-        btNovo1.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisar.setBackground(new java.awt.Color(243, 243, 243));
+        btPesquisar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btPesquisar.setForeground(new java.awt.Color(33, 33, 33));
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pesquisar_15.png"))); // NOI18N
+        btPesquisar.setText("Pesquisar");
+        btPesquisar.setName("P"); // NOI18N
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNovo1ActionPerformed(evt);
+                btPesquisarActionPerformed(evt);
             }
         });
 
@@ -299,7 +302,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edBusca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnListaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE))
@@ -324,7 +327,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
                         .addComponent(jLabel5))
                     .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(edBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btNovo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -465,9 +468,9 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
         edNome.requestFocus();
     }//GEN-LAST:event_btNovoActionPerformed
 
-    private void btNovo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovo1ActionPerformed
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         new ProdutoDAO().popularTabela(tbProduto, edBusca.getText());
-    }//GEN-LAST:event_btNovo1ActionPerformed
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void edDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edDescricaoActionPerformed
         // TODO add your handling code here:
@@ -509,7 +512,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btNovo;
-    private javax.swing.JButton btNovo1;
+    private javax.swing.JButton btPesquisar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JTextField edBusca;
     private javax.swing.JTextField edDescricao;
@@ -529,4 +532,20 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnLista;
     private javax.swing.JTable tbProduto;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public ArrayList<JButton> BotoesTela() {
+        ArrayList<JButton> wBotoes = new ArrayList();
+        wBotoes.add(btNovo);
+        wBotoes.add(btSalvar);
+        wBotoes.add(btEditar);
+        wBotoes.add(btPesquisar);
+        wBotoes.add(btExcluir);
+        return wBotoes;
+    }
+
+    @Override
+    public void HabilitarBotoes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

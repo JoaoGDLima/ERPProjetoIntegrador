@@ -5,15 +5,18 @@
  */
 package view;
 
+import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Configuracoes;
+import model.TelaPermissao;
 import model.dao.ConfiguracoesDAO;
 
 /**
  *
  * @author joao.lima
  */
-public class ConfiguraF extends javax.swing.JInternalFrame {
+public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermissao{
     public static String botoes = "EN";
     /**
      * Creates new form ConfiguraF
@@ -81,7 +84,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame {
         btSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Salvar_15.png"))); // NOI18N
         btSalvar.setText("Salvar");
-        btSalvar.setName("SALVAR"); // NOI18N
+        btSalvar.setName("S"); // NOI18N
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -181,4 +184,16 @@ public class ConfiguraF extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public ArrayList<JButton> BotoesTela() {
+        ArrayList<JButton> wBotoes = new ArrayList();
+        wBotoes.add(btSalvar);
+        return wBotoes;
+    }
+
+    @Override
+    public void HabilitarBotoes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

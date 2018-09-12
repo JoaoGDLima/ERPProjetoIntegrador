@@ -47,7 +47,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/publico/usuario_25.png"/>
+                  <Image iconType="3" name="/publico/Fornecedores_25.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Fornecedores"/>
               </Properties>
@@ -170,7 +170,7 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/publico/Usuario_25.png"/>
+                      <Image iconType="3" name="/publico/Usuario_perm.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
                   </Properties>

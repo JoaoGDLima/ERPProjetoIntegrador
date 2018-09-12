@@ -1,14 +1,16 @@
 package view;
 
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import model.TelaPermissao;
 import model.util.ComboItens;
 import model.util.Formatacao;
 import model.util.Validacao;
 
-public class CadastroMovFinancF extends javax.swing.JInternalFrame {
+public class CadastroMovFinancF extends javax.swing.JInternalFrame implements TelaPermissao{
     public static String botoes = "SENXP";
     public CadastroMovFinancF() {
         initComponents();
@@ -37,7 +39,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         edCodigoCli = new javax.swing.JTextField();
         edNomeCli = new javax.swing.JTextField();
-        btSelecionar = new javax.swing.JButton();
+        btSelecionarCli = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         edContrato = new javax.swing.JTextField();
         btSelecionar1 = new javax.swing.JButton();
@@ -53,9 +55,9 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
         pnParcela = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         edDataPagamento = new javax.swing.JFormattedTextField();
-        jButton3 = new javax.swing.JButton();
+        btConfirmarPgto = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        btCancelar1 = new javax.swing.JButton();
+        btCancelarPgto = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         edParcela = new javax.swing.JFormattedTextField();
@@ -86,14 +88,15 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
         edNomeCli.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edNomeCli.setForeground(new java.awt.Color(33, 33, 33));
 
-        btSelecionar.setBackground(new java.awt.Color(243, 243, 243));
-        btSelecionar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btSelecionar.setForeground(new java.awt.Color(33, 33, 33));
-        btSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Selecionar_15.png"))); // NOI18N
-        btSelecionar.setText("Selecionar");
-        btSelecionar.addActionListener(new java.awt.event.ActionListener() {
+        btSelecionarCli.setBackground(new java.awt.Color(243, 243, 243));
+        btSelecionarCli.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btSelecionarCli.setForeground(new java.awt.Color(33, 33, 33));
+        btSelecionarCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Selecionar_15.png"))); // NOI18N
+        btSelecionarCli.setText("Selecionar cliente");
+        btSelecionarCli.setName("S"); // NOI18N
+        btSelecionarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSelecionarActionPerformed(evt);
+                btSelecionarCliActionPerformed(evt);
             }
         });
 
@@ -145,27 +148,30 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(edCodigoCli, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(edNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btSelecionarCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(edContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(edContrato1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(edContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btSelecionar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(edContrato1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btSelecionar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +191,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(edCodigoCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(edNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btSelecionar))
+                            .addComponent(btSelecionarCli))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -228,7 +234,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
         });
 
         pnParcela.setBackground(new java.awt.Color(255, 255, 255));
-        pnParcela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parcela", 0, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        pnParcela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parcela", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(33, 33, 33));
@@ -237,13 +243,14 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
         edDataPagamento.setBackground(new java.awt.Color(255, 255, 204));
         edDataPagamento.setAlignmentX(0.0F);
 
-        jButton3.setBackground(new java.awt.Color(243, 243, 243));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Selecionar_15.png"))); // NOI18N
-        jButton3.setText("Confirmar pagamento");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btConfirmarPgto.setBackground(new java.awt.Color(243, 243, 243));
+        btConfirmarPgto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btConfirmarPgto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Selecionar_15.png"))); // NOI18N
+        btConfirmarPgto.setText("Confirmar pagamento");
+        btConfirmarPgto.setName("C"); // NOI18N
+        btConfirmarPgto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btConfirmarPgtoActionPerformed(evt);
             }
         });
 
@@ -251,16 +258,17 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(33, 33, 33));
         jLabel6.setText("Número:");
 
-        btCancelar1.setBackground(new java.awt.Color(243, 243, 243));
-        btCancelar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btCancelar1.setForeground(new java.awt.Color(33, 33, 33));
-        btCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cancelar_15.png"))); // NOI18N
-        btCancelar1.setText("Cancelar pagamento");
-        btCancelar1.setActionCommand("");
-        btCancelar1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        btCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btCancelarPgto.setBackground(new java.awt.Color(243, 243, 243));
+        btCancelarPgto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btCancelarPgto.setForeground(new java.awt.Color(33, 33, 33));
+        btCancelarPgto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cancelar_15.png"))); // NOI18N
+        btCancelarPgto.setText("Cancelar pagamento");
+        btCancelarPgto.setActionCommand("");
+        btCancelarPgto.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        btCancelarPgto.setName("X"); // NOI18N
+        btCancelarPgto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelar1ActionPerformed(evt);
+                btCancelarPgtoActionPerformed(evt);
             }
         });
 
@@ -312,9 +320,9 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(edValor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnParcelaLayout.createSequentialGroup()
-                                .addComponent(jButton3)
+                                .addComponent(btConfirmarPgto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btCancelar1))
+                                .addComponent(btCancelarPgto))
                             .addGroup(pnParcelaLayout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -345,8 +353,8 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
                     .addComponent(jButton1))
                 .addGap(10, 10, 10)
                 .addGroup(pnParcelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btCancelarPgto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btConfirmarPgto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -418,7 +426,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarActionPerformed
+    private void btSelecionarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarCliActionPerformed
         /*SelecionarCliente wSelecionarCliente = new SelecionarCliente(null, true);
 
         wSelecionarCliente.setVisible(true);
@@ -430,7 +438,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
             GParcelas = new ArrayList();
             popularTabela();
         }*/
-    }//GEN-LAST:event_btSelecionarActionPerformed
+    }//GEN-LAST:event_btSelecionarCliActionPerformed
 
     private void btSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionar1ActionPerformed
         /*if (edCodigoCli.getText().equals("")) {
@@ -468,7 +476,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
         }*/
     }//GEN-LAST:event_btSelecionarParcActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btConfirmarPgtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarPgtoActionPerformed
         /*if (validaCampo()) {
             parcela wParcela = new parcela();
             wParcela.setSeq(Integer.parseInt(edParcela.getText()));
@@ -485,9 +493,9 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
             GParcelas = new contratoDAO().consultarId(Integer.parseInt(edContrato.getText())).getAParcelas();
             popularTabela();
         }*/
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btConfirmarPgtoActionPerformed
 
-    private void btCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelar1ActionPerformed
+    private void btCancelarPgtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarPgtoActionPerformed
             /*if (edCodigoCli.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Selecione um cliente!");
                 edCodigoCli.requestFocus();
@@ -515,7 +523,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
                 GParcelas = new contratoDAO().consultarId(Integer.parseInt(edContrato.getText())).getAParcelas();
                 popularTabela();
             }*/
-    }//GEN-LAST:event_btCancelar1ActionPerformed
+    }//GEN-LAST:event_btCancelarPgtoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Calendario wCal = new Calendario();
@@ -584,9 +592,10 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btCancelar1;
-    private javax.swing.JButton btSelecionar;
+    private javax.swing.JButton btCancelarPgto;
+    private javax.swing.JButton btConfirmarPgto;
     private javax.swing.JButton btSelecionar1;
+    private javax.swing.JButton btSelecionarCli;
     private javax.swing.JButton btSelecionarParc;
     private javax.swing.JTextField edCodigoCli;
     private javax.swing.JTextField edContrato;
@@ -597,7 +606,6 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField edParcela;
     private javax.swing.JTextField edValor;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -648,5 +656,19 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame {
         }
 
         return true;
+    }
+
+    @Override
+    public ArrayList<JButton> BotoesTela() {
+        ArrayList<JButton> wBotoes = new ArrayList();
+        wBotoes.add(btSelecionarCli);
+        wBotoes.add(btConfirmarPgto);
+        wBotoes.add(btCancelarPgto);
+        return wBotoes;
+    }
+
+    @Override
+    public void HabilitarBotoes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
