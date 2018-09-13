@@ -436,3 +436,5 @@ line 1:26: unexpected token: ORDER
 2018-09-10 21:53:12 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
 2018-09-10 21:53:23 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
 2018-09-10 21:55:34 ERROR PermissoesDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-09-13 08:30:14 ERROR EstadoDAO:11 - java.lang.NullPointerException
+2018-09-13 08:39:44 ERROR EstadoDAO:11 - java.lang.NullPointerException
