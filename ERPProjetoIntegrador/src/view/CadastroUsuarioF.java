@@ -12,13 +12,15 @@ import model.dao.UsuarioDAO;
 import model.util.limpaCampos;
 
 public class CadastroUsuarioF extends javax.swing.JInternalFrame implements TelaPermissao{
-    public static String botoes = "SENXP";
+    
     public static final int ID_TELA = 4;
     int codigo = 0;
 
     public CadastroUsuarioF() {
         initComponents();
         this.setResizable(false);
+        this.HabilitarBotoes();
+        
         new UsuarioDAO().popularTabela(tbUsuario, "");
     }
 

@@ -14,13 +14,14 @@ import model.util.ComboItens;
 import model.util.limpaCampos;
 
 public class CadastroProdutosF extends javax.swing.JInternalFrame implements TelaPermissao{
-    public static String botoes = "SENXP";
+    
     public static final int ID_TELA = 6;
     int codigo = 0;
 
     public CadastroProdutosF() {
         initComponents();
         this.setResizable(false);
+        this.HabilitarBotoes();
 
         new ProdutoDAO().popularTabela(tbProduto, "");
 

@@ -12,11 +12,13 @@ import model.util.Formatacao;
 import model.util.Validacao;
 
 public class CadastroMovFinancF extends javax.swing.JInternalFrame implements TelaPermissao{
-    public static String botoes = "SENXP";
-    public static final int ID_TELA = 17;//17 é temporario, movimentação financeira nao tem código proprio, mas contas receber e pagar tem codigos separados
-    public CadastroMovFinancF() {
+    int ID_TELA;//17 é temporario, movimentação financeira nao tem código proprio, mas contas receber e pagar tem codigos separados
+   
+    public CadastroMovFinancF(int pIDTela) {
         initComponents();
+        this.ID_TELA = pIDTela;
         this.setResizable(false);
+        this.HabilitarBotoes();
         
         /*GParcelas = new ArrayList();
         popularTabela();

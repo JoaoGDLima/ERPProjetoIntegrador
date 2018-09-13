@@ -382,7 +382,7 @@ public class MainF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        CadastroPessoaF ifrPessoa = new CadastroPessoaF('C');
+        CadastroPessoaF ifrPessoa = new CadastroPessoaF(1, 'C');
         jDesktopPane1.add(ifrPessoa);
         unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
@@ -404,14 +404,14 @@ public class MainF extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        CadastroPessoaF ifrPessoa = new CadastroPessoaF('U');
+        CadastroPessoaF ifrPessoa = new CadastroPessoaF(3, 'U');
         jDesktopPane1.add(ifrPessoa);
         unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        CadastroPessoaF ifrPessoa = new CadastroPessoaF('F');
+        CadastroPessoaF ifrPessoa = new CadastroPessoaF(2, 'F');
         jDesktopPane1.add(ifrPessoa);
         unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
@@ -453,28 +453,28 @@ public class MainF extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        CadastroPedidoF ifrPedido = new CadastroPedidoF();
+        CadastroPedidoF ifrPedido = new CadastroPedidoF(11);
         jDesktopPane1.add(ifrPedido);
         unit.setPositionCenter(ifrPedido);
         ifrPedido.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        CadastroPedidoF ifrPedido = new CadastroPedidoF();
+        CadastroPedidoF ifrPedido = new CadastroPedidoF(12);
         jDesktopPane1.add(ifrPedido);
         unit.setPositionCenter(ifrPedido);
         ifrPedido.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF();
+        CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF(13);
         jDesktopPane1.add(ifrMovFinanc);
         unit.setPositionCenter(ifrMovFinanc);
         ifrMovFinanc.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF();
+        CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF(14);
         jDesktopPane1.add(ifrMovFinanc);
         unit.setPositionCenter(ifrMovFinanc);
         ifrMovFinanc.setVisible(true);

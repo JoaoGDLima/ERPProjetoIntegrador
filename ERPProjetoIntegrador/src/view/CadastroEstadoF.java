@@ -15,14 +15,14 @@ import model.util.limpaCampos;
 
 public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaPermissao {
 
-    public static String botoes = "SENXP";
-     public static final int ID_TELA = 9;
+    public static final int ID_TELA = 9;
     int codigo = 0;
     int usuarioLock = 0;
 
     public CadastroEstadoF() {
         initComponents();
         this.setResizable(false);
+        this.HabilitarBotoes();
         new EstadoDAO().popularTabela(tbEstados, "");
 
         Formatacao.formatarUF(edUF);

@@ -18,13 +18,13 @@ import model.dao.ConfiguracoesDAO;
  * @author joao.lima
  */
 public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermissao{
-    public static String botoes = "EN";
+    
     public static final int ID_TELA = 16;
-    /**
-     * Creates new form ConfiguraF
-     */
+
     public ConfiguraF() {
         initComponents();
+        this.setResizable(false);
+        this.HabilitarBotoes();
 
         ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
         Configuracoes wConfig = wConfigDAO.consultarID("Auditoria");

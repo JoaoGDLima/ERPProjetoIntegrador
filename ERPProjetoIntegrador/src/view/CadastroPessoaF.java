@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Funcionario;
+import model.Permissoes;
 import model.PessoaJuridica;
 import model.TelaPermissao;
 import model.dao.CargosDAO;
@@ -21,14 +22,17 @@ import model.util.Validacao;
 import model.util.limpaCampos;
 
 public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaPermissao{
-    public static String botoes = "SENXP";
+    int ID_TELA = 5;
     char Modo;
     int codigo = 0;
 
-    public CadastroPessoaF(char pModo) {
+    public CadastroPessoaF(int pIDTela, char pModo) {
         initComponents();
         this.setResizable(false);
+        this.ID_TELA = pIDTela;
         this.Modo = pModo;
+        this.HabilitarBotoes();
+        
         
         edCargos.removeAllItems();
         new ComboDAO().popularComboCargos(edCargos);
@@ -1153,6 +1157,6 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
 
     @Override
     public void HabilitarBotoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
 }

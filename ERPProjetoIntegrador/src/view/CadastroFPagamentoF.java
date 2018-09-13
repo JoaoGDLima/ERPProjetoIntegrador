@@ -12,13 +12,13 @@ import model.util.Formatacao;
 import model.util.limpaCampos;
 
 public class CadastroFPagamentoF extends javax.swing.JInternalFrame implements TelaPermissao{
-    public static String botoes = "SENXP";
     public static final int ID_TELA = 8;
     int codigo = 0;
     
     public CadastroFPagamentoF() {
         initComponents();
         this.setResizable(false);
+        this.HabilitarBotoes();
         new FormaPagamentoDAO().popularTabela(tbFormapagamento, "");
         
         edQtdParcela.setFont(new java.awt.Font("Tahoma", 0, 14));

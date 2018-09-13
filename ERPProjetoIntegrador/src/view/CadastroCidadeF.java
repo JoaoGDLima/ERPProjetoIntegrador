@@ -21,7 +21,7 @@ import model.util.Formatacao;
 import model.util.limpaCampos;
 
 public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaPermissao{
-    public static String botoes = "SENXP";
+    
     public static final int ID_TELA = 10;
     int codigo = 0;
     int usuarioLock = 0;
@@ -29,6 +29,7 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
     public CadastroCidadeF() {
         initComponents();
         this.setResizable(false);
+        this.HabilitarBotoes();
         new CidadeDAO().popularTabela(tbCidades, "");
 
         edEstado.removeAllItems();
@@ -48,7 +49,7 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        edEstado = new javax.swing.JComboBox<>();
+        edEstado = new javax.swing.JComboBox<String>();
         lbMsgLock = new javax.swing.JLabel();
         pnLista = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -123,7 +124,7 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
 
         edEstado.setBackground(new java.awt.Color(255, 255, 204));
         edEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edEstado.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -152,23 +153,22 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnCamposLayout.createSequentialGroup()
                         .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addGroup(pnCamposLayout.createSequentialGroup()
-                                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(153, Short.MAX_VALUE))
-                    .addGroup(pnCamposLayout.createSequentialGroup()
-                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(edEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnCamposLayout.createSequentialGroup()
-                    .addGap(12, 12, 12)
-                    .addComponent(lbMsgLock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(13, 13, 13)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnCamposLayout.createSequentialGroup()
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnCamposLayout.createSequentialGroup()
+                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)
+                                    .addGroup(pnCamposLayout.createSequentialGroup()
+                                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 143, Short.MAX_VALUE))
+                            .addComponent(lbMsgLock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
 
         pnCamposLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btCancelar, btSalvar});
@@ -184,16 +184,13 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addComponent(lbMsgLock, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
                 .addContainerGap())
-            .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnCamposLayout.createSequentialGroup()
-                    .addGap(186, 186, 186)
-                    .addComponent(lbMsgLock, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(187, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Cadastro", pnCampos);

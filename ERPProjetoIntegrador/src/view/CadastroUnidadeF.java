@@ -11,14 +11,15 @@ import model.util.Formatacao;
 import model.util.limpaCampos;
 
 public class CadastroUnidadeF extends javax.swing.JInternalFrame implements TelaPermissao{
-    public static String botoes = "SENXP";
+    
     public static final int ID_TELA = 7;
     int codigo = 0;
 
     public CadastroUnidadeF() {
         initComponents();
         this.setResizable(false);
-        this.setResizable(false);
+        this.HabilitarBotoes();
+        
         new UnidadeDAO().popularTabela(tbUnidades, "");
 
         Formatacao.formatarUnidade(edSigla);

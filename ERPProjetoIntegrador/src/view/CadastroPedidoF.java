@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import model.Permissoes;
 import model.TelaPermissao;
 import model.util.Formatacao;
 import model.util.Validacao;
@@ -18,10 +19,13 @@ import model.util.limpaCampos;
 
 public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaPermissao{
     int codigo = 0;
-    public static String botoes = "SENXP";
-    public CadastroPedidoF() {
+    int ID_TELA;
+    
+    public CadastroPedidoF(int pIDTela) {
         initComponents();
+        this.ID_TELA = pIDTela;
         this.setResizable(false);
+        this.HabilitarBotoes();
     }
 
     @SuppressWarnings("unchecked")
@@ -1069,6 +1073,6 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
     @Override
     public void HabilitarBotoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
 }

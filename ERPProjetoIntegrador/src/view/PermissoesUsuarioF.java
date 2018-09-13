@@ -28,11 +28,11 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
                     TelaPermissao wTela = null;
 
                     if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("1")) {
-                        wTela = new CadastroPessoaF('C');
+                        wTela = new CadastroPessoaF(1, 'C');
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("2")) {
-                        wTela = new CadastroPessoaF('F');
+                        wTela = new CadastroPessoaF(2, 'F');
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("3")) {
-                        wTela = new CadastroPessoaF('U');
+                        wTela = new CadastroPessoaF(3, 'U');
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("4")) {
                         wTela = new CadastroUsuarioF();
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("5")) {
@@ -48,13 +48,13 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("10")) {
                         wTela = new CadastroCidadeF();
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("11")) {
-                        wTela = new CadastroPedidoF();
+                        wTela = new CadastroPedidoF(11);
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("12")) {
-                        wTela = new CadastroPedidoF();
+                        wTela = new CadastroPedidoF(12);
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("13")) {
-                        wTela = new CadastroMovFinancF();
+                        wTela = new CadastroMovFinancF(13);
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("14")) {
-                        wTela = new CadastroMovFinancF();
+                        wTela = new CadastroMovFinancF(14);
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("16")) {
                         wTela = new ConfiguraF();
                     }
