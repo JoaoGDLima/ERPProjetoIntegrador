@@ -35,6 +35,16 @@ public class CidadeDAO extends MasterDAO {
         return wCidade;
     }
 
+    
+    public void liberaLock(int pID) {
+        try {
+            super.liberaLock("Cidade", pID + "");
+        } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
+            he.printStackTrace();
+        }
+    }
+    
     public void popularTabela(JTable pTable, String pArgumento) {
         List resultado = null;
 

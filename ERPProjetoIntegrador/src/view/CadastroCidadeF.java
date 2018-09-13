@@ -10,9 +10,12 @@ import javax.swing.JOptionPane;
 import model.Cidade;
 import model.Permissoes;
 import model.TelaPermissao;
+import model.Usuario;
 import model.dao.CidadeDAO;
 import model.dao.ComboDAO;
 import model.dao.EstadoDAO;
+import model.dao.UsuarioDAO;
+import model.secaoConexao;
 import model.util.ComboItens;
 import model.util.Formatacao;
 import model.util.limpaCampos;
@@ -21,6 +24,7 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
     public static String botoes = "SENXP";
     public static final int ID_TELA = 10;
     int codigo = 0;
+    int usuarioLock = 0;
     
     public CadastroCidadeF() {
         initComponents();
@@ -29,6 +33,8 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
 
         edEstado.removeAllItems();
         new ComboDAO().popularComboEstado(edEstado);
+        usuarioLock = 0;
+        btSalvar.setEnabled(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -42,7 +48,8 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        edEstado = new javax.swing.JComboBox<String>();
+        edEstado = new javax.swing.JComboBox<>();
+        lbMsgLock = new javax.swing.JLabel();
         pnLista = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         edBusca = new javax.swing.JTextField();
@@ -55,6 +62,24 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
         jButton1 = new javax.swing.JButton();
 
         setTitle("Cadastro de cidade");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(501, 362));
@@ -98,7 +123,7 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
 
         edEstado.setBackground(new java.awt.Color(255, 255, 204));
         edEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edEstado.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -114,6 +139,9 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
                 edEstadoActionPerformed(evt);
             }
         });
+
+        lbMsgLock.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbMsgLock.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout pnCamposLayout = new javax.swing.GroupLayout(pnCampos);
         pnCampos.setLayout(pnCamposLayout);
@@ -136,6 +164,11 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
                             .addComponent(jLabel3)
                             .addComponent(edEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnCamposLayout.createSequentialGroup()
+                    .addGap(12, 12, 12)
+                    .addComponent(lbMsgLock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(13, 13, 13)))
         );
 
         pnCamposLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btCancelar, btSalvar});
@@ -156,6 +189,11 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
                 .addContainerGap())
+            .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnCamposLayout.createSequentialGroup()
+                    .addGap(186, 186, 186)
+                    .addComponent(lbMsgLock, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(187, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Cadastro", pnCampos);
@@ -354,10 +392,21 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
         String valor = String.valueOf(tbCidades.getValueAt(tbCidades.getSelectedRow(), 0));
 
         Cidade wCidade = new CidadeDAO().consultarID(Integer.parseInt(valor));
+        
+        wCidade.setUsuarioLock(new CidadeDAO().fazLock("Cidade", wCidade.getIdCidade() + ""));
 
         codigo = Integer.parseInt(valor);
-
+        usuarioLock = wCidade.getUsuarioLock();
         edNome.setText(wCidade.getNome());
+        
+        if ((secaoConexao.usuarioLogado.getIdUsuario() != wCidade.getUsuarioLock()) && (wCidade.getUsuarioLock() != 0)) {
+            Usuario wUsu = new UsuarioDAO().consultarID(wCidade.getUsuarioLock());
+            lbMsgLock.setText("Registro em uso pelo usuário: " + wUsu.getIdUsuario() + " - " + wUsu.getUsername());
+            btSalvar.setEnabled(false);
+        } else {
+            lbMsgLock.setText("");
+            btSalvar.setEnabled(true);
+        }
        
         ComboItens item = new ComboItens();
         item.setCodigo(wCidade.getEstado().getIdEstado());
@@ -426,6 +475,14 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        liberaLock();
+    }//GEN-LAST:event_formInternalFrameClosing
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        liberaLock();
+    }//GEN-LAST:event_formInternalFrameClosed
+
     private boolean validaCampo(){
         boolean wRetorno = true;
 
@@ -447,6 +504,12 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
         }
         return true;
     }
+     
+    private void liberaLock() {
+        if ((codigo != 0) && (usuarioLock == secaoConexao.usuarioLogado.getIdUsuario() || usuarioLock == 0)) {
+            new CidadeDAO().liberaLock(codigo);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
@@ -464,6 +527,7 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lbMsgLock;
     private javax.swing.JPanel pnCampos;
     private javax.swing.JPanel pnLista;
     private javax.swing.JTable tbCidades;
