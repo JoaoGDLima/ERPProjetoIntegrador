@@ -9,6 +9,7 @@ import model.TelaPermissao;
 import model.Usuario;
 import model.dao.FuncionarioDAO;
 import model.dao.UsuarioDAO;
+import model.util.Criptografia;
 import model.util.limpaCampos;
 
 public class CadastroUsuarioF extends javax.swing.JInternalFrame implements TelaPermissao{
@@ -190,7 +191,7 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame implements Tela
                     .addComponent(edFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btSelecionar2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
@@ -359,7 +360,7 @@ public class CadastroUsuarioF extends javax.swing.JInternalFrame implements Tela
             wUsu.setUsername(edNomeUsuario.getText());
 
             if (edSenha.getText() != Usuario.senhaDefault) {
-                wUsu.setSenha(edSenha.getText());
+                wUsu.setSenha(Criptografia.criptografar(edSenha.getText()));
             }
 
             wUsu.setNivelAcesso(1);

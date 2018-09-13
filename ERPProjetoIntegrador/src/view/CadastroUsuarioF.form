@@ -135,7 +135,7 @@
                           <Component id="edNomeFuncionario" linkSize="7" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="btSelecionar2" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="149" max="32767" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btSalvar" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btCancelar" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>

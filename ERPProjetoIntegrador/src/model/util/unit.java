@@ -12,4 +12,10 @@ public class unit {
         pInternalFrame.setLocation((wDimension.width - pInternalFrame.getSize().width) / 2, 
                                    (wDimension.height - pInternalFrame.getSize().height) /2);
     }
+    
+    public static void setPositionRight(JInternalFrame pInternalFrame){
+        Dimension wDimension = pInternalFrame.getDesktopPane().getSize();
+        pInternalFrame.setLocation((wDimension.width- pInternalFrame.getSize().width), 
+                                   0);
+    }
 }

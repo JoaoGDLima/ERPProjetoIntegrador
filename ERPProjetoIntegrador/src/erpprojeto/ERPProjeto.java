@@ -26,7 +26,8 @@ public class ERPProjeto {
             } else {
                 JOptionPane.showMessageDialog(null, "Problemas ao acessar o sistema!");
             }
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             JOptionPane.showMessageDialog(null, "Problemas ao acessar o sistema: " + e.getMessage());
         }
     }
