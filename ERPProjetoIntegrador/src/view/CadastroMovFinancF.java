@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import model.Permissoes;
 import model.TelaPermissao;
 import model.util.ComboItens;
 import model.util.Formatacao;
@@ -12,6 +13,7 @@ import model.util.Validacao;
 
 public class CadastroMovFinancF extends javax.swing.JInternalFrame implements TelaPermissao{
     public static String botoes = "SENXP";
+    public static final int ID_TELA = 17;//17 é temporario, movimentação financeira nao tem código proprio, mas contas receber e pagar tem codigos separados
     public CadastroMovFinancF() {
         initComponents();
         this.setResizable(false);
@@ -669,6 +671,6 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
 
     @Override
     public void HabilitarBotoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
 }

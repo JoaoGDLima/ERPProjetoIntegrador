@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Cidade;
+import model.Permissoes;
 import model.TelaPermissao;
 import model.dao.CidadeDAO;
 import model.dao.ComboDAO;
@@ -18,6 +19,7 @@ import model.util.limpaCampos;
 
 public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaPermissao{
     public static String botoes = "SENXP";
+    public static final int ID_TELA = 10;
     int codigo = 0;
     
     public CadastroCidadeF() {
@@ -480,6 +482,6 @@ public class CadastroCidadeF extends javax.swing.JInternalFrame implements TelaP
 
     @Override
     public void HabilitarBotoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
 }

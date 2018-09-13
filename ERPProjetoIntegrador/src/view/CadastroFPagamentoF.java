@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.FormaPagamento;
+import model.Permissoes;
 import model.TelaPermissao;
 import model.dao.FormaPagamentoDAO;
 import model.util.Formatacao;
@@ -12,6 +13,7 @@ import model.util.limpaCampos;
 
 public class CadastroFPagamentoF extends javax.swing.JInternalFrame implements TelaPermissao{
     public static String botoes = "SENXP";
+    public static final int ID_TELA = 8;
     int codigo = 0;
     
     public CadastroFPagamentoF() {
@@ -488,6 +490,6 @@ public class CadastroFPagamentoF extends javax.swing.JInternalFrame implements T
 
     @Override
     public void HabilitarBotoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
 }

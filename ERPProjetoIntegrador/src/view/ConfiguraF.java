@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Configuracoes;
+import model.Permissoes;
 import model.TelaPermissao;
 import model.dao.ConfiguracoesDAO;
 
@@ -18,6 +19,7 @@ import model.dao.ConfiguracoesDAO;
  */
 public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermissao{
     public static String botoes = "EN";
+    public static final int ID_TELA = 16;
     /**
      * Creates new form ConfiguraF
      */
@@ -194,6 +196,6 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
 
     @Override
     public void HabilitarBotoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
 }

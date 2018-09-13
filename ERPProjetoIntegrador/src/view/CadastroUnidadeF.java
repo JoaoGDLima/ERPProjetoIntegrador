@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import model.Permissoes;
 import model.TelaPermissao;
 import model.Unidade;
 import model.dao.UnidadeDAO;
@@ -11,6 +12,7 @@ import model.util.limpaCampos;
 
 public class CadastroUnidadeF extends javax.swing.JInternalFrame implements TelaPermissao{
     public static String botoes = "SENXP";
+    public static final int ID_TELA = 7;
     int codigo = 0;
 
     public CadastroUnidadeF() {
@@ -436,6 +438,6 @@ public class CadastroUnidadeF extends javax.swing.JInternalFrame implements Tela
 
     @Override
     public void HabilitarBotoes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
 }
