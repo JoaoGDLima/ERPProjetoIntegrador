@@ -28,7 +28,7 @@ public class MainF extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -59,6 +59,8 @@ public class MainF extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem25 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -74,7 +76,7 @@ public class MainF extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ERP - Gerenciamento de empresas");
@@ -98,7 +100,7 @@ public class MainF extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
+            .addGap(0, 576, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Cadastros");
@@ -345,6 +347,20 @@ public class MainF extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
+        jMenu8.setText("Suporte");
+        jMenu8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jMenuItem25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem25.setText("Auditoria");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem25);
+
+        jMenuBar1.add(jMenu8);
+
         jMenu5.setText("Configurações");
         jMenu5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenu5.addActionListener(new java.awt.event.ActionListener() {
@@ -576,6 +592,13 @@ public class MainF extends javax.swing.JFrame {
         wMsg.setVisible(true);
     }//GEN-LAST:event_formWindowOpened
 
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        AuditoriaF ifrAuditoriaF = new AuditoriaF();
+        jDesktopPane1.add(ifrAuditoriaF);
+        unit.setPositionCenter(ifrAuditoriaF);
+        ifrAuditoriaF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -625,6 +648,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -643,6 +667,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

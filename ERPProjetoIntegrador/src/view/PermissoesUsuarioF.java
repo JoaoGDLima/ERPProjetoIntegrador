@@ -249,7 +249,7 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
                 }
 
                 if (retorno != null) {
-                    wSalvou = false;
+                    wSalvou = true;
                 }
             }
 
