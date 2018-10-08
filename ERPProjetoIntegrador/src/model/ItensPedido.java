@@ -20,13 +20,13 @@ public class ItensPedido  implements java.io.Serializable {
 
 
      private ItensPedidoId id;
-     private long quantidade;
+     private BigDecimal quantidade;
      private BigDecimal valorTotal;
 
     public ItensPedido() {
     }
 
-    public ItensPedido(ItensPedidoId id, long quantidade, BigDecimal valorTotal) {
+    public ItensPedido(ItensPedidoId id, BigDecimal quantidade, BigDecimal valorTotal) {
        this.id = id;
        this.quantidade = quantidade;
        this.valorTotal = valorTotal;
@@ -47,12 +47,12 @@ public class ItensPedido  implements java.io.Serializable {
     }
 
     
-    @Column(name="quantidade", nullable=false, precision=10, scale=0)
-    public long getQuantidade() {
+    @Column(name="quantidade", nullable=false, precision=10)
+    public BigDecimal getQuantidade() {
         return this.quantidade;
     }
     
-    public void setQuantidade(long quantidade) {
+    public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
 

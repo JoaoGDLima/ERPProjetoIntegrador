@@ -56,8 +56,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         ValidaTipoPessoa();
 
         if (Modo != 'U') {
-            jRBFisico.setSelected(true);
-            jRBJuridico.setEnabled(false);
+            jRBJuridico.setSelected(true);
+            jRBFisico.setEnabled(false);
             new PessoaJuridicaDAO().popularTabela(tbPessoa, "", Modo);
         } else {
             new FuncionarioDAO().popularTabela(tbPessoa, "");

@@ -43,7 +43,6 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame implements Tel
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         edUnidade = new javax.swing.JComboBox<String>();
-        jLabel7 = new javax.swing.JLabel();
         edLucro = new model.util.JNumberFormatField();
         edDescricao = new javax.swing.JTextField();
         pnLista = new javax.swing.JPanel();
@@ -111,7 +110,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame implements Tel
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(33, 33, 33));
-        jLabel6.setText("Percentual de lucro:");
+        jLabel6.setText("Valor do produto:");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(33, 33, 33));
@@ -135,11 +134,8 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame implements Tel
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(33, 33, 33));
-        jLabel7.setText("%");
-
         edLucro.setBackground(new java.awt.Color(255, 255, 204));
+        edLucro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         edDescricao.setBackground(new java.awt.Color(255, 255, 204));
         edDescricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -176,10 +172,7 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame implements Tel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(edNome, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnCamposLayout.createSequentialGroup()
-                                .addComponent(edLucro, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)))
+                            .addComponent(edLucro, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnCamposLayout.setVerticalGroup(
@@ -196,14 +189,12 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame implements Tel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addGap(3, 3, 3)
-                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edLucro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(edLucro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -527,7 +518,6 @@ public class CadastroProdutosF extends javax.swing.JInternalFrame implements Tel
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbNome2;

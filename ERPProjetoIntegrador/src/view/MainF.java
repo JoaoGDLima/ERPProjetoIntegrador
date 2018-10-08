@@ -478,14 +478,14 @@ public class MainF extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        CadastroPedidoF ifrPedido = new CadastroPedidoF(11);
+        CadastroPedidoF ifrPedido = new CadastroPedidoF(11, "V");
         jDesktopPane1.add(ifrPedido);
         unit.setPositionCenter(ifrPedido);
         ifrPedido.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        CadastroPedidoF ifrPedido = new CadastroPedidoF(12);
+        CadastroPedidoF ifrPedido = new CadastroPedidoF(12, "C");
         jDesktopPane1.add(ifrPedido);
         unit.setPositionCenter(ifrPedido);
         ifrPedido.setVisible(true);

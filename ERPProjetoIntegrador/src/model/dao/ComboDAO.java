@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import model.Cargos;
 import model.Cidade;
 import model.Estado;
+import model.FormaPagamento;
 import model.Unidade;
 import model.util.ComboItens;
 import model.util.Log;
@@ -118,16 +119,39 @@ public class ComboDAO extends MasterDAO {
             System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }
-    
-        public void popularComboSituacao(JComboBox combo) {
+
+    public void popularComboSituacao(JComboBox combo) {
         ArrayList<ComboItens> AItens = new ArrayList();
         AItens.add(new ComboItens(0, "Todos"));
         AItens.add(new ComboItens(1, "Ativo"));
         AItens.add(new ComboItens(2, "Inativo"));
-        
-        for (int i = 0; i < AItens.size(); i++) 
-        {
+
+        for (int i = 0; i < AItens.size(); i++) {
             combo.addItem(AItens.get(i));
+        }
+    }
+
+    public void popularComboFormaPgto(JComboBox combo) {
+        List resultado = null;
+        ComboItens item = new ComboItens();
+        item.setCodigo(0);
+        item.setDescricao("Selecione");
+        combo.addItem(item);
+
+        try {
+            resultado = super.consultarTodos("FormaPagamento", "inativo <> 'T'", "ORDER BY nome");
+
+            for (Object object : resultado) {
+                FormaPagamento wFormaPagamento = (FormaPagamento) object;
+                item = new ComboItens();
+                item.setCodigo(wFormaPagamento.getIdFormaPagamento());
+                item.setDescricao(wFormaPagamento.getNome());
+
+                combo.addItem(item);
+            }
+        } catch (Exception e) {
+            Log.gravaLogException(this.getClass(), e);
+            System.out.println("Erro ao popular Combo = " + e.toString());
         }
     }
 }

@@ -48,9 +48,9 @@ public class PermissoesUsuarioF extends javax.swing.JInternalFrame {
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("10")) {
                         wTela = new CadastroCidadeF();
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("11")) {
-                        wTela = new CadastroPedidoF(11);
+                        wTela = new CadastroPedidoF(11, "V");
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("12")) {
-                        wTela = new CadastroPedidoF(12);
+                        wTela = new CadastroPedidoF(12, "C");
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("13")) {
                         wTela = new CadastroMovFinancF(13);
                     } else if (String.valueOf(tbTelas.getValueAt(tbTelas.getSelectedRow(), 0)).equals("14")) {
