@@ -28,7 +28,7 @@ public class MainF extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -76,7 +76,7 @@ public class MainF extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ERP - Gerenciamento de empresas");
@@ -128,7 +128,7 @@ public class MainF extends javax.swing.JFrame {
 
         jMenuItem2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Funcionario_25.png"))); // NOI18N
-        jMenuItem2.setText("Funcionarios");
+        jMenuItem2.setText("Funcionários");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -275,6 +275,11 @@ public class MainF extends javax.swing.JFrame {
         jMenuItem11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Estoque_25.png"))); // NOI18N
         jMenuItem11.setText("Estoque");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem11);
 
         jMenuBar1.add(jMenu3);
@@ -408,6 +413,7 @@ public class MainF extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         CadastroPessoaF ifrPessoa = new CadastroPessoaF(1, 'C');
+        ifrPessoa.setTitle("Cadastro de cliente");
         jDesktopPane1.add(ifrPessoa);
         unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
@@ -430,6 +436,7 @@ public class MainF extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         CadastroPessoaF ifrPessoa = new CadastroPessoaF(3, 'U');
+        ifrPessoa.setTitle("Cadastro de funcionários");
         jDesktopPane1.add(ifrPessoa);
         unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
@@ -437,6 +444,7 @@ public class MainF extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         CadastroPessoaF ifrPessoa = new CadastroPessoaF(2, 'F');
+        ifrPessoa.setTitle("Cadastro de fornecedores");
         jDesktopPane1.add(ifrPessoa);
         unit.setPositionCenter(ifrPessoa);
         ifrPessoa.setVisible(true);
@@ -598,6 +606,13 @@ public class MainF extends javax.swing.JFrame {
         unit.setPositionCenter(ifrAuditoriaF);
         ifrAuditoriaF.setVisible(true);
     }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        EstoqueF ifrEstoqueF = new EstoqueF();
+        jDesktopPane1.add(ifrEstoqueF);
+        unit.setPositionCenter(ifrEstoqueF);
+        ifrEstoqueF.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments

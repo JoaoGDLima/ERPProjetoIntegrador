@@ -1,5 +1,6 @@
 package view.relatorios;
 
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +9,15 @@ import model.dao.ComboDAO;
 import model.dao.ConexaoBD;
 import model.dao.EstadoDAO;
 import model.util.ComboItens;
+import model.util.Log;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class ListarCargosF extends javax.swing.JInternalFrame {
@@ -139,7 +144,7 @@ public class ListarCargosF extends javax.swing.JInternalFrame {
             mapa.put("DescSituacao", DescSituacao);
             
             JasperPrint impressao = JasperFillManager.fillReport(relatorio, mapa, ConexaoBD.getInstance().getConnection());
-
+               
             JasperViewer.viewReport(impressao, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
@@ -149,7 +154,6 @@ public class ListarCargosF extends javax.swing.JInternalFrame {
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;

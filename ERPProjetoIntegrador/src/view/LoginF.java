@@ -21,7 +21,7 @@ public class LoginF extends javax.swing.JFrame {
 
     public LoginF() {
         initComponents();
-        this.setLocationRelativeTo(null);    
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -129,28 +129,7 @@ public class LoginF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        UsuarioDAO wUsuarioDAO = new UsuarioDAO();
-
-        Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
-
-        if (wUsuario != null) {
-            secaoConexao.usuarioLogado = wUsuario;
-
-            ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
-            Configuracoes wConfig = wConfigDAO.consultarID("Auditoria");
-
-            if (wConfig == null) {
-                secaoConexao.Auditoria = false;
-            } else {
-                secaoConexao.Auditoria = wConfig.getValor().equals("T");
-            }
-
-            new MainF().setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Email ou senha informados estão incorreto!");
-        }
-
+        login();
     }//GEN-LAST:event_btEntrarActionPerformed
 
     private void edEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edEmailActionPerformed
@@ -161,16 +140,7 @@ public class LoginF extends javax.swing.JFrame {
     //faz o mesmo que clicar em entrar sem necessidade de usar o mouse
     private void edSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edSenhaKeyPressed
         if (evt.getKeyCode() == evt.VK_ENTER) {
-            UsuarioDAO wUsuarioDAO = new UsuarioDAO();
-
-            Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
-
-            if (wUsuario != null) {
-                new MainF().setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Email ou senha informados estão incorreto!");
-            }
+            login();
     }//GEN-LAST:event_edSenhaKeyPressed
     }
 
@@ -207,6 +177,29 @@ public class LoginF extends javax.swing.JFrame {
         });
     }
 
+    private void login() {
+        UsuarioDAO wUsuarioDAO = new UsuarioDAO();
+
+        Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
+
+        if (wUsuario != null) {
+            secaoConexao.usuarioLogado = wUsuario;
+
+            ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
+            Configuracoes wConfig = wConfigDAO.consultarID("Auditoria");
+
+            if (wConfig == null) {
+                secaoConexao.Auditoria = false;
+            } else {
+                secaoConexao.Auditoria = wConfig.getValor().equals("T");
+            }
+
+            new MainF().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Email ou senha informados estão incorreto!");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEntrar;
     private javax.swing.JTextField edEmail;

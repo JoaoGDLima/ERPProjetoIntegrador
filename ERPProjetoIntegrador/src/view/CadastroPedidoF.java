@@ -1,6 +1,7 @@
 package view;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import model.FormaPagamento;
@@ -34,9 +37,10 @@ import sun.nio.cs.ext.Big5;
 
 public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaPermissao {
 
-    int codigo = 0;
+    int codigoPedido = 0;
     int ID_TELA;
     String tipo;
+    int formaPgto;
     ArrayList<ItensPedido> gItensPedido;
 
     public CadastroPedidoF(int pIDTela, String pTipo) {
@@ -59,8 +63,20 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
         Formatacao.formatarData(edDataPed);
         edDataPed.setText(Formatacao.getDataAtual());
-
+        formaPgto = 0;
         gItensPedido = new ArrayList();
+
+        tbItensPedido.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                String valor = String.valueOf(tbItensPedido.getValueAt(tbItensPedido.getSelectedRow(), 0));
+
+                Integer wCodProduto = Integer.parseInt(valor);
+                SelecionaItemPedido(wCodProduto);
+            }
+        });
+
+        popularTabelaItensPedido();
     }
 
     @SuppressWarnings("unchecked")
@@ -85,10 +101,12 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         jLabel9 = new javax.swing.JLabel();
         btRemoverItem = new javax.swing.JButton();
         edQuantidade = new model.util.JNumberFormatField();
+        edValorUnit = new model.util.JNumberFormatField();
         edValorTotal = new model.util.JNumberFormatField();
+        jLabel17 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        edFormaPgto = new javax.swing.JComboBox<String>();
+        edFormaPgto = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         edDesconto = new model.util.JNumberFormatField();
@@ -235,7 +253,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(33, 33, 33));
-        jLabel9.setText("Valor:");
+        jLabel9.setText("Valor unitário:");
 
         btRemoverItem.setBackground(new java.awt.Color(243, 243, 243));
         btRemoverItem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -252,9 +270,28 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
         edQuantidade.setBackground(new java.awt.Color(255, 255, 204));
         edQuantidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edQuantidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                edQuantidadeFocusLost(evt);
+            }
+        });
+        edQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                edQuantidadeKeyTyped(evt);
+            }
+        });
 
+        edValorUnit.setEditable(false);
+        edValorUnit.setBackground(new java.awt.Color(255, 255, 204));
+        edValorUnit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        edValorTotal.setEditable(false);
         edValorTotal.setBackground(new java.awt.Color(255, 255, 204));
         edValorTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(33, 33, 33));
+        jLabel17.setText("Valor total:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -270,25 +307,25 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btSelecionar1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(14, 14, 14))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(edQuantidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(10, 10, 10)))
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(edValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btRemoverItem, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel7))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jLabel8)
+                                .addGap(14, 14, 14))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(edQuantidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(10, 10, 10)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(edValorUnit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(edValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btRemoverItem, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7))
                 .addContainerGap())
         );
 
@@ -296,23 +333,29 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btSelecionar1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btRemoverItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btSelecionar1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btRemoverItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edValorUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -325,7 +368,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
         edFormaPgto.setBackground(new java.awt.Color(255, 255, 204));
         edFormaPgto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edFormaPgto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edFormaPgto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edFormaPgto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edFormaPgtoItemStateChanged(evt);
@@ -871,12 +914,9 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
     private void btAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddItemActionPerformed
         if (validaCampoItens()) {
-            ItensPedido wItemPedido = new ItensPedido();
-            wItemPedido.setId(new ItensPedidoId(0, Integer.parseInt(edCodCliente.getText())));
-            wItemPedido.setQuantidade(edQuantidade.getValue());
-            wItemPedido.setValorTotal(edValorTotal.getValue());
-            
-            gItensPedido.add(wItemPedido);
+            adicionarItemPedido(Integer.parseInt(edCodCliente.getText()), edQuantidade.getValue(), edQuantidade.getValue().multiply(edValorUnit.getValue()));
+            popularTabelaItensPedido();
+            limparCamposItemPedido();
         }
     }//GEN-LAST:event_btAddItemActionPerformed
 
@@ -922,16 +962,24 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         wSelecionar.setVisible(true);
 
         if (wSelecionar.getTextSearch() != null) {
-            Produto wProduto = new ProdutoDAO().consultarID(Integer.parseInt(wSelecionar.getTextSearch()));
-            edCodProduto.setText(wProduto.getIdProduto() + "");
-            edNomeProduto.setText(wProduto.getNome() + "");
-            edQuantidade.setValue(BigDecimal.valueOf(1.00));
-            edValorTotal.setValue(BigDecimal.valueOf(calculaValorTotalProduto(1.00, wProduto.getPercentualLucro().doubleValue())));
+            SelecionaItemPedido(Integer.parseInt(wSelecionar.getTextSearch()));
         }
     }//GEN-LAST:event_btSelecionar1ActionPerformed
 
     private void btRemoverItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverItemActionPerformed
-        // TODO add your handling code here:
+        if (validaCampoItens()) {
+            Object[] options = {"Confirmar", "Cancelar"};
+            int wOpc = JOptionPane.showOptionDialog(null, "Deseja remover o item do pedido?",
+                    "Informação",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            if (wOpc == 0) {
+                removerItemPedido(Integer.parseInt(edCodCliente.getText()));
+                popularTabelaItensPedido();
+                limparCamposItemPedido();
+            }
+        }
     }//GEN-LAST:event_btRemoverItemActionPerformed
 
     private void btSelecionar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionar2ActionPerformed
@@ -967,13 +1015,16 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
             edValAcre.setValue(BigDecimal.valueOf(0.00));;
 
             if (ci.getCodigo() > 0) {
-                FormaPagamento wFormaPgto = new FormaPagamentoDAO().consultarID(ci.getCodigo());
+                formaPgto = ci.getCodigo();
+                FormaPagamento wFormaPgto = new FormaPagamentoDAO().consultarID(formaPgto);
 
                 edDesconto.setValue(BigDecimal.valueOf(wFormaPgto.getPercDesconto()));
                 edAcrescimo.setValue(BigDecimal.valueOf(wFormaPgto.getPercAcrescimo()));
 
-                edValAcre.setValue(BigDecimal.valueOf(0.00));;
-                edValDesc.setValue(BigDecimal.valueOf(0.00));;
+                edValAcre.setValue(BigDecimal.valueOf(0.00));
+                edValDesc.setValue(BigDecimal.valueOf(0.00));
+
+                valorTotalPedido();
             }
         }
     }//GEN-LAST:event_edFormaPgtoItemStateChanged
@@ -982,9 +1033,57 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
     }//GEN-LAST:event_edFormaPgtoPropertyChange
 
+    private void edQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edQuantidadeKeyTyped
+
+    }//GEN-LAST:event_edQuantidadeKeyTyped
+
+    private void edQuantidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edQuantidadeFocusLost
+        if (validaCampoItens()) {
+            edValorTotal.setValue(edQuantidade.getValue().multiply(edValorUnit.getValue()));
+        }
+    }//GEN-LAST:event_edQuantidadeFocusLost
+
+    private void removerItemPedido(Integer pCodigo) {
+        if (validaCampoItens()) 
+        {
+            ItensPedido witemPedido = null;
+            
+            for (ItensPedido itensPedido : gItensPedido) {
+                if (itensPedido.getId().getIdProduto() == pCodigo) {
+                    witemPedido = itensPedido;
+                }
+            }
+
+            if (witemPedido != null) {
+                gItensPedido.remove(witemPedido);
+                valorTotalPedido();
+            } else {
+                JOptionPane.showMessageDialog(this, "Item não adicionado ao pedido!");
+            }
+        }
+    }
+
+    private void adicionarItemPedido(Integer pCodigo, BigDecimal pQuantidade, BigDecimal pValorTotal) {
+        ItensPedido wItemPedido = verificaItemNoPedido(pCodigo);
+
+        if (wItemPedido == null) {
+            wItemPedido = new ItensPedido();
+            wItemPedido.setId(new ItensPedidoId(codigoPedido, pCodigo));
+            wItemPedido.setQuantidade(pQuantidade);
+            wItemPedido.setValorTotal(edQuantidade.getValue().multiply(edValorUnit.getValue()));
+            gItensPedido.add(wItemPedido);
+        } else {
+            wItemPedido.setQuantidade(pQuantidade);
+            wItemPedido.setValorTotal(pValorTotal);
+        }
+
+        valorTotalPedido();
+        popularTabelaItensPedido();
+    }
+
     private void popularTabela() {
         // dados da tabela
-           /* Object[][] dadosTabela = null;
+        /* Object[][] dadosTabela = null;
 
          // cabecalho da tabela
          Object[] cabecalho = new Object[4];
@@ -1067,6 +1166,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     private model.util.JNumberFormatField edValAcre;
     private model.util.JNumberFormatField edValDesc;
     private model.util.JNumberFormatField edValorTotal;
+    private model.util.JNumberFormatField edValorUnit;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1075,6 +1175,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1186,8 +1287,73 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         }
     }
 
-    private double calculaValorTotalProduto(double pQtd, double pValor) {
-        return pQtd * pValor;
+    private BigDecimal calculaValorTotalProduto(BigDecimal pQtd, BigDecimal pValor) {
+        return pQtd.multiply(pValor);
+    }
+
+    private ItensPedido verificaItemNoPedido(Integer pCodigo) {
+        for (ItensPedido itensPedido : gItensPedido) {
+            if (itensPedido.getId().getIdProduto() == pCodigo) {
+                return itensPedido;
+            }
+        }
+
+        return null;
+    }
+
+    private void preencheCamposItemPedido(ItensPedido wItemPedido) {
+        edCodProduto.setText("");
+        edNomeProduto.setText("");
+        edQuantidade.setValue(BigDecimal.ZERO);
+        edValorUnit.setValue(BigDecimal.ZERO);
+        edValorTotal.setValue(BigDecimal.ZERO);
+
+        if (wItemPedido != null) {
+            Produto wProduto = new ProdutoDAO().consultarID(wItemPedido.getId().getIdProduto());
+
+            edCodProduto.setText(wProduto.getIdProduto() + "");
+            edNomeProduto.setText(wProduto.getNome() + "");
+            edQuantidade.setValue(wItemPedido.getQuantidade());
+            edValorUnit.setValue(wProduto.getPercentualLucro());
+            edValorTotal.setValue(wItemPedido.getValorTotal());
+        }
+    }
+
+    public void SelecionaItemPedido(Integer pCodigo) {
+        ItensPedido wItemPedido = verificaItemNoPedido(pCodigo);
+
+        if (wItemPedido == null) {
+            Produto wProduto = new ProdutoDAO().consultarID(pCodigo);
+            wItemPedido = new ItensPedido();
+            wItemPedido.setId(new ItensPedidoId(codigoPedido, wProduto.getIdProduto()));
+            wItemPedido.setQuantidade(BigDecimal.valueOf(1.0));
+            wItemPedido.setValorTotal(calculaValorTotalProduto(BigDecimal.ONE, wProduto.getPercentualLucro()));
+        }
+
+        preencheCamposItemPedido(wItemPedido);
+    }
+
+    private void valorTotalPedido() {
+        double wResultado = 0;
+        double wAcre = 0;
+        double wDesc = 0;
+
+        for (ItensPedido itensPedido : gItensPedido) {
+            wResultado = wResultado + itensPedido.getValorTotal().doubleValue();
+        }
+
+        if (formaPgto > 0) {
+            FormaPagamento wFormaPgto = new FormaPagamentoDAO().consultarID(formaPgto);
+
+            wAcre = (wResultado * wFormaPgto.getPercAcrescimo() / 100);
+            wDesc = (wResultado * wFormaPgto.getPercDesconto() / 100);
+            wResultado = wResultado + wAcre;
+            wResultado = wResultado - wDesc;
+        }
+
+        edValAcre.setValue(BigDecimal.valueOf(wAcre));
+        edValDesc.setValue(BigDecimal.valueOf(wDesc));
+        lbValorPed.setText(BigDecimal.valueOf(wResultado) + "");
     }
 
     @Override
@@ -1206,5 +1372,13 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     @Override
     public void HabilitarBotoes() {
         Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
+    }
+
+    private void limparCamposItemPedido() {
+        edCodProduto.setText("");
+        edNomeProduto.setText("");
+        edQuantidade.setValue(BigDecimal.ZERO);
+        edValorUnit.setValue(BigDecimal.ZERO);
+        edValorTotal.setValue(BigDecimal.ZERO);
     }
 }
