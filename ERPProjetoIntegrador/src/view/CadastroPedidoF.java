@@ -19,6 +19,7 @@ import model.FormaPagamento;
 import model.Funcionario;
 import model.ItensPedido;
 import model.ItensPedidoId;
+import model.Pedido;
 import model.Permissoes;
 import model.PessoaJuridica;
 import model.Produto;
@@ -26,6 +27,7 @@ import model.TelaPermissao;
 import model.dao.ComboDAO;
 import model.dao.FormaPagamentoDAO;
 import model.dao.FuncionarioDAO;
+import model.dao.PedidoDAO;
 import model.dao.PessoaJuridicaDAO;
 import model.dao.ProdutoDAO;
 import model.util.ComboItens;
@@ -39,11 +41,11 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
     int codigoPedido = 0;
     int ID_TELA;
-    String tipo;
+    char tipo;
     int formaPgto;
-    ArrayList<ItensPedido> gItensPedido;
+    List<ItensPedido> gItensPedido;
 
-    public CadastroPedidoF(int pIDTela, String pTipo) {
+    public CadastroPedidoF(int pIDTela, char pTipo) {
         initComponents();
         this.ID_TELA = pIDTela;
         this.setResizable(false);
@@ -52,7 +54,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
         lbValorPed.setText("0,00");
 
-        if (pTipo.equals("C")) {
+        if (pTipo == 'C') {
             edTipoPedido.setText("C - Compra");
         } else {
             edTipoPedido.setText("V - Venda");
@@ -926,34 +928,48 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        /*if (validaCampo()) {
-         Contrato wContrato = new Contrato();
-         wContrato.setCodigo(codigo);
-         wContrato.setDataIni(edDataIni.getText());
-         wContrato.setDataFim(edDataFim.getText());
-         wContrato.setOCliente(new clienteDAO().consultarId(Integer.parseInt(edCodigoCli.getText())));
-         wContrato.setViagens(GViagens);
-         wContrato.setAParcelas(GParcelas);
-         contratoDAO wContratoDAO = new contratoDAO();
+        if (validaCampo()) {
+            Pedido wPedido = new Pedido();
+            wPedido.setIdPedido(codigoPedido);
+            wPedido.setTipo(tipo);
+            wPedido.setSituacao('R');
+            
+            try {
+                wPedido.setDataPedido(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataPed.getText())));
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastroPessoaF.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            wPedido.setAcrescimo(edValAcre.getValue());
+            wPedido.setDesconto(edValDesc.getValue());
+            wPedido.setIdCliente(Integer.parseInt(edCodCliente.getText()));
+            
+            ComboItens ci = (ComboItens) edFormaPgto.getSelectedItem();
+            wPedido.setIdFormaPagamento(ci.getCodigo());
+            wPedido.setIdVendedor(Integer.parseInt(edCodFunc.getText()));
+            wPedido.setValorTotal(valorTotalPedido());
+            //wPedido.setItens(gItensPedido);
+            
+            PedidoDAO wPedidoDAO = new PedidoDAO();
 
          String retorno = null;
-         if (wContrato.getCodigo() == 0) {
-         retorno = wContratoDAO.salvar(wContrato);
+         if (wPedido.getIdPedido() == 0) {
+            retorno = wPedidoDAO.salvar(wPedido);
          } else {
-         retorno = wContratoDAO.atualizar(wContrato);
+            retorno = wPedidoDAO.atualizar(wPedido);
          }
 
          if (retorno == null) {
          JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
          limpaCampos.limparCampos(pnCampos);
-         codigo = 0;
-         new contratoDAO().popularTabela(tbContratos, "", Integer.parseInt(edCodigoCli.getText()));
+         codigoPedido = 0;
+         new PedidoDAO().popularTabela(tbContratos, "", Integer.parseInt(edCodCliente.getText()));
          jTabbedPane1.setSelectedIndex(1);
          } else {
          JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
          + "Mensagem técnica: \n" + retorno);
          }
-         }*/
+         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionar1ActionPerformed
@@ -1333,7 +1349,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         preencheCamposItemPedido(wItemPedido);
     }
 
-    private void valorTotalPedido() {
+    private BigDecimal valorTotalPedido() {
         double wResultado = 0;
         double wAcre = 0;
         double wDesc = 0;
@@ -1354,6 +1370,8 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         edValAcre.setValue(BigDecimal.valueOf(wAcre));
         edValDesc.setValue(BigDecimal.valueOf(wDesc));
         lbValorPed.setText(BigDecimal.valueOf(wResultado) + "");
+        
+        return BigDecimal.valueOf(wResultado);
     }
 
     @Override
@@ -1380,5 +1398,9 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         edQuantidade.setValue(BigDecimal.ZERO);
         edValorUnit.setValue(BigDecimal.ZERO);
         edValorTotal.setValue(BigDecimal.ZERO);
+    }
+
+    private boolean validaCampo() {
+        return true;
     }
 }
