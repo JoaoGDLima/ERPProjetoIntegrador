@@ -27,6 +27,7 @@ import model.TelaPermissao;
 import model.dao.ComboDAO;
 import model.dao.FormaPagamentoDAO;
 import model.dao.FuncionarioDAO;
+import model.dao.ItensPedidoDAO;
 import model.dao.PedidoDAO;
 import model.dao.PessoaJuridicaDAO;
 import model.dao.ProdutoDAO;
@@ -138,7 +139,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         jLabel11 = new javax.swing.JLabel();
         edBusca = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbContratos = new javax.swing.JTable();
+        tbPedidos = new javax.swing.JTable();
         btExcluir = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
@@ -717,9 +718,9 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
         edBusca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        tbContratos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tbContratos.setForeground(new java.awt.Color(33, 33, 33));
-        tbContratos.setModel(new javax.swing.table.DefaultTableModel(
+        tbPedidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tbPedidos.setForeground(new java.awt.Color(33, 33, 33));
+        tbPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -730,7 +731,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbContratos);
+        jScrollPane1.setViewportView(tbPedidos);
 
         btExcluir.setBackground(new java.awt.Color(243, 243, 243));
         btExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -916,7 +917,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
     private void btAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddItemActionPerformed
         if (validaCampoItens()) {
-            adicionarItemPedido(Integer.parseInt(edCodCliente.getText()), edQuantidade.getValue(), edQuantidade.getValue().multiply(edValorUnit.getValue()));
+            adicionarItemPedido(Integer.parseInt(edCodProduto.getText()), edQuantidade.getValue(), edQuantidade.getValue().multiply(edValorUnit.getValue()));
             popularTabelaItensPedido();
             limparCamposItemPedido();
         }
@@ -933,7 +934,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
             wPedido.setIdPedido(codigoPedido);
             wPedido.setTipo(tipo);
             wPedido.setSituacao('R');
-            
+
             try {
                 wPedido.setDataPedido(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataPed.getText())));
             } catch (ParseException ex) {
@@ -943,33 +944,39 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
             wPedido.setAcrescimo(edValAcre.getValue());
             wPedido.setDesconto(edValDesc.getValue());
             wPedido.setIdCliente(Integer.parseInt(edCodCliente.getText()));
-            
+
             ComboItens ci = (ComboItens) edFormaPgto.getSelectedItem();
             wPedido.setIdFormaPagamento(ci.getCodigo());
             wPedido.setIdVendedor(Integer.parseInt(edCodFunc.getText()));
             wPedido.setValorTotal(valorTotalPedido());
             //wPedido.setItens(gItensPedido);
-            
+
             PedidoDAO wPedidoDAO = new PedidoDAO();
 
-         String retorno = null;
-         if (wPedido.getIdPedido() == 0) {
-            retorno = wPedidoDAO.salvar(wPedido);
-         } else {
-            retorno = wPedidoDAO.atualizar(wPedido);
-         }
+            String retorno = null;
+            if (wPedido.getIdPedido() == 0) {
+                retorno = wPedidoDAO.salvar(wPedido);
 
-         if (retorno == null) {
-         JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-         limpaCampos.limparCampos(pnCampos);
-         codigoPedido = 0;
-         new PedidoDAO().popularTabela(tbContratos, "", Integer.parseInt(edCodCliente.getText()));
-         jTabbedPane1.setSelectedIndex(1);
-         } else {
-         JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
-         + "Mensagem técnica: \n" + retorno);
-         }
-         }
+                for (ItensPedido itensPedido : gItensPedido) {
+                    itensPedido.getId().setIdPedido(wPedido.getIdPedido());
+                    ItensPedidoDAO wItensPedidoDAO = new ItensPedidoDAO();
+                    wItensPedidoDAO.salvar(itensPedido);
+                }
+            } else {
+                retorno = wPedidoDAO.atualizar(wPedido);
+            }
+
+            if (retorno == null) {
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+                //limpaCampos.limparCampos(pnCampos);
+                codigoPedido = 0;
+                new PedidoDAO().popularTabela(tbPedidos, "", Integer.parseInt(edCodCliente.getText()));
+                jTabbedPane1.setSelectedIndex(1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Problemas ao salvar registro!\n\n"
+                        + "Mensagem técnica: \n" + retorno);
+            }
+        }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionar1ActionPerformed
@@ -1060,10 +1067,9 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     }//GEN-LAST:event_edQuantidadeFocusLost
 
     private void removerItemPedido(Integer pCodigo) {
-        if (validaCampoItens()) 
-        {
+        if (validaCampoItens()) {
             ItensPedido witemPedido = null;
-            
+
             for (ItensPedido itensPedido : gItensPedido) {
                 if (itensPedido.getId().getIdProduto() == pCodigo) {
                     witemPedido = itensPedido;
@@ -1210,8 +1216,8 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JPanel pnCampos;
     private javax.swing.JPanel pnDadosPrincipal;
     private javax.swing.JPanel pnLista;
-    private javax.swing.JTable tbContratos;
     private javax.swing.JTable tbItensPedido;
+    private javax.swing.JTable tbPedidos;
     // End of variables declaration//GEN-END:variables
 
     private boolean validaCampoItens() {
@@ -1370,7 +1376,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         edValAcre.setValue(BigDecimal.valueOf(wAcre));
         edValDesc.setValue(BigDecimal.valueOf(wDesc));
         lbValorPed.setText(BigDecimal.valueOf(wResultado) + "");
-        
+
         return BigDecimal.valueOf(wResultado);
     }
 

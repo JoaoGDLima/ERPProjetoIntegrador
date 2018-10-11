@@ -40,6 +40,7 @@ public class AuditoriaF extends javax.swing.JInternalFrame implements TelaPermis
         lbData1 = new javax.swing.JLabel();
         edDataFim = new javax.swing.JFormattedTextField();
         btArquivar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setTitle("Consulta auditoria");
 
@@ -95,6 +96,15 @@ public class AuditoriaF extends javax.swing.JInternalFrame implements TelaPermis
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cancelar_15.png"))); // NOI18N
+        jButton2.setText("Sair");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnListaLayout = new javax.swing.GroupLayout(pnLista);
         pnLista.setLayout(pnListaLayout);
         pnListaLayout.setHorizontalGroup(
@@ -115,7 +125,10 @@ public class AuditoriaF extends javax.swing.JInternalFrame implements TelaPermis
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btArquivar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPesquisar)))))
+                                .addComponent(btnPesquisar))))
+                    .addGroup(pnListaLayout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnListaLayout.setVerticalGroup(
@@ -124,7 +137,7 @@ public class AuditoriaF extends javax.swing.JInternalFrame implements TelaPermis
                 .addContainerGap()
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnListaLayout.createSequentialGroup()
-                        .addComponent(lbData, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                        .addComponent(lbData, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edDataIni, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnListaLayout.createSequentialGroup()
@@ -135,8 +148,10 @@ public class AuditoriaF extends javax.swing.JInternalFrame implements TelaPermis
                             .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btArquivar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,9 +190,30 @@ public class AuditoriaF extends javax.swing.JInternalFrame implements TelaPermis
 
     private void btArquivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btArquivarActionPerformed
         if (validaCampo()) {
-            new AuditoriaDAO().arquivarAuditoria(Formatacao.getDataAtual(), Formatacao.ajustaDataAMD(edDataIni.getText()), Formatacao.ajustaDataAMD(edDataFim.getText()));
+            Object[] options = {"Confirmar", "Cancelar"};
+            int wOpc = JOptionPane.showOptionDialog(null, "Deseja arquivar a auditoria no periodo informado?",
+                    "Informação",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            if (wOpc == 0) {
+                AuditoriaDAO wAuditoriaDAO = new AuditoriaDAO();
+
+                String wRetorno = wAuditoriaDAO.arquivarAuditoria(Formatacao.getDataAtual(), Formatacao.ajustaDataAMD(edDataIni.getText()), Formatacao.ajustaDataAMD(edDataFim.getText()));
+
+                if (wRetorno == null) {
+                    JOptionPane.showMessageDialog(null, "Auditoria arquivada com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Problemas ao arquivar auditoria!\n\n"
+                            + "Mensagem técnica: \n" + wRetorno);
+                }
+            }
         }
     }//GEN-LAST:event_btArquivarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private boolean validaCampo() {
         if (!Formatacao.removerFormatacao(edDataIni.getText()).equals("")) {
@@ -204,6 +240,7 @@ public class AuditoriaF extends javax.swing.JInternalFrame implements TelaPermis
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JFormattedTextField edDataFim;
     private javax.swing.JFormattedTextField edDataIni;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbData;
     private javax.swing.JLabel lbData1;

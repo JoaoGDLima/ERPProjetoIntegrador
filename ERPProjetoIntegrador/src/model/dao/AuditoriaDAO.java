@@ -105,7 +105,7 @@ public class AuditoriaDAO extends MasterDAO {
         }
     }
 
-    public void arquivarAuditoria(String pNome, String pDataIni, String pDataFim) 
+    public String arquivarAuditoria(String pNome, String pDataIni, String pDataFim) 
     {
         String resultado = null;
         Session sessao = null;
@@ -127,9 +127,11 @@ public class AuditoriaDAO extends MasterDAO {
             
             
             sessao.getTransaction().commit();
+            return null;
         } catch (Exception e) 
         {
             Log.gravaLogException(this.getClass(), e);
+            return e.getMessage();
         }
     }
 
