@@ -6,8 +6,22 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import model.Estoque;
 import model.util.Log;
+import org.hibernate.HibernateException;
 
 public class EstoqueDAO extends MasterDAO {
+    
+    public Estoque consultarID(int pID) {
+        Estoque wEstoque = null;
+        try {
+            wEstoque = (Estoque) super.consultar("Estoque", "id_produto_est = " + pID);
+        } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
+            he.printStackTrace();
+        }
+
+        return wEstoque;
+    }
+    
     public void popularTabela(JTable pTable, String pArgumento) {
         List resultado = null;
 

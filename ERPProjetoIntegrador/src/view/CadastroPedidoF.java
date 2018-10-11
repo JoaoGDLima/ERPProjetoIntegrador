@@ -15,6 +15,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import model.Estoque;
 import model.FormaPagamento;
 import model.Funcionario;
 import model.ItensPedido;
@@ -25,6 +26,7 @@ import model.PessoaJuridica;
 import model.Produto;
 import model.TelaPermissao;
 import model.dao.ComboDAO;
+import model.dao.EstoqueDAO;
 import model.dao.FormaPagamentoDAO;
 import model.dao.FuncionarioDAO;
 import model.dao.ItensPedidoDAO;
@@ -878,13 +880,13 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         selecionaFuncionario(wPedido.getIdVendedor());
         edDataPed.setText(Formatacao.ajustaDataDMA(wPedido.getDataPedido().toString()));
         selecionaFormaPagamento(wPedido.getIdFormaPagamento());
-        
+
         gItensPedido = new ItensPedidoDAO().caarregaItensPedido(wPedido.getIdPedido());
         popularTabelaItensPedido();
         valorTotalPedido();
-        
+
         jTabbedPane1.setSelectedIndex(0);
-        edCodCliente.requestFocus();  
+        edCodCliente.requestFocus();
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
@@ -915,9 +917,15 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
     private void btAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddItemActionPerformed
         if (validaCampoItens()) {
-            adicionarItemPedido(Integer.parseInt(edCodProduto.getText()), edQuantidade.getValue(), edQuantidade.getValue().multiply(edValorUnit.getValue()));
-            popularTabelaItensPedido();
-            limparCamposItemPedido();
+            if (verificaEstoque(edQuantidade.getValue().doubleValue(), Integer.parseInt(edCodProduto.getText()))) {
+                adicionarItemPedido(Integer.parseInt(edCodProduto.getText()), edQuantidade.getValue(), edQuantidade.getValue().multiply(edValorUnit.getValue()));
+                popularTabelaItensPedido();
+                limparCamposItemPedido();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Estoque insuficiente!");
+            }
+
         }
     }//GEN-LAST:event_btAddItemActionPerformed
 
@@ -1401,14 +1409,28 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         edCodFunc.setText(wFunc.getIdPessoa() + "");
         edNomeFunc.setText(wFunc.getNome() + "");
     }
-    
-    private void selecionaFormaPagamento(Integer pCodigo){
+
+    private void selecionaFormaPagamento(Integer pCodigo) {
         FormaPagamento wFormaPgto = new FormaPagamentoDAO().consultarID(pCodigo);
 
         edDesconto.setValue(BigDecimal.valueOf(wFormaPgto.getPercDesconto()));
         edAcrescimo.setValue(BigDecimal.valueOf(wFormaPgto.getPercAcrescimo()));
 
         edValAcre.setValue(BigDecimal.valueOf(0.00));
-        edValDesc.setValue(BigDecimal.valueOf(0.00)); 
+        edValDesc.setValue(BigDecimal.valueOf(0.00));
+    }
+
+    private boolean verificaEstoque(double pQtd, Integer pItem) {
+        EstoqueDAO wEstoqueDAO = new EstoqueDAO();
+        Estoque wEstqoue = wEstoqueDAO.consultarID(pItem);
+        
+        if (wEstqoue==null) {
+            return false;
+        }
+        else if (pQtd > wEstqoue.getQuantidade()) {
+            return false;
+        }
+
+        return true;
     }
 }
