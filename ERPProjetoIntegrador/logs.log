@@ -610,3 +610,15 @@ line 1:28: unexpected token: datahora
 2018-10-08 10:24:09 ERROR ComboDAO:11 - java.lang.NullPointerException
 2018-10-08 10:25:11 ERROR ComboDAO:11 - java.lang.ClassCastException: model.FormaPagamento cannot be cast to model.Unidade
 2018-10-08 11:50:21 ERROR MasterDAO:11 - java.lang.NullPointerException
+2018-10-10 23:41:24 ERROR SqlExceptionHelper:146 - ERROR: numeric field overflow
+  Detalhe: A field with precision 3, scale 2 must round to an absolute value less than 10^1.
+2018-10-10 23:41:24 ERROR ProdutoDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-10-10 23:44:34 ERROR SqlExceptionHelper:146 - ERROR: insert or update on table "pedido" violates foreign key constraint "fk_pedido_forma_pagamento"
+  Detalhe: Key (id_forma_pagamento)=(0) is not present in table "forma_pagamento".
+2018-10-10 23:44:34 ERROR PedidoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-10-10 23:48:12 ERROR SqlExceptionHelper:146 - ERROR: insert or update on table "itens_pedido" violates foreign key constraint "fk_produto_has_pedido_pedido"
+  Detalhe: Key (id_pedido)=(0) is not present in table "pedido".
+2018-10-10 23:48:12 ERROR ItensPedidoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-10-10 23:48:14 ERROR SqlExceptionHelper:146 - ERROR: insert or update on table "itens_pedido" violates foreign key constraint "fk_produto_has_pedido_pedido"
+  Detalhe: Key (id_pedido)=(0) is not present in table "pedido".
+2018-10-10 23:48:14 ERROR ItensPedidoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement

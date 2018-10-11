@@ -28,7 +28,7 @@ public class MainF extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -76,7 +76,7 @@ public class MainF extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ERP - Gerenciamento de empresas");
@@ -228,7 +228,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Contratos_25.png"))); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Venda_25.png"))); // NOI18N
         jMenuItem7.setText("Vendas");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,7 +238,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu2.add(jMenuItem7);
 
         jMenuItem8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Contratos_25.png"))); // NOI18N
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Compra_25.png"))); // NOI18N
         jMenuItem8.setText("Compras");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,7 +253,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Contas a receber_25.png"))); // NOI18N
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Contas_receb_25.png"))); // NOI18N
         jMenuItem9.setText("Contas a receber");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,7 +263,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu3.add(jMenuItem9);
 
         jMenuItem10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Contas a receber_25.png"))); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Contas_pagar_25.png"))); // NOI18N
         jMenuItem10.setText("Contas a pagar");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,7 +273,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu3.add(jMenuItem10);
 
         jMenuItem11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Estoque_25.png"))); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Estoq_25.png"))); // NOI18N
         jMenuItem11.setText("Estoque");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,6 +288,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Estado_25.png"))); // NOI18N
         jMenuItem18.setText("Estados");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,6 +298,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu6.add(jMenuItem18);
 
         jMenuItem19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cidade_25.png"))); // NOI18N
         jMenuItem19.setText("Cidades");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,6 +308,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu6.add(jMenuItem19);
 
         jMenuItem20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Unidade.png"))); // NOI18N
         jMenuItem20.setText("Unidades");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,6 +318,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu6.add(jMenuItem20);
 
         jMenuItem21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/FPagamento_25.png"))); // NOI18N
         jMenuItem21.setText("Formas de pagamentos");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,6 +328,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu6.add(jMenuItem21);
 
         jMenuItem22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cargos.png"))); // NOI18N
         jMenuItem22.setText("Cargos");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,6 +338,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu6.add(jMenuItem22);
 
         jMenuItem23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Usuario_perm.png"))); // NOI18N
         jMenuItem23.setText("Usuários");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,6 +348,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu6.add(jMenuItem23);
 
         jMenuItem24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Produto.png"))); // NOI18N
         jMenuItem24.setText("Produtos");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,6 +363,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Audit_25.png"))); // NOI18N
         jMenuItem25.setText("Auditoria");
         jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
