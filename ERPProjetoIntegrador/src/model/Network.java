@@ -30,14 +30,14 @@ public class Network {
    
     Socket cliente;
     MulticastSocket cliente_m;
-    int porta;
-    String Address;
+    int porta = 5000;
+    String Address = "127.0.0.1";
     DataInputStream in;
     DataOutputStream out;
     FileInputStream fis = null;
     BufferedInputStream bis = null;
     
-    Network(String modo) throws IOException
+    public Network(String modo) throws IOException
     {
         if(modo.equals("File"))
         {
@@ -53,6 +53,26 @@ public class Network {
                 cliente_m.joinGroup(ia);
         }
         
+    }
+    
+    public String Close() 
+    {
+        try
+        {
+            if (cliente!=null)
+            {
+                cliente.close();
+                cliente_m.close();
+                in.close();
+                out.close();
+                return "Conexão encerrada";
+            }            
+        }
+        catch(IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return "Falha ao encerrar conexão";
     }
 
      public String getFILE_TO_RECEIVE() {

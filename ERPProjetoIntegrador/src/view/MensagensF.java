@@ -1,9 +1,18 @@
 
 package view;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Network;
+
 
 public class MensagensF extends javax.swing.JInternalFrame {
 
+    
+    Network uni;
+    Network multi;
+    
     public MensagensF() {
         initComponents();
     }
@@ -27,8 +36,18 @@ public class MensagensF extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTextArea1);
 
         jButton1.setText("Conectar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Desconectar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,6 +74,21 @@ public class MensagensF extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            this.uni = new Network("File");
+            this.multi = new Network("Multicast");
+            jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + this.uni.getAddress());
+        } catch (IOException ex) {
+            Logger.getLogger(MensagensF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.uni.Close();
+        this.multi.Close();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
