@@ -5,12 +5,26 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import model.Pedido;
+import model.util.Formatacao;
 import model.util.Log;
+import org.hibernate.HibernateException;
 
 
 public class PedidoDAO extends MasterDAO{
+    
+    public Pedido consultarID(int pID) {
+        Pedido wPedido = null;
+        try {
+            wPedido = (Pedido) super.consultar("Pedido", "id_pedido = " + pID);
+        } catch (HibernateException he) {
+            Log.gravaLogException(this.getClass(), he);
+            he.printStackTrace();
+        }
 
-    public void popularTabela(JTable pTable, String pArgumento, int pCliente) {
+        return wPedido;
+    }
+
+    public void popularTabela(JTable pTable, String pArgumento, int pCliente, char pTipo) {
         List resultado = null;
 
         Object[][] dadosTabela = null;
@@ -25,7 +39,7 @@ public class PedidoDAO extends MasterDAO{
         cabecalho[6] = "Valor total"; 
         
         try {
-            resultado = super.consultarTodos("Pedido", "id_cliente = " + pCliente, "ORDER BY id_pedido");
+            resultado = super.consultarTodos("Pedido", "id_cliente = " + pCliente + " and tipo = '" + pTipo + "'", "ORDER BY id_pedido");
 
             dadosTabela = new Object[resultado.size()][7];
 
@@ -34,17 +48,28 @@ public class PedidoDAO extends MasterDAO{
             for (Object o : resultado) {
                 Pedido wPedido = (Pedido) o;
 
-                /*dadosTabela[lin][0] = wPedido.getIdCidade() + "";
-                dadosTabela[lin][1] = wPedido.getNome();
-                dadosTabela[lin][2] = wPedido.getEstado().getNome() + " - " + wPedido.getEstado().getUf();
-                */          
+                dadosTabela[lin][0] = wPedido.getIdPedido() + "";
+                
+                String wTipo = "";
+                if (wPedido.getTipo() == 'C') {
+                    wTipo = "Compra";
+                }
+                else{
+                    wTipo = "Venda";
+                }
                 
                 String wSituaçao = "Realizado";
                 if (wPedido.getSituacao() == 'C') {
                     wSituaçao = "Cancelado";
                 }
+                
+                dadosTabela[lin][1] = wTipo;
+                dadosTabela[lin][2] = wSituaçao;
+                dadosTabela[lin][3] = wPedido.getIdVendedor() + " " + new FuncionarioDAO().consultarID(wPedido.getIdVendedor()).getNome();
+                dadosTabela[lin][4] = wPedido.getIdFormaPagamento() + " " + new FormaPagamentoDAO().consultarID(wPedido.getIdFormaPagamento()).getNome();
+                dadosTabela[lin][5] = Formatacao.ajustaDataDMA(wPedido.getDataPedido().toString());
+                dadosTabela[lin][6] = wPedido.getValorTotal() + "";         
 
-                dadosTabela[lin][3] = wSituaçao;
                 lin++;
             }
         } catch (Exception e) {
