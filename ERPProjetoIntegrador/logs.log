@@ -622,3 +622,10 @@ line 1:28: unexpected token: datahora
 2018-10-10 23:48:14 ERROR SqlExceptionHelper:146 - ERROR: insert or update on table "itens_pedido" violates foreign key constraint "fk_produto_has_pedido_pedido"
   Detalhe: Key (id_pedido)=(0) is not present in table "pedido".
 2018-10-10 23:48:14 ERROR ItensPedidoDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-10-11 21:00:29 ERROR SqlExceptionHelper:146 - ERROR: duplicate key value violates unique constraint "uk_ie"
+  Detalhe: Key (ie)=(8484848484) already exists.
+2018-10-11 21:00:29 ERROR PessoaJuridicaDAO:11 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2018-10-11 21:02:04 ERROR PessoaJuridicaDAO:11 - org.hibernate.MappingException: Unknown entity: java.lang.Integer
+2018-10-11 21:10:19 ERROR SqlExceptionHelper:146 - ERROR: syntax error at or near ")"
+  Onde: PL/pgSQL function arquivar_auditoria(character varying,character varying,character varying) line 19 at EXECUTE
+2018-10-11 21:10:19 ERROR AuditoriaDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work

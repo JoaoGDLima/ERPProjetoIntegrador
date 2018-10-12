@@ -1,6 +1,9 @@
 package view;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Estado;
@@ -45,6 +48,8 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
         btCancelar = new javax.swing.JButton();
         edUF = new javax.swing.JFormattedTextField();
         lbMsgLock = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         pnLista = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         edBusca = new javax.swing.JTextField();
@@ -137,6 +142,20 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
         lbMsgLock.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbMsgLock.setForeground(new java.awt.Color(255, 0, 51));
 
+        jButton2.setText("Enviar anexo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Receber anexo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnCamposLayout = new javax.swing.GroupLayout(pnCampos);
         pnCampos.setLayout(pnCamposLayout);
         pnCamposLayout.setHorizontalGroup(
@@ -155,8 +174,12 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
                             .addGroup(pnCamposLayout.createSequentialGroup()
                                 .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 138, Short.MAX_VALUE)))
+                                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 60, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -176,10 +199,12 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
                 .addGap(125, 125, 125)
                 .addComponent(lbMsgLock, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalvar)
-                    .addComponent(btCancelar))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Cadastro", pnCampos);
@@ -451,6 +476,30 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            
+            secaoConexao.uni.setFILE_TO_SEND("c:/estado_" + codigo + ".pdf");
+            secaoConexao.uni.SendMessage("File");
+            secaoConexao.uni.SendMessage(secaoConexao.uni.getFILE_TO_SEND());            
+            secaoConexao.uni.EnviaArquivo();
+        } catch (IOException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            
+            secaoConexao.uni.setFILE_TO_RECEIVE("c:/estado_" + codigo + ".pdf");
+            secaoConexao.uni.SendMessage("File_up");
+            secaoConexao.uni.SendMessage(secaoConexao.uni.getFILE_TO_RECEIVE());            
+            secaoConexao.uni.CopiaArquivo(secaoConexao.uni.getFILE_TO_RECEIVE());
+        } catch (IOException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private boolean validaCampo() {
         boolean wRetorno = true;
 
@@ -484,6 +533,8 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JTextField edNome;
     private javax.swing.JFormattedTextField edUF;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;

@@ -5,16 +5,20 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Network;
+import model.secaoConexao;
 
 
 public class MensagensF extends javax.swing.JInternalFrame {
 
     
-    Network uni;
+    // Network uni;
     Network multi;
     
-    public MensagensF() {
+    public MensagensF() throws IOException {
         initComponents();
+        
+        secaoConexao.uni = new Network("File");
+        jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
     }
 
     @SuppressWarnings("unchecked")
@@ -77,17 +81,18 @@ public class MensagensF extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            this.uni = new Network("File");
-            this.multi = new Network("Multicast");
-            jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + this.uni.getAddress());
+            secaoConexao.uni = new Network("File");
+            //this.multi = new Network("Multicast");
+            jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
         } catch (IOException ex) {
             Logger.getLogger(MensagensF.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.uni.Close();
-        this.multi.Close();
+     
+        jTextArea1.setText(jTextArea1.getText() + secaoConexao.uni.Close() + secaoConexao.uni.getAddress());
+        //this.multi.Close();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

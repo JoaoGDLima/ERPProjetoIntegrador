@@ -917,7 +917,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
     private void btAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddItemActionPerformed
         if (validaCampoItens()) {
-            if (verificaEstoque(edQuantidade.getValue().doubleValue(), Integer.parseInt(edCodProduto.getText()))) {
+            if ((tipo=='C') || (verificaEstoque(edQuantidade.getValue().doubleValue(), Integer.parseInt(edCodProduto.getText())))) {
                 adicionarItemPedido(Integer.parseInt(edCodProduto.getText()), edQuantidade.getValue(), edQuantidade.getValue().multiply(edValorUnit.getValue()));
                 popularTabelaItensPedido();
                 limparCamposItemPedido();

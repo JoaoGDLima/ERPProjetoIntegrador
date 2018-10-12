@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import org.apache.log4j.Logger;//Importação principal do log4j - fase de testes ainda
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -15,6 +16,7 @@ import view.relatorios.ListarUnidadesF;
 import view.relatorios.ListarUsuariosF;
 
 public class MainF extends javax.swing.JFrame {
+
     static Logger log = Logger.getLogger(MainF.class.getName());
 
     public MainF() {
@@ -601,11 +603,17 @@ public class MainF extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
-        MensagensF wMsg = new MensagensF();
-        jDesktopPane1.add(wMsg);
-        unit.setPositionRight(wMsg);
-        wMsg.setVisible(true);
+
+        MensagensF wMsg;
+        try {
+            wMsg = new MensagensF();
+            jDesktopPane1.add(wMsg);
+            unit.setPositionRight(wMsg);
+            wMsg.setVisible(true);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(MainF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
@@ -653,9 +661,8 @@ public class MainF extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                 new MainF().setVisible(true);   
+                new MainF().setVisible(true);
 
-              
             }
         });
     }

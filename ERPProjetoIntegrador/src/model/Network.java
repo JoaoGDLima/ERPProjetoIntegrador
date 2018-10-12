@@ -30,7 +30,7 @@ public class Network {
    
     Socket cliente;
     MulticastSocket cliente_m;
-    int porta = 5000;
+    int porta = 5001;
     String Address = "127.0.0.1";
     DataInputStream in;
     DataOutputStream out;
@@ -55,6 +55,16 @@ public class Network {
         
     }
     
+    public void SendMessage(String message) throws IOException
+    {
+        out.writeUTF(message);
+    }
+    
+    public void SendInt(int a) throws IOException
+    {
+        out.writeInt(a);
+    }
+    
     public String Close() 
     {
         try
@@ -62,7 +72,7 @@ public class Network {
             if (cliente!=null)
             {
                 cliente.close();
-                cliente_m.close();
+                // cliente_m.close();
                 in.close();
                 out.close();
                 return "Conexão encerrada";
@@ -126,10 +136,10 @@ public class Network {
         fis.close();
         bis.close();
     }
-    public static synchronized String CopiaArquivo(Socket s, DataInputStream in2, DataOutputStream out2) throws FileNotFoundException, IOException
+    public synchronized String CopiaArquivo(String pFile) throws FileNotFoundException, IOException
         {
-            String FILE_TO_RECEIVE = "e:/Banda Dona Flor - Santeria(Sublime)2.mp3";
-            int FILE_SIZE = in2.readInt();
+            String FILE_TO_RECEIVE = pFile;
+            int FILE_SIZE = in.readInt();
             int bytesRead;
             int current = 0;
             FileOutputStream fos;
@@ -142,7 +152,7 @@ public class Network {
                         while(( current < FILE_SIZE))                             
                         {
                             bytesRead =
-                            in2.read(mybytearray, current, (mybytearray.length-current));
+                            in.read(mybytearray, current, (mybytearray.length-current));
                             if(bytesRead >= 0) current += bytesRead;  
                             System.out.println("Arquivo " + FILE_TO_RECEIVE
                          + " baixado (" + current + " bytes )");
