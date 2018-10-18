@@ -1095,8 +1095,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
 
         wPessoaJuridica.setTipo(Modo);
 
-        wPessoaJuridica.setLatitude("123");
-        wPessoaJuridica.setLongitude("111");
+        wPessoaJuridica.setLatitude(edlatitude.getText());
+        wPessoaJuridica.setLongitude(edLongitude.getText());
 
         try {
             wPessoaJuridica.setDataCadastro(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataNasc.getText())));
