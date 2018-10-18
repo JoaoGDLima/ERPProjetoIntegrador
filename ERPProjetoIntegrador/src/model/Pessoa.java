@@ -35,6 +35,8 @@ public class Pessoa implements java.io.Serializable {
     private char inativo;
     private Cargos cargo;
     private char fisico;
+    private String latitude;
+    private String longitude;
     
     public Pessoa() {
     }
@@ -184,6 +186,24 @@ public class Pessoa implements java.io.Serializable {
     @Column(name = "inativo", nullable = false, length = 1)
     public char getInativo() {
         return this.inativo;
+    }
+
+    @Column(name = "latitude", length = 11)
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    @Column(name = "longitude", length = 11)
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public void setInativo(char inativo) {

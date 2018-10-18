@@ -1,5 +1,9 @@
 package view;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,7 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import model.CoordenadaGeo;
 import model.Funcionario;
+import model.Localizacao;
 import model.Permissoes;
 import model.PessoaJuridica;
 import model.TelaPermissao;
@@ -21,7 +27,8 @@ import model.util.Formatacao;
 import model.util.Validacao;
 import model.util.limpaCampos;
 
-public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaPermissao{
+public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaPermissao {
+
     int ID_TELA = 5;
     char Modo;
     int codigo = 0;
@@ -32,8 +39,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         this.ID_TELA = pIDTela;
         this.Modo = pModo;
         this.HabilitarBotoes();
-        
-        
+
         edCargos.removeAllItems();
         new ComboDAO().popularComboCargos(edCargos);
 
@@ -87,7 +93,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         jLabel7 = new javax.swing.JLabel();
         edRG = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        edCidade = new javax.swing.JComboBox<>();
+        edCidade = new javax.swing.JComboBox<String>();
         jLabel10 = new javax.swing.JLabel();
         edEstado = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -105,11 +111,19 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         edIE = new javax.swing.JFormattedTextField();
         edNomeFantasia = new javax.swing.JTextField();
         lbNome3 = new javax.swing.JLabel();
-        edCargos = new javax.swing.JComboBox<>();
+        edCargos = new javax.swing.JComboBox<String>();
         jLabel11 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         edDataNasc = new javax.swing.JFormattedTextField();
         lbData = new javax.swing.JLabel();
+        lbNome4 = new javax.swing.JLabel();
+        edEmail = new javax.swing.JTextField();
+        latitude = new javax.swing.JLabel();
+        edlatitude = new javax.swing.JFormattedTextField();
+        jLabel17 = new javax.swing.JLabel();
+        edLongitude = new javax.swing.JFormattedTextField();
+        btLocalizacao = new javax.swing.JButton();
+        btVisualizarMapa = new javax.swing.JButton();
         pnLista = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         edBusca = new javax.swing.JTextField();
@@ -236,7 +250,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
 
         edCidade.setBackground(new java.awt.Color(255, 255, 204));
         edCidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edCidade.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edCidadeItemStateChanged(evt);
@@ -385,7 +399,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
 
         edCargos.setBackground(new java.awt.Color(255, 255, 204));
         edCargos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edCargos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edCargos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edCargos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edCargosItemStateChanged(evt);
@@ -414,6 +428,56 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         lbData.setForeground(new java.awt.Color(33, 33, 33));
         lbData.setText("Data de nascimento:");
 
+        lbNome4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbNome4.setForeground(new java.awt.Color(33, 33, 33));
+        lbNome4.setText("Email:");
+
+        edEmail.setBackground(new java.awt.Color(255, 255, 204));
+        edEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edEmailActionPerformed(evt);
+            }
+        });
+
+        latitude.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        latitude.setForeground(new java.awt.Color(33, 33, 33));
+        latitude.setText("Latitude:");
+
+        edlatitude.setEditable(false);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(33, 33, 33));
+        jLabel17.setText("Longitude:");
+
+        edLongitude.setEditable(false);
+
+        btLocalizacao.setBackground(new java.awt.Color(243, 243, 243));
+        btLocalizacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btLocalizacao.setForeground(new java.awt.Color(33, 33, 33));
+        btLocalizacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/coordenada_15.png"))); // NOI18N
+        btLocalizacao.setText("Obter localização");
+        btLocalizacao.setActionCommand("");
+        btLocalizacao.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        btLocalizacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLocalizacaoActionPerformed(evt);
+            }
+        });
+
+        btVisualizarMapa.setBackground(new java.awt.Color(243, 243, 243));
+        btVisualizarMapa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btVisualizarMapa.setForeground(new java.awt.Color(33, 33, 33));
+        btVisualizarMapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/map_15.png"))); // NOI18N
+        btVisualizarMapa.setText("Visualizar mapa");
+        btVisualizarMapa.setActionCommand("");
+        btVisualizarMapa.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        btVisualizarMapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVisualizarMapaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnCamposLayout = new javax.swing.GroupLayout(pnCampos);
         pnCampos.setLayout(pnCamposLayout);
         pnCamposLayout.setHorizontalGroup(
@@ -421,6 +485,45 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
             .addGroup(pnCamposLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnCamposLayout.createSequentialGroup()
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(edNome)
+                            .addGroup(pnCamposLayout.createSequentialGroup()
+                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(edRua)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(edNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(edEmail)
+                            .addComponent(pnJuridico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnPessoaFisica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnCamposLayout.createSequentialGroup()
+                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnCamposLayout.createSequentialGroup()
+                                        .addComponent(jRBFisico)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRBJuridico))
+                                    .addComponent(lbNome2)
+                                    .addGroup(pnCamposLayout.createSequentialGroup()
+                                        .addGap(152, 152, 152)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(pnCamposLayout.createSequentialGroup()
+                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(edCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnCamposLayout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(pnCamposLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(edEstado)))))
+                        .addContainerGap())
                     .addGroup(pnCamposLayout.createSequentialGroup()
                         .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -436,48 +539,23 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lbData)
-                            .addComponent(edDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnCamposLayout.createSequentialGroup()
-                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(edCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnCamposLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(267, Short.MAX_VALUE))
-                            .addGroup(pnCamposLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(edEstado)
-                                .addContainerGap())))
-                    .addGroup(pnCamposLayout.createSequentialGroup()
-                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(edDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbNome4)
+                            .addComponent(edBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnCamposLayout.createSequentialGroup()
                                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(latitude)
+                                    .addComponent(edlatitude, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17)
                                     .addGroup(pnCamposLayout.createSequentialGroup()
-                                        .addComponent(jRBFisico)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRBJuridico))
-                                    .addComponent(lbNome2)
-                                    .addGroup(pnCamposLayout.createSequentialGroup()
-                                        .addGap(152, 152, 152)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(edBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(edNome)
-                            .addComponent(pnJuridico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnPessoaFisica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnCamposLayout.createSequentialGroup()
-                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edRua)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(edNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())))
+                                        .addComponent(edLongitude, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btLocalizacao)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btVisualizarMapa)))))
+                        .addGap(0, 60, Short.MAX_VALUE))))
         );
         pnCamposLayout.setVerticalGroup(
             pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,26 +591,45 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
                     .addComponent(edTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel10))
+                .addComponent(lbNome4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edRua, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnCamposLayout.createSequentialGroup()
+                        .addComponent(edEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edRua, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnCamposLayout.createSequentialGroup()
+                                .addComponent(edBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(latitude)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edlatitude, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btVisualizarMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnCamposLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edLongitude, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(pnCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -661,7 +758,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
                     .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -683,7 +780,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE)
         );
 
         pack();
@@ -739,19 +836,17 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         String wUsuNome = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 2));
 
-        Object[] options = { "Confirmar", "Cancelar" };
+        Object[] options = {"Confirmar", "Cancelar"};
         int wOpc = JOptionPane.showOptionDialog(null, "Deseja excluir o cliente: " + wUsuNome,
-            "Informação",
-            JOptionPane.DEFAULT_OPTION,
-            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                "Informação",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-        if (wOpc==0)
-        {
+        if (wOpc == 0) {
             String valor = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 0));
             String fisico = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 1));
-        
-            if(fisico.equals("T"))
-            {
+
+            if (fisico.equals("T")) {
                 FuncionarioDAO wFuncDAO = new FuncionarioDAO();
 
                 String retorno = wFuncDAO.excluir(Integer.parseInt(valor));
@@ -761,11 +856,9 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
                     wFuncDAO.popularTabela(tbPessoa, edBusca.getText());
                 } else {
                     JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
-                        + "Mensagem técnica: \n" + retorno);
+                            + "Mensagem técnica: \n" + retorno);
                 }
-            }
-            else
-            {
+            } else {
                 PessoaJuridicaDAO wPessJuriDAO = new PessoaJuridicaDAO();
 
                 String retorno = wPessJuriDAO.excluir(Integer.parseInt(valor));
@@ -775,7 +868,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
                     wPessJuriDAO.popularTabela(tbPessoa, edBusca.getText(), Modo);
                 } else {
                     JOptionPane.showMessageDialog(null, "Problemas ao excluir registro!\n\n"
-                        + "Mensagem técnica: \n" + retorno);
+                            + "Mensagem técnica: \n" + retorno);
                 }
             }
         }
@@ -784,9 +877,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         String valor = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 0));
         String fisico = String.valueOf(tbPessoa.getValueAt(tbPessoa.getSelectedRow(), 1));
-        
-        if(fisico.equals("T"))
-        {
+
+        if (fisico.equals("T")) {
             Funcionario wFunc = new FuncionarioDAO().consultarID(Integer.parseInt(valor));
             codigo = Integer.parseInt(valor);
             edNome.setText(wFunc.getNome());
@@ -795,6 +887,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
             edDataNasc.setText(Formatacao.ajustaDataDMA(wFunc.getNascimento().toString()));
             edTelefone.setText(wFunc.getTelefone());
             edCelular.setText(wFunc.getCelular());
+            edEmail.setText(wFunc.getEmail());
 
             ComboItens cidade = new ComboItens();
             cidade.setCodigo(wFunc.getCidade().getIdCidade());
@@ -807,15 +900,15 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
             edRua.setText(wFunc.getEndereco());
             edNumero.setText(wFunc.getNumero());
             edBairro.setText(wFunc.getBairro());
+            edlatitude.setText(wFunc.getLatitude());
+            edLongitude.setText(wFunc.getLatitude());
 
             jTabbedPane1.setSelectedIndex(0);
             edNome.requestFocus();
-        }
-        else
-        {                                                
+        } else {
 
             PessoaJuridica wJuridico = new PessoaJuridicaDAO().consultarID(Integer.parseInt(valor));
-            
+
             codigo = Integer.parseInt(valor);
             edNome.setText(wJuridico.getNome());
             edCNPJ.setText(wJuridico.getCnpj());
@@ -824,6 +917,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
             edNomeFantasia.setText(wJuridico.getFantasia());
             edTelefone.setText(wJuridico.getTelefone());
             edCelular.setText(wJuridico.getCelular());
+            edEmail.setText(wJuridico.getEmail());
 
             ComboItens cidade = new ComboItens();
             cidade.setCodigo(wJuridico.getCidade().getIdCidade());
@@ -836,6 +930,8 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
             edRua.setText(wJuridico.getEndereco());
             edNumero.setText(wJuridico.getNumero());
             edBairro.setText(wJuridico.getBairro());
+            edlatitude.setText(wJuridico.getLatitude());
+            edLongitude.setText(wJuridico.getLatitude());
 
             jTabbedPane1.setSelectedIndex(0);
             edNome.requestFocus();
@@ -895,15 +991,15 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
 
     private void edIEFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edIEFocusLost
         /*if (!Validacao.validarIE(Formatacao.removerFormatacao(edIE.getText()))) {
-            edIE.requestFocus();
-        }*/
+         edIE.requestFocus();
+         }*/
 
     }//GEN-LAST:event_edIEFocusLost
 
     private void edCNPJFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edCNPJFocusLost
         /*if (!Validacao.validarCNPJ(Formatacao.removerFormatacao(edCNPJ.getText()))) {
-            edCNPJ.requestFocus();
-        }*/
+         edCNPJ.requestFocus();
+         }*/
     }//GEN-LAST:event_edCNPJFocusLost
 
     private void edRGFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edRGFocusLost
@@ -923,6 +1019,54 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btCancelar2ActionPerformed
 
+    private void edEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edEmailActionPerformed
+
+    private void btLocalizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocalizacaoActionPerformed
+        try {
+            Localizacao wLocal = new Localizacao();
+            wLocal.setRua(edRua.getText());
+            wLocal.setNumero(edNumero.getText());
+
+            ComboItens ci = (ComboItens) edCidade.getSelectedItem();
+            wLocal.setCidade(ci.getDescricao());
+            wLocal.setEstado(edEstado.getText());
+
+            CoordenadaGeo wCordenada = wLocal.obterCordenadaEndereco();
+
+            if (wCordenada != null) {
+                edlatitude.setText(wCordenada.getLatitude());
+                edLongitude.setText(wCordenada.getLongitude());
+            } else {
+
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(Localizacao.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_btLocalizacaoActionPerformed
+
+    private void btVisualizarMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarMapaActionPerformed
+        if (edlatitude.equals("") || edLongitude.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe a cordenada do endereço!");
+        } else {
+            Desktop desktop = null;
+            URI uri = null;
+            try {
+                desktop = Desktop.getDesktop();
+                uri = new URI("https://maps.google.com.br/maps?q=" + edlatitude.getText() + ",+" + edLongitude.getText() + "&hl=pt-br");
+                desktop.browse(uri);
+            } catch (URISyntaxException erroUri) {
+                System.out
+                        .println("deu erro ao criar a url, acho que ela está errada");
+            } catch (IOException desktopErro) {
+                System.out
+                        .println("deu erro ao abrir o navegador com o endereço informado");
+            }
+        }
+    }//GEN-LAST:event_btVisualizarMapaActionPerformed
+
     private String SalvarPessoaJuridica() {
         PessoaJuridica wPessoaJuridica = new PessoaJuridica();
 
@@ -932,9 +1076,10 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         wPessoaJuridica.setIe(Formatacao.removerFormatacao(edIE.getText()));
         wPessoaJuridica.setFantasia(edNomeFantasia.getText());
         wPessoaJuridica.setFisico('F');
-        
+
         wPessoaJuridica.setTelefone(Formatacao.removerFormatacao(edTelefone.getText()));
         wPessoaJuridica.setCelular(Formatacao.removerFormatacao(edCelular.getText()));
+        wPessoaJuridica.setEmail(edEmail.getText());
 
         ComboItens ci = (ComboItens) edCidade.getSelectedItem();
         wPessoaJuridica.setCidade(new CidadeDAO().consultarID(ci.getCodigo()));
@@ -945,7 +1090,13 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         wPessoaJuridica.setEndereco(edRua.getText());
         wPessoaJuridica.setBairro(edBairro.getText());
         wPessoaJuridica.setNumero(edNumero.getText());
+        wPessoaJuridica.setLatitude(edlatitude.getText());
+        wPessoaJuridica.setLatitude(edLongitude.getText());
+
         wPessoaJuridica.setTipo(Modo);
+
+        wPessoaJuridica.setLatitude("123");
+        wPessoaJuridica.setLongitude("111");
 
         try {
             wPessoaJuridica.setDataCadastro(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataNasc.getText())));
@@ -975,7 +1126,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         wFuncionario.setCpf(Formatacao.removerFormatacao(edCPF.getText()));
         wFuncionario.setRg(Formatacao.removerFormatacao(edRG.getText()));
         wFuncionario.setFisico('T');
-        
+
         try {
             wFuncionario.setNascimento(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataNasc.getText())));
         } catch (ParseException ex) {
@@ -984,6 +1135,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
 
         wFuncionario.setTelefone(Formatacao.removerFormatacao(edTelefone.getText()));
         wFuncionario.setCelular(Formatacao.removerFormatacao(edCelular.getText()));
+        wFuncionario.setEmail(edEmail.getText());
 
         ComboItens ci = (ComboItens) edCidade.getSelectedItem();
         wFuncionario.setCidade(new CidadeDAO().consultarID(ci.getCodigo()));
@@ -994,6 +1146,9 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
         wFuncionario.setEndereco(edRua.getText());
         wFuncionario.setBairro(edBairro.getText());
         wFuncionario.setNumero(edNumero.getText());
+        wFuncionario.setLatitude(edlatitude.getText());
+        wFuncionario.setLatitude(edLongitude.getText());
+
         wFuncionario.setInativo('F');
         FuncionarioDAO wFuncionarioDAO = new FuncionarioDAO();
 
@@ -1075,6 +1230,10 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
             JOptionPane.showMessageDialog(null, "Campo celular inválido!");
             edCelular.requestFocus();
             return false;
+        } else if (edEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo email inválido!");
+            edEmail.requestFocus();
+            return false;
         }
 
         return true;
@@ -1099,9 +1258,11 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JButton btCancelar2;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btLocalizacao;
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btPesquisar;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JButton btVisualizarMapa;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField edBairro;
     private javax.swing.JTextField edBusca;
@@ -1111,14 +1272,17 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JFormattedTextField edCelular;
     private javax.swing.JComboBox<String> edCidade;
     private javax.swing.JFormattedTextField edDataNasc;
+    private javax.swing.JTextField edEmail;
     private javax.swing.JTextField edEstado;
     private javax.swing.JFormattedTextField edIE;
+    private javax.swing.JFormattedTextField edLongitude;
     private javax.swing.JTextField edNome;
     private javax.swing.JTextField edNomeFantasia;
     private javax.swing.JTextField edNumero;
     private javax.swing.JFormattedTextField edRG;
     private javax.swing.JTextField edRua;
     private javax.swing.JFormattedTextField edTelefone;
+    private javax.swing.JFormattedTextField edlatitude;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1126,6 +1290,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1137,9 +1302,11 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JRadioButton jRBJuridico;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel latitude;
     private javax.swing.JLabel lbData;
     private javax.swing.JLabel lbNome2;
     private javax.swing.JLabel lbNome3;
+    private javax.swing.JLabel lbNome4;
     private javax.swing.JPanel pnCampos;
     private javax.swing.JPanel pnJuridico;
     private javax.swing.JPanel pnLista;
@@ -1149,7 +1316,7 @@ public class CadastroPessoaF extends javax.swing.JInternalFrame implements TelaP
 
     @Override
     public ArrayList<JButton> BotoesTela() {
-                ArrayList<JButton> wBotoes = new ArrayList();
+        ArrayList<JButton> wBotoes = new ArrayList();
         wBotoes.add(btNovo);
         wBotoes.add(btSalvar);
         wBotoes.add(btEditar);
