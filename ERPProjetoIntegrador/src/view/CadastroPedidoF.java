@@ -974,6 +974,10 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
+                
+                PedidoSalvo wPedidoSalvo = new PedidoSalvo(null, true, wPedido);
+                wPedidoSalvo.setVisible(true);
+                
                 //limpaCampos.limparCampos(pnCampos);
                 codigoPedido = 0;
                 new PedidoDAO().popularTabela(tbPedidos, "", Integer.parseInt(edCodCliente.getText()), tipo);

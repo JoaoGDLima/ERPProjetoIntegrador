@@ -629,3 +629,32 @@ line 1:28: unexpected token: datahora
 2018-10-11 21:10:19 ERROR SqlExceptionHelper:146 - ERROR: syntax error at or near ")"
   Onde: PL/pgSQL function arquivar_auditoria(character varying,character varying,character varying) line 19 at EXECUTE
 2018-10-11 21:10:19 ERROR AuditoriaDAO:11 - org.hibernate.exception.SQLGrammarException: error executing work
+2018-10-22 11:19:04 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 11:19:04 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-10-22 11:21:36 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 11:21:36 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-10-22 11:23:42 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 11:23:42 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-10-22 11:36:51 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 11:36:51 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-10-22 11:39:20 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 11:39:21 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-10-22 11:47:03 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 11:47:03 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-10-22 11:48:17 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 11:50:39 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 11:50:39 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-10-22 11:53:05 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 11:53:05 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-10-22 13:33:42 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
+  Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
+2018-10-22 13:33:42 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement

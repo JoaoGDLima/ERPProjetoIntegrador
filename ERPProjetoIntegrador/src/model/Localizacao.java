@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.Normalizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,7 +55,7 @@ public class Localizacao {
     }
 
     private String enderecoFormatado() {
-        return this.rua + "," + this.numero + "," + this.cidade + "," + this.estado + ",BR";
+        return Normalizer.normalize(this.rua + "," + this.numero + "," + this.cidade + "," + ",BR", Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
     }
 
     public CoordenadaGeo obterCordenadaEndereco() {
@@ -66,8 +67,7 @@ public class Localizacao {
             URL url = new URL(endereco);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
             StringBuffer content = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
