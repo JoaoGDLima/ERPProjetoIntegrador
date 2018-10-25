@@ -14,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.Socket;
@@ -30,7 +32,8 @@ public class Network {
    
     Socket cliente;
     MulticastSocket cliente_m;
-    int porta = 5001;
+    DatagramSocket cliente_b;
+    int porta = 5000;
     String Address = "127.0.0.1";
     DataInputStream in;
     DataOutputStream out;
@@ -39,18 +42,24 @@ public class Network {
     
     public Network(String modo) throws IOException
     {
-        if(modo.equals("File"))
+        if(modo.equals("File")) //Unicast para envio de arquivos através de TCP
         {
             cliente = new Socket(Address, porta);
             in = new DataInputStream(cliente.getInputStream());
             out = new DataOutputStream(cliente.getOutputStream());
         }
         
-        if(modo.equals("Multicast"))
+        if(modo.equals("Multicast")) // recebimento multicasting usando grupos em UDP
         {
                 cliente_m = new MulticastSocket(porta);
                 InetAddress ia = InetAddress.getByName(Address);
                 cliente_m.joinGroup(ia);
+        }
+        
+        if(modo.equals("Broadcast")) // Recebimento através de broadcast com datagramas em UDP
+        {
+            cliente_b = new DatagramSocket(porta);
+            
         }
         
     }
@@ -58,6 +67,18 @@ public class Network {
     public void SendMessage(String message) throws IOException
     {
         out.writeUTF(message);
+    }
+    
+    public String ReceiveBroadcast(DatagramSocket s) throws IOException
+    {
+        byte[] buf = new byte[256];
+        DatagramPacket pacote = new DatagramPacket(buf, buf.length);
+        s.receive(pacote);
+        InetAddress ia = pacote.getAddress();
+        int porta = pacote.getPort();
+        pacote = new DatagramPacket(buf, buf.length, ia, porta);
+        String recebido = new String(pacote.getData(), 0, pacote.getLength());
+        return recebido;
     }
     
     public void SendInt(int a) throws IOException
