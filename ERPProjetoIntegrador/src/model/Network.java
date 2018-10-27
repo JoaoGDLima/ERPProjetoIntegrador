@@ -96,7 +96,7 @@ public class Network {
                 // cliente_m.close();
                 in.close();
                 out.close();
-                return "Conexão encerrada";
+                return "Conexão encerrada: ";
             }            
         }
         catch(IOException e)

@@ -18,6 +18,7 @@ public class MensagensF extends javax.swing.JInternalFrame {
         initComponents();
         
         secaoConexao.uni = new Network("File");
+        secaoConexao.uni.SendMessage("nome usuario");
         jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
     }
 
@@ -91,7 +92,7 @@ public class MensagensF extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      
-        jTextArea1.setText(jTextArea1.getText() + secaoConexao.uni.Close() + secaoConexao.uni.getAddress());
+        jTextArea1.setText(jTextArea1.getText() + secaoConexao.uni.Close() + secaoConexao.uni.getAddress() + "\n");
         //this.multi.Close();
     }//GEN-LAST:event_jButton2ActionPerformed
 
