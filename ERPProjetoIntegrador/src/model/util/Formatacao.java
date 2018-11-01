@@ -86,6 +86,19 @@ public class Formatacao {
         }
     }
 
+    public static void formatarNumero(JFormattedTextField campo) {
+        try {
+            MaskFormatter m = new MaskFormatter();
+            m.setPlaceholderCharacter(' ');
+            m.setMask("####");
+            campo.setFormatterFactory(null);
+            campo.setFormatterFactory(new DefaultFormatterFactory(m));
+            campo.setValue(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
     public void formatoDecimal(JTextField campo) {
         campo.setText(df.format(Double.parseDouble(campo.getText())));
     }
