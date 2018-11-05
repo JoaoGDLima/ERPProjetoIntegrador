@@ -658,3 +658,304 @@ line 1:28: unexpected token: datahora
 2018-10-22 13:33:42 ERROR SqlExceptionHelper:146 - ERROR: column "pcodproduto" does not exist
   Onde: PL/pgSQL function movimenta_estoque() line 5 at SQL statement
 2018-10-22 13:33:42 ERROR ItensPedidoDAO:11 - org.hibernate.exception.SQLGrammarException: could not execute statement
+2018-11-05 09:46:12 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 09:46:12 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:46:12 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:46:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 09:46:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:46:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:47:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 09:47:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:47:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:47:40 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 09:47:40 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:47:40 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:48:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 09:48:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:48:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:53:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 09:53:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:53:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:59:00 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 09:59:00 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:59:00 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:59:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 09:59:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 09:59:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:00:29 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 10:00:29 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:00:29 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:01:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 10:01:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:01:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:02:11 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 10:02:11 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:02:11 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:03:09 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 10:03:09 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:03:09 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:03:46 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 10:03:46 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:03:46 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:10:23 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 10:10:23 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:10:23 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:11:57 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 10:11:57 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:11:57 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:13:17 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 10:13:17 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 10:13:17 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 12:04:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 12:04:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 12:04:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 12:04:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 12:04:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 12:04:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:25:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:25:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:25:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:28:18 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:28:18 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:28:18 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:30:11 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:30:11 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:30:11 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:30:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:30:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:30:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:36:08 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:36:08 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:36:08 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:36:25 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:36:25 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:36:25 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:36:42 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:36:42 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:36:42 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:37:04 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:37:04 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:37:04 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:37:24 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:37:24 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:37:24 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:37:38 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:37:38 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:37:39 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:38:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:38:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:38:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:38:34 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:38:34 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:38:34 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:39:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 13:39:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 13:39:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:07:29 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 14:07:29 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:07:29 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:08:42 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 14:08:42 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:08:42 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:14:28 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 14:14:28 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:14:28 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:20:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 14:20:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:20:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:23:44 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 14:23:44 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:23:44 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:42:13 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 14:42:13 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 14:42:13 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:07:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:07:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:07:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:08:04 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:08:04 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:08:04 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:11:18 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:11:18 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:11:18 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:12:02 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:12:02 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:12:02 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:12:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:12:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:12:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:13:07 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:13:07 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:13:07 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:13:56 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:13:56 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:13:56 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:16:23 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:16:23 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:16:23 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:17:56 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:17:56 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:17:56 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:21:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:21:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:21:06 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:21:44 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:21:44 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:21:44 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:23:04 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:23:04 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:23:04 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:28:36 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:28:36 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:28:36 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:29:01 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:29:01 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:29:01 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:29:18 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:29:18 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:29:18 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:29:27 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 15:30:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:30:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:30:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:30:31 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 15:31:27 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:31:27 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:31:27 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:52:38 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:52:38 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:52:38 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:53:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:53:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:53:20 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:54:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:54:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:54:54 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:56:01 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:56:01 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:56:01 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:57:27 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:57:27 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:57:27 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:57:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:57:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:57:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:58:55 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 15:58:55 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 15:58:55 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:01:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:01:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:01:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:02:09 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:02:09 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:02:09 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:02:21 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:03:02 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:03:02 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:03:02 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:03:30 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:05:13 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:05:13 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:05:13 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:05:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:05:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:05:21 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:05:27 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:06:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:06:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:06:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:07:08 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:07:11 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:08:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:08:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:08:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:08:42 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:08:42 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:09:22 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:09:22 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:09:22 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:09:28 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:09:28 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:10:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:10:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:10:37 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:10:43 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:10:43 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:11:01 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:11:01 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:11:01 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:11:07 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:11:07 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:12:10 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:12:10 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:12:10 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:12:15 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:12:16 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:12:53 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:12:53 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:12:53 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:12:58 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:12:58 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:13:33 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:13:33 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:13:33 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:13:40 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:13:40 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:14:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:14:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:14:58 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:15:04 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:15:10 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:15:13 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:15:13 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:15:13 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:15:22 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:15:25 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:15:32 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:15:32 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:15:32 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:15:42 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:16:24 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:16:24 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:16:24 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:16:35 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:16:35 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:17:16 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:17:16 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:17:16 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:17:22 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:17:22 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:18:33 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:18:33 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:18:33 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:20:39 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:20:39 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:20:39 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:20:47 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:22:15 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:22:15 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:22:15 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:22:22 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:22:25 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:23:05 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:23:05 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:23:05 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:24:07 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:24:07 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:24:07 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:24:17 ERROR GraficosF:11 - java.lang.ClassCastException: java.lang.String cannot be cast to model.util.ComboItens
+2018-11-05 16:27:46 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:27:46 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:27:46 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:29:47 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:29:47 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:29:47 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:30:27 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:30:27 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:30:27 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:36:43 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:36:43 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:36:43 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:38:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (1) : URI was not reported to parser for entity [document]
+2018-11-05 16:38:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
+2018-11-05 16:38:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
