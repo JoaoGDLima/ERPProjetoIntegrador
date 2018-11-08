@@ -11,15 +11,29 @@ import model.secaoConexao;
 public class MensagensF extends javax.swing.JInternalFrame {
 
     
-    // Network uni;
-    Network multi;
+    //Network uni;
+    //Network multi;
     
     public MensagensF() throws IOException {
         initComponents();
-        
-        secaoConexao.uni = new Network("File");
-        secaoConexao.uni.SendMessage("nome usuario");
-        jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
+        try
+        {
+            secaoConexao.uni = new Network("File");
+            if(!secaoConexao.uni.isConnected())
+            {
+                jTextArea1.setText(jTextArea1.getText() + "Conexão falhou" + "\n");
+            }
+            else
+            {
+                secaoConexao.uni.SendMessage("nome usuario");
+                jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
+                
+            }
+        }
+        catch(Exception e)
+        {
+            
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -81,13 +95,20 @@ public class MensagensF extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            secaoConexao.uni = new Network("File");
-            //this.multi = new Network("Multicast");
-            jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
-        } catch (IOException ex) {
-            Logger.getLogger(MensagensF.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(!secaoConexao.uni.isConnected())
+            {
+                jTextArea1.setText(jTextArea1.getText() + "Conexão falhou" + "\n");
+            }
+            else
+            {
+            try {
+                secaoConexao.uni.SendMessage("nome usuario");
+            } catch (IOException ex) {
+                Logger.getLogger(MensagensF.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
+                
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

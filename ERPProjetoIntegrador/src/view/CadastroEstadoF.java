@@ -1,5 +1,6 @@
 package view;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -10,11 +11,13 @@ import model.Estado;
 import model.Permissoes;
 import model.TelaPermissao;
 import model.Usuario;
+import model.XmlTools;
 import model.dao.EstadoDAO;
 import model.dao.UsuarioDAO;
 import model.secaoConexao;
 import model.util.Formatacao;
 import model.util.limpaCampos;
+import org.jdom2.JDOMException;
 
 public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaPermissao {
 
@@ -60,6 +63,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
         btNovo = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setTitle("Cadastro de estado");
         setMaximumSize(new java.awt.Dimension(501, 362));
@@ -179,7 +183,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 60, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -287,6 +291,13 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
             }
         });
 
+        jButton4.setText("Exportar XML");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnListaLayout = new javax.swing.GroupLayout(pnLista);
         pnLista.setLayout(pnListaLayout);
         pnListaLayout.setHorizontalGroup(
@@ -311,6 +322,8 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -330,14 +343,18 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
                         .addContainerGap()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btExcluir)
-                        .addComponent(btEditar)
-                        .addComponent(btNovo)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addGroup(pnListaLayout.createSequentialGroup()
+                        .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btExcluir)
+                                .addComponent(btEditar)
+                                .addComponent(btNovo))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -390,7 +407,9 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
         liberaLock();
 
         Estado wEstado = new EstadoDAO().consultarID(Integer.parseInt(valor));
-
+        
+       
+        
         wEstado.setUsuarioLock(new EstadoDAO().fazLock("Estado", wEstado.getIdEstado() + ""));
 
         codigo = Integer.parseInt(valor);
@@ -473,6 +492,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
     }//GEN-LAST:event_formInternalFrameClosed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -499,6 +519,29 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
             Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            XmlTools.EscreverXML("Estado");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchFieldException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        try {
+            XmlTools.LerXML();
+        } catch (JDOMException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private boolean validaCampo() {
         boolean wRetorno = true;
@@ -535,6 +578,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;

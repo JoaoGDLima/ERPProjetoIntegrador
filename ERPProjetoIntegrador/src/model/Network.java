@@ -44,9 +44,16 @@ public class Network {
     {
         if(modo.equals("File")) //Unicast para envio de arquivos através de TCP
         {
-            cliente = new Socket(Address, porta);
-            in = new DataInputStream(cliente.getInputStream());
-            out = new DataOutputStream(cliente.getOutputStream());
+            try
+            {
+                cliente = new Socket(Address, porta);
+                in = new DataInputStream(cliente.getInputStream());
+                out = new DataOutputStream(cliente.getOutputStream());
+            }
+            catch(Exception e)
+            {
+                
+            }
         }
         
         if(modo.equals("Multicast")) // recebimento multicasting usando grupos em UDP
@@ -108,6 +115,13 @@ public class Network {
 
      public String getFILE_TO_RECEIVE() {
         return FILE_TO_RECEIVE;
+    }
+     
+    public boolean isConnected()
+    {
+        if(cliente.isConnected())
+        return true;
+        return false;
     }
 
     public void setFILE_TO_RECEIVE(String FILE_TO_RECEIVE) {
