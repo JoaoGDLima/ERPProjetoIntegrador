@@ -34,9 +34,11 @@ public class Network {
     MulticastSocket cliente_m;
     DatagramSocket cliente_b;
     int porta = 5000;
+    static int count = 0;
     String Address = "127.0.0.1";
     DataInputStream in;
     DataOutputStream out;
+    public String mensagem = "";
     FileInputStream fis = null;
     BufferedInputStream bis = null;
     
@@ -49,6 +51,8 @@ public class Network {
                 cliente = new Socket(Address, porta);
                 in = new DataInputStream(cliente.getInputStream());
                 out = new DataOutputStream(cliente.getOutputStream());
+                out.writeUTF("usuario" + count);                
+                count++;
             }
             catch(Exception e)
             {
@@ -65,8 +69,16 @@ public class Network {
         
         if(modo.equals("Broadcast")) // Recebimento através de broadcast com datagramas em UDP
         {
-            cliente_b = new DatagramSocket(porta);
-            
+            cliente_b = new DatagramSocket();
+            byte[] buffer = new byte[65507];
+            cliente_b.setSoTimeout(3000);
+            while (true) {
+                DatagramPacket datagramPacket = new DatagramPacket(buffer, 0, buffer.length);
+                
+                cliente_b.receive(datagramPacket);
+                mensagem = new String(datagramPacket.getData());
+                
+            }
         }
         
     }
@@ -103,6 +115,7 @@ public class Network {
                 // cliente_m.close();
                 in.close();
                 out.close();
+                count--;
                 return "Conexão encerrada: ";
             }            
         }

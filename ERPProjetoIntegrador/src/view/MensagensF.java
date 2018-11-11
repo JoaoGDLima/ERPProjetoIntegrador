@@ -34,6 +34,15 @@ public class MensagensF extends javax.swing.JInternalFrame {
         {
             
         }
+        try
+        {
+            secaoConexao.udp = new Network("Broadcast");
+            jTextArea1.setText(jTextArea1.getText() + secaoConexao.udp.mensagem);
+        }
+        catch(Exception e)
+        {
+            
+        }
     }
 
     @SuppressWarnings("unchecked")
