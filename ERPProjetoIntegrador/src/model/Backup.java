@@ -6,11 +6,17 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -18,10 +24,23 @@ import javax.swing.JOptionPane;
  */
 public class Backup {
            
-        public static void realizaRestore(String nomeArquivo) throws IOException, InterruptedException{      
-           final List<String> comandos = new ArrayList<String>();      
+    
+    
+        public static void realizaRestore(String arquivo) throws IOException, InterruptedException{      
+           final List<String> comandos = new ArrayList<String>(); 
+           FileFilter filtro = new FileNameExtensionFilter("Licenças","txt");
+           javax.swing.JFileChooser fchooseLicenca = new JFileChooser();
+           fchooseLicenca.setAcceptAllFileFilterUsed(false);
+           fchooseLicenca.setFileFilter(filtro);
+           fchooseLicenca.addChoosableFileFilter(filtro);
+           
+           fchooseLicenca.setVisible(true);
+           
+                File file = fchooseLicenca.getSelectedFile();
+            
+                
            comandos.add("C:\\Arquivos de programas\\PostgreSQL\\10\\bin\\pg_restore.exe"); //testado no windows xp
-           comandos.add("-i");      
+           //comandos.add("-i");      
            comandos.add("-h");      
            comandos.add("localhost");    //ou   comandos.add("192.168.0.1"); 
            comandos.add("-p");      
@@ -31,7 +50,7 @@ public class Backup {
            comandos.add("-d");      
            comandos.add("ProjetoIntegrador");     
            comandos.add("-v");      
-           comandos.add("C:\\"+nomeArquivo);   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
+           comandos.add(""+arquivo);   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
            ProcessBuilder pb = new ProcessBuilder(comandos);      
            pb.environment().put("PGPASSWORD", "postgres");     //Somente coloque sua senha         
            try {      
@@ -57,11 +76,12 @@ public class Backup {
         
         public static void realizaBackup() throws IOException, InterruptedException{      
            final List<String> comandos = new ArrayList<String>();      
-           
-           comandos.add("C:\\Arquivos de programas\\PostgreSQL\\910\\bin\\pg_dump.exe");    // esse é meu caminho  
-           comandos.add("-i");      
+           Date d = new Date();
+           SimpleDateFormat formatador = new SimpleDateFormat("dd_MM_yyyy_hh_mm");
+           comandos.add("C:\\Arquivos de programas\\PostgreSQL\\10\\bin\\pg_dump.exe");    // esse é meu caminho  
+           //comandos.add("-i");      
            comandos.add("-h");      
-           comandos.add("localhost");     //ou  comandos.add("192.168.0.1"); 
+           comandos.add("127.0.0.1");     //ou  comandos.add("192.168.0.1"); 
            comandos.add("-p");      
            comandos.add("5432");      
            comandos.add("-U");      
@@ -71,7 +91,7 @@ public class Backup {
            comandos.add("-b");      
            comandos.add("-v");      
            comandos.add("-f");      
-           comandos.add("C:\\"+java.time.Instant.now()+".backup");   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
+           comandos.add("D:\\"+formatador.format( d )+".backup");   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
            comandos.add("ProjetoIntegrador");      
            ProcessBuilder pb = new ProcessBuilder(comandos);      
            pb.environment().put("PGPASSWORD", "postgres");               
@@ -94,14 +114,6 @@ public class Backup {
                ie.printStackTrace();      
            }         
        }      
-        public static void main(String[] args) {  
-            try {  
-                realizaBackup();           
-            } catch (IOException e) {  
-                e.printStackTrace();  
-            } catch (InterruptedException e) {  
-                e.printStackTrace();  
-            }  
-        }  
+        
 }
 

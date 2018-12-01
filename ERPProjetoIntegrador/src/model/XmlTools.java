@@ -91,8 +91,7 @@ public class XmlTools {
         while(i.hasNext())
         {
             Element Estado = (Element)i.next();
-            //System.out.println("Estado: " + Estado.getText());
-            //System.out.println("UF: " + Estado.getChildText("UF"));
+            
         }
     }
 }

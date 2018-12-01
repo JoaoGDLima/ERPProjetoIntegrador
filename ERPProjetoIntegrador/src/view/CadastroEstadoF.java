@@ -536,28 +536,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
         if(Licenciamento.LerLicenca("d:\\teste.txt", "teste"))
             System.out.println("Licença Válida");
         else
-            System.out.println("Licença Invalida");
-        
-        try {
-            XmlTools.EscreverXML("Estado");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchFieldException ex) {
-            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
-        }   
-        try {
-            XmlTools.LerXML();
-        } catch (JDOMException ex) {
-            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println("Licença Invalida");               
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private boolean validaCampo() {

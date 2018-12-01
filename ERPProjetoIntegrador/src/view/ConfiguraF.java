@@ -5,10 +5,19 @@
  */
 package view;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import model.Backup;
 import model.Configuracoes;
+import model.Licenciamento;
 import model.Permissoes;
 import model.TelaPermissao;
 import model.dao.ConfiguracoesDAO;
@@ -20,9 +29,11 @@ import model.dao.ConfiguracoesDAO;
 public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermissao{
     
     public static final int ID_TELA = 16;
-
+    FileFilter filtro = new FileNameExtensionFilter("Licenças","txt");
+    
     public ConfiguraF() {
         initComponents();
+        fchooseLicenca = new JFileChooser();         
         this.setResizable(false);
         this.HabilitarBotoes();
 
@@ -52,8 +63,19 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         edAuditoria = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        btLicenca = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -64,21 +86,77 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         edAuditoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edAuditoria.setText("Ativar auditoria do sistema");
 
+        jLabel1.setText("IP do Servidor:");
+
+        jTextField1.setToolTipText("Digite o IP para se conectar ao Servidor");
+
+        jLabel2.setText("Usuario do Banco de Dados:");
+
+        jTextField2.setToolTipText("Digite o nome de Usuario para conectar a Base de Dados");
+
+        jLabel3.setText("Senha:");
+
+        jTextField3.setToolTipText("Digite a senha da Base de Dados");
+
+        jLabel4.setText("Local dos Arquivos:");
+
+        jTextField4.setToolTipText("Digite o local para armazenamento das configurações");
+
+        btLicenca.setText("Licenciamento");
+        btLicenca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLicencaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(edAuditoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(edAuditoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btLicenca, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1)
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField3)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTextField4))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(edAuditoria)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(edAuditoria)
+                    .addComponent(btLicenca))
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         btSalvar.setBackground(new java.awt.Color(76, 175, 80));
@@ -104,6 +182,15 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             }
         });
 
+        jButton1.setText("BackUp");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Restaurar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,18 +203,26 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                         .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 128, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 80, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
 
@@ -135,7 +230,9 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,13 +275,50 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
+    private void btLicencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLicencaActionPerformed
+    fchooseLicenca.setAcceptAllFileFilterUsed(false);
+    fchooseLicenca.setFileFilter(filtro);
+    fchooseLicenca.addChoosableFileFilter(filtro);
+    int returnval = fchooseLicenca.showOpenDialog(this);        
+    if(returnval == JFileChooser.APPROVE_OPTION)
+    {
+        File file = fchooseLicenca.getSelectedFile();
+        Licenciamento.LerLicenca(file.getAbsolutePath(), "nome do usuario");//tem que colocar atributo chave nessa função
+                                                                            //e retornar a chave do banco de dados.
+                                                                            //a chave é criada com a função
+                                                                            //CriaLicenca
+  //Joao só me cria uma função que retorna a chave do banco atrelada ao usuario, dae ta tudo funcionando ja                                                                            
+    }
+    }//GEN-LAST:event_btLicencaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Backup.realizaBackup();
+        } catch (IOException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private javax.swing.JFileChooser fchooseLicenca;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btLicenca;
     private javax.swing.JButton btSalvar;
     private javax.swing.JCheckBox edAuditoria;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -199,3 +333,4 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
 }
+
