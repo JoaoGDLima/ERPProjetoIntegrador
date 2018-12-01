@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class Backup {
            
-        public static void realizaRestore() throws IOException, InterruptedException{      
+        public static void realizaRestore(String nomeArquivo) throws IOException, InterruptedException{      
            final List<String> comandos = new ArrayList<String>();      
            comandos.add("C:\\Arquivos de programas\\PostgreSQL\\10\\bin\\pg_restore.exe"); //testado no windows xp
            comandos.add("-i");      
@@ -31,7 +31,7 @@ public class Backup {
            comandos.add("-d");      
            comandos.add("ProjetoIntegrador");     
            comandos.add("-v");      
-           comandos.add("C:\\bkp.backup");   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
+           comandos.add("C:\\"+nomeArquivo);   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
            ProcessBuilder pb = new ProcessBuilder(comandos);      
            pb.environment().put("PGPASSWORD", "postgres");     //Somente coloque sua senha         
            try {      
@@ -71,7 +71,7 @@ public class Backup {
            comandos.add("-b");      
            comandos.add("-v");      
            comandos.add("-f");      
-           comandos.add("c:\\bkp.backup");   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
+           comandos.add("C:\\"+java.time.Instant.now()+".backup");   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
            comandos.add("ProjetoIntegrador");      
            ProcessBuilder pb = new ProcessBuilder(comandos);      
            pb.environment().put("PGPASSWORD", "postgres");               
