@@ -2,12 +2,16 @@ package view;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Estado;
+import model.Licenciamento;
 import model.Permissoes;
 import model.TelaPermissao;
 import model.Usuario;
@@ -364,7 +368,7 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,6 +525,19 @@ public class CadastroEstadoF extends javax.swing.JInternalFrame implements TelaP
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Date data = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd_MM_yyyy");        
+        try {
+            data = formatador.parse("14_10_2019");
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Licenciamento.CriaLicenca("teste", formatador.format( data ));
+        if(Licenciamento.LerLicenca("d:\\teste.txt", "teste"))
+            System.out.println("Licença Válida");
+        else
+            System.out.println("Licença Invalida");
+        
         try {
             XmlTools.EscreverXML("Estado");
         } catch (ClassNotFoundException ex) {
