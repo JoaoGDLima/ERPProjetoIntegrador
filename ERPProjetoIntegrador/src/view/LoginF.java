@@ -183,19 +183,26 @@ public class LoginF extends javax.swing.JFrame {
         Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
 
         if (wUsuario != null) {
-            secaoConexao.usuarioLogado = wUsuario;
+            // Função para validar a chave de instalação
+            if (wUsuario.getChave().equals("")) {
+                secaoConexao.usuarioLogado = wUsuario;
 
-            ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
-            Configuracoes wConfig = wConfigDAO.consultarID("Auditoria");
+                ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
+                Configuracoes wConfig = wConfigDAO.consultarID("Auditoria");
 
-            if (wConfig == null) {
-                secaoConexao.Auditoria = false;
+                if (wConfig == null) {
+                    secaoConexao.Auditoria = false;
+                } else {
+                    secaoConexao.Auditoria = wConfig.getValor().equals("T");
+                }
+
+                new MainF().setVisible(true);
+                this.dispose();
             } else {
-                secaoConexao.Auditoria = wConfig.getValor().equals("T");
+                // Mensagem da chave de instalação
+                JOptionPane.showMessageDialog(null, "Chave de licenciamento inválida!");
             }
 
-            new MainF().setVisible(true);
-            this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Email ou senha informados estão incorreto!");
         }
