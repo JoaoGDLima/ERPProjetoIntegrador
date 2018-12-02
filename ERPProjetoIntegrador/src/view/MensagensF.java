@@ -8,7 +8,7 @@ import model.Network;
 import model.secaoConexao;
 
 
-public class MensagensF extends javax.swing.JInternalFrame {
+public class MensagensF extends javax.swing.JInternalFrame  {
 
     
     //Network uni;
@@ -19,30 +19,15 @@ public class MensagensF extends javax.swing.JInternalFrame {
         try
         {
             secaoConexao.uni = new Network("File");
-            if(!secaoConexao.uni.isConnected())
-            {
-                jTextArea1.setText(jTextArea1.getText() + "Conexão falhou" + "\n");
-            }
-            else
-            {
+            
                 secaoConexao.uni.SendMessage("nome usuario");
-                jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
-                
-            }
+                jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");                
+            
         }
         catch(Exception e)
         {
-            
-        }
-        try
-        {
-            secaoConexao.udp = new Network("Broadcast");
-            jTextArea1.setText(jTextArea1.getText() + secaoConexao.udp.mensagem);
-        }
-        catch(Exception e)
-        {
-            
-        }
+            jTextArea1.setText(jTextArea1.getText() + "Conexão falhou" + "\n");
+        }        
     }
 
     @SuppressWarnings("unchecked")
@@ -104,20 +89,17 @@ public class MensagensF extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!secaoConexao.uni.isConnected())
-            {
+        
+            try {
+                secaoConexao.uni = new Network("File");
+                secaoConexao.uni.SendMessage("nome usuario");
+                jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
+            } catch (Exception ex) {
                 jTextArea1.setText(jTextArea1.getText() + "Conexão falhou" + "\n");
             }
-            else
-            {
-            try {
-                secaoConexao.uni.SendMessage("nome usuario");
-            } catch (IOException ex) {
-                Logger.getLogger(MensagensF.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                jTextArea1.setText(jTextArea1.getText() + "Connected at server: " + secaoConexao.uni.getAddress() + "\n");
                 
-            }
+                
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

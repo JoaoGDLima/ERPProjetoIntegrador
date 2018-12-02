@@ -30,39 +30,40 @@ public class XmlTools {
     
     //Object obj;
     
+    
     public XmlTools()
     {
         
     }
     
-    public static void EscreverXML(String nome) throws ClassNotFoundException, InstantiationException, IllegalAccessException, FileNotFoundException, IOException, NoSuchFieldException
+    public static void EscreverXML(String Auditoria, String IP, String User, String Senha, String path) throws ClassNotFoundException, InstantiationException, IllegalAccessException, FileNotFoundException, IOException, NoSuchFieldException
     {
         //Object obj = Class.forName(nome).newInstance();
-        Document doc = new Document();
-        List<Estado> li = new ArrayList<Estado>();;
+        Document doc = new Document();       
         
         //Element root = new Element(obj.getClass().getName());
         
+                                                                              
+                Element root = new Element("Propriedades");
+                
+                    Element Audit = new Element("Auditoria");
+                    Audit.setText(Auditoria);
+                    Element Address = new Element("IP");
+                    Address.setText(IP);                    
+                    Element Usuario = new Element("Usuario");
+                    Usuario.setText(User);
+                    Element Pass = new Element("Senha");
+                    Pass.setText(Senha);
+                    Element Local = new Element("Path");
+                    Local.setText(path);
+                    root.addContent(Audit);                    
+                    root.addContent(Address);
+                    root.addContent(Usuario);                                    
+                    root.addContent(Pass);
+                    root.addContent(Local);
+                    doc.setRootElement(root);                
         
-        switch(nome)
-        {
-            case "Estado":
-                EstadoDAO temp = new EstadoDAO();                               
-                li = (List<Estado>)temp.consultarRelatorio("nome like '%'");
-                Element root = new Element("Estados");
-                for(int i=0; i<li.size();i++)
-                {
-                    
-                    Element UF = new Element("UF");
-                    UF.setText(li.get(i).getUf());
-                    Element Estado = new Element("Estado");
-                    Estado.setText(li.get(i).getNome());
-                    Estado.addContent(UF);
-                    root.addContent(Estado);
-                }                    
-                doc.setRootElement(root);                
-                break;
-        }
+        
         
         /*for(Field f : obj.getClass().getDeclaredFields()){
             root.addContent(new Element(f.getName()));            
@@ -74,8 +75,9 @@ public class XmlTools {
         xout.output(doc , out);        
     }
     
-    public static void LerXML() throws JDOMException, IOException
+    public static Config LerXML() throws JDOMException, IOException
     {
+        
         File f = new File("D:\\exemplo.xml");
              
         SAXBuilder builder = new SAXBuilder();
@@ -84,14 +86,13 @@ public class XmlTools {
              
         Element root = (Element) doc.getRootElement();
         
-        List Estados = root.getChildren();
-        
-        Iterator i = Estados.iterator();
-        
-        while(i.hasNext())
-        {
-            Element Estado = (Element)i.next();
-            
-        }
+        Config conf = new Config(root.getChildText("Auditoria"), 
+                                 root.getChildText("IP"),
+                                 root.getChildText("Usuario"),
+                                 root.getChildText("Senha"),
+                                 root.getChildText("Path"));               
+        return conf;
     }
+    
 }
+

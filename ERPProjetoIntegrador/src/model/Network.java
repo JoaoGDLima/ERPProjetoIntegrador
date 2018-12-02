@@ -88,6 +88,11 @@ public class Network {
         out.writeUTF(message);
     }
     
+    public void GetMessage() throws IOException
+    {
+        in.readUTF();
+    }
+    
     public String ReceiveBroadcast(DatagramSocket s) throws IOException
     {
         byte[] buf = new byte[256];

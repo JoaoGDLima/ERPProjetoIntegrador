@@ -16,11 +16,14 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Backup;
+import model.Config;
 import model.Configuracoes;
 import model.Licenciamento;
 import model.Permissoes;
 import model.TelaPermissao;
+import model.XmlTools;
 import model.dao.ConfiguracoesDAO;
+import org.jdom2.JDOMException;
 
 /**
  *
@@ -190,6 +193,11 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         });
 
         jButton2.setText("Restaurar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -243,6 +251,27 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        String temp = "false";
+        if(edAuditoria.isSelected())
+        {
+            temp = "true";
+        }
+        
+        System.out.println(temp);
+        try {
+            XmlTools.EscreverXML(temp, jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchFieldException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         try {
             ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
             Configuracoes wConfig = new Configuracoes();
@@ -300,6 +329,23 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+            Config conf = new Config();
+        try {
+            conf = XmlTools.LerXML();
+        } catch (JDOMException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(conf.getAuditoria().equals("true")) edAuditoria.setSelected(true);
+        else edAuditoria.setSelected(false);
+        jTextField1.setText(conf.getIp());
+        jTextField2.setText(conf.getUsuario());
+        jTextField3.setText(conf.getSenha());
+        jTextField4.setText(conf.getPath());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private javax.swing.JFileChooser fchooseLicenca;
     // Variables declaration - do not modify//GEN-BEGIN:variables
