@@ -23,6 +23,7 @@ import model.Permissoes;
 import model.TelaPermissao;
 import model.XmlTools;
 import model.dao.ConfiguracoesDAO;
+import model.secaoConexao;
 import org.jdom2.JDOMException;
 
 /**
@@ -31,11 +32,12 @@ import org.jdom2.JDOMException;
  */
 public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermissao{
     
-    public static final int ID_TELA = 16;
+    public static final int ID_TELA = 16;    
     FileFilter filtro = new FileNameExtensionFilter("Licenças","txt");
     
     public ConfiguraF() {
         initComponents();
+        secaoConexao.configs = new Config();
         fchooseLicenca = new JFileChooser();         
         this.setResizable(false);
         this.HabilitarBotoes();
@@ -331,20 +333,20 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            Config conf = new Config();
+            
         try {
-            conf = XmlTools.LerXML();
+            secaoConexao.configs = XmlTools.LerXML();
         } catch (JDOMException ex) {
             Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(conf.getAuditoria().equals("true")) edAuditoria.setSelected(true);
+        if(secaoConexao.configs.getAuditoria().equals("true")) edAuditoria.setSelected(true);
         else edAuditoria.setSelected(false);
-        jTextField1.setText(conf.getIp());
-        jTextField2.setText(conf.getUsuario());
-        jTextField3.setText(conf.getSenha());
-        jTextField4.setText(conf.getPath());
+        jTextField1.setText(secaoConexao.configs.getIp());
+        jTextField2.setText(secaoConexao.configs.getUsuario());
+        jTextField3.setText(secaoConexao.configs.getSenha());
+        jTextField4.setText(secaoConexao.configs.getPath());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private javax.swing.JFileChooser fchooseLicenca;
