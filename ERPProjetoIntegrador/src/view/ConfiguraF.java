@@ -7,7 +7,10 @@ package view;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -33,12 +36,15 @@ import org.jdom2.JDOMException;
 public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermissao{
     
     public static final int ID_TELA = 16;    
-    FileFilter filtro = new FileNameExtensionFilter("Licenças","txt");
+    FileFilter filtro = new FileNameExtensionFilter("Licenças","lic");
+    FileFilter filtro2 = new FileNameExtensionFilter("Arquivo de Backup","backup");
+
     
     public ConfiguraF() {
         initComponents();
         secaoConexao.configs = new Config();
         fchooseLicenca = new JFileChooser();         
+        fchooseBackup = new JFileChooser();
         this.setResizable(false);
         this.HabilitarBotoes();
 
@@ -77,6 +83,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         jLabel4 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         btLicenca = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -114,6 +121,13 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             }
         });
 
+        jButton3.setText("Gerar Licença");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -122,7 +136,9 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(edAuditoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(edAuditoria, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btLicenca, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextField1)
@@ -144,7 +160,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edAuditoria)
-                    .addComponent(btLicenca))
+                    .addComponent(btLicenca)
+                    .addComponent(jButton3))
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -161,7 +178,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         btSalvar.setBackground(new java.awt.Color(76, 175, 80));
@@ -217,7 +234,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 80, Short.MAX_VALUE)))
+                        .addGap(0, 127, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -253,50 +270,57 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        String temp = "false";
-        if(edAuditoria.isSelected())
+        if(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty() || jTextField4.getText().isEmpty())
         {
-            temp = "true";
+            JOptionPane.showMessageDialog(null, "Não é possivel salvar configurações, verifique se todos os campos estão preenchidos");
         }
-        
-        System.out.println(temp);
-        try {
-            XmlTools.EscreverXML(temp, jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchFieldException ex) {
-            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
-            Configuracoes wConfig = new Configuracoes();
-            wConfig.setChave("Auditoria");
-
-            if (edAuditoria.isSelected()) {
-                wConfig.setValor("T");
-            } else {
-                wConfig.setValor("F");
+        else
+        {            
+            String temp = "false";
+            if(edAuditoria.isSelected())
+            {
+                temp = "true";
             }
 
-            if (wConfigDAO.consultarID("Auditoria") != null) {
-                Configuracoes wConfigOld = wConfigDAO.consultarID("Auditoria");
-                wConfigDAO.atualizar(wConfig, wConfigOld);
-            } else {
-                wConfigDAO.salvar(wConfig);
+            System.out.println(temp);
+            try {
+                XmlTools.EscreverXML(temp, jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText());
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoSuchFieldException ex) {
+                Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            JOptionPane.showMessageDialog(null, "Configurações salvas com sucesso, o sistema será reiniciado para recaregar as configurações.");
-            System.exit(0);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Problemas ao salvar configurações!\n\n"
-                    + "Mensagem técnica: \n" + e);
+            try {
+                ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();
+                Configuracoes wConfig = new Configuracoes();
+                wConfig.setChave("Auditoria");
+
+                if (edAuditoria.isSelected()) {
+                    wConfig.setValor("T");
+                } else {
+                    wConfig.setValor("F");
+                }
+
+                if (wConfigDAO.consultarID("Auditoria") != null) {
+                    Configuracoes wConfigOld = wConfigDAO.consultarID("Auditoria");
+                    wConfigDAO.atualizar(wConfig, wConfigOld);
+                } else {
+                    wConfigDAO.salvar(wConfig);
+                }
+
+                JOptionPane.showMessageDialog(null, "Configurações salvas com sucesso, o sistema será reiniciado para recaregar as configurações.");
+                System.exit(0);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Problemas ao salvar configurações!\n\n"
+                        + "Mensagem técnica: \n" + e);
+            }
         }
 
 
@@ -333,12 +357,27 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            
+                           
         try {
-            secaoConexao.configs = XmlTools.LerXML();
+           //FileFilter filtro = new FileNameExtensionFilter("Licenças","txt");
+           //javax.swing.JFileChooser fchooseLicenca = new JFileChooser();
+           fchooseBackup.setAcceptAllFileFilterUsed(false);
+           fchooseBackup.setFileFilter(filtro2);
+           fchooseBackup.addChoosableFileFilter(filtro2);
+           int returnval = fchooseLicenca.showOpenDialog(this);        
+           if(returnval == JFileChooser.APPROVE_OPTION)
+           {
+               File file = fchooseBackup.getSelectedFile();
+           
+            Backup.realizaRestore(file.getAbsolutePath());
+           }
+            XmlTools.LerXML();
+           
         } catch (JDOMException ex) {
             Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+            Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
             Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(secaoConexao.configs.getAuditoria().equals("true")) edAuditoria.setSelected(true);
@@ -349,7 +388,20 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         jTextField4.setText(secaoConexao.configs.getPath());
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Date data = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd_MM_yyyy");        
+        try {
+            data = formatador.parse("14_11_2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Licenciamento.CriaLicenca("teste", formatador.format( data ));// cria licença
+        JOptionPane.showMessageDialog(null, "Arquivo de licença gerado com sucesso. Disponivel no diretorio atualmente configurado no programa.");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private javax.swing.JFileChooser fchooseLicenca;
+    private javax.swing.JFileChooser fchooseBackup;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btLicenca;
@@ -357,6 +409,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
     private javax.swing.JCheckBox edAuditoria;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
