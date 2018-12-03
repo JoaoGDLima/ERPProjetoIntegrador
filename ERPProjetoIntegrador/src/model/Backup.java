@@ -28,15 +28,7 @@ public class Backup {
     
         public static void realizaRestore(String arquivo) throws IOException, InterruptedException{      
            final List<String> comandos = new ArrayList<String>(); 
-           FileFilter filtro = new FileNameExtensionFilter("Licenças","txt");
-           javax.swing.JFileChooser fchooseLicenca = new JFileChooser();
-           fchooseLicenca.setAcceptAllFileFilterUsed(false);
-           fchooseLicenca.setFileFilter(filtro);
-           fchooseLicenca.addChoosableFileFilter(filtro);
-           
-           fchooseLicenca.setVisible(true);
-           
-                File file = fchooseLicenca.getSelectedFile();
+          
             
                 
            comandos.add("C:\\Arquivos de programas\\PostgreSQL\\10\\bin\\pg_restore.exe"); //testado no windows xp

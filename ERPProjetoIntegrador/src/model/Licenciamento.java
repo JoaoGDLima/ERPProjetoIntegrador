@@ -26,6 +26,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import org.jdom2.JDOMException;
 
 /**
  *
@@ -37,27 +38,24 @@ public class Licenciamento {
     static SecretKey chaveDES = null;
         
     
-    public static SecretKey CriaLicenca(String usuario, String validade)
+    public static SecretKey CriaLicenca(String usuario, String validade)//Digitar dd_MM_yyyy na validade
     {                
         try
         {                            
             keygenerator = KeyGenerator.getInstance("DES");            
             Licenciamento.chaveDES = keygenerator.generateKey();
             cifraDES = Cipher.getInstance("DES/ECB/PKCS5Padding");
-            cifraDES.init(Cipher.ENCRYPT_MODE, chaveDES);
-            //"/licenca_" + usuario + "_" + validade.toString() + ".txt"
-            java.io.File file = new java.io.File("d://teste.txt");
+            cifraDES.init(Cipher.ENCRYPT_MODE, chaveDES); 
+            secaoConexao.configs = XmlTools.LerXML();            
+            java.io.File file = new java.io.File(secaoConexao.configs.path+"/licenca_" + usuario + "_" + validade + ".lic");
             FileOutputStream in = new FileOutputStream(file) ;
-            //PrintWriter gravarArq = new PrintWriter(arq);
+            
             
             byte[] TextoPuro = (usuario+"=\r\n"+validade.toString()).getBytes("UTF8");
             byte[] TextoEncriptado = cifraDES.doFinal(TextoPuro);
             in.write(TextoEncriptado);
             in.close();
-            System.out.println(chaveDES+" Criar");
-            //gravarArq.write(TextoEncriptado.toString());
             
-            //arq.close();
             
         }
         catch (NoSuchAlgorithmException e) 
@@ -83,11 +81,13 @@ public class Licenciamento {
         catch (NoSuchPaddingException e) 
         {
             e.printStackTrace();
+        } catch (JDOMException ex) {
+            Logger.getLogger(Licenciamento.class.getName()).log(Level.SEVERE, null, ex);
         }
         return chaveDES;    
     }
 
-    public static boolean LerLicenca(String arquivo, String usuario)
+    public static boolean LerLicenca(String arquivo, String usuario)//retorna verdadeiro se expirou
     {
         try 
         {
@@ -116,7 +116,7 @@ public class Licenciamento {
             System.out.println(formatador.format( data ));
             if(dados[0].equals(usuario))
                     {
-                        if(dados[1].compareTo((formatador.format( data )))>0) return true;
+                        if(Licenciamento.ComparaData(dados[1],formatador.format( data ))) return true;
                     }                                                    
         } 
         catch (InvalidKeyException e) 
@@ -148,6 +148,26 @@ public class Licenciamento {
             e.printStackTrace();
         }
         return false;
+    }
+    
+    public static boolean ComparaData(String data1, String data2) //returna verdadeiro se data1(cliente) 
+                                                           //é maior que data2(licenca), expirou                                        
+    {
+        String cliente[] = data1.split("_");
+        String licenca[] = data2.split("_");
+        if(Integer.parseInt(cliente[2])<Integer.parseInt(licenca[2])) return false;
+        if(Integer.parseInt(cliente[2])==Integer.parseInt(licenca[2]))
+        {                
+            if(Integer.parseInt(cliente[1])<Integer.parseInt(licenca[1])) return false;
+            if(Integer.parseInt(cliente[1])==Integer.parseInt(licenca[1]))
+            {
+                if(Integer.parseInt(cliente[0])<=Integer.parseInt(licenca[0]))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
             
 }

@@ -200,7 +200,7 @@ public class LoginF extends javax.swing.JFrame {
                 this.dispose();
             } else {
                 // Mensagem da chave de instalação
-                JOptionPane.showMessageDialog(null, "Chave de licenciamento inválida!");
+                JOptionPane.showMessageDialog(null, "Licença Expirada!");
             }
 
         } else {
