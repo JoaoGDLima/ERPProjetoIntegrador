@@ -1034,3 +1034,9 @@ line 1:28: unexpected token: datahora
 2018-11-05 16:38:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope URI is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
 2018-11-05 16:38:59 ERROR ErrorLogger:77 - HHH000198: Warning parsing XML (2) : No base URI; hope this SYSTEM id is absolute: http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd
 >>>>>>> 5ae2289ea1ac4576957ca48f44dfa64e52649d44
+2018-12-03 09:06:52 ERROR SqlExceptionHelper:146 - ERROR: column usuario0_.chave does not exist
+  Posição: 47
+2018-12-03 09:06:52 ERROR UsuarioDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-12-03 09:06:57 ERROR SqlExceptionHelper:146 - ERROR: column usuario0_.chave does not exist
+  Posição: 47
+2018-12-03 09:06:57 ERROR UsuarioDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
