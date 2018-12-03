@@ -4,7 +4,10 @@ import java.io.IOException;
 import org.apache.log4j.Logger;//Importação principal do log4j - fase de testes ainda
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import model.Versao;
+import model.dao.ConfiguracoesDAO;
 import model.dao.MasterDAO;
+import model.dao.VersaoDAO;
 import model.util.unit;
 import org.apache.log4j.Level;
 import view.relatorios.ListarCargosF;
@@ -23,6 +26,15 @@ public class MainF extends javax.swing.JFrame {
         log.setLevel(Level.INFO);
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+        
+        VersaoDAO wVersaoDAO = new VersaoDAO();
+        Versao wVersao = wVersaoDAO.consultarPendentes(Integer.parseInt(new ConfiguracoesDAO().consultarID("versao").getValor()));
+        
+        if (wVersao!=null) {
+            VersaoF wVersaoF = new VersaoF(this, true);
+            wVersaoF.ExibirVersao(wVersao);
+            wVersaoF.setVisible(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -64,6 +76,7 @@ public class MainF extends javax.swing.JFrame {
         jMenuItem26 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem25 = new javax.swing.JMenuItem();
+        jMenuItem27 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -384,6 +397,15 @@ public class MainF extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem25);
 
+        jMenuItem27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem27.setText("Informações de versões");
+        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem27ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem27);
+
         jMenuBar1.add(jMenu8);
 
         jMenu5.setText("Configurações");
@@ -647,6 +669,13 @@ public class MainF extends javax.swing.JFrame {
         ifrGraficoF.setVisible(true);
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
+    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
+        InfoVersoesF ifrInfoVersoes = new InfoVersoesF();
+        jDesktopPane1.add(ifrInfoVersoes);
+        unit.setPositionCenter(ifrInfoVersoes);
+        ifrInfoVersoes.setVisible(true);
+    }//GEN-LAST:event_jMenuItem27ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -716,6 +745,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
+    private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
