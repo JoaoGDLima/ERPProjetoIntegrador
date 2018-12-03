@@ -30,5 +30,6 @@
     <mapping class="model.Tela"/>
     <mapping class="model.Permissoes"/>
     <mapping class="model.PermissoesPK"/>
+    <mapping class="model.Versao"/>
   </session-factory>
 </hibernate-configuration>
