@@ -71,14 +71,14 @@ public class XmlTools {
         
         
         XMLOutputter xout = new XMLOutputter();
-        OutputStream out = new FileOutputStream( new File("D:\\config.xml"));
+        OutputStream out = new FileOutputStream( new File("C:\\Users\\joaog\\OneDrive\\Documentos\\NetBeansProjects\\ERPProjetoIntegrador\\ERPProjetoIntegrador\\config.xml"));
         xout.output(doc , out);        
     }
     
     public static Config LerXML() throws JDOMException, IOException
     {
         
-        File f = new File("D:\\config.xml");
+        File f = new File("C:\\Users\\joaog\\OneDrive\\Documentos\\NetBeansProjects\\ERPProjetoIntegrador\\ERPProjetoIntegrador\\config.xml");
              
         SAXBuilder builder = new SAXBuilder();
      

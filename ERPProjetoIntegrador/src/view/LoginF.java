@@ -10,12 +10,16 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.SecretKey;
 import javax.swing.JOptionPane;
 import model.Configuracoes;
+import model.Licenciamento;
 import model.Usuario;
+import model.XmlTools;
 import model.dao.ConfiguracoesDAO;
 import model.dao.UsuarioDAO;
 import model.secaoConexao;
+import org.jdom2.JDOMException;
 
 public class LoginF extends javax.swing.JFrame {
 
@@ -129,7 +133,15 @@ public class LoginF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        login();
+        try {
+            login();
+        } catch (JDOMException ex) {
+            Logger.getLogger(LoginF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginF.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btEntrarActionPerformed
 
     private void edEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edEmailActionPerformed
@@ -140,7 +152,17 @@ public class LoginF extends javax.swing.JFrame {
     //faz o mesmo que clicar em entrar sem necessidade de usar o mouse
     private void edSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edSenhaKeyPressed
         if (evt.getKeyCode() == evt.VK_ENTER) {
-            login();
+            try {
+                try {
+                    login();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LoginF.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (JDOMException ex) {
+                Logger.getLogger(LoginF.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(LoginF.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_edSenhaKeyPressed
     }
 
@@ -177,14 +199,19 @@ public class LoginF extends javax.swing.JFrame {
         });
     }
 
-    private void login() {
+    private void login() throws JDOMException, IOException, ClassNotFoundException {
         UsuarioDAO wUsuarioDAO = new UsuarioDAO();
 
         Usuario wUsuario = wUsuarioDAO.validarusuario(edEmail.getText(), edSenha.getText());
 
         if (wUsuario != null) {
             // Função para validar a chave de instalação
-            if (wUsuario.getChave().equals("")) {
+            secaoConexao.configs = XmlTools.LerXML();
+            
+            if (Licenciamento.LerLicenca()) {
+                
+                Licenciamento.verificaTolerancia(); // Verificar tolerancia de 5 dias
+                
                 secaoConexao.usuarioLogado = wUsuario;
 
                 ConfiguracoesDAO wConfigDAO = new ConfiguracoesDAO();

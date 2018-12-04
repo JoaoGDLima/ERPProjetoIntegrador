@@ -82,8 +82,6 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        btLicenca = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -114,20 +112,6 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
 
         jTextField4.setToolTipText("Digite o local para armazenamento das configurações");
 
-        btLicenca.setText("Licenciamento");
-        btLicenca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLicencaActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Gerar Licença");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -137,10 +121,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(edAuditoria, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btLicenca, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(248, 248, 248))
                     .addComponent(jTextField1)
                     .addComponent(jTextField2)
                     .addComponent(jTextField3)
@@ -158,11 +139,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edAuditoria)
-                    .addComponent(btLicenca)
-                    .addComponent(jButton3))
-                .addGap(6, 6, 6)
+                .addComponent(edAuditoria)
+                .addGap(7, 7, 7)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +156,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         btSalvar.setBackground(new java.awt.Color(76, 175, 80));
@@ -330,22 +308,6 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
-    private void btLicencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLicencaActionPerformed
-    fchooseLicenca.setAcceptAllFileFilterUsed(false);
-    fchooseLicenca.setFileFilter(filtro);
-    fchooseLicenca.addChoosableFileFilter(filtro);
-    int returnval = fchooseLicenca.showOpenDialog(this);        
-    if(returnval == JFileChooser.APPROVE_OPTION)
-    {
-        File file = fchooseLicenca.getSelectedFile();
-        Licenciamento.LerLicenca(file.getAbsolutePath(), "nome do usuario");//tem que colocar atributo chave nessa função
-                                                                            //e retornar a chave do banco de dados.
-                                                                            //a chave é criada com a função
-                                                                            //CriaLicenca
-  //Joao só me cria uma função que retorna a chave do banco atrelada ao usuario, dae ta tudo funcionando ja                                                                            
-    }
-    }//GEN-LAST:event_btLicencaActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             Backup.realizaBackup();
@@ -388,28 +350,14 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         jTextField4.setText(secaoConexao.configs.getPath());
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Date data = new Date();
-        SimpleDateFormat formatador = new SimpleDateFormat("dd_MM_yyyy");        
-        try {
-            data = formatador.parse("14_11_2017");
-        } catch (ParseException ex) {
-            Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Licenciamento.CriaLicenca("teste", formatador.format( data ));// cria licença
-        JOptionPane.showMessageDialog(null, "Arquivo de licença gerado com sucesso. Disponivel no diretorio atualmente configurado no programa.");
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private javax.swing.JFileChooser fchooseLicenca;
     private javax.swing.JFileChooser fchooseBackup;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btLicenca;
     private javax.swing.JButton btSalvar;
     private javax.swing.JCheckBox edAuditoria;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

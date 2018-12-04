@@ -1040,3 +1040,11 @@ line 1:28: unexpected token: datahora
 2018-12-03 09:06:57 ERROR SqlExceptionHelper:146 - ERROR: column usuario0_.chave does not exist
   Posição: 47
 2018-12-03 09:06:57 ERROR UsuarioDAO:11 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-12-03 19:58:47 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(25)
+2018-12-03 19:58:47 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-12-03 20:02:36 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(25)
+2018-12-03 20:02:36 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-12-03 20:09:00 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(25)
+2018-12-03 20:09:00 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement
+2018-12-03 20:21:24 ERROR SqlExceptionHelper:146 - ERROR: value too long for type character varying(25)
+2018-12-03 20:21:24 ERROR UsuarioDAO:11 - org.hibernate.exception.DataException: could not execute statement

@@ -26,7 +26,6 @@ public class Usuario implements java.io.Serializable {
     private String senha;
     private String username;
     private Character inativo;
-    private String chave;
 
     public Usuario() {
     }
@@ -63,15 +62,6 @@ public class Usuario implements java.io.Serializable {
     @Column(name = "id_pessoa")
     public Integer getIdPessoa() {
         return this.idPessoa;
-    }
-
-    @Column(name = "chave", nullable = true, length = 25)    
-    public String getChave() {
-        return chave;
-    }
-
-    public void setChave(String chave) {
-        this.chave = chave;
     }
     
     public void setIdPessoa(Integer idPessoa) {
