@@ -43,28 +43,27 @@ public class Config {
         this.senha = senha;
     }
 
-    public String getPath() {
+   /* public String getPath() {
         return path;
     }
 
     public void setPath(String path) {
         this.path = path;
-    }
+    }*/
     String auditoria;
     String ip;
     String usuario;
-    String senha;
-    String path;
+    String senha;    
     
     
     
-    public Config(String a, String i, String u, String s, String p)
+    public Config(String a, String i, String u, String s)//, String p)
     {
         this.auditoria = a;
         this.ip = i;
         this.usuario = u;
         this.senha = s;
-        this.path = p;
+        //this.path = p;
     }
     
     public Config()

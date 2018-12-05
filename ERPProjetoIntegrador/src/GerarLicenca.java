@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.crypto.SecretKey;
 import javax.swing.JOptionPane;
 import model.Licenciamento;
+import model.secaoConexao;
 import view.CadastroEstadoF;
 
 
@@ -19,14 +20,14 @@ public class GerarLicenca {
         Date data = new Date();
         SimpleDateFormat formatador = new SimpleDateFormat("dd_MM_yyyy");
         try {
-            data = formatador.parse("01_01_2017");
+            data = formatador.parse("08_12_2018");
         } catch (ParseException ex) {
             Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         SecretKey wKey = Licenciamento.CriaLicenca(formatador.format(data));
         
-        java.io.File file = new java.io.File("C:\\Users\\joaog\\Documents\\chave.lic");
+        java.io.File file = new java.io.File(secaoConexao.path+"chave.lic");
         FileOutputStream fos = new FileOutputStream(file);
         ObjectOutputStream obj = new ObjectOutputStream(fos);
         obj.writeObject(wKey);

@@ -71,14 +71,14 @@ public class XmlTools {
         
         
         XMLOutputter xout = new XMLOutputter();
-        OutputStream out = new FileOutputStream( new File("C:\\Users\\joaog\\OneDrive\\Documentos\\NetBeansProjects\\ERPProjetoIntegrador\\ERPProjetoIntegrador\\config.xml"));
+        OutputStream out = new FileOutputStream( new File(secaoConexao.path+"config.xml"));
         xout.output(doc , out);        
     }
     
     public static Config LerXML() throws JDOMException, IOException
     {
         
-        File f = new File("C:\\Users\\joaog\\OneDrive\\Documentos\\NetBeansProjects\\ERPProjetoIntegrador\\ERPProjetoIntegrador\\config.xml");
+        File f = new File(secaoConexao.path+"config.xml");
              
         SAXBuilder builder = new SAXBuilder();
      
@@ -89,8 +89,8 @@ public class XmlTools {
         Config conf = new Config(root.getChildText("Auditoria"), 
                                  root.getChildText("IP"),
                                  root.getChildText("Usuario"),
-                                 root.getChildText("Senha"),
-                                 root.getChildText("Path"));                                      
+                                 root.getChildText("Senha"));
+                                 //root.getChildText("Path"));                                      
         return conf;
     }
     
