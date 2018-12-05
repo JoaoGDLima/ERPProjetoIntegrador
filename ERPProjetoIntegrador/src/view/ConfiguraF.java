@@ -347,7 +347,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         jTextField1.setText(secaoConexao.configs.getIp());
         jTextField2.setText(secaoConexao.configs.getUsuario());
         jTextField3.setText(secaoConexao.configs.getSenha());
-        jTextField4.setText(secaoConexao.configs.getPath());
+        //jTextField4.setText(secaoConexao.configs.getPath());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private javax.swing.JFileChooser fchooseLicenca;
