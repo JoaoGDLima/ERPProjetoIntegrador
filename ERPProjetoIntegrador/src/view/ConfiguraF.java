@@ -38,6 +38,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
     public static final int ID_TELA = 16;    
     FileFilter filtro = new FileNameExtensionFilter("Licenças","lic");
     FileFilter filtro2 = new FileNameExtensionFilter("Arquivo de Backup","backup");
+    FileFilter filtro3 = new FileNameExtensionFilter("Arquivo de Backup","zip");
 
     
     public ConfiguraF() {
@@ -45,6 +46,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         secaoConexao.configs = new Config();
         fchooseLicenca = new JFileChooser();         
         fchooseBackup = new JFileChooser();
+        fchooseBackupFull = new JFileChooser();
+        fchooseRestoreFull = new JFileChooser();
         this.setResizable(false);
         this.HabilitarBotoes();
 
@@ -80,12 +83,12 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bBackup = new javax.swing.JButton();
+        bRestaurar = new javax.swing.JButton();
+        bBackupFull = new javax.swing.JButton();
+        bRestoreFull = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -108,10 +111,6 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
 
         jTextField3.setToolTipText("Digite a senha da Base de Dados");
 
-        jLabel4.setText("Local dos Arquivos:");
-
-        jTextField4.setToolTipText("Digite o local para armazenamento das configurações");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -120,7 +119,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(edAuditoria, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                        .addComponent(edAuditoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(248, 248, 248))
                     .addComponent(jTextField1)
                     .addComponent(jTextField2)
@@ -129,10 +128,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextField4))
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -152,11 +149,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         btSalvar.setBackground(new java.awt.Color(76, 175, 80));
@@ -182,17 +175,31 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             }
         });
 
-        jButton1.setText("BackUp");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bBackup.setText("BackUp");
+        bBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bBackupActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Restaurar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bRestaurar.setText("Restaurar");
+        bRestaurar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bRestaurarActionPerformed(evt);
+            }
+        });
+
+        bBackupFull.setText("BackUp Completo");
+        bBackupFull.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBackupFullActionPerformed(evt);
+            }
+        });
+
+        bRestoreFull.setText("Restaurar Tudo");
+        bRestoreFull.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRestoreFullActionPerformed(evt);
             }
         });
 
@@ -209,10 +216,14 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 127, Short.MAX_VALUE)))
+                        .addComponent(bRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bBackupFull)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bRestoreFull, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -220,14 +231,16 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addComponent(bBackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bRestaurar)
+                        .addComponent(bBackupFull)
+                        .addComponent(bRestoreFull)))
                 .addContainerGap())
         );
 
@@ -236,8 +249,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +261,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty() || jTextField4.getText().isEmpty())
+        if(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Não é possivel salvar configurações, verifique se todos os campos estão preenchidos");
         }
@@ -262,7 +275,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
 
             System.out.println(temp);
             try {
-                XmlTools.EscreverXML(temp, jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText());
+                XmlTools.EscreverXML(temp, jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
             } catch (InstantiationException ex) {
@@ -308,7 +321,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackupActionPerformed
         try {
             Backup.realizaBackup();
         } catch (IOException ex) {
@@ -316,9 +329,9 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         } catch (InterruptedException ex) {
             Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bBackupActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void bRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRestaurarActionPerformed
                            
         try {
            //FileFilter filtro = new FileNameExtensionFilter("Licenças","txt");
@@ -348,26 +361,56 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         jTextField2.setText(secaoConexao.configs.getUsuario());
         jTextField3.setText(secaoConexao.configs.getSenha());
         //jTextField4.setText(secaoConexao.configs.getPath());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bRestaurarActionPerformed
+
+    private void bRestoreFullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRestoreFullActionPerformed
+        fchooseRestoreFull.setAcceptAllFileFilterUsed(false);        
+        fchooseRestoreFull.setFileFilter(filtro3);
+        fchooseRestoreFull.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        int retval = fchooseRestoreFull.showOpenDialog(this);
+        if(retval == JFileChooser.APPROVE_OPTION)
+        {
+            JOptionPane.showMessageDialog(null,"O sistema sera encerrado para restauração!");
+            Backup.realizaFullRestore(fchooseRestoreFull.getSelectedFile().getAbsolutePath());
+        }            
+    }//GEN-LAST:event_bRestoreFullActionPerformed
+
+    private void bBackupFullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackupFullActionPerformed
+        Date d = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd_MM_yyyy");
+        fchooseBackupFull.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fchooseBackupFull.setDialogType(JFileChooser.SAVE_DIALOG);
+        int returnval = fchooseBackupFull.showOpenDialog(this);        
+           if(returnval == JFileChooser.APPROVE_OPTION)
+           {
+               File file = fchooseBackupFull.getCurrentDirectory();                                             
+               if(Backup.zipar("..\\..\\..\\ERPProjetoIntegrador", file.getAbsolutePath() + "\\ERPProjetoIntegrador_" + formatador.format(d) + ".zip"))
+                   JOptionPane.showMessageDialog(null, "Backup completo realizado com sucesso: " + file.getAbsolutePath() + "\\ERPProjetoIntegrador" + formatador.format(d) + ".zip");
+           }           
+           
+        
+    }//GEN-LAST:event_bBackupFullActionPerformed
 
     private javax.swing.JFileChooser fchooseLicenca;
     private javax.swing.JFileChooser fchooseBackup;
+    private javax.swing.JFileChooser fchooseBackupFull;
+    private javax.swing.JFileChooser fchooseRestoreFull;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bBackup;
+    private javax.swing.JButton bBackupFull;
+    private javax.swing.JButton bRestaurar;
+    private javax.swing.JButton bRestoreFull;
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JCheckBox edAuditoria;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
     @Override

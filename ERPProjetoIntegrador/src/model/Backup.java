@@ -35,6 +35,40 @@ import java.util.zip.ZipInputStream;
  */
 public class Backup {
 
+    
+    public static void realizaFullRestore(String arquivo)
+    {
+        //Fazer drop do banco de dados
+        //Realizar restore da base de dados
+        //A partir daqui executa o programa externo para restaurar os diretorios
+        final List<String> comandos = new ArrayList<String>();
+        comandos.add("java");
+        comandos.add("-jar");
+        comandos.add("..\\extrairZip.jar");
+        comandos.add(arquivo);
+        //comandos.add(secaoConexao.path + "ERPProjetoIntegrador");
+        comandos.add("d:\\ZipTeste\\ERPProjetoIntegrador");
+        ProcessBuilder pb = new ProcessBuilder(comandos);
+         try {
+            final Process process = pb.start();
+            final BufferedReader r = new BufferedReader(
+                    new InputStreamReader(process.getErrorStream()));
+            String line = r.readLine();
+            while (line != null) {
+                System.err.println(line);
+                line = r.readLine();
+            }
+            r.close();
+            process.waitFor();
+            process.destroy();
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+    }
+    
     public static void realizaRestore(String arquivo) throws IOException, InterruptedException {
         final List<String> comandos = new ArrayList<String>();
 
@@ -105,7 +139,7 @@ public class Backup {
             r.close();
             process.waitFor();
             process.destroy();
-            JOptionPane.showMessageDialog(null, "backup realizado com sucesso.");
+            JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException ie) {
