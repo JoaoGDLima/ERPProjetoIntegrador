@@ -69,10 +69,43 @@ public class Backup {
         }
     }
     
+    public static void FlushDB()
+    {
+        final List<String> comandos = new ArrayList<String>();
+        comandos.add("C:\\Arquivos de programas\\PostgreSQL\\10\\bin\\dropdb.exe");
+        comandos.add("-h");
+        comandos.add("localhost");
+        comandos.add("-p");
+        comandos.add("5432");
+        comandos.add("-U");
+        comandos.add("postgres");
+        comandos.add("-d");
+        comandos.add("ProjetoIntegrador");
+         ProcessBuilder pb = new ProcessBuilder(comandos);
+        pb.environment().put("PGPASSWORD", "postgres");     //Somente coloque sua senha         
+        try {
+            final Process process = pb.start();
+            final BufferedReader r = new BufferedReader(
+                    new InputStreamReader(process.getErrorStream()));
+            String line = r.readLine();
+            while (line != null) {
+                System.err.println(line);
+                line = r.readLine();
+            }
+            r.close();
+            process.waitFor();
+            process.destroy();
+            
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Erro "+e);
+        } catch (InterruptedException ie) {
+            JOptionPane.showMessageDialog(null, "Erro "+ie);
+        }
+    }
     public static void realizaRestore(String arquivo) throws IOException, InterruptedException {
         final List<String> comandos = new ArrayList<String>();
-
-        comandos.add("C:\\Arquivos de programas\\PostgreSQL\\10\\bin\\pg_restore.exe"); //testado no windows xp
+        Backup.FlushDB();
+        comandos.add("C:\\Arquivos de programas\\PostgreSQL\\10\\bin\\pg_restore.exe");
         //comandos.add("-i");      
         comandos.add("-h");
         comandos.add("localhost");    //ou   comandos.add("192.168.0.1"); 
