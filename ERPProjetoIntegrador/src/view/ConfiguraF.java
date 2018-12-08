@@ -334,19 +334,18 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
     private void bRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRestaurarActionPerformed
                            
         try {
-           //FileFilter filtro = new FileNameExtensionFilter("Licenças","txt");
-           //javax.swing.JFileChooser fchooseLicenca = new JFileChooser();
+           
            fchooseBackup.setAcceptAllFileFilterUsed(false);
            fchooseBackup.setFileFilter(filtro2);
            fchooseBackup.addChoosableFileFilter(filtro2);
-           int returnval = fchooseLicenca.showOpenDialog(this);        
-           if(returnval == JFileChooser.APPROVE_OPTION)
-           {
-               File file = fchooseBackup.getSelectedFile();
+          // int returnval = fchooseBackup.showOpenDialog(this);        
+          // if(returnval == JFileChooser.APPROVE_OPTION)
+           //{
+          //     File file = fchooseBackup.getSelectedFile();
            
-            Backup.realizaRestore(file.getAbsolutePath());
-           }
-            XmlTools.LerXML();
+            Backup.realizaRestore();
+          // }
+            secaoConexao.configs = XmlTools.LerXML();
            
         } catch (JDOMException ex) {
             Logger.getLogger(ConfiguraF.class.getName()).log(Level.SEVERE, null, ex);
@@ -360,7 +359,7 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
         jTextField1.setText(secaoConexao.configs.getIp());
         jTextField2.setText(secaoConexao.configs.getUsuario());
         jTextField3.setText(secaoConexao.configs.getSenha());
-        //jTextField4.setText(secaoConexao.configs.getPath());
+        
     }//GEN-LAST:event_bRestaurarActionPerformed
 
     private void bRestoreFullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRestoreFullActionPerformed

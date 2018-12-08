@@ -34,18 +34,57 @@ import java.util.zip.ZipInputStream;
  * @author Jeferson
  */
 public class Backup {
+    
+    public static void drop()
+    {
+        final List<String> comandos = new ArrayList<String>();
+        comandos.add("C:\\Program Files\\PostgreSQL\\10\\bin\\psql.exe");                
+        comandos.add("-U");
+        comandos.add("postgres"); 
+        
+        comandos.add("-c");        
+        comandos.add("\"drop schema public cascade;create schema public;\"");
+        //comandos.add("-c");
+        //comandos.add("\"create schema public;\"");
+        //comandos.add("-c");
+        comandos.add("projetointegrador");
+        //comandos.add("\"\\q\"");
+                
+        ProcessBuilder pb = new ProcessBuilder(comandos);
+        pb.environment().put("PGPASSWORD", "postgres");
+        try {
+            final Process process = pb.start();
+            final BufferedReader r = new BufferedReader(
+                    new InputStreamReader(process.getErrorStream()));
+            String line = r.readLine();
+            while (line != null) {
+                System.err.println(line);
+                line = r.readLine();
+            }
+            r.close();
+            process.waitFor();
+            process.destroy();
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+    }
 
     public static void realizaFullRestore(String arquivo) {
         //Fazer drop do banco de dados
         //Realizar restore da base de dados
         //A partir daqui executa o programa externo para restaurar os diretorios
+        Backup.drop();
+        Backup.FlushDB();
         final List<String> comandos = new ArrayList<String>();
         comandos.add("java");
         comandos.add("-jar");
         comandos.add("..\\extrairZip.jar");
         comandos.add(arquivo);
-        //comandos.add(secaoConexao.path + "ERPProjetoIntegrador");
-        comandos.add("d:\\ZipTeste\\ERPProjetoIntegrador");
+        comandos.add(secaoConexao.path);
+        
         ProcessBuilder pb = new ProcessBuilder(comandos);
         try {
             final Process process = pb.start();
@@ -76,8 +115,8 @@ public class Backup {
         comandos.add("5432");
         comandos.add("-U");
         comandos.add("postgres");
-        comandos.add("-d");
-        comandos.add("ProjetoIntegrador");
+        //comandos.add("-d");
+        comandos.add("projetointegrador");
         ProcessBuilder pb = new ProcessBuilder(comandos);
         pb.environment().put("PGPASSWORD", "postgres");     //Somente coloque sua senha         
         try {
@@ -100,11 +139,18 @@ public class Backup {
         }
     }
 
-    public static void realizaRestore(String arquivo) throws IOException, InterruptedException {
-        final List<String> comandos = new ArrayList<String>();
+    public static void realizaRestore() throws IOException, InterruptedException {
+        
+
+        Runtime.getRuntime().exec("cmd /C start java -jar ..\\Restaurar.jar \"true\" \"1\"").waitFor();
+        Runtime.getRuntime().exec("cmd /C start java -jar ..\\Restaurar.jar \"false\" \"1\"");
+        /*
+        final List<String> comandos = new ArrayList<String>();        
         File file = new File(arquivo);
         if (file.exists()) {
-            Backup.FlushDB();
+            
+            //Backup.FlushDB();
+           
             comandos.add("C:\\Arquivos de programas\\PostgreSQL\\10\\bin\\pg_restore.exe");
             //comandos.add("-i");      
             comandos.add("-h");
@@ -114,7 +160,7 @@ public class Backup {
             comandos.add("-U");
             comandos.add("postgres");
             comandos.add("-d");
-            comandos.add("ProjetoIntegrador");
+            comandos.add("projetointegrador");
             comandos.add("-v");
             comandos.add("" + arquivo);   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
             ProcessBuilder pb = new ProcessBuilder(comandos);
@@ -141,7 +187,7 @@ public class Backup {
             JOptionPane.showMessageDialog(null, "Restore realizado com sucesso.");
 
         }
-
+        */
     }
 
     public static void realizaBackup() throws IOException, InterruptedException {
@@ -162,7 +208,7 @@ public class Backup {
         comandos.add("-v");
         comandos.add("-f");
         comandos.add(secaoConexao.path + formatador.format(d) + ".backup");   // eu utilizei meu C:\ e D:\ para os testes e gravei o backup com sucesso.  
-        comandos.add("ProjetoIntegrador");
+        comandos.add("projetointegrador");
         ProcessBuilder pb = new ProcessBuilder(comandos);
         pb.environment().put("PGPASSWORD", "postgres");
         try {
@@ -286,7 +332,7 @@ public class Backup {
                     os = new FileOutputStream(arquivo);
                     int bytesLidos = 0;
                     if (is == null) {
-                        throw new ZipException("Erro ao ler a entrada do zip: " + entrada.getName());
+                        throw new ZipException("Erro ao ler o arquivo zip: " + entrada.getName());
                     }
                     while ((bytesLidos = is.read(buffer)) > 0) {
                         os.write(buffer, 0, bytesLidos);
@@ -316,8 +362,9 @@ public class Backup {
         }
     }
 
-    /* public static void main(String arg[]) throws IOException {
-        Backup.zipar("C:\\Users\\Jeferson\\Documents\\ERPProjetoIntegrador", "d:/projeto.zip");
-        Backup.extrairZip("d:/projeto.zip", "d:\\ZipTeste\\");
+   /* public static void main(String arg[]) throws IOException, InterruptedException {
+        //Backup.zipar("C:\\Users\\Jeferson\\Documents\\ERPProjetoIntegrador", "d:/projeto.zip");
+        //Backup.extrairZip("d:/projeto.zip", "d:\\ZipTeste\\");
+        Backup.realizaRestore("");
     }*/
 }

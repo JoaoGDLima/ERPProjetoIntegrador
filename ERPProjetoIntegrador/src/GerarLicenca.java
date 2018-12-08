@@ -20,7 +20,7 @@ public class GerarLicenca {
         Date data = new Date();
         SimpleDateFormat formatador = new SimpleDateFormat("dd_MM_yyyy");
         try {
-            data = formatador.parse("08_12_2018");
+            data = formatador.parse("08_12_2019");
         } catch (ParseException ex) {
             Logger.getLogger(CadastroEstadoF.class.getName()).log(Level.SEVERE, null, ex);
         }

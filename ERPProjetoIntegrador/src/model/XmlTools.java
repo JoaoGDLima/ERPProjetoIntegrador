@@ -38,11 +38,7 @@ public class XmlTools {
     
     public static void EscreverXML(String Auditoria, String IP, String User, String Senha) throws ClassNotFoundException, InstantiationException, IllegalAccessException, FileNotFoundException, IOException, NoSuchFieldException
     {
-        //Object obj = Class.forName(nome).newInstance();
-        Document doc = new Document();       
-        
-        //Element root = new Element(obj.getClass().getName());
-        
+        Document doc = new Document();                               
                                                                               
                 Element root = new Element("Propriedades");
                 
@@ -85,7 +81,7 @@ public class XmlTools {
                                  root.getChildText("IP"),
                                  root.getChildText("Usuario"),
                                  root.getChildText("Senha"));
-                                 //root.getChildText("Path"));                                      
+                                                                      
         return conf;
     }
     
