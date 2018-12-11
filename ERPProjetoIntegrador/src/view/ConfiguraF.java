@@ -175,6 +175,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             }
         });
 
+        bBackup.setBackground(new java.awt.Color(243, 243, 243));
+        bBackup.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bBackup.setText("BackUp");
         bBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +184,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             }
         });
 
+        bRestaurar.setBackground(new java.awt.Color(243, 243, 243));
+        bRestaurar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bRestaurar.setText("Restaurar");
         bRestaurar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +193,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             }
         });
 
+        bBackupFull.setBackground(new java.awt.Color(243, 243, 243));
+        bBackupFull.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bBackupFull.setText("BackUp Completo");
         bBackupFull.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +202,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
             }
         });
 
+        bRestoreFull.setBackground(new java.awt.Color(243, 243, 243));
+        bRestoreFull.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bRestoreFull.setText("Restaurar Tudo");
         bRestoreFull.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,6 +234,9 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bBackup, bBackupFull, bRestaurar, bRestoreFull, btCancelar});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -243,6 +254,8 @@ public class ConfiguraF extends javax.swing.JInternalFrame implements TelaPermis
                         .addComponent(bRestoreFull)))
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bBackup, bBackupFull, bRestaurar, bRestoreFull, btCancelar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

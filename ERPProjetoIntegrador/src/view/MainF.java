@@ -61,19 +61,21 @@ public class MainF extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem26 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
-        jMenuItem24 = new javax.swing.JMenuItem();
-        jMenuItem26 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem27 = new javax.swing.JMenuItem();
@@ -116,9 +118,10 @@ public class MainF extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGap(0, 570, Short.MAX_VALUE)
         );
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cadastro.png"))); // NOI18N
         jMenu1.setText("Cadastros");
         jMenu1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -240,6 +243,7 @@ public class MainF extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Pedido_25.png"))); // NOI18N
         jMenu2.setText("Pedidos");
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -262,10 +266,22 @@ public class MainF extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem8);
+        jMenu2.add(jSeparator1);
+
+        jMenuItem11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Estoq_25.png"))); // NOI18N
+        jMenuItem11.setText("Estoque");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem11);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Gerenciamento");
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Financ_25.png"))); // NOI18N
+        jMenu3.setText("Financeiro");
         jMenu3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -288,20 +304,22 @@ public class MainF extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem10);
 
-        jMenuItem11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Estoq_25.png"))); // NOI18N
-        jMenuItem11.setText("Estoque");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem11);
-
         jMenuBar1.add(jMenu3);
 
-        jMenu6.setText("Listagem/relatórios");
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Relatorio_25.png"))); // NOI18N
+        jMenu6.setText("Gráficos/relatórios");
         jMenu6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jMenuItem26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Grafico_25.png"))); // NOI18N
+        jMenuItem26.setText("Gráficos");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem26);
+        jMenu6.add(jSeparator2);
 
         jMenuItem18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Estado_25.png"))); // NOI18N
@@ -343,6 +361,16 @@ public class MainF extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem21);
 
+        jMenuItem24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Produto.png"))); // NOI18N
+        jMenuItem24.setText("Produtos");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem24);
+
         jMenuItem22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cargos.png"))); // NOI18N
         jMenuItem22.setText("Cargos");
@@ -363,27 +391,9 @@ public class MainF extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem23);
 
-        jMenuItem24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Produto.png"))); // NOI18N
-        jMenuItem24.setText("Produtos");
-        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem24ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem24);
-
-        jMenuItem26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jMenuItem26.setText("Gráficos");
-        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem26ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem26);
-
         jMenuBar1.add(jMenu6);
 
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Suporte_25.png"))); // NOI18N
         jMenu8.setText("Suporte");
         jMenu8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -398,6 +408,7 @@ public class MainF extends javax.swing.JFrame {
         jMenu8.add(jMenuItem25);
 
         jMenuItem27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenuItem27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Info_25.png"))); // NOI18N
         jMenuItem27.setText("Informações de versões");
         jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -408,6 +419,7 @@ public class MainF extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu8);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Conf_25.png"))); // NOI18N
         jMenu5.setText("Configurações");
         jMenu5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenu5.addActionListener(new java.awt.event.ActionListener() {
@@ -428,6 +440,7 @@ public class MainF extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Sai_25.png"))); // NOI18N
         jMenu4.setText("Sair");
         jMenu4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -753,5 +766,7 @@ public class MainF extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

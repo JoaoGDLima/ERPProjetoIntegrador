@@ -924,9 +924,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btEditar" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btExcluir" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="btExcluir" linkSize="5" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btCancelar2" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="btCancelar2" linkSize="5" min="-2" pref="120" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
                       </Group>

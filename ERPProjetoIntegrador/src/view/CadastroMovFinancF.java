@@ -1,7 +1,11 @@
 package view;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -16,21 +20,23 @@ import model.TelaPermissao;
 import model.dao.MovimentacaoFinancDAO;
 import model.dao.PedidoDAO;
 import model.dao.PessoaJuridicaDAO;
+import model.util.Calendario;
 import model.util.ComboItens;
 import model.util.Formatacao;
 import model.util.Validacao;
 
-public class CadastroMovFinancF extends javax.swing.JInternalFrame implements TelaPermissao{
+public class CadastroMovFinancF extends javax.swing.JInternalFrame implements TelaPermissao {
+
     int ID_TELA;//17 é temporario, movimentação financeira nao tem código proprio, mas contas receber e pagar tem codigos separados
     char tipo;
-    
+
     public CadastroMovFinancF(int pIDTela, char pTipo) {
         initComponents();
         this.ID_TELA = pIDTela;
         this.tipo = pTipo;
         this.setResizable(false);
         this.HabilitarBotoes();
-        
+
         selecionaTipoMovFinanc(pTipo);
 
         edDataVencimento.setFont(new java.awt.Font("Tahoma", 0, 14));
@@ -43,7 +49,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 String valor = String.valueOf(tbParcelas.getValueAt(tbParcelas.getSelectedRow(), 0));
-                 
+
                 Integer wSeq = Integer.parseInt(valor);
                 SelecionaParcela(wSeq);
             }
@@ -72,7 +78,6 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
         jScrollPane1 = new javax.swing.JScrollPane();
         tbParcelas = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        btSelecionarParc = new javax.swing.JButton();
         pnParcela = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         edDataPagamento = new javax.swing.JFormattedTextField();
@@ -243,17 +248,6 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
         jLabel3.setForeground(new java.awt.Color(33, 33, 33));
         jLabel3.setText("parcelas:");
 
-        btSelecionarParc.setBackground(new java.awt.Color(243, 243, 243));
-        btSelecionarParc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btSelecionarParc.setForeground(new java.awt.Color(33, 33, 33));
-        btSelecionarParc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Selecionar_15.png"))); // NOI18N
-        btSelecionarParc.setText("Selecionar parcela");
-        btSelecionarParc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSelecionarParcActionPerformed(evt);
-            }
-        });
-
         pnParcela.setBackground(new java.awt.Color(255, 255, 255));
         pnParcela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parcela", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
@@ -390,9 +384,6 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btSelecionarParc))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
@@ -412,8 +403,6 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSelecionarParc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnParcela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -426,9 +415,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -470,11 +457,11 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
     private void btSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionar1ActionPerformed
         char wTipoPedido = 0;
         if (tipo == 'P') {
-           wTipoPedido = 'C';
+            wTipoPedido = 'C';
         } else if (tipo == 'R') {
             wTipoPedido = 'V';
         }
-        
+
         if (edCodCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "selecione um cliente!");
         } else {
@@ -487,89 +474,72 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
             if (wSelecionar.getTextSearch() != null) {
                 Pedido wPedido = new PedidoDAO().consultarID(Integer.parseInt(wSelecionar.getTextSearch()));
                 edPedido.setText(wPedido.getIdPedido() + "");
-                
+
                 if (wPedido.getTipo() == 'C') {
                     edTipoPedido.setText(wPedido.getTipo() + " - Compra");
+                } else {
+                    edTipoPedido.setText(wPedido.getTipo() + " - Venda");
                 }
-                else
-                {
-                   edTipoPedido.setText(wPedido.getTipo() + " - Venda"); 
-                }
-                
+
                 new MovimentacaoFinancDAO().popularTabela(tbParcelas, "", wPedido.getIdPedido());
             }
         }
     }//GEN-LAST:event_btSelecionar1ActionPerformed
 
-    private void btSelecionarParcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarParcActionPerformed
-        /*String valor = String.valueOf(tbParcelas.getValueAt(tbParcelas.getSelectedRow(), 0));
-
-        parcela wParcela = new contratoDAO().consultarParcelaId(Integer.parseInt(edContrato.getText()), Integer.parseInt(valor));
-
-        edParcela.setText(wParcela.getSeq() + "");
-        edDataVencimento.setText(wParcela.getDataVencimento());
-        edValor.setText(Float.toString(wParcela.getValor()));
-        edDataPagamento.setText(wParcela.getDataPagamento());
-
-        if (wParcela.getOFormaPagamento() != null) {
-            ComboItens item = new ComboItens();
-            item.setCodigo(wParcela.getOFormaPagamento().getCodigo());
-            new CombosDAO().definirItemCombo(edFormaPagamento, item);
-        }*/
-    }//GEN-LAST:event_btSelecionarParcActionPerformed
-
     private void btConfirmarPgtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarPgtoActionPerformed
-        /*if (validaCampo()) {
-            parcela wParcela = new parcela();
-            wParcela.setSeq(Integer.parseInt(edParcela.getText()));
-            wParcela.setDataVencimento(edDataVencimento.getText());
-            wParcela.setValor(Float.valueOf(edValor.getText()));
-            wParcela.setDataPagamento(edDataPagamento.getText());
-            wParcela.setSituacao("F");
-            
-            ComboItens ci = (ComboItens) edFormaPagamento.getSelectedItem();
-            wParcela.setOFormaPagamento(new formaspagamentoDAO().consultarId(ci.getCodigo()));
-            
-            new contratoDAO().atualizarParcela(wParcela, Integer.parseInt(edContrato.getText()));
-            
-            GParcelas = new contratoDAO().consultarId(Integer.parseInt(edContrato.getText())).getAParcelas();
-            popularTabela();
-        }*/
+        if (validaCampo()) {
+            MovimentacaoFinancDAO wMovimentacaoFinancDAO = new MovimentacaoFinancDAO();
+            MovimentacaoFinanc wParcela = wMovimentacaoFinancDAO.consultarID(Integer.parseInt(edPedido.getText()), Integer.parseInt(edParcela.getText()));
+
+            if (wParcela.getDataQuitacao() == null) {
+                try {
+                    wParcela.setDataQuitacao(new SimpleDateFormat("yyyy-MM-dd").parse(Formatacao.ajustaDataAMD(edDataPagamento.getText())));
+                } catch (ParseException ex) {
+                    Logger.getLogger(CadastroMovFinancF.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                wMovimentacaoFinancDAO.atualizar(wParcela);
+                wMovimentacaoFinancDAO.popularTabela(tbParcelas, "", Integer.parseInt(edPedido.getText()));
+                JOptionPane.showMessageDialog(null, "Pagamento realizado!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Pagamento da parcela já efetuada!");
+            }
+        }
     }//GEN-LAST:event_btConfirmarPgtoActionPerformed
 
     private void btCancelarPgtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarPgtoActionPerformed
-            /*if (edCodigoCli.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Selecione um cliente!");
-                edCodigoCli.requestFocus();
-            }
-            else if (edContrato.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Selecione um contrato!");
-                edContrato.requestFocus();
-            }
-            else if (edParcela.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Selecione uma parcela!");
-            btSelecionarParc.requestFocus();
-            }
-            else
-            {
-                parcela wParcela = new parcela();
-                wParcela.setSeq(Integer.parseInt(edParcela.getText()));
-                wParcela.setDataVencimento(edDataVencimento.getText());
-                wParcela.setValor(Float.valueOf(edValor.getText()));
-                wParcela.setDataPagamento("");
-                wParcela.setSituacao("A");
-                wParcela.setOFormaPagamento(null);
+        /*if (edCodigoCli.getText().equals("")) {
+         JOptionPane.showMessageDialog(this, "Selecione um cliente!");
+         edCodigoCli.requestFocus();
+         }
+         else if (edContrato.getText().equals("")) {
+         JOptionPane.showMessageDialog(this, "Selecione um contrato!");
+         edContrato.requestFocus();
+         }
+         else if (edParcela.getText().equals("")) {
+         JOptionPane.showMessageDialog(null, "Selecione uma parcela!");
+         btSelecionarParc.requestFocus();
+         }
+         else
+         {
+         parcela wParcela = new parcela();
+         wParcela.setSeq(Integer.parseInt(edParcela.getText()));
+         wParcela.setDataVencimento(edDataVencimento.getText());
+         wParcela.setValor(Float.valueOf(edValor.getText()));
+         wParcela.setDataPagamento("");
+         wParcela.setSituacao("A");
+         wParcela.setOFormaPagamento(null);
 
-                new contratoDAO().atualizarParcela(wParcela, Integer.parseInt(edContrato.getText()));
+         new contratoDAO().atualizarParcela(wParcela, Integer.parseInt(edContrato.getText()));
 
-                GParcelas = new contratoDAO().consultarId(Integer.parseInt(edContrato.getText())).getAParcelas();
-                popularTabela();
-            }*/
+         GParcelas = new contratoDAO().consultarId(Integer.parseInt(edContrato.getText())).getAParcelas();
+         popularTabela();
+         }*/
     }//GEN-LAST:event_btCancelarPgtoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //Calendario wCal = new Calendario();
-        //edDataPagamento.setText(wCal.obterDataAtualDMA());
+        Calendario wCal = new Calendario();
+        edDataPagamento.setText(wCal.obterDataAtualDMA());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
@@ -580,68 +550,68 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
         // dados da tabela
         /*Object[][] dadosTabela = null;
 
-        // cabecalho da tabela
-        Object[] cabecalho = new Object[4];
-        cabecalho[0] = "Parcela";
-        cabecalho[1] = "Data de vencimento";
-        cabecalho[2] = "Data de pagamento";
-        cabecalho[3] = "Valor";
+         // cabecalho da tabela
+         Object[] cabecalho = new Object[4];
+         cabecalho[0] = "Parcela";
+         cabecalho[1] = "Data de vencimento";
+         cabecalho[2] = "Data de pagamento";
+         cabecalho[3] = "Valor";
 
-        dadosTabela = new Object[GParcelas.size()][4];
-        for (int j = 0; j < GParcelas.size(); j++) {
-            dadosTabela[j][0] = GParcelas.get(j).getSeq();
-            dadosTabela[j][1] = GParcelas.get(j).getDataVencimento();
-            dadosTabela[j][2] = GParcelas.get(j).getDataPagamento();
-            dadosTabela[j][3] = GParcelas.get(j).getValor();
-        }
+         dadosTabela = new Object[GParcelas.size()][4];
+         for (int j = 0; j < GParcelas.size(); j++) {
+         dadosTabela[j][0] = GParcelas.get(j).getSeq();
+         dadosTabela[j][1] = GParcelas.get(j).getDataVencimento();
+         dadosTabela[j][2] = GParcelas.get(j).getDataPagamento();
+         dadosTabela[j][3] = GParcelas.get(j).getValor();
+         }
 
-        // configuracoes adicionais no componente tabela
-        tbParcelas.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
-            @Override
-            // quando retorno for FALSE, a tabela nao é editavel
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
+         // configuracoes adicionais no componente tabela
+         tbParcelas.setModel(new DefaultTableModel(dadosTabela, cabecalho) {
+         @Override
+         // quando retorno for FALSE, a tabela nao é editavel
+         public boolean isCellEditable(int row, int column) {
+         return false;
+         }
 
-            // alteracao no metodo que determina a coluna em que o objeto ImageIcon devera aparecer
-            @Override
-            public Class getColumnClass(int column) {
+         // alteracao no metodo que determina a coluna em que o objeto ImageIcon devera aparecer
+         @Override
+         public Class getColumnClass(int column) {
 
-                if (column == 2) {
-                    //return ImageIcon.class;
-                }
-                return Object.class;
-            }
-        });
+         if (column == 2) {
+         //return ImageIcon.class;
+         }
+         return Object.class;
+         }
+         });
 
-        // permite seleção de apenas uma linha da tabela
-        tbParcelas.setSelectionMode(0);
+         // permite seleção de apenas uma linha da tabela
+         tbParcelas.setSelectionMode(0);
 
-        // redimensiona as colunas de uma tabela
-        TableColumn column = null;
-        for (int i = 0; i < tbParcelas.getColumnCount(); i++) {
-            column = tbParcelas.getColumnModel().getColumn(i);
-            switch (i) {
-                case 0:
-                    column.setPreferredWidth(17);
-                    break;
-                case 1:
-                    column.setPreferredWidth(140);
-                    break;
-            }
-        }*/
+         // redimensiona as colunas de uma tabela
+         TableColumn column = null;
+         for (int i = 0; i < tbParcelas.getColumnCount(); i++) {
+         column = tbParcelas.getColumnModel().getColumn(i);
+         switch (i) {
+         case 0:
+         column.setPreferredWidth(17);
+         break;
+         case 1:
+         column.setPreferredWidth(140);
+         break;
+         }
+         }*/
     }
-    
+
     private void selecionaTipoMovFinanc(char pTipo) {
         if (pTipo == 'P') {
-            btSelecionarCli.setText("Fornecedor:");
+            btSelecionarCli.setText("Selecionar fornecedor");
             lbDescCliente.setText("Fornecedor:");
         } else {
-            btSelecionarCli.setText("Cliente:");
+            btSelecionarCli.setText("Selecionar cliente");
             lbDescCliente.setText("Cliente:");
         }
     }
-    
+
     private void selecionaCliente(Integer pCodigo) {
         PessoaJuridica wCliente = new PessoaJuridicaDAO().consultarID(pCodigo);
         edCodCliente.setText(wCliente.getIdPessoa() + "");
@@ -654,7 +624,6 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
     private javax.swing.JButton btConfirmarPgto;
     private javax.swing.JButton btSelecionar1;
     private javax.swing.JButton btSelecionarCli;
-    private javax.swing.JButton btSelecionarParc;
     private javax.swing.JTextField edCodCliente;
     private javax.swing.JFormattedTextField edDataPagamento;
     private javax.swing.JFormattedTextField edDataVencimento;
@@ -694,23 +663,20 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
             edPedido.requestFocus();
             return false;
         }
-        
-        
+
         if (edParcela.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Selecione uma parcela!");
-            btSelecionarParc.requestFocus();
             return false;
         }
-        
+
         if (Formatacao.removerFormatacao(edDataPagamento.getText()).equals("")) {
             JOptionPane.showMessageDialog(null, "Campo data de pagamento inválido!");
             edDataPagamento.requestFocus();
             return false;
-        } else if (!Validacao.validarDataFormatada(edDataPagamento.getText()))
-        {
+        } else if (!Validacao.validarDataFormatada(edDataPagamento.getText())) {
             JOptionPane.showMessageDialog(null, "Campo data de pagamento inválido!");
             edDataPagamento.requestFocus();
-            return false; 
+            return false;
         }
 
         return true;
@@ -729,14 +695,24 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
     public void HabilitarBotoes() {
         Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
     }
-    
+
     public void SelecionaParcela(Integer pSeq) {
         if (!edPedido.getText().isEmpty()) {
             MovimentacaoFinanc wParcela = new MovimentacaoFinancDAO().consultarID(Integer.parseInt(edPedido.getText()), pSeq);
             edParcela.setText(wParcela.getId().getSeq() + "");
             edValor.setValue(wParcela.getValor());
-            edDataPagamento.setText(Formatacao.ajustaDataDMA(wParcela.getDataQuitacao().toString()));
-            edDataVencimento.setText(Formatacao.ajustaDataDMA(wParcela.getDataVencimento().toString()));
+
+            if (wParcela.getDataQuitacao() != null) {
+                edDataPagamento.setText(Formatacao.ajustaDataDMA(wParcela.getDataQuitacao().toString()));
+            } else {
+                edDataPagamento.setText("");
+            }
+
+            if (wParcela.getDataVencimento() != null) {
+                edDataVencimento.setText(Formatacao.ajustaDataDMA(wParcela.getDataVencimento().toString()));
+            } else {
+                edDataVencimento.setText("");
+            }
         }
     }
 }
