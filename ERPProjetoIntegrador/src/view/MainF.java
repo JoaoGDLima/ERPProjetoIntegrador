@@ -542,14 +542,14 @@ public class MainF extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF(13);
+        CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF(13, 'R');
         jDesktopPane1.add(ifrMovFinanc);
         unit.setPositionCenter(ifrMovFinanc);
         ifrMovFinanc.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF(14);
+        CadastroMovFinancF ifrMovFinanc = new CadastroMovFinancF(14, 'P');
         jDesktopPane1.add(ifrMovFinanc);
         unit.setPositionCenter(ifrMovFinanc);
         ifrMovFinanc.setVisible(true);

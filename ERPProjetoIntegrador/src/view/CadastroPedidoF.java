@@ -106,7 +106,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         jLabel17 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        edFormaPgto = new javax.swing.JComboBox<>();
+        edFormaPgto = new javax.swing.JComboBox<String>();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         edDesconto = new model.util.JNumberFormatField();
@@ -124,7 +124,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         edCodigoCli2 = new javax.swing.JTextField();
         edCodFunc = new javax.swing.JTextField();
         edNomeFunc = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        lbDescCliente = new javax.swing.JLabel();
         edCodCliente = new javax.swing.JTextField();
         edNomeCliente = new javax.swing.JTextField();
         btSelecionar2 = new javax.swing.JButton();
@@ -368,7 +368,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
         edFormaPgto.setBackground(new java.awt.Color(255, 255, 204));
         edFormaPgto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edFormaPgto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        edFormaPgto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         edFormaPgto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 edFormaPgtoItemStateChanged(evt);
@@ -520,9 +520,9 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
         edNomeFunc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         edNomeFunc.setForeground(new java.awt.Color(33, 33, 33));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(33, 33, 33));
-        jLabel12.setText("Cliente:");
+        lbDescCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbDescCliente.setForeground(new java.awt.Color(33, 33, 33));
+        lbDescCliente.setText("Cliente:");
 
         edCodCliente.setEditable(false);
         edCodCliente.setBackground(new java.awt.Color(255, 255, 204));
@@ -590,7 +590,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
                         .addGroup(pnDadosPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(edCodigoCli2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel12)
+                    .addComponent(lbDescCliente)
                     .addComponent(edDataPed, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -598,7 +598,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
             pnDadosPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnDadosPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12)
+                .addComponent(lbDescCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnDadosPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -917,12 +917,11 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
     private void btAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddItemActionPerformed
         if (validaCampoItens()) {
-            if ((tipo=='C') || (verificaEstoque(edQuantidade.getValue().doubleValue(), Integer.parseInt(edCodProduto.getText())))) {
+            if ((tipo == 'C') || (verificaEstoque(edQuantidade.getValue().doubleValue(), Integer.parseInt(edCodProduto.getText())))) {
                 adicionarItemPedido(Integer.parseInt(edCodProduto.getText()), edQuantidade.getValue(), edQuantidade.getValue().multiply(edValorUnit.getValue()));
                 popularTabelaItensPedido();
                 limparCamposItemPedido();
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Estoque insuficiente!");
             }
 
@@ -974,10 +973,10 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
             if (retorno == null) {
                 JOptionPane.showMessageDialog(null, "Registro salvo com sucesso!");
-                
+
                 PedidoSalvo wPedidoSalvo = new PedidoSalvo(null, true, wPedido);
                 wPedidoSalvo.setVisible(true);
-                
+
                 //limpaCampos.limparCampos(pnCampos);
                 codigoPedido = 0;
                 new PedidoDAO().popularTabela(tbPedidos, "", Integer.parseInt(edCodCliente.getText()), tipo);
@@ -1017,7 +1016,13 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
 
     private void btSelecionar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionar2ActionPerformed
         SelecionarCliente wSelecionar = new SelecionarCliente(null, true);
-        wSelecionar.CarregarCliente();
+
+        if (tipo == 'C') {
+            wSelecionar.CarregarFornecedor();
+        } else if (tipo == 'V') {
+            wSelecionar.CarregarCliente();
+        }
+
         wSelecionar.setVisible(true);
 
         if (wSelecionar.getTextSearch() != null) {
@@ -1138,7 +1143,6 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1158,6 +1162,7 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lbDescCliente;
     private javax.swing.JLabel lbValorPed;
     private javax.swing.JPanel pnCampos;
     private javax.swing.JPanel pnDadosPrincipal;
@@ -1403,8 +1408,10 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     private void selecionaTipoPedido(char pTipo) {
         if (pTipo == 'C') {
             edTipoPedido.setText("C - Compra");
+            lbDescCliente.setText("Fornecedor:");
         } else {
             edTipoPedido.setText("V - Venda");
+            lbDescCliente.setText("Cliente:");
         }
     }
 
@@ -1427,11 +1434,10 @@ public class CadastroPedidoF extends javax.swing.JInternalFrame implements TelaP
     private boolean verificaEstoque(double pQtd, Integer pItem) {
         EstoqueDAO wEstoqueDAO = new EstoqueDAO();
         Estoque wEstqoue = wEstoqueDAO.consultarID(pItem);
-        
-        if (wEstqoue==null) {
+
+        if (wEstqoue == null) {
             return false;
-        }
-        else if (pQtd > wEstqoue.getQuantidade()) {
+        } else if (pQtd > wEstqoue.getQuantidade()) {
             return false;
         }
 

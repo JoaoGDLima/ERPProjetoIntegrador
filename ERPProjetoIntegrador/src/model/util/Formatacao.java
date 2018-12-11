@@ -238,8 +238,14 @@ public class Formatacao {
     public static String ajustaDataDMA(String data) {
         String dataFormatada = null;
         try {
+            if (data == null) {
+              dataFormatada = "";   
+            }
+            else
+            {
             Date dataAMD = new SimpleDateFormat("yyyy-MM-dd").parse(data);
             dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataAMD);
+            }
         } catch (Exception e) {
             System.err.println(e);
         }

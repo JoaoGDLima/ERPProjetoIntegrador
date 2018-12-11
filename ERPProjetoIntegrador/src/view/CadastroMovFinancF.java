@@ -1,36 +1,53 @@
 package view;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import model.MovimentacaoFinanc;
+import model.Pedido;
 import model.Permissoes;
+import model.PessoaJuridica;
 import model.TelaPermissao;
+import model.dao.MovimentacaoFinancDAO;
+import model.dao.PedidoDAO;
+import model.dao.PessoaJuridicaDAO;
 import model.util.ComboItens;
 import model.util.Formatacao;
 import model.util.Validacao;
 
 public class CadastroMovFinancF extends javax.swing.JInternalFrame implements TelaPermissao{
     int ID_TELA;//17 é temporario, movimentação financeira nao tem código proprio, mas contas receber e pagar tem codigos separados
-   
-    public CadastroMovFinancF(int pIDTela) {
+    char tipo;
+    
+    public CadastroMovFinancF(int pIDTela, char pTipo) {
         initComponents();
         this.ID_TELA = pIDTela;
+        this.tipo = pTipo;
         this.setResizable(false);
         this.HabilitarBotoes();
         
-        /*GParcelas = new ArrayList();
-        popularTabela();
-        
+        selecionaTipoMovFinanc(pTipo);
+
         edDataVencimento.setFont(new java.awt.Font("Tahoma", 0, 14));
         edDataPagamento.setFont(new java.awt.Font("Tahoma", 0, 14));
 
         Formatacao.formatarData(edDataVencimento);
         Formatacao.formatarData(edDataPagamento);
-        
-        edFormaPagamento.removeAllItems();
-        new CombosDAO().popularCombo("formaspagamento","codigo, nome","","nome", edFormaPagamento);*/
+
+        tbParcelas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                String valor = String.valueOf(tbParcelas.getValueAt(tbParcelas.getSelectedRow(), 0));
+                 
+                Integer wSeq = Integer.parseInt(valor);
+                SelecionaParcela(wSeq);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -40,15 +57,15 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        edCodigoCli = new javax.swing.JTextField();
-        edNomeCli = new javax.swing.JTextField();
+        lbDescCliente = new javax.swing.JLabel();
+        edCodCliente = new javax.swing.JTextField();
+        edNomeCliente = new javax.swing.JTextField();
         btSelecionarCli = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        edContrato = new javax.swing.JTextField();
+        edPedido = new javax.swing.JTextField();
         btSelecionar1 = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        edContrato1 = new javax.swing.JTextField();
+        edTipoPedido = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -67,7 +84,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
         edParcela = new javax.swing.JFormattedTextField();
         edDataVencimento = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
-        edValor = new javax.swing.JTextField();
+        edValor = new model.util.JNumberFormatField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -78,19 +95,19 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(33, 33, 33));
-        jLabel1.setText("Cliente:");
+        lbDescCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbDescCliente.setForeground(new java.awt.Color(33, 33, 33));
+        lbDescCliente.setText("Cliente:");
 
-        edCodigoCli.setEditable(false);
-        edCodigoCli.setBackground(new java.awt.Color(255, 255, 204));
-        edCodigoCli.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edCodigoCli.setForeground(new java.awt.Color(33, 33, 33));
+        edCodCliente.setEditable(false);
+        edCodCliente.setBackground(new java.awt.Color(255, 255, 204));
+        edCodCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edCodCliente.setForeground(new java.awt.Color(33, 33, 33));
 
-        edNomeCli.setEditable(false);
-        edNomeCli.setBackground(new java.awt.Color(255, 255, 204));
-        edNomeCli.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edNomeCli.setForeground(new java.awt.Color(33, 33, 33));
+        edNomeCliente.setEditable(false);
+        edNomeCliente.setBackground(new java.awt.Color(255, 255, 204));
+        edNomeCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edNomeCliente.setForeground(new java.awt.Color(33, 33, 33));
 
         btSelecionarCli.setBackground(new java.awt.Color(243, 243, 243));
         btSelecionarCli.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -108,10 +125,10 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
         jLabel2.setForeground(new java.awt.Color(33, 33, 33));
         jLabel2.setText("Pedido:");
 
-        edContrato.setEditable(false);
-        edContrato.setBackground(new java.awt.Color(255, 255, 204));
-        edContrato.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edContrato.setForeground(new java.awt.Color(33, 33, 33));
+        edPedido.setEditable(false);
+        edPedido.setBackground(new java.awt.Color(255, 255, 204));
+        edPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edPedido.setForeground(new java.awt.Color(33, 33, 33));
 
         btSelecionar1.setBackground(new java.awt.Color(243, 243, 243));
         btSelecionar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -136,10 +153,10 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
             }
         });
 
-        edContrato1.setEditable(false);
-        edContrato1.setBackground(new java.awt.Color(255, 255, 204));
-        edContrato1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        edContrato1.setForeground(new java.awt.Color(33, 33, 33));
+        edTipoPedido.setEditable(false);
+        edTipoPedido.setBackground(new java.awt.Color(255, 255, 204));
+        edTipoPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        edTipoPedido.setForeground(new java.awt.Color(33, 33, 33));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(33, 33, 33));
@@ -153,23 +170,23 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(edCodigoCli, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(edCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(edNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btSelecionarCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(lbDescCliente)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(edContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(edPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(edContrato1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(edTipoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btSelecionar1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,24 +203,24 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edContrato1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edTipoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btSelecionar1)
                             .addComponent(btCancelar)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lbDescCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edCodigoCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(edNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btSelecionarCli))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(edPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btCancelar, btSelecionar1, edContrato, edContrato1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btCancelar, btSelecionar1, edPedido, edTipoPedido});
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -288,6 +305,7 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
 
         edDataVencimento.setBackground(new java.awt.Color(255, 255, 204));
 
+        jButton1.setBackground(new java.awt.Color(243, 243, 243));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Data atual");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -296,7 +314,6 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
             }
         });
 
-        edValor.setEditable(false);
         edValor.setBackground(new java.awt.Color(255, 255, 204));
         edValor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -318,22 +335,23 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
                     .addGroup(pnParcelaLayout.createSequentialGroup()
                         .addGroup(pnParcelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnParcelaLayout.createSequentialGroup()
-                                .addComponent(edParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(edDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(edValor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnParcelaLayout.createSequentialGroup()
                                 .addComponent(btConfirmarPgto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btCancelarPgto))
-                            .addGroup(pnParcelaLayout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(pnParcelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnParcelaLayout.createSequentialGroup()
+                                    .addComponent(edParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(edDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(edValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnParcelaLayout.createSequentialGroup()
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(180, Short.MAX_VALUE))))
         );
         pnParcelaLayout.setVerticalGroup(
             pnParcelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,11 +361,10 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
                     .addComponent(jLabel8)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnParcelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnParcelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(edParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(edDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnParcelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(edParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -363,6 +380,8 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
         );
 
         pnParcelaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {edDataPagamento, jButton1});
+
+        pnParcelaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {edDataVencimento, edParcela, edValor});
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -431,36 +450,55 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSelecionarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarCliActionPerformed
-        /*SelecionarCliente wSelecionarCliente = new SelecionarCliente(null, true);
+        SelecionarCliente wSelecionar = new SelecionarCliente(null, true);
 
-        wSelecionarCliente.setVisible(true);
+        if (tipo == 'P') {
+            wSelecionar.CarregarFornecedor();
+        } else if (tipo == 'R') {
+            wSelecionar.CarregarCliente();
+        }
 
-        if (wSelecionarCliente.getTextSearch() != null) {
-            cliente wCli = wSelecionarCliente.getTextSearch();
-            edCodigoCli.setText(wCli.getCodigo() + "");
-            edNomeCli.setText(wCli.getNome() + "");
-            GParcelas = new ArrayList();
-            popularTabela();
-        }*/
+        wSelecionar.setVisible(true);
+
+        if (wSelecionar.getTextSearch() != null) {
+            selecionaCliente(Integer.parseInt(wSelecionar.getTextSearch()));
+
+            //new PedidoDAO().popularTabela(tbPedidos, "", Integer.parseInt(edCodCliente.getText()), tipo);
+        }
     }//GEN-LAST:event_btSelecionarCliActionPerformed
 
     private void btSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionar1ActionPerformed
-        /*if (edCodigoCli.getText().equals("")) {
+        char wTipoPedido = 0;
+        if (tipo == 'P') {
+           wTipoPedido = 'C';
+        } else if (tipo == 'R') {
+            wTipoPedido = 'V';
+        }
+        
+        if (edCodCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "selecione um cliente!");
         } else {
-            int wCodigoCliente = Integer.parseInt(edCodigoCli.getText());
+            int wCodigoCliente = Integer.parseInt(edCodCliente.getText());
 
-            SelecionarContrato wSelecionarContrato = new SelecionarContrato(null, true, wCodigoCliente);
+            SelecionarCliente wSelecionar = new SelecionarCliente(null, true);
+            wSelecionar.carregarPedidos(wCodigoCliente, wTipoPedido);
+            wSelecionar.setVisible(true);
 
-            wSelecionarContrato.setVisible(true);
-
-            if (wSelecionarContrato.getTextSearch() != null) {
-                Contrato wContrato = wSelecionarContrato.getTextSearch();
-                edContrato.setText(wContrato.getCodigo() + "");
-                GParcelas = wContrato.getAParcelas();
-                popularTabela();
+            if (wSelecionar.getTextSearch() != null) {
+                Pedido wPedido = new PedidoDAO().consultarID(Integer.parseInt(wSelecionar.getTextSearch()));
+                edPedido.setText(wPedido.getIdPedido() + "");
+                
+                if (wPedido.getTipo() == 'C') {
+                    edTipoPedido.setText(wPedido.getTipo() + " - Compra");
+                }
+                else
+                {
+                   edTipoPedido.setText(wPedido.getTipo() + " - Venda"); 
+                }
+                
+                new MovimentacaoFinancDAO().popularTabela(tbParcelas, "", wPedido.getIdPedido());
             }
-        }*/
+        }
     }//GEN-LAST:event_btSelecionar1ActionPerformed
 
     private void btSelecionarParcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarParcActionPerformed
@@ -593,6 +631,22 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
             }
         }*/
     }
+    
+    private void selecionaTipoMovFinanc(char pTipo) {
+        if (pTipo == 'P') {
+            btSelecionarCli.setText("Fornecedor:");
+            lbDescCliente.setText("Fornecedor:");
+        } else {
+            btSelecionarCli.setText("Cliente:");
+            lbDescCliente.setText("Cliente:");
+        }
+    }
+    
+    private void selecionaCliente(Integer pCodigo) {
+        PessoaJuridica wCliente = new PessoaJuridicaDAO().consultarID(pCodigo);
+        edCodCliente.setText(wCliente.getIdPessoa() + "");
+        edNomeCliente.setText(wCliente.getNome() + "");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
@@ -601,16 +655,15 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
     private javax.swing.JButton btSelecionar1;
     private javax.swing.JButton btSelecionarCli;
     private javax.swing.JButton btSelecionarParc;
-    private javax.swing.JTextField edCodigoCli;
-    private javax.swing.JTextField edContrato;
-    private javax.swing.JTextField edContrato1;
+    private javax.swing.JTextField edCodCliente;
     private javax.swing.JFormattedTextField edDataPagamento;
     private javax.swing.JFormattedTextField edDataVencimento;
-    private javax.swing.JTextField edNomeCli;
+    private javax.swing.JTextField edNomeCliente;
     private javax.swing.JFormattedTextField edParcela;
-    private javax.swing.JTextField edValor;
+    private javax.swing.JTextField edPedido;
+    private javax.swing.JTextField edTipoPedido;
+    private model.util.JNumberFormatField edValor;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -624,20 +677,21 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lbDescCliente;
     private javax.swing.JPanel pnParcela;
     private javax.swing.JTable tbParcelas;
     // End of variables declaration//GEN-END:variables
 
     private boolean validaCampo() {
-        if (edCodigoCli.getText().equals("")) {
+        if (edCodCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Selecione um cliente!");
-            edCodigoCli.requestFocus();
+            edCodCliente.requestFocus();
             return false;
         }
 
-        if (edContrato.getText().equals("")) {
+        if (edPedido.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Selecione um contrato!");
-            edContrato.requestFocus();
+            edPedido.requestFocus();
             return false;
         }
         
@@ -674,5 +728,15 @@ public class CadastroMovFinancF extends javax.swing.JInternalFrame implements Te
     @Override
     public void HabilitarBotoes() {
         Permissoes.aplicaHabilitacao(this.ID_TELA, this.BotoesTela());
+    }
+    
+    public void SelecionaParcela(Integer pSeq) {
+        if (!edPedido.getText().isEmpty()) {
+            MovimentacaoFinanc wParcela = new MovimentacaoFinancDAO().consultarID(Integer.parseInt(edPedido.getText()), pSeq);
+            edParcela.setText(wParcela.getId().getSeq() + "");
+            edValor.setValue(wParcela.getValor());
+            edDataPagamento.setText(Formatacao.ajustaDataDMA(wParcela.getDataQuitacao().toString()));
+            edDataVencimento.setText(Formatacao.ajustaDataDMA(wParcela.getDataVencimento().toString()));
+        }
     }
 }

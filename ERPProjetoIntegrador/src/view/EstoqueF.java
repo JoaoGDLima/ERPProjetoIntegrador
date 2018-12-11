@@ -73,6 +73,7 @@ public class EstoqueF extends javax.swing.JInternalFrame implements TelaPermissa
         lbData.setForeground(new java.awt.Color(33, 33, 33));
         lbData.setText("Argumento:");
 
+        jButton2.setBackground(new java.awt.Color(243, 243, 243));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico/Cancelar_15.png"))); // NOI18N
         jButton2.setText("Sair");
@@ -155,7 +156,6 @@ public class EstoqueF extends javax.swing.JInternalFrame implements TelaPermissa
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JFormattedTextField edArgumento;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbData;
